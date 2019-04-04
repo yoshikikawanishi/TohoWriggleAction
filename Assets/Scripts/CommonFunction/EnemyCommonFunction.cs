@@ -33,7 +33,7 @@ public class EnemyCommonFunction : MonoBehaviour {
             Damaged(1);
         }
         //キックに当たった時
-        else if(collision.tag == "PlayerFootTag") {
+        else if(collision.tag == "PlayerAttackTag") {
             Damaged(5);
         }
     }
@@ -46,7 +46,7 @@ public class EnemyCommonFunction : MonoBehaviour {
             Damaged(1);
         }
         //キックに当たった時
-        else if(collision.gameObject.tag == "PlayerFootTag") {
+        else if(collision.gameObject.tag == "PlayerAttackTag") {
             Damaged(5);
         }
     }
@@ -57,6 +57,7 @@ public class EnemyCommonFunction : MonoBehaviour {
         life--;
         if(life <= 0) {
             GameObject effect = Instantiate(vanish_Effect);
+            effect.transform.position = transform.position;
             Destroy(gameObject);
         }
         //点滅

@@ -9,7 +9,9 @@ TagManager:
   - EnemyTag
   - EnemyBulletTag
   - PlayerFootTag
+  - GroundTag
   - BombTag
+  - PlayerAttackTag
   layers:
   - Default
   - TransparentFX
