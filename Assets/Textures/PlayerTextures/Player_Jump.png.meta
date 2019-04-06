@@ -135,7 +135,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0bdcda39a1ba33438039004c37a02ea
+      spriteID: fda3fc05d016d96428c6e4862b8c8f28
       vertices: []
       indices: 
       edges: []
@@ -155,7 +155,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72e3c126631c75e46b8c32a109098d07
+      spriteID: b602ffe2184c66a408f71e42dcc0eada
       vertices: []
       indices: 
       edges: []
@@ -175,7 +175,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e199807135ecaf4c8ff3bde02e3cf25
+      spriteID: a6e9b71ea34d52149bee2e4e7ddd26ba
       vertices: []
       indices: 
       edges: []
@@ -195,7 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6e1dc92c2b35c14790c3b708895ba0c
+      spriteID: 10e77902bc4f478429f5941040ac9dfc
       vertices: []
       indices: 
       edges: []
@@ -203,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b926d740194647e4ca903b11570a86d6
+    spriteID: d30ce5820e9e32d44863de7bbb101c2f
     vertices: []
     indices: 
     edges: []

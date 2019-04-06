@@ -5,14 +5,12 @@ using UnityEngine;
 public class PlayerFootController : MonoBehaviour {
 
     //自機
-    private GameObject player;
     private PlayerController player_Controller;
 
 
 	// Use this for initialization
 	void Start () {
         //自機の取得
-        player = transform.parent.gameObject;
         player_Controller = transform.GetComponentInParent<PlayerController>();
 	}
 	
