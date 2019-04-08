@@ -11,6 +11,9 @@ public class PlayerDamagedController : MonoBehaviour {
     private PlayerManager _playerManager;
     private PlayerController _playerController;
 
+    //自機
+    private GameObject player;
+
     //被弾時の無敵時間
     private float INVINCIBLE_TIME = 1.5f;
 
@@ -18,11 +21,12 @@ public class PlayerDamagedController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //コンポーネントの取得
-        _renderer = GetComponent<Renderer>();
+        _renderer = GetComponentInParent<Renderer>();
         //スクリプトの取得
         _playerManager = GameObject.Find("CommonScripts").GetComponent<PlayerManager>();
-        _playerController = GetComponent<PlayerController>();
-
+        _playerController = GetComponentInParent<PlayerController>();
+        //自機
+        player = transform.parent.gameObject;
     }
 	
 	// Update is called once per frame
@@ -52,7 +56,7 @@ public class PlayerDamagedController : MonoBehaviour {
         //ライフを減らす
         _playerManager.life--;
         //無敵化
-        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        player.layer = LayerMask.NameToLayer("InvincibleLayer");
         //点滅
         for (int i = 0; i < 10; i++) {
             _renderer.enabled = false;
@@ -62,7 +66,7 @@ public class PlayerDamagedController : MonoBehaviour {
         }
         yield return new WaitForSeconds(0.5f);
         //無敵解除
-        gameObject.layer = LayerMask.NameToLayer("PlayerLayer");
+        player.layer = LayerMask.NameToLayer("PlayerLayer");
     }
 
 

@@ -9,18 +9,16 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D _rigid;
     private SpriteRenderer _sprite;
     private Animator _anim;
-    private CapsuleCollider2D _collider;
     //オーディオコンポーネント
     private AudioSource jump_Sound;
 
     //スクリプト
-    private ObjectPool _pool;
     private PlayerManager _playerManager;
 
     //子供
     private GameObject player_Kick;
+    private CapsuleCollider2D _collider;
     private GameObject hit_Decision;
-    private GameObject[] options = new GameObject[2];
 
     //初期値
     private float default_Gravity;
@@ -38,13 +36,8 @@ public class PlayerController : MonoBehaviour {
     private float FLY_SPEED = 120f;
 
     //ジャンプ
-    private float JUMP_SPEED = 300.0f;
+    private float JUMP_SPEED = 350.0f;
     private float JUMP_DEC = 0.5f;
-
-    //ショット
-    private float BULLET_SPEED = 500.0f;
-    private float time = 0;
-    private float SHOT_SPAN = 0.1f;
 
     //操作可能かどうか
     public bool is_Playable = true;
@@ -64,18 +57,15 @@ public class PlayerController : MonoBehaviour {
         _rigid = GetComponent<Rigidbody2D>();
         _sprite = GetComponent<SpriteRenderer>();
         _anim = GetComponent<Animator>();
-        _collider = GetComponent<CapsuleCollider2D>();
         //オーディオコンポーネントの取得
         jump_Sound = GetComponents<AudioSource>()[0];
         //スクリプトの取得
-        _pool = GetComponent<ObjectPool>();
         _playerManager = GameObject.Find("CommonScripts").GetComponent<PlayerManager>();
 
         //子供の取得
         player_Kick = transform.Find("PlayerKick").gameObject;
+        _collider = GetComponentInChildren<CapsuleCollider2D>();
         hit_Decision = transform.Find("HitDecision").gameObject;
-        options[0] = transform.Find("PlayerOption_0").gameObject;
-        options[1] = transform.Find("PlayerOption_1").gameObject;
 
         //初期値の代入
         default_Gravity = _rigid.gravityScale;
@@ -83,9 +73,6 @@ public class PlayerController : MonoBehaviour {
         default_Collider_Size = _collider.size;
         default_Collider_Offset = _collider.offset;
 
-        //オブジェクトプール
-        GameObject player_Bullet = Resources.Load("Bullet/PooledBullet/PlayerBullet") as GameObject;
-        _pool.CreatePool(player_Bullet, 10);
 	}
 	
 
@@ -107,8 +94,6 @@ public class PlayerController : MonoBehaviour {
             Transition();
             //アニメーション
             Animation();
-            //ショット
-            Shot();
  
             if (!is_Fly) {
                 //ジャンプ
@@ -187,7 +172,7 @@ public class PlayerController : MonoBehaviour {
         if (is_Ground && Input.GetKey(KeyCode.DownArrow)) {
             Change_Parameter("SquatBool");
             _collider.size = new Vector2(default_Collider_Size.x, default_Collider_Size.x) + new Vector2(0, 0.1f);
-            _collider.offset = new Vector2(default_Collider_Offset.x, -9f);
+            _collider.offset = new Vector2(default_Collider_Offset.x, -8f);
             is_Squat = true;
         }
         if (Input.GetKeyUp(KeyCode.DownArrow)) {
@@ -276,13 +261,13 @@ public class PlayerController : MonoBehaviour {
             _rigid.velocity = new Vector2(200f * transform.localScale.x, -250f);
         }
         //キックが敵か地面にヒットしたとき(PlayerKickControllerで衝突判定)
-        for(float time = 0; time < 0.6f; time += Time.deltaTime) {
-            yield return null;
+        for(float time = 0; time < 0.6f; time += Time.deltaTime) {            
             if (Is_Hit_Kick()) {
                 _rigid.velocity = new Vector2(40f * -transform.localScale.x, 180f);
                 yield return new WaitForSeconds(0.4f);
                 break;
             }
+            yield return null;
         }
         _rigid.drag = default_Drag;
         //攻撃判定を消す
@@ -297,28 +282,6 @@ public class PlayerController : MonoBehaviour {
             return true;
         }
         return false;
-    }
-
-
-    //ショット
-    private void Shot() {
-        if (Input.GetKey(KeyCode.X)) {
-            if (time < SHOT_SPAN) {
-                time += Time.deltaTime;
-            }
-            else {
-                time = 0;
-                //弾の発射
-                for (int i = 0; i < 2; i++) {
-                    var bullet = _pool.GetObject();
-                    bullet.transform.position = options[i].transform.position;
-                    bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(BULLET_SPEED * transform.localScale.x, 0);
-                }
-            }
-        }
-        else if (Input.GetKeyUp(KeyCode.X)) {
-            time = SHOT_SPAN;
-        }
     }
 
 

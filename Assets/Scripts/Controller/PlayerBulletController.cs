@@ -27,7 +27,7 @@ public class PlayerBulletController : MonoBehaviour {
 
     //弾を消す
     private IEnumerator Delete() {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
         gameObject.SetActive(false);
     }
 
