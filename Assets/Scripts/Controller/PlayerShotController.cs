@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerShotController : MonoBehaviour {
 
+    //オーディオ
+    private AudioSource shot_Sound;
     //オブジェクトプール
     private ObjectPool _pool;
     //自機
@@ -18,6 +20,8 @@ public class PlayerShotController : MonoBehaviour {
     
     // Use this for initialization
     void Start () {
+        //オーディオの取得
+        shot_Sound = GetComponent<AudioSource>();
         //オブジェクトプール
         _pool = GetComponent<ObjectPool>();
         GameObject player_Bullet = Resources.Load("Bullet/PooledBullet/PlayerBullet") as GameObject;
@@ -50,6 +54,7 @@ public class PlayerShotController : MonoBehaviour {
                     var bullet = _pool.GetObject();
                     bullet.transform.position = gameObject.transform.position;
                     bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(BULLET_SPEED * player.transform.localScale.x, 0);
+                    shot_Sound.Play();
                 }
             }
         }

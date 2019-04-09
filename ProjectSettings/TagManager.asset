@@ -12,6 +12,7 @@ TagManager:
   - GroundTag
   - BombTag
   - PlayerAttackTag
+  - PlayerBodyTag
   layers:
   - Default
   - TransparentFX

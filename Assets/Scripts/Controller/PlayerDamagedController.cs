@@ -56,7 +56,9 @@ public class PlayerDamagedController : MonoBehaviour {
         //ライフを減らす
         _playerManager.life--;
         //無敵化
-        player.layer = LayerMask.NameToLayer("InvincibleLayer");
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        //反動
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(-player.transform.localScale.x, 2) * 100f;
         //点滅
         for (int i = 0; i < 10; i++) {
             _renderer.enabled = false;
@@ -66,7 +68,7 @@ public class PlayerDamagedController : MonoBehaviour {
         }
         yield return new WaitForSeconds(0.5f);
         //無敵解除
-        player.layer = LayerMask.NameToLayer("PlayerLayer");
+        gameObject.layer = LayerMask.NameToLayer("PlayerLayer");
     }
 
 

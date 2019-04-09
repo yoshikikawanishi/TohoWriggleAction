@@ -11,6 +11,8 @@ public class EnemyCommonFunction : MonoBehaviour {
 
     //コンポーネント
     private SpriteRenderer _sprite;
+    //オーディオ
+    private AudioSource damage_Sound;
 
     //デフォルトカラー
     private Color default_Color;
@@ -20,6 +22,7 @@ public class EnemyCommonFunction : MonoBehaviour {
 	void Start () {
         //コンポーネントの取得
         _sprite = GetComponent<SpriteRenderer>();
+        damage_Sound = GetComponents<AudioSource>()[0];
 
         //初期値代入
         default_Color = _sprite.color;
@@ -34,7 +37,7 @@ public class EnemyCommonFunction : MonoBehaviour {
     //TriggerEnter2D
     private void OnTriggerEnter2D(Collider2D collision) {
         //自機の弾または自機に当たった時
-        if(collision.tag == "PlayerBulletTag" || collision.tag == "PlayerTag") {
+        if(collision.tag == "PlayerBulletTag" || collision.tag == "PlayerBodyTag") {
             Damaged(1);
         }
         //キックに当たった時
@@ -42,17 +45,11 @@ public class EnemyCommonFunction : MonoBehaviour {
             Damaged(10);
         }
     }
-
-
     //CollisionEnter2D
     private void OnCollisionEnter2D(Collision2D collision) {
-        //自機の弾または自機に当たった時
-        if (collision.gameObject.tag == "PlayerBulletTag" || collision.gameObject.tag == "PlayerTag") {
-            Damaged(1);
-        }
-        //キックに当たった時
-        else if(collision.gameObject.tag == "PlayerAttackTag") {
-            Damaged(10);
+        //自機に当たった時
+        if (collision.gameObject.tag == "PlayerTag") {
+            Damaged(life);
         }
     }
 
@@ -60,6 +57,8 @@ public class EnemyCommonFunction : MonoBehaviour {
     //被弾時の処理
     private void Damaged(int damage_Power) {
         life -= damage_Power;
+        damage_Sound.Play();
+        //消滅
         if(life <= 0) {
             GameObject effect = Instantiate(vanish_Effect);
             effect.transform.position = transform.position;

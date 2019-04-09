@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     private Animator _anim;
     //オーディオコンポーネント
     private AudioSource jump_Sound;
-
+    private AudioSource kick_Sound;
     //スクリプト
     private PlayerManager _playerManager;
 
@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour {
         _anim = GetComponent<Animator>();
         //オーディオコンポーネントの取得
         jump_Sound = GetComponents<AudioSource>()[0];
+        kick_Sound = GetComponents<AudioSource>()[1];
         //スクリプトの取得
         _playerManager = GameObject.Find("CommonScripts").GetComponent<PlayerManager>();
 
@@ -251,6 +252,8 @@ public class PlayerController : MonoBehaviour {
         player_Kick.SetActive(true);
         //アニメーションの変更
         Change_Parameter("KickBool");
+        //効果音
+        kick_Sound.Play();
         //地上ならスライディング
         if (is_Ground) {
             _rigid.drag = 3.0f;
