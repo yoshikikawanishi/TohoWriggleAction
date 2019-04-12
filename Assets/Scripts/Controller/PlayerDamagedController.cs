@@ -23,7 +23,7 @@ public class PlayerDamagedController : MonoBehaviour {
         //コンポーネントの取得
         _renderer = GetComponentInParent<Renderer>();
         //スクリプトの取得
-        _playerManager = GameObject.Find("CommonScripts").GetComponent<PlayerManager>();
+        _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
         _playerController = GetComponentInParent<PlayerController>();
         //自機
         player = transform.parent.gameObject;
@@ -39,22 +39,30 @@ public class PlayerDamagedController : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         //被弾時
         if (collision.tag == "EnemyTag" || collision.tag == "EnemyBulletTag") {
-            StartCoroutine("Damaged");
+            StartCoroutine("Damaged", 1);
+        }
+        //即死
+        else if(collision.tag == "MissZoneTag") {
+            StartCoroutine("Damaged", _playerManager.life + 2);
         }
     }
     //OnCollisionEnter
     private void OnCollisionEnter2D(Collision2D collision) {
         //被弾時
         if (collision.gameObject.tag == "EnemyTag" || collision.gameObject.tag == "EnemyBulletTag") {
-            StartCoroutine("Damaged");
+            StartCoroutine("Damaged", 1);
         }
     }
 
 
     //被弾時の処理
-    private IEnumerator Damaged() {
+    private IEnumerator Damaged(int damage) {
         //ライフを減らす
-        _playerManager.life--;
+        _playerManager.life -= damage;
+        //死亡時の処理
+        if(_playerManager.life <= 0) {
+            StartCoroutine("Miss");
+        }
         //無敵化
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         //反動
@@ -69,6 +77,13 @@ public class PlayerDamagedController : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         //無敵解除
         gameObject.layer = LayerMask.NameToLayer("PlayerLayer");
+    }
+
+
+    //ライフが0になった時の処理
+    private IEnumerator Miss() {
+        player.SetActive(false);
+        yield return new WaitForSeconds(1.0f);
     }
 
 

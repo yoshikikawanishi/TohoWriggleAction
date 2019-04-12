@@ -13,6 +13,8 @@ TagManager:
   - BombTag
   - PlayerAttackTag
   - PlayerBodyTag
+  - CommonScriptsTag
+  - MissZoneTag
   layers:
   - Default
   - TransparentFX

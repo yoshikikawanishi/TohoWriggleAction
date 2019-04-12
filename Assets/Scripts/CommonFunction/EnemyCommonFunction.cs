@@ -49,7 +49,7 @@ public class EnemyCommonFunction : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
         //自機に当たった時
         if (collision.gameObject.tag == "PlayerTag") {
-            Damaged(life);
+            Damaged(life / 2);
         }
     }
 

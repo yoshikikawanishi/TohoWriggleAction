@@ -28,15 +28,21 @@ public class CameraController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        //通常の面
-        if (!is_Auto_Scroll) {
-            transform.position = new Vector3(player.transform.position.x, 0, -10);
-        }
-        //強制スクロールの面
-        else {
-            transform.position += new Vector3(scroll_Speed, 0, 0);
-        }
         
+    }
+
+    //FixedUpdaet
+    private void FixedUpdate() {
+        if (player != null) {
+            //通常の面
+            if (!is_Auto_Scroll) {
+                transform.position = new Vector3(player.transform.position.x, 0, -10);
+            }
+            //強制スクロールの面
+            else {
+                transform.position += new Vector3(scroll_Speed, 0, 0);
+            }
+        }
         //左端のときスクロールを止める
         if (transform.position.x < leftSide) {
             transform.position = new Vector3(leftSide, 0, -10);
@@ -46,4 +52,5 @@ public class CameraController : MonoBehaviour {
             transform.position = new Vector3(rightSide, 0, -10);
         }
     }
+
 }

@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour {
         jump_Sound = GetComponents<AudioSource>()[0];
         kick_Sound = GetComponents<AudioSource>()[1];
         //スクリプトの取得
-        _playerManager = GameObject.Find("CommonScripts").GetComponent<PlayerManager>();
+        _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
 
         //子供の取得
         player_Kick = transform.Find("PlayerKick").gameObject;
