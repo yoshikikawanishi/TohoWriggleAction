@@ -12,7 +12,7 @@ public class Enemy1Controller : MonoBehaviour {
     private Renderer _renderer;
 
     //自機
-    private GameObject player;
+    //private GameObject player;
 
 
 	// Use this for initialization
@@ -21,7 +21,7 @@ public class Enemy1Controller : MonoBehaviour {
         _rigid = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<Renderer>();
         //自機の取得
-        player = GameObject.FindWithTag("PlayerTag");
+        //player = GameObject.FindWithTag("PlayerTag");
 
         switch (kind_Num) {
             case 1:RedFairy_Start(); break;
@@ -40,6 +40,7 @@ public class Enemy1Controller : MonoBehaviour {
 
         switch (kind_Num) {
             case 1: RedFairy(); break;
+            case 2: BlueFairy(); break;
         }
 
     }
@@ -56,6 +57,19 @@ public class Enemy1Controller : MonoBehaviour {
         }
         //下に落ちたら消す
         if (transform.position.y < -160f) {
+            Destroy(gameObject);
+        }
+    }
+
+
+    //BlueFairy
+    private void BlueFairy() {
+        //画面内に入ったら動き出す
+        if (_renderer.isVisible) {
+            _rigid.velocity = new Vector2(-37f, 0);
+        }
+        //左端に行ったら消す
+        if(transform.position.x < 320f) {
             Destroy(gameObject);
         }
     }

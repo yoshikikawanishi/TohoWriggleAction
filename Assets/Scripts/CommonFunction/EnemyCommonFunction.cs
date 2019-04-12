@@ -57,15 +57,17 @@ public class EnemyCommonFunction : MonoBehaviour {
     //被弾時の処理
     private void Damaged(int damage_Power) {
         life -= damage_Power;
-        damage_Sound.Play();
         //消滅
-        if(life <= 0) {
+        if (life <= 0) {
             GameObject effect = Instantiate(vanish_Effect);
             effect.transform.position = transform.position;
             Destroy(gameObject);
         }
-        //点滅
-        StartCoroutine("Blink");
+        else {
+            damage_Sound.Play();
+            //点滅
+            StartCoroutine("Blink");
+        }
     }
 
 

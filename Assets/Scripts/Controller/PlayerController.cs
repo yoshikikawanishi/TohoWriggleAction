@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour {
 
     //コンポーネント
     private Rigidbody2D _rigid;
-    private SpriteRenderer _sprite;
     private Animator _anim;
     //オーディオコンポーネント
     private AudioSource jump_Sound;
@@ -55,7 +54,6 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
         //コンポーネントの取得
         _rigid = GetComponent<Rigidbody2D>();
-        _sprite = GetComponent<SpriteRenderer>();
         _anim = GetComponent<Animator>();
         //オーディオコンポーネントの取得
         jump_Sound = GetComponents<AudioSource>()[0];
@@ -136,7 +134,7 @@ public class PlayerController : MonoBehaviour {
         }
         //飛行状態の切り替えに伴う空気抵抗の変化
         if (is_Fly && _rigid.drag == default_Drag) {
-            Invoke("Change_Drag", 0.5f);
+            Invoke("Change_Drag", 0.2f);
         }
         else if (!is_Fly && _rigid.drag != default_Drag) {
             _rigid.drag = default_Drag;
