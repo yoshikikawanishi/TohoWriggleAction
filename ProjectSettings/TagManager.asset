@@ -15,6 +15,8 @@ TagManager:
   - PlayerBodyTag
   - CommonScriptsTag
   - MissZoneTag
+  - PowerTag
+  - ScoreTag
   layers:
   - Default
   - TransparentFX

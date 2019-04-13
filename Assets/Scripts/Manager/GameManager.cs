@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour {
         PlayerPrefs.SetString("Scene", scene);
         PlayerPrefs.SetFloat("PosX", player.transform.position.x);
         PlayerPrefs.SetFloat("PosY", player.transform.position.y);
+        PlayerPrefs.SetInt("Life", _playerManager.life);
         PlayerPrefs.SetInt("Score", _playerManager.score);
         PlayerPrefs.SetInt("Power", _playerManager.power);
     }
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour {
             GameObject player = GameObject.FindWithTag("PlayerTag");
             player.transform.position = pos;
             //ステータス
+            _playerManager.life = PlayerPrefs.GetInt("Life");
             _playerManager.score = PlayerPrefs.GetInt("Score");
             _playerManager.power = PlayerPrefs.GetInt("Power");
         }

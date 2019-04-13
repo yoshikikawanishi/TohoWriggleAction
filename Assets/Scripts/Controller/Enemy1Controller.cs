@@ -69,7 +69,7 @@ public class Enemy1Controller : MonoBehaviour {
             _rigid.velocity = new Vector2(-37f, 0);
         }
         //左端に行ったら消す
-        if(transform.position.x < 320f) {
+        if(transform.position.x < -320f) {
             Destroy(gameObject);
         }
     }

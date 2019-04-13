@@ -8,6 +8,10 @@ public class EnemyCommonFunction : MonoBehaviour {
     [SerializeField] private int life = 1;
     //消滅時のエフェクト
     [SerializeField] private GameObject vanish_Effect;
+    //点
+    [SerializeField] private int score_Value = 200;
+    //P
+    [SerializeField] private int power_Value = 2;
 
     //コンポーネント
     private SpriteRenderer _sprite;
@@ -16,6 +20,9 @@ public class EnemyCommonFunction : MonoBehaviour {
 
     //デフォルトカラー
     private Color default_Color;
+
+    //消滅の処理に入ったかどうか
+    private bool is_Vanished = false;
 
 
 	// Use this for initialization
@@ -58,12 +65,11 @@ public class EnemyCommonFunction : MonoBehaviour {
     private void Damaged(int damage_Power) {
         life -= damage_Power;
         //消滅
-        if (life <= 0) {
-            GameObject effect = Instantiate(vanish_Effect);
-            effect.transform.position = transform.position;
-            Destroy(gameObject);
+        if (life <= 0 && !is_Vanished) {
+            Vanish();
+            is_Vanished = true;
         }
-        else {
+        else if(!is_Vanished){
             damage_Sound.Play();
             //点滅
             StartCoroutine("Blink");
@@ -79,6 +85,33 @@ public class EnemyCommonFunction : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
     }
 
+
+    //消滅時の処理
+    private void Vanish() {
+        //エフェクトの生成
+        GameObject effect = Instantiate(vanish_Effect);
+        effect.transform.position = transform.position;
+        Destroy(effect, 1.0f);
+        //点とPの生成
+        Put_Out_Item();
+        Destroy(gameObject);
+    }
+
+    //点とPの生成
+    private void Put_Out_Item() {
+        int score_Num = score_Value / 100;
+        for (int i = 0; i < score_Num; i++) {
+            GameObject score = Instantiate(Resources.Load("Score")) as GameObject;
+            score.transform.position = transform.position;
+            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 50, Random.Range(300f, 500f));
+        }
+        int power_Num = power_Value;
+        for (int i = 0; i < power_Num; i++) {
+            GameObject power = Instantiate(Resources.Load("Power")) as GameObject;
+            power.transform.position = transform.position;
+            power.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-power_Num, power_Num) * 50, Random.Range(300f, 500f));
+        }
+    }
 
 
 }

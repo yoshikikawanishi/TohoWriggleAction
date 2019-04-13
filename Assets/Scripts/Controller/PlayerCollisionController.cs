@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDamagedController : MonoBehaviour {
+public class PlayerCollisionController : MonoBehaviour {
 
     //コンポーネント
     private Renderer _renderer;
+    //オーディオ
+    private AudioSource get_Item_Sound;
 
     //スクリプト
     private PlayerManager _playerManager;
     private PlayerController _playerController;
+    private GameManager _gameManager;
 
     //自機
     private GameObject player;
@@ -22,8 +25,11 @@ public class PlayerDamagedController : MonoBehaviour {
 	void Start () {
         //コンポーネントの取得
         _renderer = GetComponentInParent<Renderer>();
+        //オーディオの取得
+        get_Item_Sound = GetComponent<AudioSource>();
         //スクリプトの取得
         _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
+        _gameManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
         _playerController = GetComponentInParent<PlayerController>();
         //自機
         player = transform.parent.gameObject;
@@ -45,6 +51,15 @@ public class PlayerDamagedController : MonoBehaviour {
         else if(collision.tag == "MissZoneTag") {
             StartCoroutine("Damaged", _playerManager.life + 2);
         }
+        //点とPの獲得
+        if (collision.tag == "ScoreTag") {
+            _playerManager.Get_Score();
+            get_Item_Sound.Play();
+        }
+        else if (collision.tag == "PowerTag") {
+            _playerManager.Get_Power();
+            get_Item_Sound.Play();
+        }
     }
     //OnCollisionEnter
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -61,12 +76,15 @@ public class PlayerDamagedController : MonoBehaviour {
         _playerManager.life -= damage;
         //死亡時の処理
         if(_playerManager.life <= 0) {
-            StartCoroutine("Miss");
+            Miss();
         }
         //無敵化
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         //反動
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(-player.transform.localScale.x, 2) * 100f;
+        //ボムエフェクト
+        GameObject bomb = Instantiate(Resources.Load("Effect/PlayerDamagedBomb")) as GameObject;
+        bomb.transform.position = transform.position;
         //点滅
         for (int i = 0; i < 10; i++) {
             _renderer.enabled = false;
@@ -81,9 +99,13 @@ public class PlayerDamagedController : MonoBehaviour {
 
 
     //ライフが0になった時の処理
-    private IEnumerator Miss() {
-        player.SetActive(false);
-        yield return new WaitForSeconds(1.0f);
+    private void Miss() {
+        //エフェクト
+        GameObject effect = Instantiate(Resources.Load("Effect/PlayerMissEffect")) as GameObject;
+        effect.transform.position = transform.position;
+        //死亡と復活
+        _playerManager.StartCoroutine("Revive");
+        player.SetActive(false);        
     }
 
 
