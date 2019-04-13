@@ -14,6 +14,10 @@ public class Enemy1Controller : MonoBehaviour {
     //自機
     //private GameObject player;
 
+    //RedFairy用
+    private float red_Fairy_Speed = -45f;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -53,7 +57,7 @@ public class Enemy1Controller : MonoBehaviour {
     private void RedFairy() {
         //画面内に入ったら動き出す
         if (_renderer.isVisible) {
-            _rigid.velocity = new Vector2(-45f, 0);
+            _rigid.velocity = new Vector2(red_Fairy_Speed, 0);
         }
         //下に落ちたら消す
         if (transform.position.y < -160f) {
@@ -74,5 +78,14 @@ public class Enemy1Controller : MonoBehaviour {
         }
     }
 
+
+    //OnTriggerEnter
+    private void OnTriggerEnter2D(Collider2D collision) {
+        //RedFairyの反転用
+        if(collision.tag == "InvisibleWallTag" && kind_Num == 1) {
+            red_Fairy_Speed *= -1;
+            transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
+        }
+    }
 
 }
