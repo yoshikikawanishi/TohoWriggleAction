@@ -47,9 +47,9 @@ public class EnemyCommonFunction : MonoBehaviour {
         if(collision.tag == "PlayerBulletTag" || collision.tag == "PlayerBodyTag") {
             Damaged(1);
         }
-        //キックに当たった時
-        else if(collision.tag == "PlayerAttackTag") {
-            Damaged(10);
+        //キック、ボムに当たった時
+        else if(collision.tag == "PlayerAttackTag" || collision.tag == "BombTag") {
+            Damaged(15);
         }
     }
     //CollisionEnter2D

@@ -229,9 +229,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7453bac3b18d3a946870861ffa85b889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 9
+  life: 3
   vanish_Effect: {fileID: 1901817575273748, guid: 20dfbcca07249104a9b30d99e5064b93,
     type: 2}
+  score_Value: 200
+  power_Value: 2
 --- !u!212 &212613755211942422
 SpriteRenderer:
   m_ObjectHideFlags: 1

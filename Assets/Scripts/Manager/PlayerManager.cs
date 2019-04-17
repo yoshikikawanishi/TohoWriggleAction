@@ -35,7 +35,7 @@ public class PlayerManager : MonoBehaviour {
         yield return null;
         life = 3;
         //点滅
-
+        GameObject.FindWithTag("PlayerTag").GetComponentInChildren<PlayerCollisionController>().StartCoroutine("Blink");
     }
 
 
@@ -56,7 +56,9 @@ public class PlayerManager : MonoBehaviour {
 
     //Pの獲得
     public void Get_Power() {
-        power++;
+        if (power <= 128) {
+            power++;
+        }
     }
 
 }

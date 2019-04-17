@@ -28,8 +28,8 @@ public class ItemController : MonoBehaviour {
         if (player != null) {
             angle = player.transform.position - transform.position;
             distance = Mathf.Sqrt(angle.x * angle.x + angle.y * angle.y);
-            if (distance < 64f) {
-                _rigid.velocity = angle.normalized * 320f;
+            if (distance < 60f) {
+                _rigid.velocity = angle.normalized * 300f;
             }
 
             if (transform.position.y < -200f) {

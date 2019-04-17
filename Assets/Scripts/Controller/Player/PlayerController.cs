@@ -27,12 +27,12 @@ public class PlayerController : MonoBehaviour {
 
     //移動速度
     private float max_Speed = 150.0f;
-    private float acc = 15f;
+    private float acc = 13f;
     private float dec = 0.8f;
     //通常時
-    private float DASH_SPEED = 150.0f;
+    private float DASH_SPEED = 170.0f;
     //飛行時
-    private float FLY_SPEED = 120f;
+    private float FLY_SPEED = 300f;
 
     //ジャンプ
     private float JUMP_SPEED = 350.0f;
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour {
                     dec = 0.98f;
                 }
                 else {
-                    acc = 10f;
+                    acc = 13f;
                     dec = 0.8f;
                 }
                 //しゃがみ
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour {
         }
         //飛行状態の切り替えに伴う空気抵抗の変化
         if (is_Fly && _rigid.drag == default_Drag) {
-            Invoke("Change_Drag", 0.2f);
+            Invoke("Change_Drag", 0.1f);
         }
         else if (!is_Fly && _rigid.drag != default_Drag) {
             _rigid.drag = default_Drag;

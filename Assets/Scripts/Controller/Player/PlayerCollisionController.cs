@@ -45,11 +45,11 @@ public class PlayerCollisionController : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         //被弾時
         if (collision.tag == "EnemyTag" || collision.tag == "EnemyBulletTag") {
-            StartCoroutine("Damaged", 1);
+            Damaged(1);
         }
         //即死
         else if(collision.tag == "MissZoneTag") {
-            StartCoroutine("Damaged", _playerManager.life + 2);
+            Damaged(_playerManager.life + 2);
         }
         //点とPの獲得
         if (collision.tag == "ScoreTag") {
@@ -65,27 +65,49 @@ public class PlayerCollisionController : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
         //被弾時
         if (collision.gameObject.tag == "EnemyTag" || collision.gameObject.tag == "EnemyBulletTag") {
-            StartCoroutine("Damaged", 1);
+            Damaged(1);
         }
     }
 
 
     //被弾時の処理
-    private IEnumerator Damaged(int damage) {
+    private void Damaged(int damage) {
         //ライフを減らす
         _playerManager.life -= damage;
+        //powerを減らす
+        Reduce_Power();
         //死亡時の処理
-        if(_playerManager.life <= 0) {
+        if (_playerManager.life <= 0) {
             Miss();
         }
-        //無敵化
+        else {
+            //反動
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(-player.transform.localScale.x, 2) * 100f;
+            //ボムエフェクト
+            GameObject bomb = Instantiate(Resources.Load("Effect/PlayerDamagedBomb")) as GameObject;
+            bomb.transform.position = transform.position;
+            //点滅
+            StartCoroutine("Blink");
+        }
+    }
+
+
+    //powerを出す
+    private void Reduce_Power() {
+        int num = _playerManager.power / 4;
+        float space = 800f / num;
+        _playerManager.power /= 2;
+        for(int i = 0; i < num; i++) {
+            GameObject p = Instantiate(Resources.Load("Power")) as GameObject;
+            p.transform.position = transform.position + new Vector3(0, 64f);
+            p.GetComponent<Rigidbody2D>().velocity = new Vector2(-400f + space * i, Random.Range(350f, 450f));
+        }
+    }
+
+
+    //点滅、無敵化
+    public IEnumerator Blink() {
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
-        //反動
-        player.GetComponent<Rigidbody2D>().velocity = new Vector2(-player.transform.localScale.x, 2) * 100f;
-        //ボムエフェクト
-        GameObject bomb = Instantiate(Resources.Load("Effect/PlayerDamagedBomb")) as GameObject;
-        bomb.transform.position = transform.position;
-        //点滅
         for (int i = 0; i < 10; i++) {
             _renderer.enabled = false;
             yield return new WaitForSeconds(INVINCIBLE_TIME / 20f);
@@ -93,8 +115,8 @@ public class PlayerCollisionController : MonoBehaviour {
             yield return new WaitForSeconds(INVINCIBLE_TIME / 20f);
         }
         yield return new WaitForSeconds(0.5f);
-        //無敵解除
         gameObject.layer = LayerMask.NameToLayer("PlayerLayer");
+
     }
 
 

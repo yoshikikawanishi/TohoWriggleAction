@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4539921683542584}
   - component: {fileID: 114670399460068558}
   - component: {fileID: 58503635551472862}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerKick
   m_TagString: PlayerAttackTag
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 61675946165170890}
   - component: {fileID: 114864253565299304}
   - component: {fileID: 82093447936642236}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerFoot
   m_TagString: PlayerFootTag
   m_Icon: {fileID: 0}
@@ -973,6 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc3d9f02ff9a0b347b01b5e802caa950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  option_Num: 0
 --- !u!114 &114261063059934230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1064,6 +1065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc3d9f02ff9a0b347b01b5e802caa950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  option_Num: 1
 --- !u!212 &212166976180223366
 SpriteRenderer:
   m_ObjectHideFlags: 1
