@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1Controller : MonoBehaviour {
+public class FairyController : MonoBehaviour {
 
     //種類番号
     [SerializeField] private int kind_Num = 0;
@@ -12,7 +12,7 @@ public class Enemy1Controller : MonoBehaviour {
     private Renderer _renderer;
 
     //自機
-    //private GameObject player;
+    private GameObject player;
 
     //RedFairy用
     private float red_Fairy_Speed = -45f;
@@ -25,10 +25,10 @@ public class Enemy1Controller : MonoBehaviour {
         _rigid = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<Renderer>();
         //自機の取得
-        //player = GameObject.FindWithTag("PlayerTag");
+        player = GameObject.FindWithTag("PlayerTag");
 
         switch (kind_Num) {
-            case 1:RedFairy_Start(); break;
+            case 1: RedFairy_Start(); break;
         }
     }
 	

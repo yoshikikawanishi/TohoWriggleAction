@@ -30,9 +30,9 @@ public class PlayerController : MonoBehaviour {
     private float acc = 13f;
     private float dec = 0.8f;
     //通常時
-    private float DASH_SPEED = 170.0f;
+    private float DASH_SPEED = 180.0f;
     //飛行時
-    private float FLY_SPEED = 300f;
+    private float FLY_SPEED = 130f;
 
     //ジャンプ
     private float JUMP_SPEED = 350.0f;
@@ -119,8 +119,10 @@ public class PlayerController : MonoBehaviour {
     //飛行状態の切り替えに伴うステータスの変化
     private void Change_Fly_Status() {
         //飛行状態切り替えに伴う移動速度の変化
-        if (is_Fly && max_Speed !=FLY_SPEED) {
+        if (is_Fly && max_Speed != FLY_SPEED) {
             max_Speed = FLY_SPEED;
+            acc = 13f;
+            dec = 0.8f;
         }
         else if(!is_Fly && max_Speed != DASH_SPEED) {
             max_Speed = DASH_SPEED;
