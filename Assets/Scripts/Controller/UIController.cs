@@ -10,11 +10,13 @@ public class UIController : MonoBehaviour {
 
     //UI
     private GameObject[] life_UI = new GameObject[9];
+    private Text stock_UI;
     private Text power_UI;
     private Text score_UI;
 
     //数値
     private int life_Num = 0;
+    private int stock_Num = 0;
     private int power_Value = 0;
     private int score_Value = 0;
 
@@ -28,6 +30,7 @@ public class UIController : MonoBehaviour {
         for(int i = 0; i < 9; i++) {
             life_UI[i] = transform.Find("LifeUIs").GetChild(i).gameObject;
         }
+        stock_UI = transform.Find("StockUI").GetComponent<Text>();
         power_UI = transform.Find("PowerUI").GetComponent<Text>();
         score_UI = transform.Find("ScoreUI").GetComponent<Text>();
 	}
@@ -39,6 +42,7 @@ public class UIController : MonoBehaviour {
         Life_UI();
         Power_UI();
         Score_UI();
+        Stock_UI();
 
 	}
 
@@ -53,6 +57,15 @@ public class UIController : MonoBehaviour {
             for(int i = 0; i < life_Num; i++) {
                 life_UI[i].gameObject.SetActive(true);
             }
+        }
+    }
+
+
+    //ストックUIの表示
+    private void Stock_UI() {
+        if(stock_Num != _playerManager.stock) {
+            stock_Num = _playerManager.stock;
+            stock_UI.text = "×" + _playerManager.stock.ToString();
         }
     }
 

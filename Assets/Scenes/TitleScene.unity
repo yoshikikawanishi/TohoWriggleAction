@@ -538,7 +538,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1716965009}
-        m_MethodName: Continue_Button
+        m_MethodName: Load_Data_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

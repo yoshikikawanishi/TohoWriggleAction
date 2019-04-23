@@ -44,6 +44,8 @@ public class BigFairyController : MonoBehaviour {
         b.Diffusion_Bullet(10, 100f, 0, 5.0f);
         b.Diffusion_Bullet(10, 90f, 20f, 5.0f);
         b.Diffusion_Bullet(10, 90f, -20f, 5.0f);
+        //効果音
+        GetComponents<AudioSource>()[1].Play();
         yield return new WaitForSeconds(1.5f);
         //上にはける
         while (transform.position.y < 210f) {

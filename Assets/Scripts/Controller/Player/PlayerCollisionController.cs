@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollisionController : MonoBehaviour {
 
@@ -126,8 +127,21 @@ public class PlayerCollisionController : MonoBehaviour {
         GameObject effect = Instantiate(Resources.Load("Effect/PlayerMissEffect")) as GameObject;
         effect.transform.position = transform.position;
         //死亡と復活
-        _playerManager.StartCoroutine("Revive");
-        player.SetActive(false);        
+        _playerManager.stock--;
+        if (_playerManager.stock > 0) {
+            _playerManager.StartCoroutine("Revive");
+        }
+        //ゲームオーバー
+        else {
+            Invoke("Game_Over", 1.0f);
+        }
+        player.SetActive(false);
+    }
+
+
+    //ゲームオーバー
+    private void Game_Over() {
+        SceneManager.LoadScene("GameOverScene");
     }
 
 

@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour {
         PlayerPrefs.SetInt("Life", _playerManager.life);
         PlayerPrefs.SetInt("Score", _playerManager.score);
         PlayerPrefs.SetInt("Power", _playerManager.power);
+        PlayerPrefs.SetInt("Stock", _playerManager.stock);
+        PlayerPrefs.SetInt("Continue", _playerManager.continue_Count);
     }
 
 
@@ -68,6 +70,8 @@ public class GameManager : MonoBehaviour {
             _playerManager.life = PlayerPrefs.GetInt("Life");
             _playerManager.score = PlayerPrefs.GetInt("Score");
             _playerManager.power = PlayerPrefs.GetInt("Power");
+            _playerManager.stock = PlayerPrefs.GetInt("Stock");
+            _playerManager.continue_Count = PlayerPrefs.GetInt("Continue");
         }
         //データがないとき
         else {
@@ -85,6 +89,8 @@ public class GameManager : MonoBehaviour {
         PlayerPrefs.SetFloat("PosY", 0);
         PlayerPrefs.SetInt("Score", 0);
         PlayerPrefs.SetInt("Power", 0);
+        PlayerPrefs.SetInt("Stock", 3);
+        PlayerPrefs.SetInt("Continue", 0);
     }
 
 }

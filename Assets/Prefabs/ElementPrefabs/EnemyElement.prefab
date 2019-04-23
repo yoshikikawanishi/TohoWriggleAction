@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4529010549916516}
   - component: {fileID: 212480870401726348}
+  - component: {fileID: 82003085979155614}
   - component: {fileID: 61139199628036528}
   - component: {fileID: 114758836722885528}
   - component: {fileID: 114385821802326710}
-  - component: {fileID: 82003085979155614}
   m_Layer: 9
   m_Name: EnemyElement
   m_TagString: EnemyTag
@@ -178,6 +178,9 @@ MonoBehaviour:
   life: 1
   vanish_Effect: {fileID: 1901817575273748, guid: 20dfbcca07249104a9b30d99e5064b93,
     type: 2}
+  score_Value: 200
+  power_Value: 2
+  item_Out_Speed: 500
 --- !u!114 &114758836722885528
 MonoBehaviour:
   m_ObjectHideFlags: 1

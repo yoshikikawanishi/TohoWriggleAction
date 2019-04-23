@@ -9,10 +9,14 @@ public class PlayerManager : MonoBehaviour {
 
     //ライフ
     public int life = 3;
+    //ストック
+    public int stock = 3;
     //スコア
     public int score = 0;
     //パワー
     public int power = 0;
+    //コンテニュー回数
+    public int continue_Count = 0;
 
 
 	// Use this for initialization
@@ -34,8 +38,20 @@ public class PlayerManager : MonoBehaviour {
         _gameManager.StartCoroutine("LoadData");
         yield return null;
         life = 3;
+        stock--;
         //点滅
         GameObject.FindWithTag("PlayerTag").GetComponentInChildren<PlayerCollisionController>().StartCoroutine("Blink");
+    }
+
+
+    //コンテニューの処理
+    public IEnumerator Continue() {
+        //セーブのロード
+        _gameManager.StartCoroutine("LoadData");
+        yield return null;
+        life = 3;
+        stock = 3;
+        continue_Count++;
     }
 
 
@@ -43,8 +59,13 @@ public class PlayerManager : MonoBehaviour {
     private void Life_Up() {
         if(life < 9) {
             life++;
-        }
-        
+        }     
+    }
+
+
+    //ストックの回復
+    private void Get_Stock() {
+
     }
 
 

@@ -12,6 +12,8 @@ public class EnemyCommonFunction : MonoBehaviour {
     [SerializeField] private int score_Value = 200;
     //P
     [SerializeField] private int power_Value = 2;
+    //アイテムを出す速度
+    [SerializeField] private float item_Out_Speed = 500f;
 
     //コンポーネント
     private SpriteRenderer _sprite;
@@ -103,13 +105,13 @@ public class EnemyCommonFunction : MonoBehaviour {
         for (int i = 0; i < score_Num; i++) {
             GameObject score = Instantiate(Resources.Load("Score")) as GameObject;
             score.transform.position = transform.position;
-            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 50, Random.Range(300f, 500f));
+            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 50, item_Out_Speed + Random.Range(-100f, 100f));
         }
         int power_Num = power_Value;
         for (int i = 0; i < power_Num; i++) {
             GameObject power = Instantiate(Resources.Load("Power")) as GameObject;
             power.transform.position = transform.position;
-            power.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-power_Num, power_Num) * 50, Random.Range(300f, 500f));
+            power.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-power_Num, power_Num) * 50, item_Out_Speed + Random.Range(-100f, 100f));
         }
     }
 
