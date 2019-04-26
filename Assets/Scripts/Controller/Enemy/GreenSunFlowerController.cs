@@ -2,38 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BigFairyController : MonoBehaviour {
-
-    //種類分け
-    [SerializeField] int kind_Num = 0;
-
+public class GreenSunFlowerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		switch (kind_Num) {
-            case 1: SunFlowerEnemy_Start(); break;
-        }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        switch (kind_Num) {
-            case 1: break;
-        }
-	}
-
-
-    //SunFlowerEnemy
-    private void SunFlowerEnemy_Start() {
-        StartCoroutine("SunFlowerEnemy_Routine");
+        StartCoroutine("SunFlowerFairy_Routine");
     }
-    private IEnumerator SunFlowerEnemy_Routine() {
+	
+
+    //登場後の流れ
+    private IEnumerator SunFlowerFairy_Routine() {
         //上から降りてくる
         float speed = 4.5f;
         while (speed >= 0){
             yield return null;
-            transform.position += new Vector3(0, -speed, 0);
-            speed -= 0.05f;
+            transform.position += new Vector3(0, -speed * Time.timeScale, 0);
+            speed -= 0.05f * Time.timeScale;
         }
         yield return new WaitForSeconds(1.5f);
         //弾の発射
@@ -49,13 +33,12 @@ public class BigFairyController : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
         //上にはける
         while (transform.position.y < 210f) {
-            transform.position += new Vector3(0, speed, 0);
-            speed += 0.05f;
+            transform.position += new Vector3(0, speed * Time.timeScale, 0);
+            speed += 0.05f * Time.timeScale;
             yield return null;
         }
         //消す
         Destroy(gameObject);
     }
-    
-
+   
 }

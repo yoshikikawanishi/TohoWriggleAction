@@ -56,12 +56,12 @@ public class Stage1_1Controller : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
         
         //SunFlowerEnemyの生成
-        var sun = Instantiate(Resources.Load("Enemy/SunFlowerEnemy")) as GameObject;
+        var sun = Instantiate(Resources.Load("Enemy/GreenSunFlowerFairy")) as GameObject;
         sun.transform.position = new Vector3(player.transform.position.x + 200f, 216f, 0);
         yield return new WaitForSeconds(6.0f);
         GameObject[] suns = new GameObject[2];
-        suns[0] = Instantiate(Resources.Load("Enemy/SunFlowerEnemy")) as GameObject;
-        suns[1] = Instantiate(Resources.Load("Enemy/SunFlowerEnemy")) as GameObject;
+        suns[0] = Instantiate(Resources.Load("Enemy/GreenSunFlowerFairy")) as GameObject;
+        suns[1] = Instantiate(Resources.Load("Enemy/GreenSunFlowerFairy")) as GameObject;
         suns[0].transform.position = new Vector3(player.transform.position.x + 200f, 264f, 0);
         suns[1].transform.position = new Vector3(player.transform.position.x + 200f, 160f, 0);
 

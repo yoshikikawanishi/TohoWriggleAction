@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 95592546619673088}
   - component: {fileID: 114323665204604542}
   - component: {fileID: 114710825651475208}
-  - component: {fileID: 114064958753005922}
+  - component: {fileID: 114831623052884768}
   - component: {fileID: 82973195286249388}
   m_Layer: 9
   m_Name: BlueFairy
@@ -195,18 +195,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114064958753005922
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1308243652881508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2cf7ca7246da34f8c2cfa0fae4d18f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kind_Num: 2
 --- !u!114 &114323665204604542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,6 +222,18 @@ MonoBehaviour:
     type: 2}
   score_Value: 200
   power_Value: 3
+  item_Out_Speed: 500
+--- !u!114 &114831623052884768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1308243652881508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b65648bff1d70f644bb7efd3c6e5b45f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212539778763009058
 SpriteRenderer:
   m_ObjectHideFlags: 1

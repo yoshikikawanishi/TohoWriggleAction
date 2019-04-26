@@ -20,15 +20,15 @@ GameObject:
   m_Component:
   - component: {fileID: 4607056593277060}
   - component: {fileID: 212772984612951454}
-  - component: {fileID: 114727906407731020}
-  - component: {fileID: 82481540541857736}
-  - component: {fileID: 61711538124350910}
-  - component: {fileID: 114110653382753272}
   - component: {fileID: 95396274924549486}
+  - component: {fileID: 61711538124350910}
+  - component: {fileID: 114727906407731020}
+  - component: {fileID: 114110653382753272}
   - component: {fileID: 114096621906350554}
+  - component: {fileID: 82481540541857736}
   - component: {fileID: 82173527180848014}
   m_Layer: 9
-  m_Name: SunFlowerEnemy
+  m_Name: GreenSunFlowerFairy
   m_TagString: EnemyTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -291,7 +291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c90a2d2ac930a43860ed51d6e21320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kind_Num: 1
 --- !u!114 &114110653382753272
 MonoBehaviour:
   m_ObjectHideFlags: 1

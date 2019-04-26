@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     private AudioSource kick_Sound;
     //スクリプト
     private PlayerManager _playerManager;
+    private PauseManager _pauseManager;
 
     //子供
     private GameObject player_Kick;
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour {
         kick_Sound = GetComponents<AudioSource>()[1];
         //スクリプトの取得
         _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
+        _pauseManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
 
         //子供の取得
         player_Kick = transform.Find("PlayerKick").gameObject;

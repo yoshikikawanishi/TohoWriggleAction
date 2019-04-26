@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4513399129782028}
   - component: {fileID: 212988714331670632}
   - component: {fileID: 58384861162472296}
+  - component: {fileID: 50990423642325792}
   - component: {fileID: 114942678126653374}
   - component: {fileID: 114368495721431208}
-  - component: {fileID: 50990423642325792}
   m_Layer: 9
   m_Name: EnemyBulletElement
   m_TagString: EnemyBulletTag

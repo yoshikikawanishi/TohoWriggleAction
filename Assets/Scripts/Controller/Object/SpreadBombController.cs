@@ -20,8 +20,8 @@ public class SpreadBombController : MonoBehaviour {
         _sprite = GetComponent<SpriteRenderer>();
     }
 	
-	// Update is called once per frame
-	void Update () {
+	//FixedUpdate
+	private void FixedUpdate () {
         if (transform.localScale.x < max_Size) {
             transform.localScale += new Vector3(spread_Speed, spread_Speed, 0);
         }

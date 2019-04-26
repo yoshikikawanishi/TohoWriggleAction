@@ -26,8 +26,8 @@ public class RumiaController : MonoBehaviour {
 	}
 
 	
-	// Update is called once per frame
-	void Update () {
+	//FixedUpdate
+	void FixedUpdate () {
         //待機時
         if (!start_Motion) {
             Transition();

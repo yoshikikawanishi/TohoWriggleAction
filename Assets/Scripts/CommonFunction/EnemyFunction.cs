@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCommonFunction : MonoBehaviour {
+public class EnemyFunction : MonoBehaviour {
 
     //体力
     [SerializeField] private int life = 1;
@@ -28,7 +28,7 @@ public class EnemyCommonFunction : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
         //コンポーネントの取得
         _sprite = GetComponent<SpriteRenderer>();
         damage_Sound = GetComponents<AudioSource>()[0];
@@ -37,28 +37,23 @@ public class EnemyCommonFunction : MonoBehaviour {
         default_Color = _sprite.color;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 
     //TriggerEnter2D
-    private void OnTriggerEnter2D(Collider2D collision) {
+    public void OnTriggerEnter2D(Collider2D collision) {
         //自機の弾または自機に当たった時
         if(collision.tag == "PlayerBulletTag" || collision.tag == "PlayerBodyTag") {
             Damaged(1);
         }
         //キック、ボムに当たった時
         else if(collision.tag == "PlayerAttackTag" || collision.tag == "BombTag") {
-            Damaged(15);
+            Damaged(25);
         }
     }
     //CollisionEnter2D
-    private void OnCollisionEnter2D(Collision2D collision) {
+    public void OnCollisionEnter2D(Collision2D collision) {
         //自機に当たった時
         if (collision.gameObject.tag == "PlayerTag") {
-            Damaged(life / 2);
+            Damaged(25);
         }
     }
 
