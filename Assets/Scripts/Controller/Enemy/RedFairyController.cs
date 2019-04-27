@@ -8,8 +8,6 @@ public class RedFairyController : MonoBehaviour {
     private Rigidbody2D _rigid;
     private Renderer _renderer;
 
-    //自機
-    private GameObject player;
 
     //速度
     private float speed = -45f;
@@ -21,8 +19,6 @@ public class RedFairyController : MonoBehaviour {
         //コンポーネントの取得
         _rigid = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<Renderer>();
-        //自機の取得
-        player = GameObject.FindWithTag("PlayerTag");
     }
 
 	

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class BossEnemyFunction : MonoBehaviour {
+public class BossFunction : MonoBehaviour {
 
     //コンポーネント
     private SpriteRenderer _sprite;
@@ -14,9 +14,6 @@ public class BossEnemyFunction : MonoBehaviour {
     public List<int> phase_Life_Border = new List<int>();
     //現在のフェーズ
     public int now_Phase = 0;
-
-    //フェーズ切り替えの検知用
-    private bool phase_Change_Trigger = false;
 
     //フェーズ切り替え時のボム
     [SerializeField] private GameObject phase_Change_Bomb;
@@ -33,14 +30,6 @@ public class BossEnemyFunction : MonoBehaviour {
         //Damage()内のforループ用
         phase_Life_Border.Add(0);
         
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        //フェーズの切り替え検知用
-        Phase_Change_Trigger();
-
-
 	}
 
 
@@ -66,7 +55,7 @@ public class BossEnemyFunction : MonoBehaviour {
         int n = phase_Life_Border.Count();
         for(int i = 0; i < n-1; i++) {
             if(now_Phase != i+2 && phase_Life_Border[i+1] < life && life < phase_Life_Border[i]) {
-                Phase_Change(i + 2);    /* phase_Life_Border[0]以上[1]以下になった時pフェーズを2に変える */
+                Phase_Change(i + 2);    /* phase_Life_Border[0]以上[1]以下になった時フェーズを2に変える */
             }
         }   
         //体力0でクリア
@@ -92,16 +81,6 @@ public class BossEnemyFunction : MonoBehaviour {
         //弾消し用のボム生成
         //var bomb = Instantiate(phase_Change_Bomb) as GameObject;
         now_Phase = next_Phase;
-        phase_Change_Trigger = true;
-    }
-    //フェーズ切り替え検知用
-    public bool Phase_Change_Trigger() {
-        if (phase_Change_Trigger) {
-            Debug.Log(now_Phase);
-            phase_Change_Trigger = false;
-            return true;
-        }
-        return false;
     }
 
 

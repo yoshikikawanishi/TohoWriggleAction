@@ -12,8 +12,6 @@ public class PlayerCollisionController : MonoBehaviour {
 
     //スクリプト
     private PlayerManager _playerManager;
-    private PlayerController _playerController;
-    private GameManager _gameManager;
 
     //自機
     private GameObject player;
@@ -30,8 +28,6 @@ public class PlayerCollisionController : MonoBehaviour {
         get_Item_Sound = GetComponent<AudioSource>();
         //スクリプトの取得
         _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
-        _gameManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
-        _playerController = GetComponentInParent<PlayerController>();
         //自機
         player = transform.parent.gameObject;
     }

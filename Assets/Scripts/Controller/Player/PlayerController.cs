@@ -11,10 +11,7 @@ public class PlayerController : MonoBehaviour {
     //オーディオコンポーネント
     private AudioSource jump_Sound;
     private AudioSource kick_Sound;
-    //スクリプト
-    private PlayerManager _playerManager;
-    private PauseManager _pauseManager;
-
+    
     //子供
     private GameObject player_Kick;
     private CapsuleCollider2D _collider;
@@ -60,8 +57,6 @@ public class PlayerController : MonoBehaviour {
         jump_Sound = GetComponents<AudioSource>()[0];
         kick_Sound = GetComponents<AudioSource>()[1];
         //スクリプトの取得
-        _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
-        _pauseManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
 
         //子供の取得
         player_Kick = transform.Find("PlayerKick").gameObject;
