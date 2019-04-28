@@ -49,6 +49,7 @@ public class LarvaController : MonoBehaviour {
             StartCoroutine("Phase1_Routine");
         }
     }
+    //フェーズ1のルーチン
     private IEnumerator Phase1_Routine() {
         //移動
         _move.Set_Status(0, 0.03f);
@@ -76,11 +77,8 @@ public class LarvaController : MonoBehaviour {
 
     //鱗粉弾の発射
     private void Scales_Bullet() {
-        var bullet = Instantiate(scales_Bullet) as GameObject;
-        bullet.transform.position = transform.position;
         Vector2 v = new Vector2(Random.Range(-200f, 200f), Random.Range(50f, 200f));
-        bullet.GetComponent<Rigidbody2D>().velocity = v;
-        Destroy(bullet, 5.0f);
+        _bulletFunction.Shoot_Bullet(v, 5.0f);
     }
 
 
@@ -89,16 +87,25 @@ public class LarvaController : MonoBehaviour {
         if (!start_Routine2) {
             start_Routine2 = true;
             StopCoroutine("Phase1_Routine");
+            _move.StopAllCoroutines();
             StartCoroutine("Phase2_Routine");
         }
     }
+
+    //フェーズ2のルーチン
     private IEnumerator Phase2_Routine() {
         yield return new WaitForSeconds(1.0f);
         //移動
         _move.Set_Status(0, 0.02f);
         _move.StartCoroutine("Move_Two_Points", new Vector3(150f, 0));
+        yield return new WaitUntil(_move.End_Move);
         //向き
         transform.localScale = new Vector3(1, 1, 1);
+        //弾の発射
+        
+
     }
+
+
 
 }

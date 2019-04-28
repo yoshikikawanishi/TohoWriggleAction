@@ -33,6 +33,7 @@ public class PlayerKickController : MonoBehaviour {
             Invoke("Change_Layer", 0.5f);
         }
     }
+
     //OnCollisionEnter
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "EnemyTag") {

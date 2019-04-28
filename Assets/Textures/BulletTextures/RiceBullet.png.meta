@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 0f818a348a5f34942bfea53f073d7338
+guid: 924138e5d2bbf74489f5a19522c37a58
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Color_Bullet_0
-    21300002: Color_Bullet_1
-    21300004: Color_Bullet_2
-    21300006: Color_Bullet_3
+    21300000: RiceBullet_0
+    21300002: RiceBullet_1
+    21300004: RiceBullet_2
+    21300006: RiceBullet_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -67,7 +67,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -78,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -89,7 +89,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +100,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -111,7 +111,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Color_Bullet_0
+      name: RiceBullet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 15
-        height: 15
+        y: 2
+        width: 10
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,19 +135,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a3f069aa9a3605468ff554b077143e5
+      spriteID: c1f8cdac966333a459b197c619f0c03c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Color_Bullet_1
+      name: RiceBullet_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 15
-        height: 15
+        x: 11
+        y: 2
+        width: 10
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,19 +155,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 090f493a84e1ce1479b4293336803f75
+      spriteID: 0f30fd937c33eaf409628cbd21381cdc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Color_Bullet_2
+      name: RiceBullet_2
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 15
-        height: 15
+        x: 22
+        y: 2
+        width: 10
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,19 +175,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 333990c71ef9f824183a1b7ba5df6b1c
+      spriteID: f6889fde974b77e4fb0f1ddcf30ce0d2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Color_Bullet_3
+      name: RiceBullet_3
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
-        width: 15
-        height: 15
+        x: 33
+        y: 2
+        width: 10
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,7 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2c93fe317036a94abdf5d7a892c664b
+      spriteID: 8b7e5a5f804df9f4dbda280ca56a2f12
       vertices: []
       indices: 
       edges: []
@@ -203,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f18b6d1732ef5444596069c82eeeec99
+    spriteID: b047b88d8bbf88e41a25d6dcef078dde
     vertices: []
     indices: 
     edges: []

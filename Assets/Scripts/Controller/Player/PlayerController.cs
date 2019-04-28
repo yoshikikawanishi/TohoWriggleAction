@@ -24,17 +24,9 @@ public class PlayerController : MonoBehaviour {
     private Vector2 default_Collider_Offset;
 
     //移動速度
-    private float max_Speed = 150.0f;
+    private float max_Speed = 180.0f;
     private float acc = 13f;
     private float dec = 0.8f;
-    //通常時
-    private float DASH_SPEED = 180.0f;
-    //飛行時
-    private float FLY_SPEED = 130f;
-
-    //ジャンプ
-    private float JUMP_SPEED = 350.0f;
-    private float JUMP_DEC = 0.5f;
 
     //操作可能かどうか
     public bool is_Playable = true;
@@ -56,7 +48,6 @@ public class PlayerController : MonoBehaviour {
         //オーディオコンポーネントの取得
         jump_Sound = GetComponents<AudioSource>()[0];
         kick_Sound = GetComponents<AudioSource>()[1];
-        //スクリプトの取得
 
         //子供の取得
         player_Kick = transform.Find("PlayerKick").gameObject;
@@ -76,89 +67,49 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
         if (is_Playable) {
-            //飛行状態の切り替え
-            if(Input.GetKey(KeyCode.LeftShift) && !is_Fly) {
-                is_Fly = true;
-            }
-            else if(!Input.GetKey(KeyCode.LeftShift) && is_Fly) {
-                is_Fly = false;
-            }
-            //飛行状態に伴うステータスの変化
-            Change_Fly_Status();      
-            
-            //移動
+            Change_Fly_Status();              
             Transition();
-            //アニメーション
             Animation();
- 
+
             if (!is_Fly) {
-                //ジャンプ
-                Jump();
-                //空中で動きにくくする
-                if (!is_Ground) {
-                    acc = 5f;
-                    dec = 0.98f;
-                }
-                else {
-                    acc = 13f;
-                    dec = 0.8f;
-                }
-                //しゃがみ
+                Jump();           
                 Squat();
-                //キック
                 Kick();
             }
 
         }
+
 	}
 
 
-    //飛行状態の切り替えに伴うステータスの変化
+    //飛行状態の切り替え
     private void Change_Fly_Status() {
-        //飛行状態切り替えに伴う移動速度の変化
-        if (is_Fly && max_Speed != FLY_SPEED) {
-            max_Speed = FLY_SPEED;
-            acc = 13f;
-            dec = 0.8f;
+        if(Input.GetKey(KeyCode.LeftShift) && !is_Fly) {
+            is_Fly = true;
+            max_Speed = 130f;  //速度
+            acc = 13f;  //加速度
+            dec = 0.8f; //減速度
+            _rigid.gravityScale = 0;    //重力
+            Invoke("Change_Drag", 0.1f);    //空気抵抗
+            _collider.size = new Vector2(default_Collider_Size.x, default_Collider_Size.x); //当たり判定
+            _collider.offset = default_Collider_Offset; //当たり判定
+            hit_Decision.SetActive(true);   //当たり判定
         }
-        else if(!is_Fly && max_Speed != DASH_SPEED) {
-            max_Speed = DASH_SPEED;
-        }
-        //飛行状態切り替えに伴う重力の変化
-        if (is_Fly && _rigid.gravityScale == default_Gravity) {
-            _rigid.gravityScale = 0;
-        }
-        else if (!is_Fly && _rigid.gravityScale != default_Gravity) {
-            _rigid.gravityScale = default_Gravity;
-        }
-        //飛行状態の切り替えに伴う空気抵抗の変化
-        if (is_Fly && _rigid.drag == default_Drag) {
-            Invoke("Change_Drag", 0.1f);
-        }
-        else if (!is_Fly && _rigid.drag != default_Drag) {
-            _rigid.drag = default_Drag;
-        }
-        //飛行状態の切り替えに伴う当たり判定の変化
-        if(is_Fly && _collider.size.y != default_Collider_Size.x) {
-            _collider.size = new Vector2(default_Collider_Size.x, default_Collider_Size.x);
-            _collider.offset = default_Collider_Offset;
-        }
-        else if(!is_Fly && _collider.size.y != default_Collider_Size.y) {
-            _collider.size = default_Collider_Size;
-            _collider.offset = default_Collider_Offset;
-        }
-        //当たり判定の表示
-        if(is_Fly && !hit_Decision.activeSelf) {
-            hit_Decision.SetActive(true);
-        }
-        else if(!is_Fly && hit_Decision.activeSelf) {
-            hit_Decision.SetActive(false);
+        else if (!Input.GetKey(KeyCode.LeftShift) && is_Fly) {
+            is_Fly = false;
+            max_Speed = 180f; //速度
+            _rigid.gravityScale = default_Gravity;  //重力
+            _rigid.drag = default_Drag; //空気抵抗
+            _collider.size = default_Collider_Size; //当たり判定
+            _collider.offset = default_Collider_Offset; //当たり判定
+            hit_Decision.SetActive(false);  //当たり判定
         }
         //しゃがみの解除
         if (is_Squat && is_Fly) {
             is_Squat = false;
         }
     }
+
     //空気抵抗を上げる
     private void Change_Drag() {
         _rigid.drag = 3.0f;
@@ -183,13 +134,12 @@ public class PlayerController : MonoBehaviour {
 
     //移動
     private void Transition() {
-        //右
+        //左右移動
         if (Input.GetKey(KeyCode.RightArrow) && !is_Squat) {
             if (_rigid.velocity.x < max_Speed) {
                 _rigid.velocity += new Vector2(acc, 0);
             }
         }
-        //左
         else if (Input.GetKey(KeyCode.LeftArrow) && !is_Squat) {
             if (_rigid.velocity.x > -max_Speed) {
                 _rigid.velocity += new Vector2(-acc, 0);
@@ -201,15 +151,13 @@ public class PlayerController : MonoBehaviour {
         }
         //飛行時上下移動
         if (is_Fly) {
-            //上
             if (Input.GetKey(KeyCode.UpArrow)) {
-                if (_rigid.velocity.y < FLY_SPEED) {
+                if (_rigid.velocity.y < max_Speed) {
                     _rigid.velocity += new Vector2(0, acc);
                 }
             }
-            //下
             else if (Input.GetKey(KeyCode.DownArrow)) {
-                if (_rigid.velocity.y > -FLY_SPEED) {
+                if (_rigid.velocity.y > -max_Speed) {
                     _rigid.velocity += new Vector2(0, -acc);
                 }
             }
@@ -224,11 +172,20 @@ public class PlayerController : MonoBehaviour {
     //ジャンプ
     private void Jump() {
         if (Input.GetKeyDown(KeyCode.Z) && is_Ground) {
-            _rigid.velocity += new Vector2(0, JUMP_SPEED);
+            _rigid.velocity += new Vector2(0, 350f);
             jump_Sound.Play();
         }
         if (Input.GetKeyUp(KeyCode.Z) && _rigid.velocity.y > 0) {
-            _rigid.velocity *= new Vector2(1, JUMP_DEC);
+            _rigid.velocity *= new Vector2(1, 0.5f);
+        }
+        //空中で動きにくくする
+        if (!is_Ground) {
+            acc = 5f;
+            dec = 0.98f;
+        }
+        else {
+            acc = 13f;
+            dec = 0.8f;
         }
         //しゃがみの解除
         is_Squat = false;
@@ -243,13 +200,10 @@ public class PlayerController : MonoBehaviour {
     }
     //キックのモーション
     private IEnumerator Kick_Routine() {
-        //操作不能にする
-        is_Playable = false;
-        //攻撃判定をつける
-        player_Kick.SetActive(true);
-        //アニメーションの変更
+        //ステータスの変化
+        is_Playable = false;   
+        player_Kick.SetActive(true);    
         Change_Parameter("KickBool");
-        //効果音
         kick_Sound.Play();
         //地上ならスライディング
         if (is_Ground) {
@@ -260,7 +214,7 @@ public class PlayerController : MonoBehaviour {
         else {
             _rigid.velocity = new Vector2(200f * transform.localScale.x, -250f);
         }
-        //キックが敵か地面にヒットしたとき(PlayerKickControllerで衝突判定)
+        //キックが敵にヒットした時跳ね返る(PlayerKickControllerで衝突判定)
         for(float time = 0; time < 0.6f; time += Time.deltaTime) {            
             if (Is_Hit_Kick()) {
                 _rigid.velocity = new Vector2(40f * -transform.localScale.x, 180f);
@@ -269,10 +223,9 @@ public class PlayerController : MonoBehaviour {
             }
             yield return null;
         }
+        //ステータスを戻す
         _rigid.drag = default_Drag;
-        //攻撃判定を消す
         player_Kick.SetActive(false);
-        //操作可能にする
         is_Playable = true;
     }    
     //キックが当たったかどうか
@@ -348,6 +301,5 @@ public class PlayerController : MonoBehaviour {
 
         _anim.SetBool(next_Parameter, true);
     }
-
 
 }
