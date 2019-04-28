@@ -7,6 +7,9 @@ public class Stage1_1Controller : MonoBehaviour {
 
     //自機
     private GameObject player;
+    //カメラ
+    private GameObject main_Camera;
+    private CameraController _cameraController;
 
     //SoulEnemyを生成するトリガーのx座標
     [SerializeField] private float soul_Gen_Line = 0;
@@ -17,6 +20,9 @@ public class Stage1_1Controller : MonoBehaviour {
 	void Start () {
         //自機の取得
         player = GameObject.FindWithTag("PlayerTag");
+        //カメラの取得
+        main_Camera = GameObject.Find("Main Camera");
+        _cameraController = main_Camera.GetComponent<CameraController>();
 	}
 	
 	// Update is called once per frame
@@ -30,12 +36,18 @@ public class Stage1_1Controller : MonoBehaviour {
 
     //敵の生成
     private void Enemy_Gen() {
-        //自機が指定のX座標についた時生成開始
-        if(player.transform.position.x > soul_Gen_Line && !start_Soul_Gen) {
+        //カメラが指定のX座標についた時生成開始
+        if(main_Camera.transform.position.x > soul_Gen_Line && !start_Soul_Gen) {
             start_Soul_Gen = true;
             StartCoroutine("Enemy_Gen_Routine");
         }
+        //カメラがステージ右端についた時生成の中止
+        if(_cameraController.rightSide - main_Camera.transform.position.x < 32f) {
+            StopCoroutine("Enemy_Gen_Routine");
+        }
     }
+
+
     private IEnumerator Enemy_Gen_Routine() {
         //SoulEnemyの生成
         for (int i = 0; i < 6; i++) {

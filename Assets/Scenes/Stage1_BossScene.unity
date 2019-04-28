@@ -1071,7 +1071,6 @@ GameObject:
   - component: {fileID: 785112175}
   - component: {fileID: 785112176}
   - component: {fileID: 785112171}
-  - component: {fileID: 785112177}
   - component: {fileID: 785112168}
   m_Layer: 9
   m_Name: Larva
@@ -1092,6 +1091,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scales_Bullet: {fileID: 1906233077924574, guid: 44755bffd2c3f0b44bf577f8347f9d34,
+    type: 2}
+  rice_Bullets: {fileID: 1086337946178104, guid: 8385d257f8509c4499a0fe80917e0b7c,
     type: 2}
 --- !u!212 &785112169
 SpriteRenderer:
@@ -1163,9 +1164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7452f56d10d987468f15b82184d5d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 80
-  phase_Life_Border: 28000000
-  now_Phase: 1
+  life: 150
+  phase_Life_Border: 50000000
   phase_Change_Bomb: {fileID: 0}
   clear_Effect: {fileID: 0}
 --- !u!114 &785112172
@@ -1234,18 +1234,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7b114c28801cf647b2138247172e1e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
---- !u!114 &785112177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 785112167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07ad18fc915a3d746900ffc2f8ce1bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 0}

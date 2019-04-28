@@ -11,9 +11,12 @@ public class BossFunction : MonoBehaviour {
     //体力
     public int life = 1;
     //フェーズごとの体力
-    public List<int> phase_Life_Border = new List<int>();
+    [SerializeField] private List<int> phase_Life_Border = new List<int>();
     //現在のフェーズ
-    public int now_Phase = 0;
+    private int now_Phase = -1;
+
+    //クリア検知用
+    private bool clear_Trigger = false;
 
     //フェーズ切り替え時のボム
     [SerializeField] private GameObject phase_Change_Bomb;
@@ -87,9 +90,30 @@ public class BossFunction : MonoBehaviour {
     //クリア時の処理
     private void Clear() {
         Debug.Log("Clear");
+        now_Phase = -1;
+        clear_Trigger = true;
         //エフェクト
         //var effect = Instantiate(vanished_Bomb) as GameObject;
         
+    }
+
+    //他からのクリア検知用
+    public bool Clear_Trigger() {
+        if (clear_Trigger) {
+            clear_Trigger = false;
+            return true;
+        }
+        return false;
+    }
+
+
+    //now_PhaseのGetter
+    public int Get_Now_Phase() {
+        return now_Phase;
+    }
+    //Setter
+    public void Set_Now_Phase(int num) {
+        now_Phase = num;
     }
 
 }

@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour {
     //ステージの左端
     [SerializeField] private float leftSide = 0f;
     //右端
-    [SerializeField] private float rightSide = 32f;
+    public float rightSide = 32f;
 
     //自動スクロールかどうか
     [SerializeField] private bool is_Auto_Scroll = false;
@@ -24,12 +24,6 @@ public class CameraController : MonoBehaviour {
         player = GameObject.FindWithTag("PlayerTag");
     }
 
-
-    // Update is called once per frame
-    void Update() {
-
-        
-    }
 
     //FixedUpdaet
     private void FixedUpdate() {
