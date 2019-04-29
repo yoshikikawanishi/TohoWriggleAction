@@ -26,8 +26,8 @@ public class GreenSunFlowerController : MonoBehaviour {
         b.Set_Bullet(bullet);
         //V字型に発射
         b.Diffusion_Bullet(10, 100f, 0, 5.0f);
-        b.Diffusion_Bullet(10, 90f, 20f, 5.0f);
-        b.Diffusion_Bullet(10, 90f, -20f, 5.0f);
+        b.Diffusion_Bullet(10, 90f, 5f, 5.0f);
+        b.Diffusion_Bullet(10, 90f, -5f, 5.0f);
         //効果音
         GetComponents<AudioSource>()[1].Play();
         yield return new WaitForSeconds(1.5f);

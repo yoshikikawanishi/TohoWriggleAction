@@ -215,10 +215,10 @@ public class PlayerController : MonoBehaviour {
             _rigid.velocity = new Vector2(200f * transform.localScale.x, -250f);
         }
         //キックが敵にヒットした時跳ね返る(PlayerKickControllerで衝突判定)
-        for(float time = 0; time < 0.6f; time += Time.deltaTime) {            
+        for(float time = 0; time < 0.3f; time += Time.deltaTime) {            
             if (Is_Hit_Kick()) {
                 _rigid.velocity = new Vector2(40f * -transform.localScale.x, 180f);
-                yield return new WaitForSeconds(0.4f);
+                yield return new WaitForSeconds(0.2f);
                 break;
             }
             yield return null;

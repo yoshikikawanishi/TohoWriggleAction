@@ -6,6 +6,7 @@ public class LarvaController : MonoBehaviour {
 
     //コンポーネント
     private Rigidbody2D _rigid;
+    private Animator _anim;
     //スクリプト
     private BossFunction _bossFunction;
     private MoveBetweenTwoPoints _move;
@@ -29,6 +30,7 @@ public class LarvaController : MonoBehaviour {
 	void Start () {
         //コンポーネントの取得
         _rigid = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
         //スクリプトの取得
         _bossFunction = GetComponent<BossFunction>();
         _move = GetComponent<MoveBetweenTwoPoints>();
@@ -54,6 +56,7 @@ public class LarvaController : MonoBehaviour {
         //クリア
         if (_bossFunction.Clear_Trigger()) {
             StopAllCoroutines();
+            Change_Parameter("IdleBool");
         }
 	}
 
@@ -71,21 +74,26 @@ public class LarvaController : MonoBehaviour {
     private IEnumerator Phase1_Routine() {
         //移動
         _move.Set_Status(0, 0.03f);
-        _move.StartCoroutine("Move_Two_Points", new Vector3(140f, 16f, 0));
+        _move.StartCoroutine("Move_Two_Points", new Vector3(110f, 16f, 0));
         yield return new WaitUntil(_move.End_Move);
         while (_bossFunction.Get_Now_Phase() == 1) {
             //弾の発射
+            Change_Parameter("AttackBool");
             _bulletFunction.Set_Bullet(scales_Bullet);
-            for (int i = 0; i < 3; i++) {
-                Shoot_Scales_Bullet(); 
-                yield return new WaitForSeconds(1.0f);
+            for (int i = 0; i < 2; i++) {
+                Shoot_Scales_Bullet();
+                //小移動
+                Vector3 vec = new Vector3(Random.Range(-64f, 64f), Random.Range(-64f, 64f));
+                Move(0, 0.01f, transform.position + vec);
+                Change_Parameter("AttackBool");
+                yield return new WaitUntil(_move.End_Move);
             }
             //移動
-            _move.Set_Status(-75f, 0.01f);
-            _move.StartCoroutine("Move_Two_Points", new Vector3(-140f * transform.localScale.x, 16f, 0));
+            Move(-75f, 0.01f, new Vector3(-110f * transform.localScale.x, 16f, 0));
             yield return new WaitUntil(_move.End_Move);
             //向きの変更
             transform.localScale = new Vector3(-transform.localScale.x, 1, 1);
+            Change_Parameter("AttackBool");
             yield return new WaitForSeconds(1.0f);
         }
     }
@@ -97,6 +105,10 @@ public class LarvaController : MonoBehaviour {
             Vector2 v = new Vector2(Random.Range(-200f, 200f), Random.Range(50f, 200f));
             _bulletFunction.Shoot_Bullet(v, 5.0f);
         }
+        //エフェクト
+        var effect = Instantiate(Resources.Load("Effect/LarvaScalesEffect")) as GameObject;
+        effect.transform.position = transform.position;
+        Destroy(effect, 1.5f);
     }
 
 
@@ -116,8 +128,7 @@ public class LarvaController : MonoBehaviour {
         yield return new WaitForSeconds(1.0f);
         //移動
         Become_Invincible();
-        _move.Set_Status(0, 0.02f);
-        _move.StartCoroutine("Move_Two_Points", new Vector3(150f, 0));
+        Move(0, 0.02f, new Vector3(150f, 0));
         yield return new WaitUntil(_move.End_Move);
         Release_Invincible();
         //向き
@@ -125,6 +136,7 @@ public class LarvaController : MonoBehaviour {
         //弾の発射
         int roop_Count = 0;
         while (_bossFunction.Get_Now_Phase() == 2) {
+            Change_Parameter("AttackBool");
             //緑米弾
             _bulletFunction.Set_Bullet(rice_Bullets);
             float player_Angle = Angle_To_Player();
@@ -134,15 +146,18 @@ public class LarvaController : MonoBehaviour {
             }
             //自機狙い赤弾
             _bulletFunction.Set_Bullet(Resources.Load("Bullet/RedBullet") as GameObject);
-            for (int j = 0; j < 15; j++) {
-                _bulletFunction.Odd_Num_Bullet(1, 0, 70f, 8.0f);
-            }
-            //鱗粉弾
+            _bulletFunction.Odd_Num_Bullet(1, 0, 70f, 8.0f);
             roop_Count++;
             if(roop_Count % 3 == 0) {
+                //鱗粉弾
                 _bulletFunction.Set_Bullet(scales_Bullet);
                 Shoot_Scales_Bullet();
-                yield return new WaitForSeconds(3.0f);
+                yield return new WaitForSeconds(1.0f);
+            }
+            //小移動
+            else {
+                Vector3 vec = new Vector3(Random.Range(-32f, 32f), Random.Range(-32f, 32f));
+                Move(0, 0.005f, transform.position + vec);
             }
         }
     }
@@ -180,6 +195,24 @@ public class LarvaController : MonoBehaviour {
     //無敵解除
     private void Release_Invincible() {
         gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
+    }
+
+
+    //アニメーションの変更
+    private void Change_Parameter(string changeBool) {
+        _anim.SetBool("IdleBool", false);
+        _anim.SetBool("DashBool", false);
+        _anim.SetBool("AttackBool", false);
+
+        _anim.SetBool(changeBool, true);
+    }
+
+
+    //移動
+    private void Move(float height, float speed, Vector3 next_Pos) {
+        Change_Parameter("DashBool");
+        _move.Set_Status(height, speed);
+        _move.StartCoroutine("Move_Two_Points", next_Pos);
     }
 
 }

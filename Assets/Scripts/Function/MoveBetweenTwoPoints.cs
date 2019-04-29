@@ -14,6 +14,7 @@ public class MoveBetweenTwoPoints : MonoBehaviour {
 
     //数値の代入、移動の準備
     public void Set_Status(float height, float speed) {
+        end_Move = false;
         slerp_Height = height;
         max_Speed = speed;
         StopCoroutine("Move_Two_Points");

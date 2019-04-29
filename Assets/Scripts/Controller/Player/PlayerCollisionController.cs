@@ -19,6 +19,11 @@ public class PlayerCollisionController : MonoBehaviour {
     //被弾時の無敵時間
     private float INVINCIBLE_TIME = 1.5f;
 
+    //被弾の判定
+    private bool damaged_Trigger = false;
+    //ミスの判定
+    private bool miss_Trigger = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -69,22 +74,28 @@ public class PlayerCollisionController : MonoBehaviour {
 
     //被弾時の処理
     private void Damaged(int damage) {
-        //ライフを減らす
-        _playerManager.life -= damage;
-        //powerを減らす
-        Reduce_Power();
-        //死亡時の処理
-        if (_playerManager.life <= 0) {
-            Miss();
-        }
-        else {
-            //反動
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(-player.transform.localScale.x, 2) * 100f;
-            //ボムエフェクト
-            GameObject bomb = Instantiate(Resources.Load("Effect/PlayerDamagedBomb")) as GameObject;
-            bomb.transform.position = transform.position;
-            //点滅
-            StartCoroutine("Blink");
+        if (!damaged_Trigger) {
+            damaged_Trigger = true; 
+            Debug.Log("Damaged");
+            //ライフを減らす
+            _playerManager.life -= damage;
+            //powerを減らす
+            Reduce_Power();
+            //死亡時の処理
+            if (_playerManager.life <= 0 && !miss_Trigger) {
+                gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+                Miss();
+                miss_Trigger = true;
+            }
+            else {
+                //反動
+                player.GetComponent<Rigidbody2D>().velocity = new Vector2(-player.transform.localScale.x, 2) * 100f;
+                //ボムエフェクト
+                GameObject bomb = Instantiate(Resources.Load("Effect/PlayerDamagedBomb")) as GameObject;
+                bomb.transform.position = transform.position;
+                //点滅、無敵化
+                StartCoroutine("Blink");
+            }
         }
     }
 
@@ -113,12 +124,13 @@ public class PlayerCollisionController : MonoBehaviour {
         }
         yield return new WaitForSeconds(0.5f);
         gameObject.layer = LayerMask.NameToLayer("PlayerLayer");
-
+        damaged_Trigger = false;
     }
 
 
     //ライフが0になった時の処理
     private void Miss() {
+        Debug.Log("Miss");
         //エフェクト
         GameObject effect = Instantiate(Resources.Load("Effect/PlayerMissEffect")) as GameObject;
         effect.transform.position = transform.position;
@@ -137,6 +149,7 @@ public class PlayerCollisionController : MonoBehaviour {
 
     //ゲームオーバー
     private void Game_Over() {
+        Debug.Log("GameOver");
         SceneManager.LoadScene("GameOverScene");
     }
 

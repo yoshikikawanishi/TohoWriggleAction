@@ -43,6 +43,7 @@ public class BulletFunctions : MonoBehaviour {
         turn_Bullet.transform.position = transform.position + new Vector3(Mathf.Cos(angle * Mathf.PI / 180f), Mathf.Sin(angle * Mathf.PI / 180), 0);
         turn_Bullet.transform.LookAt2D(transform, Vector2.right);
         turn_Bullet.GetComponent<Rigidbody2D>().velocity = turn_Bullet.transform.right * -speed;
+        Destroy(turn_Bullet, lifeTime);
     }
 
     //自機狙い奇数弾
