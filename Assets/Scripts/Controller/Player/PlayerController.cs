@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
     private float dec = 0.8f;
 
     //操作可能かどうか
-    public bool is_Playable = true;
+    private bool is_Playable = true;
     //飛行状態かどうか
     private bool is_Fly = false;
     //地面についているかどうか
@@ -290,7 +290,7 @@ public class PlayerController : MonoBehaviour {
 
 
     //アニメーション変更
-    private void Change_Parameter(string next_Parameter) {
+    public void Change_Parameter(string next_Parameter) {
         _anim.SetBool("DashBool", false);
         _anim.SetBool("FlyBool", false);
         _anim.SetBool("IdleBool", false);
@@ -300,6 +300,16 @@ public class PlayerController : MonoBehaviour {
         _anim.SetBool("SquatBool", false);
 
         _anim.SetBool(next_Parameter, true);
+    }
+
+
+    //is_PlayableのSetter
+    public void Set_Playable(bool is_Playable) {
+        this.is_Playable = is_Playable;
+    }
+    //Getter
+    public bool Get_Playable() {
+        return is_Playable;
     }
 
 }

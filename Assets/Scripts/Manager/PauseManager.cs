@@ -38,13 +38,13 @@ public class PauseManager : MonoBehaviour {
     //一時停止時の処理
     private void Pause_Game() {
         PlayerController _playerController = GameObject.FindWithTag("PlayerTag").GetComponent<PlayerController>();
-        _playerController.is_Playable = false;
+        _playerController.Set_Playable(false);
     }
 
     //一時停止解除時の処理
     private void Release_Pause_Game() {
         PlayerController _playerController = GameObject.FindWithTag("PlayerTag").GetComponent<PlayerController>();
-        _playerController.is_Playable = true;
+        _playerController.Set_Playable(true);
     }
 
 
@@ -73,6 +73,12 @@ public class PauseManager : MonoBehaviour {
             return true;
         }
         return false;
+    }
+
+
+    //can_PauseのSetter
+    public void Set_Pausable(bool can_Pause) {
+        this.can_Pause = can_Pause;
     }
 
 }

@@ -49,7 +49,7 @@ public class PlayerShotController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (player_Controller.is_Playable) {
+        if (player_Controller.Get_Playable()) {
             Shot();
             if(power_Grade == 4) {
                 Power_Shot();

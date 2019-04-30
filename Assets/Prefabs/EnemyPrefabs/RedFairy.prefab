@@ -232,7 +232,7 @@ MonoBehaviour:
   vanish_Effect: {fileID: 1901817575273748, guid: 20dfbcca07249104a9b30d99e5064b93,
     type: 2}
   score_Value: 200
-  power_Value: 2
+  power_Value: 0
   item_Out_Speed: 500
 --- !u!212 &212613755211942422
 SpriteRenderer:

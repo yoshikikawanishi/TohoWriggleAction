@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b114c28801cf647b2138247172e1e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
 --- !u!114 &114665655162593184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -329,7 +330,7 @@ MonoBehaviour:
   vanish_Effect: {fileID: 1901817575273748, guid: 20dfbcca07249104a9b30d99e5064b93,
     type: 2}
   score_Value: 300
-  power_Value: 1
+  power_Value: 0
   item_Out_Speed: 1000
 --- !u!114 &114812199718047322
 MonoBehaviour:

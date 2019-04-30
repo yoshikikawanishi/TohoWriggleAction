@@ -1,0 +1,2 @@
+﻿#ID	Name	Message
+1	ラルバ	そこのお前！

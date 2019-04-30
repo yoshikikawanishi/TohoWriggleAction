@@ -73,9 +73,9 @@ public class BossFunction : MonoBehaviour {
     //被弾時の点滅
     private IEnumerator Blink() {
         _sprite.color = new Color(1, 1, 1, 0.2f);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.02f);
         _sprite.color = new Color(1, 1, 1, 1);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.02f);
     }
 
 

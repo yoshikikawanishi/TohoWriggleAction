@@ -39,9 +39,6 @@ public class LarvaController : MonoBehaviour {
         //自機の取得
         player = GameObject.FindWithTag("PlayerTag");
 
-        //戦闘開始
-        _bossFunction.Set_Now_Phase(1);
-
 	}
 	
 
@@ -199,7 +196,7 @@ public class LarvaController : MonoBehaviour {
 
 
     //アニメーションの変更
-    private void Change_Parameter(string changeBool) {
+    public void Change_Parameter(string changeBool) {
         _anim.SetBool("IdleBool", false);
         _anim.SetBool("DashBool", false);
         _anim.SetBool("AttackBool", false);
