@@ -16,16 +16,20 @@ public class SpreadBombController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Destroy(gameObject, life_Time);
+        if (life_Time > 0) {
+            Destroy(gameObject, life_Time);
+        }
         _sprite = GetComponent<SpriteRenderer>();
     }
-	
-	//FixedUpdate
-	private void FixedUpdate () {
+
+    //FixedUpdate
+    private void FixedUpdate() {
         if (transform.localScale.x < max_Size) {
             transform.localScale += new Vector3(spread_Speed, spread_Speed, 0);
         }
         transform.Rotate(0, 0, angler_Velocity);
-        _sprite.color -= new Color(0, 0, 0, 1.1f / life_Time * Time.deltaTime);
+        if (life_Time > 0) {
+            _sprite.color -= new Color(0, 0, 0, 1.1f / life_Time * Time.deltaTime);
+        }
     }
 }

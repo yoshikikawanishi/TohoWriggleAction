@@ -3,7 +3,10 @@ guid: b7452f56d10d987468f15b82184d5d03
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - damage_Sound: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
+  - phase_Change_Bomb: {instanceID: 0}
+  - clear_Effect: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

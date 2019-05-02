@@ -107,15 +107,15 @@ public class MessageDisplay : MonoBehaviour {
         for (int i = 1; i < rowLength; i++) {
             //名前とアイコン
             nameText.text = textWords[i, 1];
-            charactorIcon.sprite = Resources.Load<Sprite>("CharacterIcons/" + nameText.text);
+            charactorIcon.sprite = Resources.Load<Sprite>("CharacterIcons/" + textWords[i, 2]);
             //セリフ
-            int lineLength = textWords[i, 2].Length;
+            int lineLength = textWords[i, 3].Length;
             for(int j = 0; j < lineLength; j++) {
-                if (textWords[i, 2][j] == '/') {
+                if (textWords[i, 3][j] == '/') {
                     messageText.text += "\n";
                 }
                 else {
-                    messageText.text += textWords[i, 2][j];
+                    messageText.text += textWords[i, 3][j];
                 }
                 yield return new WaitForSeconds(textSpeed);
             }

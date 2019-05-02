@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage1_BossController : MonoBehaviour {
 
@@ -32,7 +33,10 @@ public class Stage1_BossController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        //クリア後
+        if (_bossFunction.Clear_Trigger()) {
+            StartCoroutine("Clear_Movie");
+        }
 	}
 
 
@@ -65,6 +69,29 @@ public class Stage1_BossController : MonoBehaviour {
         _playerController.Set_Playable(true);
         _bossFunction.Set_Now_Phase(1);
 
+    }
+
+
+    //クリア後
+    private IEnumerator Clear_Movie() {
+        //ラルバ
+        larva.GetComponent<LarvaController>().Change_Parameter("IdleBool");
+        larva.GetComponent<LarvaController>().StopAllCoroutines();
+        yield return new WaitForSeconds(2.0f);
+        //一時停止不可
+        _pause.Set_Pausable(false);
+        //スコア加算
+        PlayerManager _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
+        for(int i = 0; i < 50; i++) {
+            _playerManager.Get_Score();
+            yield return new WaitForSeconds(0.01f);
+        }
+        //メッセージ表示
+        _message.Start_Display("LarvaClearText");
+        yield return new WaitUntil(_message.End_Message);
+        yield return new WaitForSeconds(1.5f);
+        //シーン遷移
+        SceneManager.LoadScene("Stage2_1Scene");
     }
 
 }

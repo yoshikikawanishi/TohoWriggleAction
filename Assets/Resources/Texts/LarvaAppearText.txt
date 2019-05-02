@@ -1,2 +1,2 @@
-﻿#ID	Name	Message
-1	ラルバ	そこのお前！
+﻿#ID	Name	Icon	Message
+1	ラルバ	赤	そこのお前！

@@ -7,6 +7,10 @@ public class BossFunction : MonoBehaviour {
 
     //コンポーネント
     private SpriteRenderer _sprite;
+    private AudioSource damage_Audio_Source;
+    [SerializeField] AudioClip damage_Sound;
+    //スクリプト
+    private ObjectPool _pool;
 
     //体力
     public int life = 1;
@@ -22,6 +26,8 @@ public class BossFunction : MonoBehaviour {
     [SerializeField] private GameObject phase_Change_Bomb;
     //ボス撃破時のエフェクト
     [SerializeField] private GameObject clear_Effect;
+    //ダメージエフェクト
+    private GameObject damage_Effect;
 
 
 
@@ -29,7 +35,16 @@ public class BossFunction : MonoBehaviour {
 	void Start () {
         //コンポーネントの取得
         _sprite = GetComponent<SpriteRenderer>();
-        
+        //ダメージサウンドの設定
+        damage_Audio_Source = gameObject.AddComponent<AudioSource>();
+        damage_Audio_Source.clip = damage_Sound;
+        damage_Audio_Source.volume = 0.008f;
+
+        //ダメージエフェクトのオブジェクトプール
+        _pool = gameObject.AddComponent<ObjectPool>();
+        damage_Effect = Resources.Load("Effect/BossDamagedEffect") as GameObject;
+        _pool.CreatePool(damage_Effect, 10);
+
         //Damage()内のforループ用
         phase_Life_Border.Add(0);
         
@@ -41,6 +56,7 @@ public class BossFunction : MonoBehaviour {
         //自機の弾に当たった時
         if (collision.tag == "PlayerBulletTag") {
             Damaged(1);
+            StartCoroutine("Damaged_Effect", collision.transform.position);
         }
         //キックに当たった時
         else if (collision.tag == "PlayerAttackTag") {
@@ -52,6 +68,8 @@ public class BossFunction : MonoBehaviour {
     //被弾時の処理
     private void Damaged(int damage) {
         life -= damage;
+        //効果音
+        damage_Audio_Source.Play();
         //点滅
         StartCoroutine("Blink");
         //フェーズ切り替え
@@ -70,6 +88,15 @@ public class BossFunction : MonoBehaviour {
     }
 
 
+    //ダメージエフェクトの生成
+    private IEnumerator Damaged_Effect(Vector3 pos) {
+        var effect = _pool.GetObject();
+        effect.transform.position = pos;
+        yield return new WaitForSeconds(0.25f);
+        effect.SetActive(false);
+    }
+
+
     //被弾時の点滅
     private IEnumerator Blink() {
         _sprite.color = new Color(1, 1, 1, 0.2f);
@@ -82,19 +109,21 @@ public class BossFunction : MonoBehaviour {
     //フェーズ切り替え時の処理
     private void Phase_Change(int next_Phase) {
         //弾消し用のボム生成
-        //var bomb = Instantiate(phase_Change_Bomb) as GameObject;
+        var bomb = Instantiate(phase_Change_Bomb) as GameObject;
+        bomb.transform.position = transform.position;
         now_Phase = next_Phase;
     }
 
 
     //クリア時の処理
     private void Clear() {
-        Debug.Log("Clear");
         now_Phase = -1;
         clear_Trigger = true;
         //エフェクト
-        //var effect = Instantiate(vanished_Bomb) as GameObject;
-        
+        var effect = Instantiate(clear_Effect) as GameObject;
+        effect.transform.position = transform.position;
+        var bomb = Instantiate(phase_Change_Bomb) as GameObject;
+        bomb.transform.position = transform.position;
     }
 
     //他からのクリア検知用

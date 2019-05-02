@@ -7,6 +7,7 @@ public class LarvaController : MonoBehaviour {
     //コンポーネント
     private Rigidbody2D _rigid;
     private Animator _anim;
+    private AudioSource shot_Sound;
     //スクリプト
     private BossFunction _bossFunction;
     private MoveBetweenTwoPoints _move;
@@ -14,6 +15,9 @@ public class LarvaController : MonoBehaviour {
 
     //自機
     private GameObject player;
+
+    //子供
+    private GameObject back_Design;
 
     //固有弾
     [SerializeField] private GameObject scales_Bullet;
@@ -31,6 +35,7 @@ public class LarvaController : MonoBehaviour {
         //コンポーネントの取得
         _rigid = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
+        shot_Sound = GetComponents<AudioSource>()[0];
         //スクリプトの取得
         _bossFunction = GetComponent<BossFunction>();
         _move = GetComponent<MoveBetweenTwoPoints>();
@@ -38,6 +43,10 @@ public class LarvaController : MonoBehaviour {
 
         //自機の取得
         player = GameObject.FindWithTag("PlayerTag");
+
+        //子供の取得
+        back_Design = transform.GetChild(0).gameObject;
+        back_Design.transform.SetParent(null);
 
 	}
 	
@@ -49,13 +58,8 @@ public class LarvaController : MonoBehaviour {
             case 1: Phase1(); break;
             case 2: Phase2(); break;
         }
-
-        //クリア
-        if (_bossFunction.Clear_Trigger()) {
-            StopAllCoroutines();
-            Change_Parameter("IdleBool");
-        }
 	}
+ 
 
 
     //フェーズ1
@@ -69,6 +73,9 @@ public class LarvaController : MonoBehaviour {
     
     //フェーズ1のルーチン
     private IEnumerator Phase1_Routine() {
+        //バックデザイン
+        back_Design.SetActive(true);
+        back_Design.transform.localScale = new Vector3(0, 0, 1);
         //移動
         _move.Set_Status(0, 0.03f);
         _move.StartCoroutine("Move_Two_Points", new Vector3(110f, 16f, 0));
@@ -105,6 +112,7 @@ public class LarvaController : MonoBehaviour {
         //エフェクト
         var effect = Instantiate(Resources.Load("Effect/LarvaScalesEffect")) as GameObject;
         effect.transform.position = transform.position;
+        shot_Sound.Play();
         Destroy(effect, 1.5f);
     }
 
@@ -113,8 +121,11 @@ public class LarvaController : MonoBehaviour {
     private void Phase2() {
         if (!start_Routine2) {
             start_Routine2 = true;
+            //フェーズ1の中止
             StopCoroutine("Phase1_Routine");
             _move.StopAllCoroutines();
+            back_Design.SetActive(false);
+            //フェーズ2
             StartCoroutine("Phase2_Routine");
         }
     }
@@ -130,6 +141,9 @@ public class LarvaController : MonoBehaviour {
         Release_Invincible();
         //向き
         transform.localScale = new Vector3(1, 1, 1);
+        //バックデザイン
+        back_Design.SetActive(true);
+        back_Design.transform.localScale = new Vector3(0, 0, 1);
         //弾の発射
         int roop_Count = 0;
         while (_bossFunction.Get_Now_Phase() == 2) {
@@ -144,6 +158,7 @@ public class LarvaController : MonoBehaviour {
             //自機狙い赤弾
             _bulletFunction.Set_Bullet(Resources.Load("Bullet/RedBullet") as GameObject);
             _bulletFunction.Odd_Num_Bullet(1, 0, 70f, 8.0f);
+            shot_Sound.Play();
             roop_Count++;
             if(roop_Count % 3 == 0) {
                 //鱗粉弾
