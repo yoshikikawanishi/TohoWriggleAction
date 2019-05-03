@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour {
         PlayerPrefs.SetInt("Power", _playerManager.power);
         PlayerPrefs.SetInt("Stock", _playerManager.stock);
         PlayerPrefs.SetInt("Continue", _playerManager.continue_Count);
+        PlayerPrefs.SetString("Option", _playerManager.option_Type);
     }
 
 
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour {
             _playerManager.power = PlayerPrefs.GetInt("Power");
             _playerManager.stock = PlayerPrefs.GetInt("Stock");
             _playerManager.continue_Count = PlayerPrefs.GetInt("Continue");
+            _playerManager.option_Type = PlayerPrefs.GetString("Option");
         }
         //データがないとき
         else {

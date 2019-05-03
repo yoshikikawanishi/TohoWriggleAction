@@ -18,6 +18,9 @@ public class PlayerManager : MonoBehaviour {
     //コンテニュー回数
     public int continue_Count = 0;
 
+    //オプションタイプ
+    public string option_Type = "Flies";
+
 
 	// Use this for initialization
 	void Start () {
@@ -56,7 +59,7 @@ public class PlayerManager : MonoBehaviour {
 
 
     //ライフアップ
-    private void Life_Up() {
+    public void Life_Up() {
         if(life < 9) {
             life++;
         }     
@@ -64,7 +67,7 @@ public class PlayerManager : MonoBehaviour {
 
 
     //ストックの回復
-    private void Get_Stock() {
+    public void Get_Stock() {
 
     }
 
@@ -82,4 +85,9 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+
+    //オプションタイプの変更
+    public void Set_Option_Type(string next_Type) {
+        option_Type = next_Type;
+    }
 }

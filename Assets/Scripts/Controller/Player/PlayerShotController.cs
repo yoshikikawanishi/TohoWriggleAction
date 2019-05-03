@@ -4,26 +4,21 @@ using UnityEngine;
 
 public class PlayerShotController : MonoBehaviour {
 
-    //オプション番号
-    [SerializeField] private int option_Num = 0;
-
+    
     //オーディオ
     private AudioSource shot_Sound;
     //オブジェクトプール
-    private ObjectPool _pool;
+    private ObjectPool flies_Bullet_Pool;
+    private ObjectPool butterFly_Bullet_Pool;
     //自機
-    private GameObject player;
-    private PlayerController player_Controller;
+    private PlayerController _playerController;
     //スクリプト
     private PlayerManager _playerManager;
 
     //ショット
-    private float BULLET_SPEED = 500.0f;
     private float time = 0;
-    private float SHOT_SPAN = 0.1f;
-    //パワーショット
-    private float time2 = 0;
-    private float SHOT_SPAN2 = 0.1f;
+    private float shot_Span = 0.1f;
+ 
 
     //強化段階
     private int power_Grade = 0;
@@ -32,27 +27,29 @@ public class PlayerShotController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //オーディオの取得
-        shot_Sound = GetComponent<AudioSource>();
+        shot_Sound = GetComponents<AudioSource>()[2];
         //スクリプトの取得
         _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
+        _playerController = gameObject.GetComponent<PlayerController>();
         //オブジェクトプール
-        _pool = GetComponent<ObjectPool>();
-        GameObject player_Bullet = Resources.Load("Bullet/PooledBullet/PlayerBullet") as GameObject;
-        _pool.CreatePool(player_Bullet, 20);
+        flies_Bullet_Pool = gameObject.AddComponent<ObjectPool>();
+        GameObject flies_Bullet = Resources.Load("Bullet/PooledBullet/FliesBullet") as GameObject;
+        flies_Bullet_Pool.CreatePool(flies_Bullet, 20);
 
-        //自機
-        player = transform.parent.gameObject;
-        player_Controller = GetComponentInParent<PlayerController>();
-        
+        butterFly_Bullet_Pool = gameObject.AddComponent<ObjectPool>();
+        GameObject butterFly_Bullet = Resources.Load("Bullet/PooledBullet/ButterFlyBullet") as GameObject;
+        butterFly_Bullet_Pool.CreatePool(butterFly_Bullet, 20);
     }
 	
 
 	// Update is called once per frame
 	void Update () {
-        if (player_Controller.Get_Playable()) {
-            Shot();
-            if(power_Grade == 4) {
-                Power_Shot();
+        if (_playerController.Get_Playable()) {
+            switch (_playerManager.option_Type) {
+                case "Flies": Flies_Shot(); break;
+                case "ButterFly": ButterFly_Shot(); break;
+                case "Beetle": Beetle_Shot(); break;
+                case "Bee": Bee_Shot(); break;
             }
         }
         //ショットの強化
@@ -60,91 +57,165 @@ public class PlayerShotController : MonoBehaviour {
 	}
 
 
-    //ショット
-    private void Shot() {
+    //オプションがハエのとき
+    private void Flies_Shot() {
         if (Input.GetKey(KeyCode.X)) {
-            if (time < SHOT_SPAN) {
+            if (time < shot_Span) {
                 time += Time.deltaTime;
             }
             else {
                 time = 0;
-                //弾の発射
-                var bullet = _pool.GetObject();
-                bullet.transform.position = gameObject.transform.position;
-                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(BULLET_SPEED * player.transform.localScale.x, 0);
+                int bullet_Num = 2;
+                float bullet_Speed = 400f;
                 //1段階目以降弾を増やす
                 if (power_Grade >= 1) {
-                    if (option_Num == 0) { 
-                        var bullet2 = _pool.GetObject();
-                        bullet2.transform.position = gameObject.transform.position + new Vector3(0, -10f, 0);
-                        bullet2.GetComponent<Rigidbody2D>().velocity = new Vector2(BULLET_SPEED * player.transform.localScale.x, 0);
-                    }
+                    bullet_Num = 3;
                 }
-                //3段階目以降斜めに発射
+                //2段階目以降早くする
+                if (power_Grade >= 2) {
+                    bullet_Speed = 500f;
+                }
+                //3段階目以降
                 if (power_Grade >= 3) {
-                    var bullet3 = _pool.GetObject();
-                    bullet3.transform.position = gameObject.transform.position;
-                    if (option_Num == 0) {
-                        bullet3.GetComponent<Rigidbody2D>().velocity = new Vector2(700f * player.transform.localScale.x, -100f);
-                    }
-                    else {
-                        bullet3.GetComponent<Rigidbody2D>().velocity = new Vector2(700f * player.transform.localScale.x, 100f);
-                    }
+                    bullet_Num = 4;
                 }
+                //4段階目
+                if(power_Grade >= 4) {
+                    bullet_Num = 6;
+                    bullet_Speed = 600f;
+                }
+                //弾の発射
+                for (int i = 0; i < bullet_Num; i++) {
+                    var bullet = flies_Bullet_Pool.GetObject();
+                    float width = 12f + bullet_Num * 2;
+                    bullet.transform.position = transform.position + new Vector3(0, -width / 2 + width * 2 / bullet_Num * i);
+                    bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
+                }             
                 shot_Sound.Play();
             }
         }
         else if (Input.GetKeyUp(KeyCode.X)) {
-            time = SHOT_SPAN;
+            time = shot_Span;
         }
     }
 
 
-    //パワーショット
-    private void Power_Shot() {
-        if (Input.GetKey(KeyCode.X) && option_Num == 0) {
-            if (time2 < SHOT_SPAN2) {
-                time2 += Time.deltaTime;
+    //オプションが蝶のとき
+    private void ButterFly_Shot() {
+        if (Input.GetKey(KeyCode.X)) {
+            if (time < shot_Span) {
+                time += Time.deltaTime;
             }
             else {
-                time2 = 0;
-                var power_Bullet = Instantiate(Resources.Load("Bullet/PlayerShot2")) as GameObject;
-                power_Bullet.transform.position = transform.position;
-                power_Bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(500f * player.transform.localScale.x, 0);
-                Destroy(power_Bullet, 0.4f);
+                time = 0;
+                int bullet_Num = 2;
+                float bullet_Speed = 350f;
+                //1段階目以降弾を増やす
+                if (power_Grade >= 1) {
+                    bullet_Num = 3;
+                }
+                //2段階目以降早くする
+                if (power_Grade >= 2) {
+                    bullet_Speed = 400f;
+                }
+                //3段階目以降
+                if (power_Grade >= 3) {
+                    bullet_Num = 4;
+                }
+                //4段階目
+                if (power_Grade >= 4) {
+                    bullet_Num = 5;
+                    bullet_Speed = 500f;
+                }
+                //弾の発射
+                for (int i = 0; i < bullet_Num; i++) {
+                    var bullet = butterFly_Bullet_Pool.GetObject();
+                    float width = 12f + bullet_Num * 2;
+                    bullet.transform.position = transform.position + new Vector3(0, -width / 2 + width * 2 / bullet_Num * i);
+                    bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
+                }
+                shot_Sound.Play();
             }
-        }
-        else if (Input.GetKeyUp(KeyCode.X)) {
-            time = SHOT_SPAN2;
         }
     }
 
 
-    //ショットの強化(弾速とスパン)
+
+    //オプションがカブトムシのとき
+    private void Beetle_Shot() {
+
+    }
+
+
+    //オプションが蜂のとき
+    private void Bee_Shot() {
+        if (Input.GetKey(KeyCode.X)) {
+            if (time < 0.3f) {
+                time += Time.deltaTime;
+            }
+            else {
+                time = 0;
+                int bullet_Num = 1;
+                float bullet_Speed = 600f;
+                //1段階目以降弾を増やす
+                if (power_Grade >= 1) {
+                    bullet_Speed = 700f;
+                }
+                //2段階目以降早くする
+                if (power_Grade >= 2) {
+                    bullet_Num = 2;
+                    bullet_Speed = 800f;
+                }
+                //3段階目以降
+                if (power_Grade >= 3) {
+                    bullet_Num = 3;
+                }
+                //4段階目
+                if (power_Grade >= 4) {
+                    bullet_Num = 4;
+                    bullet_Speed = 900f;
+                }
+                //弾の発射
+                for (int i = 0; i < bullet_Num; i++) {
+                    var bullet = Instantiate(Resources.Load("Bullet/BeeBullet")) as GameObject;
+                    float width = 12f + bullet_Num * 2;
+                    bullet.transform.position = transform.position + new Vector3(0, width / 2 - width * 2 / bullet_Num * i);
+                    bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
+                    Destroy(bullet, 1.3f);
+                }
+                shot_Sound.Play();
+            }
+        }
+    }
+
+
+
+
+    //ショットの強化段階
     private void Power_Up() {
         if (_playerManager.power < 16) {
             if (power_Grade != 0) {
-                power_Grade = 0; BULLET_SPEED = 500.0f; SHOT_SPAN = 0.1f;
+                power_Grade = 0;
             }
         }
         else if (_playerManager.power < 32) {
             if (power_Grade != 1) {
-                power_Grade = 1; BULLET_SPEED = 550.0f; SHOT_SPAN = 0.09f;
+                power_Grade = 1;
             }
         }
         else if (_playerManager.power < 64) {
             if (power_Grade != 2) {
-                power_Grade = 2; BULLET_SPEED = 700.0f; SHOT_SPAN = 0.08f;
+                power_Grade = 2;
             }
         }
         else if (_playerManager.power < 128) {
             if (power_Grade != 3) {
-                power_Grade = 3; BULLET_SPEED = 800.0f; SHOT_SPAN = 0.08f;
+                power_Grade = 3;
             }
         }
         else if (_playerManager.power == 128) {
             if (power_Grade != 4) {
-                power_Grade = 4; BULLET_SPEED = 900.0f; SHOT_SPAN = 0.07f;
+                power_Grade = 4;
             }
         }
     }

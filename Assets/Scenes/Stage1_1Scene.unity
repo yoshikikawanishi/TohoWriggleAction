@@ -585,8 +585,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftSide: 0
   rightSide: 6000
-  is_Auto_Scroll: 0
-  scroll_Speed: 0
+  scroll_Left_Side: 2980
+  scroll_Right_Side: 6000
+  scroll_Speed: 0.8
 --- !u!1 &422292698
 GameObject:
   m_ObjectHideFlags: 0
@@ -6461,7 +6462,7 @@ Tilemap:
   - first: {x: 80, y: -3, z: 0}
     second:
       m_TileIndex: 20
-      m_TileSpriteIndex: 20
+      m_TileSpriteIndex: 24
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -6470,7 +6471,7 @@ Tilemap:
   - first: {x: 81, y: -3, z: 0}
     second:
       m_TileIndex: 19
-      m_TileSpriteIndex: 19
+      m_TileSpriteIndex: 23
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -9179,18 +9180,18 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 06f0f8fe02143c048a195e2e52b478c5, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 21300004, guid: 06f0f8fe02143c048a195e2e52b478c5, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 21300004, guid: 30ca56762aa85a4459016199c51f814c, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300002, guid: 30ca56762aa85a4459016199c51f814c, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 30ca56762aa85a4459016199c51f814c, type: 3}
   m_TileMatrixArray:
@@ -10123,7 +10124,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 6f0c9f8d50d70d549b51290264861f93, type: 3}
-  m_Color: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
+  m_Color: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

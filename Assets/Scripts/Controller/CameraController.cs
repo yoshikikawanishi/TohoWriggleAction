@@ -13,8 +13,9 @@ public class CameraController : MonoBehaviour {
     //右端
     public float rightSide = 32f;
 
-    //自動スクロールかどうか
-    [SerializeField] private bool is_Auto_Scroll = false;
+    //強制スクロールの範囲
+    [SerializeField] private float scroll_Left_Side = 0;
+    [SerializeField] private float scroll_Right_Side = 0;
     [SerializeField] private float scroll_Speed = 0;
     
 
@@ -28,13 +29,13 @@ public class CameraController : MonoBehaviour {
     //FixedUpdaet
     private void FixedUpdate() {
         if (player != null) {
-            //通常の面
-            if (!is_Auto_Scroll) {
-                transform.position = new Vector3(player.transform.position.x, 0, -10);
-            }
-            //強制スクロールの面
-            else {
+            //強制スクロール
+            if (scroll_Left_Side < transform.position.x && transform.position.x < scroll_Right_Side) {
                 transform.position += new Vector3(scroll_Speed, 0, 0);
+            }
+            //自機追従
+            else {
+                transform.position = new Vector3(player.transform.position.x, 0, -10);
             }
         }
         //左端のときスクロールを止める
