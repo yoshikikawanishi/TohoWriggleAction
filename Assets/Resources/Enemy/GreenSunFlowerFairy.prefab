@@ -302,11 +302,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7453bac3b18d3a946870861ffa85b889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 18
+  life: 12
   vanish_Effect: {fileID: 1901817575273748, guid: 20dfbcca07249104a9b30d99e5064b93,
     type: 2}
   score_Value: 500
-  power_Value: 2
+  power_Value: 3
   item_Out_Speed: 500
 --- !u!114 &114727906407731020
 MonoBehaviour:
