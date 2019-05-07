@@ -30,9 +30,10 @@ public class CameraController : MonoBehaviour {
     private void FixedUpdate() {
         if (player != null) {
             //強制スクロール
-            if (scroll_Left_Side < transform.position.x && transform.position.x < scroll_Right_Side) {
+            if (scroll_Left_Side < transform.position.x && transform.position.x <= scroll_Right_Side) {
                 transform.position += new Vector3(scroll_Speed, 0, 0);
-            }
+
+            }        
             //自機追従
             else {
                 transform.position = new Vector3(player.transform.position.x, 0, -10);
@@ -42,10 +43,12 @@ public class CameraController : MonoBehaviour {
         if (transform.position.x < leftSide) {
             transform.position = new Vector3(leftSide, 0, -10);
         }
-        //右端のときスクロールを止める、敵の生成を辞める
+        //右端のときスクロールをとめる
         if (transform.position.x >= rightSide) {
             transform.position = new Vector3(rightSide, 0, -10);
         }
+        
+        
     }
 
 }

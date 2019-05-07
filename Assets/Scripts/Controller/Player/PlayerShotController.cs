@@ -15,13 +15,17 @@ public class PlayerShotController : MonoBehaviour {
     //スクリプト
     private PlayerManager _playerManager;
 
+    //オプションのアニメーション
+    private Animator[] options_Anim = new Animator[2];
+
     //ショット
     private float time = 0;
-    private float shot_Span = 0.1f;
- 
 
     //強化段階
     private int power_Grade = 0;
+
+    //オプションのタイプ
+    private string option_Type;
 
     
     // Use this for initialization
@@ -39,28 +43,92 @@ public class PlayerShotController : MonoBehaviour {
         butterFly_Bullet_Pool = gameObject.AddComponent<ObjectPool>();
         GameObject butterFly_Bullet = Resources.Load("Bullet/PooledBullet/ButterFlyBullet") as GameObject;
         butterFly_Bullet_Pool.CreatePool(butterFly_Bullet, 20);
-    }
-	
 
-	// Update is called once per frame
-	void Update () {
+        //オプションの取得
+        options_Anim[0] = transform.GetChild(4).gameObject.GetComponent<Animator>();
+        options_Anim[1] = transform.GetChild(5).gameObject.GetComponent<Animator>();
+
+    }
+
+
+    // Update is called once per frame
+    void Update () {
+        //オプションタイプの変更
+        Change_Option();
+        //ショットの強化
+        Power_Up();
+
+        //ショット
         if (_playerController.Get_Playable()) {
-            switch (_playerManager.option_Type) {
+            switch (this.option_Type) {
                 case "Flies": Flies_Shot(); break;
                 case "ButterFly": ButterFly_Shot(); break;
                 case "Beetle": Beetle_Shot(); break;
                 case "Bee": Bee_Shot(); break;
             }
         }
-        //ショットの強化
-        Power_Up();
+       
 	}
+
+
+    //オプションタイプの変更
+    private void Change_Option() {
+        if (_playerManager.option_Type != this.option_Type) {
+            this.option_Type = _playerManager.option_Type;
+            Change_Option_Anim(option_Type + "Bool");
+        }
+    }
+
+    //アニメーションの変更
+    private void Change_Option_Anim(string change_Bool) {
+        for(int i = 0; i < 2; i++) {
+            options_Anim[i].SetBool("FliesBool", false);
+            options_Anim[i].SetBool("ButterFlyBool", false);
+            options_Anim[i].SetBool("BeetleBool", false);
+            options_Anim[i].SetBool("BeeBool", false);
+
+            options_Anim[i].SetBool(change_Bool, true);
+        }
+    }
+
+
+    //ショットの強化段階
+    private void Power_Up() {
+        if (_playerManager.power < 16) {
+            if (power_Grade != 0) {
+                power_Grade = 0;
+            }
+        }
+        else if (_playerManager.power < 32) {
+            if (power_Grade != 1) {
+                power_Grade = 1;
+            }
+        }
+        else if (_playerManager.power < 64) {
+            if (power_Grade != 2) {
+                power_Grade = 2;
+            }
+        }
+        else if (_playerManager.power < 128) {
+            if (power_Grade != 3) {
+                power_Grade = 3;
+            }
+        }
+        else if (_playerManager.power == 128) {
+            if (power_Grade != 4) {
+                power_Grade = 4;
+            }
+        }
+    }
+
+
+
 
 
     //オプションがハエのとき
     private void Flies_Shot() {
         if (Input.GetKey(KeyCode.X)) {
-            if (time < shot_Span) {
+            if (time < 0.15f) {
                 time += Time.deltaTime;
             }
             else {
@@ -95,7 +163,7 @@ public class PlayerShotController : MonoBehaviour {
             }
         }
         else if (Input.GetKeyUp(KeyCode.X)) {
-            time = shot_Span;
+            time = 0.15f;
         }
     }
 
@@ -103,7 +171,7 @@ public class PlayerShotController : MonoBehaviour {
     //オプションが蝶のとき
     private void ButterFly_Shot() {
         if (Input.GetKey(KeyCode.X)) {
-            if (time < shot_Span) {
+            if (time < 0.1f) {
                 time += Time.deltaTime;
             }
             else {
@@ -137,6 +205,9 @@ public class PlayerShotController : MonoBehaviour {
                 shot_Sound.Play();
             }
         }
+        else if (Input.GetKeyUp(KeyCode.X)) {
+            time = 0.1f;
+        }
     }
 
 
@@ -156,15 +227,15 @@ public class PlayerShotController : MonoBehaviour {
             else {
                 time = 0;
                 int bullet_Num = 1;
-                float bullet_Speed = 600f;
+                float bullet_Speed = 700f;
                 //1段階目以降弾を増やす
                 if (power_Grade >= 1) {
-                    bullet_Speed = 700f;
+                    bullet_Speed = 800f;
                 }
                 //2段階目以降早くする
                 if (power_Grade >= 2) {
                     bullet_Num = 2;
-                    bullet_Speed = 800f;
+                    bullet_Speed = 900f;
                 }
                 //3段階目以降
                 if (power_Grade >= 3) {
@@ -173,7 +244,7 @@ public class PlayerShotController : MonoBehaviour {
                 //4段階目
                 if (power_Grade >= 4) {
                     bullet_Num = 4;
-                    bullet_Speed = 900f;
+                    bullet_Speed = 1000f;
                 }
                 //弾の発射
                 for (int i = 0; i < bullet_Num; i++) {
@@ -184,40 +255,16 @@ public class PlayerShotController : MonoBehaviour {
                     Destroy(bullet, 1.3f);
                 }
                 shot_Sound.Play();
-            }
+            }          
+        }
+        else if (Input.GetKeyUp(KeyCode.X)) {
+            time = 0.3f;
         }
     }
 
 
 
 
-    //ショットの強化段階
-    private void Power_Up() {
-        if (_playerManager.power < 16) {
-            if (power_Grade != 0) {
-                power_Grade = 0;
-            }
-        }
-        else if (_playerManager.power < 32) {
-            if (power_Grade != 1) {
-                power_Grade = 1;
-            }
-        }
-        else if (_playerManager.power < 64) {
-            if (power_Grade != 2) {
-                power_Grade = 2;
-            }
-        }
-        else if (_playerManager.power < 128) {
-            if (power_Grade != 3) {
-                power_Grade = 3;
-            }
-        }
-        else if (_playerManager.power == 128) {
-            if (power_Grade != 4) {
-                power_Grade = 4;
-            }
-        }
-    }
+    
 
 }

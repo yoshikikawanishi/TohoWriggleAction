@@ -88,6 +88,11 @@ public class PlayerManager : MonoBehaviour {
 
     //オプションタイプの変更
     public void Set_Option_Type(string next_Type) {
-        option_Type = next_Type;
+        switch (next_Type) {
+            case "Flies": option_Type = next_Type; break;
+            case "ButterFly": option_Type = next_Type; break;
+            case "Beetle": option_Type = next_Type; break;
+            case "Bee": option_Type = next_Type; break;
+        }
     }
 }
