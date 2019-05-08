@@ -10,6 +10,7 @@ public class PlayerShotController : MonoBehaviour {
     //オブジェクトプール
     private ObjectPool flies_Bullet_Pool;
     private ObjectPool butterFly_Bullet_Pool;
+    private ObjectPool bee_Bullet_Pool;
     //自機
     private PlayerController _playerController;
     //スクリプト
@@ -37,12 +38,14 @@ public class PlayerShotController : MonoBehaviour {
         _playerController = gameObject.GetComponent<PlayerController>();
         //オブジェクトプール
         flies_Bullet_Pool = gameObject.AddComponent<ObjectPool>();
-        GameObject flies_Bullet = Resources.Load("Bullet/PooledBullet/FliesBullet") as GameObject;
-        flies_Bullet_Pool.CreatePool(flies_Bullet, 20);
-
         butterFly_Bullet_Pool = gameObject.AddComponent<ObjectPool>();
+        bee_Bullet_Pool = gameObject.AddComponent<ObjectPool>();
+        GameObject flies_Bullet = Resources.Load("Bullet/PooledBullet/FliesBullet") as GameObject;
         GameObject butterFly_Bullet = Resources.Load("Bullet/PooledBullet/ButterFlyBullet") as GameObject;
+        GameObject bee_Bullet = Resources.Load("Bullet/PooledBullet/BeeBullet") as GameObject;
+        flies_Bullet_Pool.CreatePool(flies_Bullet, 20);
         butterFly_Bullet_Pool.CreatePool(butterFly_Bullet, 20);
+        bee_Bullet_Pool.CreatePool(bee_Bullet, 20);
 
         //オプションの取得
         options_Anim[0] = transform.GetChild(4).gameObject.GetComponent<Animator>();
@@ -79,7 +82,7 @@ public class PlayerShotController : MonoBehaviour {
         }
     }
 
-    //アニメーションの変更
+    //オプションのアニメーションの変更
     private void Change_Option_Anim(string change_Bool) {
         for(int i = 0; i < 2; i++) {
             options_Anim[i].SetBool("FliesBool", false);
@@ -122,9 +125,6 @@ public class PlayerShotController : MonoBehaviour {
     }
 
 
-
-
-
     //オプションがハエのとき
     private void Flies_Shot() {
         if (Input.GetKey(KeyCode.X)) {
@@ -135,11 +135,11 @@ public class PlayerShotController : MonoBehaviour {
                 time = 0;
                 int bullet_Num = 2;
                 float bullet_Speed = 400f;
-                //1段階目以降弾を増やす
+                //1段階目以降
                 if (power_Grade >= 1) {
                     bullet_Num = 3;
                 }
-                //2段階目以降早くする
+                //2段階目以降
                 if (power_Grade >= 2) {
                     bullet_Speed = 500f;
                 }
@@ -152,7 +152,7 @@ public class PlayerShotController : MonoBehaviour {
                     bullet_Num = 6;
                     bullet_Speed = 600f;
                 }
-                //弾の発射
+                //弾の生成、発射
                 for (int i = 0; i < bullet_Num; i++) {
                     var bullet = flies_Bullet_Pool.GetObject();
                     float width = 12f + bullet_Num * 2;
@@ -177,14 +177,14 @@ public class PlayerShotController : MonoBehaviour {
             else {
                 time = 0;
                 int bullet_Num = 2;
-                float bullet_Speed = 350f;
-                //1段階目以降弾を増やす
+                float bullet_Speed = 300f;
+                //1段階目以降
                 if (power_Grade >= 1) {
                     bullet_Num = 3;
                 }
-                //2段階目以降早くする
+                //2段階目以降
                 if (power_Grade >= 2) {
-                    bullet_Speed = 400f;
+                    bullet_Speed = 350f;
                 }
                 //3段階目以降
                 if (power_Grade >= 3) {
@@ -193,9 +193,9 @@ public class PlayerShotController : MonoBehaviour {
                 //4段階目
                 if (power_Grade >= 4) {
                     bullet_Num = 5;
-                    bullet_Speed = 500f;
+                    bullet_Speed = 400f;
                 }
-                //弾の発射
+                //弾の生成,発射
                 for (int i = 0; i < bullet_Num; i++) {
                     var bullet = butterFly_Bullet_Pool.GetObject();
                     float width = 12f + bullet_Num * 2;
@@ -214,7 +214,38 @@ public class PlayerShotController : MonoBehaviour {
 
     //オプションがカブトムシのとき
     private void Beetle_Shot() {
-
+        if(time < 0.3f) {
+            time += Time.deltaTime;
+        }
+        else if (Input.GetKeyDown(KeyCode.X)) {
+            time = 0;
+            int bullet_Num = 1;
+            Vector2 bullet_Speed = new Vector2(150f * transform.localScale.x, 300f);
+            //1段階目以降
+            if (power_Grade >= 1) {
+                bullet_Speed = new Vector2(170f * transform.localScale.x, 350f);
+            }
+            //2段階目以降
+            if (power_Grade >= 2) {
+                bullet_Speed = new Vector2(200f * transform.localScale.x, 400f);
+            }
+            //3段階目以降
+            if (power_Grade >= 3) {
+                bullet_Num = 2;
+            }
+            //4段階目
+            if (power_Grade >= 4) {
+                bullet_Num = 3;
+            }
+            //弾の発射
+            for (int i = 0; i < bullet_Num; i++) {
+                bullet_Speed += GetComponent<Rigidbody2D>().velocity / 2;
+                var bullet = Instantiate(Resources.Load("Bullet/BeetleBullet")) as GameObject;
+                bullet.transform.position = transform.position;
+                bullet.GetComponent<Rigidbody2D>().velocity = bullet_Speed + new Vector2(i * 50f, 0);
+            }
+            shot_Sound.Play();
+        }
     }
 
 
@@ -247,12 +278,13 @@ public class PlayerShotController : MonoBehaviour {
                     bullet_Speed = 1000f;
                 }
                 //弾の発射
-                for (int i = 0; i < bullet_Num; i++) {
-                    var bullet = Instantiate(Resources.Load("Bullet/BeeBullet")) as GameObject;
-                    float width = 12f + bullet_Num * 2;
-                    bullet.transform.position = transform.position + new Vector3(0, width / 2 - width * 2 / bullet_Num * i);
-                    bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
-                    Destroy(bullet, 1.3f);
+                for (int n = 0; n < 2; n++) {
+                    for (int i = 0; i < bullet_Num; i++) {
+                        var bullet = bee_Bullet_Pool.GetObject();
+                        float width = 12f + bullet_Num * 2;
+                        bullet.transform.position = transform.position + new Vector3(0, width / 2 - width * 2 / bullet_Num * i);
+                        bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
+                    }
                 }
                 shot_Sound.Play();
             }          

@@ -4,32 +4,57 @@ using UnityEngine;
 
 public class PlayerBulletController : MonoBehaviour {
 
-    private PlayerManager _playerManager;
-
-
-	// Use this for initialization
-	void Start () {
-        _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
-	}
+    //弾の種類分け
+    [SerializeField] private string option_Type;
 	
 
     //OnEnable
-    private void OnEnable() {
-        if(_playerManager == null) {
-            _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
-        }
-        switch (_playerManager.option_Type) {
+    private void OnEnable() {     
+        switch (option_Type) {
             case "Flies": StartCoroutine("Flies_Bullet"); break;
             case "ButterFly": StartCoroutine("ButterFly_Bullet"); break;
+            case "Bee": StartCoroutine("Bee_Bullet"); break;
         }
     }
 
+
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.tag == "EnemyTag" || collision.tag == "GroundTag") {
+        //蜂弾は敵貫通
+        if (option_Type == "Bee") {
+            if (collision.tag == "GroundTag") {
+                gameObject.SetActive(false);
+            }
+        }
+        //カブトムシ弾、敵地面に当たったら破片を出す
+        else if(option_Type == "Beetle") {
+            if(collision.tag == "GroundTag" || collision.tag == "EnemyTag") {
+                for(int i = 0; i < 2; i++) {
+                    GameObject bullet_Debris = transform.GetChild(0).gameObject;
+                    bullet_Debris.transform.position = transform.position + new Vector3(0, 8f, 0);
+                    bullet_Debris.SetActive(true);
+                    bullet_Debris.transform.SetParent(null);
+                    bullet_Debris.GetComponent<Rigidbody2D>().velocity = new Vector2(-150f + i * 300f, 40f);
+                }
+                GameObject effect = transform.GetChild(0).gameObject;
+                effect.SetActive(true);
+                effect.transform.SetParent(null);
+                Destroy(effect, 0.3f);
+                Destroy(gameObject);
+            }
+        }
+        //はじけたカブトムシ弾敵地面に当たったら消す
+        else if(option_Type == "BeetleCrash") {
+            if(collision.tag == "GroundTag" || collision.tag == "EnemyTag") {
+                Destroy(gameObject);
+            }
+        }
+        //ハエ、蝶弾敵地面に当たったら消す
+        else if (collision.tag == "EnemyTag" || collision.tag == "GroundTag") {
             gameObject.SetActive(false);
         }
     }
+
 
     //ハエ弾
     private IEnumerator Flies_Bullet() {
@@ -37,7 +62,15 @@ public class PlayerBulletController : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
-    //蝶弾
+
+    //蜂弾
+    private IEnumerator Bee_Bullet() {
+        yield return new WaitForSeconds(1.0f);
+        gameObject.SetActive(false);
+    }
+
+
+    //蝶弾、サインカーブする
     private IEnumerator ButterFly_Bullet() {
         yield return null;
         float center_Height = transform.position.y;

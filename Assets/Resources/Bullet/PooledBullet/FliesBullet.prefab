@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be4cc4c99a34a9449fd886c54b154ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  option_Type: Flies
 --- !u!114 &114752892287682806
 MonoBehaviour:
   m_ObjectHideFlags: 1
