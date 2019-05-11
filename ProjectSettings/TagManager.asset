@@ -18,6 +18,7 @@ TagManager:
   - PowerTag
   - ScoreTag
   - InvisibleWallTag
+  - ThroughGroundTag
   layers:
   - Default
   - TransparentFX

@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour {
 
     //セーブ
     public void SaveData() {
-        Debug.Log("Save");
         string scene = SceneManager.GetActiveScene().name;
         GameObject player = GameObject.FindWithTag("PlayerTag");
 

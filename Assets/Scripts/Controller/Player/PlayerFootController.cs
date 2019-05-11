@@ -27,9 +27,16 @@ public class PlayerFootController : MonoBehaviour {
     //OnTriggerStay
     private void OnTriggerStay2D(Collider2D collision) {
         //着地判定
-        if (collision.tag == "GroundTag" && !player_Controller.is_Ground) {
-            player_Controller.is_Ground = true;
-            landing_Sound.Play();
+        if (collision.tag == "GroundTag") {
+            if (!player_Controller.is_Ground) {
+                player_Controller.is_Ground = true;
+                landing_Sound.Play();
+            }
+        }
+        if (collision.tag == "ThroughGroundTag") {
+            if (!player_Controller.is_Ground) {
+                player_Controller.is_Ground = true;
+            }
         }
     }
 
@@ -37,8 +44,10 @@ public class PlayerFootController : MonoBehaviour {
     //OnTriggerExit
     private void OnTriggerExit2D(Collider2D collision) {
         //接地判定
-        if(collision.tag == "GroundTag" && player_Controller.is_Ground) {
-            player_Controller.is_Ground = false;
+        if (collision.tag == "GroundTag" || collision.tag == "ThroughGroundTag") {
+            if (player_Controller.is_Ground) {
+                player_Controller.is_Ground = false;
+            }
         }
     }
 

@@ -15,6 +15,10 @@ public class PlayerCollisionController : MonoBehaviour {
 
     //自機
     private GameObject player;
+    //カメラ
+    private GameObject main_Camera;
+    //ダメージエフェクト
+    private GameObject bolt_Effect;
 
     //被弾時の無敵時間
     private float INVINCIBLE_TIME = 1.5f;
@@ -35,12 +39,12 @@ public class PlayerCollisionController : MonoBehaviour {
         _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
         //自機
         player = transform.parent.gameObject;
+        //カメラとダメージエフェクト
+        main_Camera = GameObject.Find("Main Camera");
+        bolt_Effect = Instantiate(Resources.Load("Effect/BoltEffect")) as GameObject;
+        bolt_Effect.transform.SetParent(main_Camera.transform);
+        bolt_Effect.transform.localPosition = new Vector3(0, 0, 10);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 
     //OnTriggerEnter
@@ -76,7 +80,6 @@ public class PlayerCollisionController : MonoBehaviour {
     private void Damaged(int damage) {
         if (!damaged_Trigger) {
             damaged_Trigger = true; 
-            Debug.Log("Damaged");
             //ライフを減らす
             _playerManager.life -= damage;
             //powerを減らす
@@ -93,6 +96,7 @@ public class PlayerCollisionController : MonoBehaviour {
                 //ボムエフェクト
                 GameObject bomb = Instantiate(Resources.Load("Effect/PlayerDamagedBomb")) as GameObject;
                 bomb.transform.position = transform.position;
+                bolt_Effect.GetComponent<ParticleSystem>().Play();
                 //点滅、無敵化
                 StartCoroutine("Blink");
             }

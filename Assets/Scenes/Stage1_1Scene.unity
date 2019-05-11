@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -9610,7 +9610,7 @@ TilemapRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b5ee1a32393bd514aa6c3b878002d6aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10298,7 +10298,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b5ee1a32393bd514aa6c3b878002d6aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10677,7 +10677,7 @@ TilemapRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b5ee1a32393bd514aa6c3b878002d6aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11708,7 +11708,7 @@ GameObject:
   - component: {fileID: 1435456535}
   m_Layer: 0
   m_Name: ThroughGround
-  m_TagString: GroundTag
+  m_TagString: ThroughGroundTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11954,7 +11954,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4065106047841724, guid: 86b0c04ce17d24140b79e06f76a89f45, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 402
+      value: 386
       objectReference: {fileID: 0}
     - target: {fileID: 4065106047841724, guid: 86b0c04ce17d24140b79e06f76a89f45, type: 2}
       propertyPath: m_LocalPosition.y
@@ -12269,7 +12269,7 @@ GameObject:
   - component: {fileID: 1723981319}
   m_Layer: 0
   m_Name: ThroughGround
-  m_TagString: GroundTag
+  m_TagString: ThroughGroundTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12301,7 +12301,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -12697,6 +12697,10 @@ Prefab:
     - target: {fileID: 224687240675684918, guid: 9ac775ade6937904687615aeb278cb63,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510689577089640, guid: 9ac775ade6937904687615aeb278cb63, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
