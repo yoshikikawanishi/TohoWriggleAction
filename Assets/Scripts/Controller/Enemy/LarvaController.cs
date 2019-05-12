@@ -164,7 +164,7 @@ public class LarvaController : MonoBehaviour {
                 //鱗粉弾
                 _bulletFunction.Set_Bullet(scales_Bullet);
                 Shoot_Scales_Bullet();
-                yield return new WaitForSeconds(1.0f);
+                yield return new WaitForSeconds(3.0f);
             }
             //小移動
             else {

@@ -8,7 +8,6 @@ public class RedFairyController : MonoBehaviour {
     private Rigidbody2D _rigid;
     private Renderer _renderer;
 
-
     //速度
     private float speed = -45f;
 
@@ -26,7 +25,7 @@ public class RedFairyController : MonoBehaviour {
 	void Update () {
         //画面内に入ったら動き出す
         if (_renderer.isVisible) {
-            _rigid.velocity = new Vector2(speed, 0);
+            _rigid.velocity = new Vector2(speed, _rigid.velocity.y);
         }
         //下に落ちたら消す
         if (transform.position.y < -160f) {
