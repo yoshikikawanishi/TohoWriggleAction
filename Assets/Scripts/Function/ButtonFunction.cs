@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonFunction : MonoBehaviour {
 
@@ -15,22 +16,33 @@ public class ButtonFunction : MonoBehaviour {
         _gameManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
         _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
+    //初めからボタン押下時
+    public void Start_Game_Button() {
+        _gameManager.DeleteData();
+        _gameManager.StartCoroutine("LoadData");
+    }
 
 
     //続きからボタン押下時
     public void Load_Data_Button() {
-        _gameManager.StartCoroutine("LoadData");
+        if (PlayerPrefs.GetString("Scene") != "") {
+            _gameManager.StartCoroutine("LoadData");
+        }
     }
 
     //コンティニューボタン押下時
     public void Continue_Button() {
         _playerManager.StartCoroutine("Continue");
     }
+
+    //タイトルに戻るボタン押下時
+    public void Title_Button() {
+        SceneManager.LoadScene("TitleScene");
+    }
+
+
  
 
 }

@@ -90,6 +90,7 @@ public class Stage1_BossController : MonoBehaviour {
         _message.Start_Display("LarvaClearText");
         yield return new WaitUntil(_message.End_Message);
         yield return new WaitForSeconds(1.5f);
+        _pause.Set_Pausable(true);
         //シーン遷移
         SceneManager.LoadScene("Stage2_1Scene");
     }

@@ -28,6 +28,9 @@ public class PlayerShotController : MonoBehaviour {
     //オプションのタイプ
     private string option_Type;
 
+    //Beetle用
+    private float beetle_Shot_Span = 0.4f;
+
     
     // Use this for initialization
     void Start () {
@@ -214,20 +217,21 @@ public class PlayerShotController : MonoBehaviour {
 
     //オプションがカブトムシのとき
     private void Beetle_Shot() {
-        if(time < 0.3f) {
+        if(time < beetle_Shot_Span) {
             time += Time.deltaTime;
         }
         else if (Input.GetKeyDown(KeyCode.X)) {
             time = 0;
+            beetle_Shot_Span = 0.4f;
             int bullet_Num = 1;
             Vector2 bullet_Speed = new Vector2(150f * transform.localScale.x, 300f);
             //1段階目以降
             if (power_Grade >= 1) {
-                bullet_Speed = new Vector2(170f * transform.localScale.x, 350f);
+                beetle_Shot_Span = 0.3f;
             }
             //2段階目以降
             if (power_Grade >= 2) {
-                bullet_Speed = new Vector2(200f * transform.localScale.x, 400f);
+                beetle_Shot_Span = 0.2f;
             }
             //3段階目以降
             if (power_Grade >= 3) {

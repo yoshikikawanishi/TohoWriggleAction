@@ -37,14 +37,21 @@ public class PauseManager : MonoBehaviour {
 
     //一時停止時の処理
     private void Pause_Game() {
-        PlayerController _playerController = GameObject.FindWithTag("PlayerTag").GetComponent<PlayerController>();
-        _playerController.Set_Playable(false);
+        //自機の操作を止める
+        GameObject player = GameObject.FindWithTag("PlayerTag");
+        if (player != null) {
+            PlayerController _playerController = player.GetComponent<PlayerController>();
+            _playerController.Set_Playable(false);
+        }
     }
 
     //一時停止解除時の処理
     private void Release_Pause_Game() {
-        PlayerController _playerController = GameObject.FindWithTag("PlayerTag").GetComponent<PlayerController>();
-        _playerController.Set_Playable(true);
+        GameObject player = GameObject.FindWithTag("PlayerTag");
+        if (player != null) {
+            PlayerController _playerController = player.GetComponent<PlayerController>();
+            _playerController.Set_Playable(true);
+        }
     }
 
 

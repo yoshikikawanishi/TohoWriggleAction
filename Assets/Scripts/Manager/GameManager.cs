@@ -29,13 +29,10 @@ public class GameManager : MonoBehaviour {
         //スクリプトの取得
         _playerManager = GetComponent<PlayerManager>();
 
-    }
-	
+        /*　データ消去のテスト */
+        DeleteData();
 
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 
 
     //セーブ
@@ -85,13 +82,14 @@ public class GameManager : MonoBehaviour {
 
     //データの消去
     public void DeleteData() {
-        PlayerPrefs.SetString("Scene", "");
-        PlayerPrefs.SetFloat("PosX", 0);
-        PlayerPrefs.SetFloat("PosY", 0);
+        PlayerPrefs.SetString("Scene", "Stage1_1Scene");
+        PlayerPrefs.SetFloat("PosX", -160f);
+        PlayerPrefs.SetFloat("PosY", -78f);
         PlayerPrefs.SetInt("Score", 0);
         PlayerPrefs.SetInt("Power", 0);
         PlayerPrefs.SetInt("Stock", 3);
         PlayerPrefs.SetInt("Continue", 0);
+        PlayerPrefs.SetString("Option", "Flies");
     }
 
 }

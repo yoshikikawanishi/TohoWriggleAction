@@ -134,7 +134,6 @@ public class PlayerCollisionController : MonoBehaviour {
 
     //ライフが0になった時の処理
     private void Miss() {
-        Debug.Log("Miss");
         //エフェクト
         GameObject effect = Instantiate(Resources.Load("Effect/PlayerMissEffect")) as GameObject;
         effect.transform.position = transform.position;

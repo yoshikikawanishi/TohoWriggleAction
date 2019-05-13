@@ -27,11 +27,6 @@ public class PlayerManager : MonoBehaviour {
         //スクリプト
         _gameManager = GetComponent<GameManager>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 
     //自機の復活の処理
@@ -43,7 +38,10 @@ public class PlayerManager : MonoBehaviour {
         life = 3;
         stock--;
         //点滅
-        GameObject.FindWithTag("PlayerTag").GetComponentInChildren<PlayerCollisionController>().StartCoroutine("Blink");
+        GameObject player = GameObject.FindWithTag("PlayerTag");
+        if (player != null) {
+            player.GetComponentInChildren<PlayerCollisionController>().StartCoroutine("Blink");
+        }
     }
 
 
@@ -54,7 +52,6 @@ public class PlayerManager : MonoBehaviour {
         yield return null;
         life = 3;
         stock = 3;
-        continue_Count++;
     }
 
 
@@ -68,13 +65,18 @@ public class PlayerManager : MonoBehaviour {
 
     //ストックの回復
     public void Get_Stock() {
-
+        if(stock < 10) {
+            stock++;
+        }
     }
 
 
     //点の獲得
     public void Get_Score() {
         score += 100;
+        if(score % 30000 == 0) {
+            stock++;
+        }
     }
 
 

@@ -12,7 +12,9 @@ public class EnemyFunction : MonoBehaviour {
     [SerializeField] private int score_Value = 200;
     //P
     [SerializeField] private int power_Value = 2;
-    //アイテムを出す速度
+    //回復アイテムの確立
+    [SerializeField] private float probability_Recover_Item = 20f;
+    //点、pを出す速度
     [SerializeField] private float item_Out_Speed = 500f;
 
     //コンポーネント
@@ -89,24 +91,32 @@ public class EnemyFunction : MonoBehaviour {
         GameObject effect = Instantiate(vanish_Effect);
         effect.transform.position = transform.position;
         Destroy(effect, 1.0f);
-        //点とPの生成
+        //点とPと回復アイテムの生成
         Put_Out_Item();
         Destroy(gameObject);
     }
 
-    //点とPの生成
+    //点とPと回復アイテムの生成
     private void Put_Out_Item() {
+        //点
         int score_Num = score_Value / 100;
         for (int i = 0; i < score_Num; i++) {
             GameObject score = Instantiate(Resources.Load("Score")) as GameObject;
             score.transform.position = transform.position;
             score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 50, item_Out_Speed + Random.Range(-100f, 100f));
         }
+        //P
         int power_Num = power_Value;
         for (int i = 0; i < power_Num; i++) {
             GameObject power = Instantiate(Resources.Load("Power")) as GameObject;
             power.transform.position = transform.position;
             power.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-power_Num, power_Num) * 50, item_Out_Speed + Random.Range(-100f, 100f));
+        }
+        //回復アイテム
+        if(Random.Range(0, 100) < probability_Recover_Item) {
+            GameObject life_Up_Item = Instantiate(Resources.Load("LifeUpItem")) as GameObject;
+            life_Up_Item.transform.position = transform.position;
+            life_Up_Item.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 100f);
         }
     }
 

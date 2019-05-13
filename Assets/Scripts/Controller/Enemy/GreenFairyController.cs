@@ -12,7 +12,7 @@ public class GreenFairyController : MonoBehaviour {
     private AudioSource shot_Sound;
 
     //時間
-    private float time = 0;
+    private float time = 1.8f;
 
 
 	// Use this for initialization

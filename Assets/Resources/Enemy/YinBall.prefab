@@ -331,6 +331,7 @@ MonoBehaviour:
     type: 2}
   score_Value: 300
   power_Value: 0
+  probability_Recover_Item: 2
   item_Out_Speed: 1000
 --- !u!114 &114812199718047322
 MonoBehaviour:

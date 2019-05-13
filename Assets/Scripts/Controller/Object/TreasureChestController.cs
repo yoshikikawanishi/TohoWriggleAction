@@ -10,6 +10,9 @@ public class TreasureChestController : MonoBehaviour {
     private BoxCollider2D _collider;
     private Rigidbody2D _rigid;
 
+    //スクリプト
+    private PlayerManager _playerManager;
+
     //耐久
     private int life = 7;
 
@@ -21,6 +24,8 @@ public class TreasureChestController : MonoBehaviour {
         _sprite = GetComponent<SpriteRenderer>();
         _collider = GetComponent<BoxCollider2D>();
         _rigid = GetComponent<Rigidbody2D>();
+        //スクリプトの取得
+        _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
 
         //初期設定
         _sprite.color = new Color(1, 1, 1, 0);
@@ -61,12 +66,14 @@ public class TreasureChestController : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         //出すアイテムの決定
         string item_Name = "Flies";
-        switch (Random.Range(0, 4)) {
-            case 0: item_Name = "Flies"; break;
-            case 1: item_Name = "Bees"; break;
-            case 2: item_Name = "Beetles"; break;
-            case 3: item_Name = "ButterFlys"; break;
-        }
+        do {
+            switch (Random.Range(0, 4)) {
+                case 0: item_Name = "Flies"; break;
+                case 1: item_Name = "Bees"; break;
+                case 2: item_Name = "Beetles"; break;
+                case 3: item_Name = "ButterFlys"; break;
+            }
+        } while (item_Name == _playerManager.option_Type);
         //アイテムの生成
         GameObject item = Instantiate(Resources.Load("Object/" + item_Name)) as GameObject;
         item.transform.position = transform.position + new Vector3(0, 16f, 0);

@@ -37,7 +37,7 @@ public class RedFairyController : MonoBehaviour {
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
         //反転用
-        if (collision.tag == "InvisibleWallTag") {
+        if (collision.tag == "InvisibleWallTag" || collision.tag == "EnemyTag") {
             speed *= -1;
             transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
         }

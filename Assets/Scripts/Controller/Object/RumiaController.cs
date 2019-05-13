@@ -9,7 +9,7 @@ public class RumiaController : MonoBehaviour {
     private Animator _anim;
 
     //ライフ
-    private int life = 10;
+    private int life = 6;
 
     //やられモーション開始
     private bool start_Motion = false;
@@ -38,7 +38,7 @@ public class RumiaController : MonoBehaviour {
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
         //被弾の判定
-        if (collision.tag == "PlayerBulletTag") {
+        if (collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag") {
             life--;
             //体力がなくなった時落下開始
             if(life <= 0 && !start_Motion) {
