@@ -77,15 +77,10 @@ public class Stage1_BossController : MonoBehaviour {
         //ラルバ
         larva.GetComponent<LarvaController>().Change_Parameter("IdleBool");
         larva.GetComponent<LarvaController>().StopAllCoroutines();
-        yield return new WaitForSeconds(2.0f);
+        Destroy(GameObject.Find("LarvaBackDesigns"));
+        yield return new WaitForSeconds(6.0f);
         //一時停止不可
         _pause.Set_Pausable(false);
-        //スコア加算
-        PlayerManager _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
-        for(int i = 0; i < 50; i++) {
-            _playerManager.Get_Score();
-            yield return new WaitForSeconds(0.01f);
-        }
         //メッセージ表示
         _message.Start_Display("LarvaClearText");
         yield return new WaitUntil(_message.End_Message);

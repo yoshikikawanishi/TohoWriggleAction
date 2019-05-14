@@ -11,6 +11,7 @@ public class BossFunction : MonoBehaviour {
     [SerializeField] AudioClip damage_Sound;
     //スクリプト
     private ObjectPool _pool;
+    public CameraShake _shake;
 
     //体力
     public int life = 1;
@@ -18,6 +19,9 @@ public class BossFunction : MonoBehaviour {
     [SerializeField] private List<int> phase_Life_Border = new List<int>();
     //現在のフェーズ
     private int now_Phase = -1;
+    //落とすアイテム
+    [SerializeField] private int power_Value;
+    [SerializeField] private int score_Value;
 
     //クリア検知用
     private bool clear_Trigger = false;
@@ -28,6 +32,7 @@ public class BossFunction : MonoBehaviour {
     [SerializeField] private GameObject clear_Effect;
     //ダメージエフェクト
     private GameObject damage_Effect;
+    private ParticleSystem hit_Effect_Particle;
 
 
 
@@ -39,11 +44,14 @@ public class BossFunction : MonoBehaviour {
         damage_Audio_Source = gameObject.AddComponent<AudioSource>();
         damage_Audio_Source.clip = damage_Sound;
         damage_Audio_Source.volume = 0.008f;
-
+        //パーティクル
+        hit_Effect_Particle = GameObject.Find("BossHitEffect").GetComponent<ParticleSystem>();
         //ダメージエフェクトのオブジェクトプール
         _pool = gameObject.AddComponent<ObjectPool>();
         damage_Effect = Resources.Load("Effect/BossDamagedEffect") as GameObject;
         _pool.CreatePool(damage_Effect, 10);
+        //カメラを揺らす用
+        _shake = gameObject.AddComponent<CameraShake>();
 
         //Damage()内のforループ用
         phase_Life_Border.Add(0);
@@ -70,6 +78,8 @@ public class BossFunction : MonoBehaviour {
         life -= damage;
         //効果音
         damage_Audio_Source.Play();
+        //エフェクト
+        hit_Effect_Particle.Play();
         //点滅
         StartCoroutine("Blink");
         //フェーズ切り替え
@@ -124,7 +134,31 @@ public class BossFunction : MonoBehaviour {
         effect.transform.position = transform.position;
         var bomb = Instantiate(phase_Change_Bomb) as GameObject;
         bomb.transform.position = transform.position;
+        //画面を揺らす
+        _shake.Shake(0.25f, 3f);
+        //アイテムを出す
+        Put_Out_Item();
     }
+
+
+    //アイテムを出す
+    private void Put_Out_Item() {
+        //点
+        int score_Num = score_Value / 100;
+        for (int i = 0; i < score_Num; i++) {
+            GameObject score = Instantiate(Resources.Load("Score")) as GameObject;
+            score.transform.position = transform.position;
+            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 50, 500f + Random.Range(-100f, 100f));
+        }
+        //P
+        int power_Num = power_Value;
+        for (int i = 0; i < power_Num; i++) {
+            GameObject power = Instantiate(Resources.Load("Power")) as GameObject;
+            power.transform.position = transform.position;
+            power.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-power_Num, power_Num) * 50, 500f + Random.Range(-100f, 100f));
+        }
+    }
+
 
     //他からのクリア検知用
     public bool Clear_Trigger() {

@@ -116,7 +116,6 @@ public class EnemyFunction : MonoBehaviour {
         if(Random.Range(0, 100) < probability_Recover_Item) {
             GameObject life_Up_Item = Instantiate(Resources.Load("LifeUpItem")) as GameObject;
             life_Up_Item.transform.position = transform.position;
-            life_Up_Item.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 100f);
         }
     }
 

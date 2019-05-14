@@ -29,6 +29,9 @@ public class PlayerBulletController : MonoBehaviour {
         //カブトムシ弾、敵地面に当たったら破片を出す
         else if(option_Type == "Beetle") {
             if(collision.tag == "GroundTag" || collision.tag == "EnemyTag") {
+                if(this.transform.childCount == 0) {
+                    return;
+                }
                 for(int i = 0; i < 2; i++) {
                     GameObject bullet_Debris = transform.GetChild(0).gameObject;
                     bullet_Debris.transform.position = transform.position + new Vector3(0, 8f, 0);
