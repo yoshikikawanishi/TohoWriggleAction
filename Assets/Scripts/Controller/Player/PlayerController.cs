@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour {
     private void Change_Fly_Status() {
         if(Input.GetKey(KeyCode.LeftShift) && !is_Fly) {
             is_Fly = true;
-            max_Speed = 130f;  //速度
+            max_Speed = 110f;  //速度
             acc = 13f;  //加速度
             dec = 0.8f; //減速度
             _rigid.gravityScale = 0;    //重力
@@ -312,4 +312,11 @@ public class PlayerController : MonoBehaviour {
         return is_Playable;
     }
 
+    //is_FlyのSetter
+    public void Set_Is_Fly(bool is_Fly) {
+        this.is_Fly = is_Fly;
+    }
+    public bool Get_Is_Fly() {
+        return is_Fly;
+    }
 }
