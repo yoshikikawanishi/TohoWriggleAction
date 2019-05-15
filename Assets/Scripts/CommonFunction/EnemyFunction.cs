@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemyFunction : MonoBehaviour {
 
     //体力
-    [SerializeField] private int life = 1;
+    [SerializeField] protected int life = 1;
     //消滅時のエフェクト
-    [SerializeField] private GameObject vanish_Effect;
+    protected GameObject vanish_Effect;
     //点
     [SerializeField] private int score_Value = 200;
     //P
@@ -18,7 +18,7 @@ public class EnemyFunction : MonoBehaviour {
     [SerializeField] private float item_Out_Speed = 500f;
 
     //コンポーネント
-    private SpriteRenderer _sprite;
+    protected SpriteRenderer _sprite;
     //オーディオ
     private AudioSource damage_Sound;
 
@@ -34,6 +34,8 @@ public class EnemyFunction : MonoBehaviour {
         //コンポーネントの取得
         _sprite = GetComponent<SpriteRenderer>();
         damage_Sound = GetComponents<AudioSource>()[0];
+        //オブジェクト
+        vanish_Effect = Resources.Load("Effect/EnemyVanishEffect") as GameObject;
 
         //初期値代入
         default_Color = _sprite.color;
@@ -86,7 +88,7 @@ public class EnemyFunction : MonoBehaviour {
 
 
     //消滅時の処理
-    private void Vanish() {
+    protected virtual void Vanish() {
         //エフェクトの生成
         GameObject effect = Instantiate(vanish_Effect);
         effect.transform.position = transform.position;
@@ -97,7 +99,7 @@ public class EnemyFunction : MonoBehaviour {
     }
 
     //点とPと回復アイテムの生成
-    private void Put_Out_Item() {
+    protected void Put_Out_Item() {
         //点
         int score_Num = score_Value / 100;
         for (int i = 0; i < score_Num; i++) {

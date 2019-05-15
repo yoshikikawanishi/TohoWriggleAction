@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 70497224773707782}
   - component: {fileID: 95592546619673088}
   - component: {fileID: 114323665204604542}
-  - component: {fileID: 114710825651475208}
+  - component: {fileID: 114596895330736152}
   - component: {fileID: 114831623052884768}
   - component: {fileID: 82973195286249388}
   m_Layer: 9
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76b8da7005d77b498ac6c3e49c6dcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114710825651475208
+--- !u!114 &114596895330736152
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,8 +218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 4
-  vanish_Effect: {fileID: 1901817575273748, guid: 20dfbcca07249104a9b30d99e5064b93,
-    type: 2}
   score_Value: 200
   power_Value: 1
   probability_Recover_Item: 0

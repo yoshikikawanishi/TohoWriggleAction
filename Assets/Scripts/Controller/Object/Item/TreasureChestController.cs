@@ -69,9 +69,9 @@ public class TreasureChestController : MonoBehaviour {
         do {
             switch (Random.Range(0, 4)) {
                 case 0: item_Name = "Flies"; break;
-                case 1: item_Name = "Bees"; break;
-                case 2: item_Name = "Beetles"; break;
-                case 3: item_Name = "ButterFlys"; break;
+                case 1: item_Name = "Bee"; break;
+                case 2: item_Name = "Beetle"; break;
+                case 3: item_Name = "ButterFly"; break;
             }
         } while (item_Name == _playerManager.option_Type);
         //アイテムの生成
