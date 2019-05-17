@@ -17,10 +17,12 @@ public class BonusSceneManager : MonoBehaviour {
 
 
     //ボーナスシーンに入る
-    public void Enter_Bonus_Scene() {
+    public void Enter_Bonus_Scene(string bonus_Scene_Name) {
+        //元のシーンの情報を取得
         origin_Scene = SceneManager.GetActiveScene().name;
         origin_Pos = GameObject.FindWithTag("PlayerTag").transform.position + new Vector3(64f, 0);
-        SceneManager.LoadScene("BonusScene");
+        //遷移
+        SceneManager.LoadScene(bonus_Scene_Name);
     }
 
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFunction : MonoBehaviour {
+public class Enemy : MonoBehaviour {
 
     //体力
     [SerializeField] protected int life = 1;
@@ -26,7 +26,7 @@ public class EnemyFunction : MonoBehaviour {
     private Color default_Color;
 
     //消滅の処理に入ったかどうか
-    private bool is_Vanished = false;
+    protected bool is_Vanished = false;
 
 
 	// Use this for initialization

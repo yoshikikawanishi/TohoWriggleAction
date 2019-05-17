@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class BossFunction : MonoBehaviour {
+public class BossEnemy : MonoBehaviour {
 
     //コンポーネント
     private SpriteRenderer _sprite;

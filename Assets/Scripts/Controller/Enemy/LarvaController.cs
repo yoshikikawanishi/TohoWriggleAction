@@ -9,7 +9,7 @@ public class LarvaController : MonoBehaviour {
     private Animator _anim;
     private AudioSource shot_Sound;
     //スクリプト
-    private BossFunction _bossFunction;
+    private BossEnemy __bossEnemy;
     private MoveBetweenTwoPoints _move;
     private BulletFunctions _bulletFunction;
 
@@ -37,7 +37,7 @@ public class LarvaController : MonoBehaviour {
         _anim = GetComponent<Animator>();
         shot_Sound = GetComponents<AudioSource>()[0];
         //スクリプトの取得
-        _bossFunction = GetComponent<BossFunction>();
+        __bossEnemy = GetComponent<BossEnemy>();
         _move = GetComponent<MoveBetweenTwoPoints>();
         _bulletFunction = GetComponent<BulletFunctions>();
 
@@ -54,7 +54,7 @@ public class LarvaController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        switch (_bossFunction.Get_Now_Phase()) {
+        switch (__bossEnemy.Get_Now_Phase()) {
             case 1: Phase1(); break;
             case 2: Phase2(); break;
         }
@@ -80,7 +80,7 @@ public class LarvaController : MonoBehaviour {
         _move.Set_Status(0, 0.03f);
         _move.StartCoroutine("Move_Two_Points", new Vector3(110f, 16f, 0));
         yield return new WaitUntil(_move.End_Move);
-        while (_bossFunction.Get_Now_Phase() == 1) {
+        while (__bossEnemy.Get_Now_Phase() == 1) {
             //弾の発射
             Change_Parameter("AttackBool");
             _bulletFunction.Set_Bullet(scales_Bullet);
@@ -146,7 +146,7 @@ public class LarvaController : MonoBehaviour {
         back_Design.transform.localScale = new Vector3(0, 0, 1);
         //弾の発射
         int roop_Count = 0;
-        while (_bossFunction.Get_Now_Phase() == 2) {
+        while (__bossEnemy.Get_Now_Phase() == 2) {
             Change_Parameter("AttackBool");
             //緑米弾
             _bulletFunction.Set_Bullet(rice_Bullets);

@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
         _playerManager = GetComponent<PlayerManager>();
 
         /*　データ消去のテスト */
-        DeleteData();
+        //DeleteData();
 
     }
 
@@ -54,42 +54,38 @@ public class GameManager : MonoBehaviour {
 
     //ロード
     public IEnumerator LoadData() {
-        //シーン遷移
-        string scene = PlayerPrefs.GetString("Scene");
-        if (scene != "") {
-            SceneManager.LoadScene(scene);
-            yield return null;
-            //座標
-            Vector2 pos = new Vector2(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"));
-            GameObject player = GameObject.FindWithTag("PlayerTag");
-            player.transform.position = pos;
-            //ステータス
-            _playerManager.life = PlayerPrefs.GetInt("Life");
-            _playerManager.score = PlayerPrefs.GetInt("Score");
-            _playerManager.power = PlayerPrefs.GetInt("Power");
-            _playerManager.stock = PlayerPrefs.GetInt("Stock");
-            _playerManager.continue_Count = PlayerPrefs.GetInt("Continue");
-            _playerManager.option_Type = PlayerPrefs.GetString("Option");
-        }
         //データがないとき
-        else {
-            Debug.Log("No Data");
-            scene = "Stage1_1Scene";
-            SceneManager.LoadScene(scene);
+        if (!PlayerPrefs.HasKey("Scene")) {
+            PlayerPrefs.SetString("Scene", "Stage1_1Scene");
+            PlayerPrefs.SetFloat("PosX", -160f);
+            PlayerPrefs.SetFloat("PosY", -78f);
+            PlayerPrefs.SetInt("Score", 0);
+            PlayerPrefs.SetInt("Power", 0);
+            PlayerPrefs.SetInt("Life", 3);
+            PlayerPrefs.SetInt("Stock", 3);
+            PlayerPrefs.SetInt("Continue", 0);
+            PlayerPrefs.SetString("Option", "Flies");
         }
+        //データの読み込み
+        SceneManager.LoadScene(PlayerPrefs.GetString("Scene"));
+        yield return null;
+        //座標
+        Vector2 pos = new Vector2(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"));
+        GameObject player = GameObject.FindWithTag("PlayerTag");
+        player.transform.position = pos;
+        //ステータス
+        _playerManager.life = PlayerPrefs.GetInt("Life");
+        _playerManager.score = PlayerPrefs.GetInt("Score");
+        _playerManager.power = PlayerPrefs.GetInt("Power");
+        _playerManager.stock = PlayerPrefs.GetInt("Stock");
+        _playerManager.continue_Count = PlayerPrefs.GetInt("Continue");
+        _playerManager.option_Type = PlayerPrefs.GetString("Option");
     }
 
 
     //データの消去
     public void DeleteData() {
-        PlayerPrefs.SetString("Scene", "Stage1_1Scene");
-        PlayerPrefs.SetFloat("PosX", -160f);
-        PlayerPrefs.SetFloat("PosY", -78f);
-        PlayerPrefs.SetInt("Score", 0);
-        PlayerPrefs.SetInt("Power", 0);
-        PlayerPrefs.SetInt("Stock", 3);
-        PlayerPrefs.SetInt("Continue", 0);
-        PlayerPrefs.SetString("Option", "Flies");
+        PlayerPrefs.DeleteAll();
     }
 
 }

@@ -18,7 +18,11 @@ public class GameOverController : MonoBehaviour {
         _playerManager.continue_Count++;
         PlayerPrefs.SetInt("Continue", _playerManager.continue_Count);
 
-
+        //ライフとストックを初期値に
+        _playerManager.life = 3;
+        _playerManager.stock = 3;
+        PlayerPrefs.SetInt("Life", _playerManager.life);
+        PlayerPrefs.SetInt("Stock", _playerManager.stock);
     }
 	
 }

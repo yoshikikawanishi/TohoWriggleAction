@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoulEnemy2Controller : EnemyFunction {
+public class SoulEnemy2Controller : Enemy {
     //コンポーネント
     private Rigidbody2D _rigid;
 
@@ -68,6 +68,7 @@ public class SoulEnemy2Controller : EnemyFunction {
     //再生
     private void Revive() {
         base.life = 4;
+        is_Vanished = false;
         gameObject.SetActive(true);
     }
 

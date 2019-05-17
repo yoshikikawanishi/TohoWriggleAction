@@ -67,6 +67,8 @@ public class PlayerCollisionController : MonoBehaviour {
             get_Item_Sound.Play();
         }
     }
+
+
     //OnCollisionEnter
     private void OnCollisionEnter2D(Collision2D collision) {
         //被弾時
@@ -152,7 +154,6 @@ public class PlayerCollisionController : MonoBehaviour {
 
     //ゲームオーバー
     private void Game_Over() {
-        Debug.Log("GameOver");
         SceneManager.LoadScene("GameOverScene");
     }
 

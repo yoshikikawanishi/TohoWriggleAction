@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBulletFunction : MonoBehaviour {
+public class EnemyBullet : MonoBehaviour {
 
     //オブジェクトプールされる弾かどうか
     [SerializeField] private bool is_Pool = false;

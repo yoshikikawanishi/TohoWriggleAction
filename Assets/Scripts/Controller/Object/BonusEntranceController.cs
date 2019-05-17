@@ -7,9 +7,11 @@ public class BonusEntranceController : MonoBehaviour {
 
     //スクリプト
     private BonusSceneManager _bonus_Scene_Manager;
-    //入ったことがあるかどうか
+    //キー、そのボーナスシーンに入ったことがあるかどうか
     [SerializeField] private string entrance_Key;
-    
+    //遷移先
+    [SerializeField] private string bonus_Scene_Name;
+
 
     //Start
     private void Start() {
@@ -20,14 +22,14 @@ public class BonusEntranceController : MonoBehaviour {
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "PlayerBodyTag") {
-            //ボーナスシーンに入る
-            if (SceneManager.GetActiveScene().name != "BonusScene" && PlayerPrefs.GetInt(entrance_Key) == 0) {
-                _bonus_Scene_Manager.Enter_Bonus_Scene();
-                PlayerPrefs.SetInt(entrance_Key, 1);
-            }
             //ボーナスシーンから出る
-            else if(SceneManager.GetActiveScene().name == "BonusScene"){
+            if (SceneManager.GetActiveScene().name == bonus_Scene_Name) {
                 _bonus_Scene_Manager.StartCoroutine("Exit_Bonus_Scene");
+            }
+            //ボーナスシーンに入る
+            else if (PlayerPrefs.GetInt(entrance_Key) == 0) {
+                _bonus_Scene_Manager.Enter_Bonus_Scene(bonus_Scene_Name);
+                PlayerPrefs.SetInt(entrance_Key, 1);
             }
         }
     }

@@ -27,9 +27,7 @@ public class ButtonFunction : MonoBehaviour {
 
     //続きからボタン押下時
     public void Load_Data_Button() {
-        if (PlayerPrefs.GetString("Scene") != "") {
-            _gameManager.StartCoroutine("LoadData");
-        }
+        _gameManager.StartCoroutine("LoadData");
     }
 
     //コンティニューボタン押下時

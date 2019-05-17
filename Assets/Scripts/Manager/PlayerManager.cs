@@ -31,6 +31,8 @@ public class PlayerManager : MonoBehaviour {
 
     //自機の復活の処理
     public IEnumerator Revive() {
+        //パワーの保存
+        PlayerPrefs.SetInt("Power", power);
         yield return new WaitForSeconds(1.0f);
         //セーブのロード
         _gameManager.StartCoroutine("LoadData");

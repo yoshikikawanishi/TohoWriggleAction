@@ -13,7 +13,7 @@ public class Stage1_BossController : MonoBehaviour {
     //スクリプト
     private MessageDisplay _message;
     private PlayerController _playerController;
-    private BossFunction _bossFunction;
+    private BossEnemy __bossEnemy;
     private PauseManager _pause;
 
 
@@ -24,7 +24,7 @@ public class Stage1_BossController : MonoBehaviour {
         larva = GameObject.Find("Larva");
         _message = GetComponent<MessageDisplay>();
         _playerController = player.GetComponent<PlayerController>();
-        _bossFunction = larva.GetComponent<BossFunction>();
+        __bossEnemy = larva.GetComponent<BossEnemy>();
         _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
 
         //ボス前ムービー
@@ -34,7 +34,7 @@ public class Stage1_BossController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //クリア後
-        if (_bossFunction.Clear_Trigger()) {
+        if (__bossEnemy.Clear_Trigger()) {
             StartCoroutine("Clear_Movie");
         }
 	}
@@ -67,7 +67,7 @@ public class Stage1_BossController : MonoBehaviour {
         //戦闘開始
         _pause.Set_Pausable(true);
         _playerController.Set_Playable(true);
-        _bossFunction.Set_Now_Phase(1);
+        __bossEnemy.Set_Now_Phase(1);
 
     }
 

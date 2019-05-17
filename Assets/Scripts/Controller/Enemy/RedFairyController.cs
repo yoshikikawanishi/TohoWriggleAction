@@ -28,7 +28,7 @@ public class RedFairyController : MonoBehaviour {
             _rigid.velocity = new Vector2(speed, _rigid.velocity.y);
         }
         //下に落ちたら消す
-        if (transform.position.y < -160f) {
+        if (transform.position.y < -240f) {
             Destroy(gameObject);
         }
     }
