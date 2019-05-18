@@ -112,7 +112,9 @@ public class PlayerController : MonoBehaviour {
 
     //空気抵抗を上げる
     private void Change_Drag() {
-        _rigid.drag = 3.0f;
+        if (is_Fly) {
+            _rigid.drag = 3.0f;
+        }
     }
 
 

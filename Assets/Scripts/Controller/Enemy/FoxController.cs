@@ -40,7 +40,7 @@ public class FoxController : MonoBehaviour {
                 _rigid.velocity = new Vector2(-speed, _rigid.velocity.y);
             }
             else {
-                transform.localScale = new Vector3(-1, 1, 1);
+                transform.localScale = new Vector3(-1, transform.localScale.y, 1);
             }
         }
         //右向き
@@ -49,7 +49,7 @@ public class FoxController : MonoBehaviour {
                 _rigid.velocity = new Vector2(speed, _rigid.velocity.y);
             }
             else {
-                transform.localScale = new Vector3(1, 1, 1);
+                transform.localScale = new Vector3(1, transform.localScale.y, 1);
             }
         }
         
