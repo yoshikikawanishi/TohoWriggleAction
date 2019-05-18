@@ -28,10 +28,15 @@ public class PlayerController : MonoBehaviour {
     private float acc = 13f;
     private float dec = 0.8f;
 
+    //飛行時間
+    private float fly_Time = 0;
+
     //操作可能かどうか
     private bool is_Playable = true;
     //飛行状態かどうか
     private bool is_Fly = false;
+    //飛行可能かどうか
+    private bool can_Fly = true;
     //地面についているかどうか
     public bool is_Ground = true;
     //キックが当たったかどうか
@@ -84,30 +89,62 @@ public class PlayerController : MonoBehaviour {
 
     //飛行状態の切り替え
     private void Change_Fly_Status() {
-        if(Input.GetKey(KeyCode.LeftShift) && !is_Fly) {
+        if(Input.GetKey(KeyCode.LeftShift) && !is_Fly && can_Fly) {
             is_Fly = true;
-            max_Speed = 110f;  //速度
-            acc = 13f;  //加速度
-            dec = 0.8f; //減速度
-            _rigid.gravityScale = 0;    //重力
-            Invoke("Change_Drag", 0.1f);    //空気抵抗
-            _collider.size = new Vector2(default_Collider_Size.x, default_Collider_Size.x); //当たり判定
-            _collider.offset = default_Collider_Offset; //当たり判定
-            hit_Decision.SetActive(true);   //当たり判定
+            Fly();
         }
-        else if (!Input.GetKey(KeyCode.LeftShift) && is_Fly) {
+        else if ((!Input.GetKey(KeyCode.LeftShift) && is_Fly)) {
             is_Fly = false;
-            max_Speed = 180f; //速度
-            _rigid.gravityScale = default_Gravity;  //重力
-            _rigid.drag = default_Drag; //空気抵抗
-            _collider.size = default_Collider_Size; //当たり判定
-            _collider.offset = default_Collider_Offset; //当たり判定
-            hit_Decision.SetActive(false);  //当たり判定
+            Quit_Fly();
+        }
+        //体力切れ
+        if (is_Fly) {
+            if(fly_Time < 5.0f) {
+                fly_Time += Time.deltaTime;
+            }
+            else {
+                StartCoroutine("Fly_Interval_Time");
+            }
+        }
+        //体力回復
+        else if (fly_Time >= 0 && !is_Fly) {
+            fly_Time -= Time.deltaTime;
         }
         //しゃがみの解除
         if (is_Squat && is_Fly) {
             is_Squat = false;
         }
+    }
+
+    //飛行
+    private void Fly() {
+        max_Speed = 110f;  //速度
+        acc = 13f;  //加速度
+        dec = 0.8f; //減速度
+        _rigid.gravityScale = 0;    //重力
+        Invoke("Change_Drag", 0.1f);    //空気抵抗
+        _collider.size = new Vector2(default_Collider_Size.x, default_Collider_Size.x); //当たり判定
+        _collider.offset = default_Collider_Offset; //当たり判定
+        hit_Decision.SetActive(true);   //当たり判定
+    }
+
+    //飛行中止
+    private void Quit_Fly() {
+        max_Speed = 180f; //速度
+        _rigid.gravityScale = default_Gravity;  //重力
+        _rigid.drag = default_Drag; //空気抵抗
+        _collider.size = default_Collider_Size; //当たり判定
+        _collider.offset = default_Collider_Offset; //当たり判定
+        hit_Decision.SetActive(false);  //当たり判定
+    }
+
+    //体力切れ
+    private IEnumerator Fly_Interval_Time() {
+        can_Fly = false;
+        is_Fly = false;
+        Quit_Fly();
+        yield return new WaitForSeconds(1.0f);
+        can_Fly = true;
     }
 
     //空気抵抗を上げる
@@ -320,5 +357,10 @@ public class PlayerController : MonoBehaviour {
     }
     public bool Get_Is_Fly() {
         return is_Fly;
+    }
+
+    //fly_TimeのGetter
+    public float Get_Fly_Time() {
+        return fly_Time;
     }
 }

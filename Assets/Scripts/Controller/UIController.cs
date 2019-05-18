@@ -8,24 +8,34 @@ public class UIController : MonoBehaviour {
     //スクリプト
     private PlayerManager _playerManager;
 
+    //自機
+    private GameObject player;
+    private PlayerController _playerController;
+
     //UI
     private GameObject[] life_UI = new GameObject[9];
     private Text stock_UI;
     private Text power_UI;
     private Text score_UI;
+    private Slider fly_Time_UI;
 
     //数値
     private int life_Num = 0;
     private int stock_Num = 0;
     private int power_Value = 0;
     private int score_Value = 0;
+    private float fly_Time_Value = 0;
 
 
 	// Use this for initialization
 	void Start () {
         //スクリプトの取得
         _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
-
+        //自機の取得
+        player = GameObject.FindWithTag("PlayerTag");
+        if (player != null) {
+            _playerController = player.GetComponent<PlayerController>();
+        }
         //UIの取得
         for(int i = 0; i < 9; i++) {
             life_UI[i] = transform.Find("LifeUIs").GetChild(i).gameObject;
@@ -33,6 +43,7 @@ public class UIController : MonoBehaviour {
         stock_UI = transform.Find("StockUI").GetComponent<Text>();
         power_UI = transform.Find("PowerUI").GetComponent<Text>();
         score_UI = transform.Find("ScoreUI").GetComponent<Text>();
+        fly_Time_UI = transform.Find("FlyTimeUI").GetComponent<Slider>();
 	}
 	
 	// Update is called once per frame
@@ -43,7 +54,7 @@ public class UIController : MonoBehaviour {
         Power_UI();
         Score_UI();
         Stock_UI();
-
+        Fly_Time_UI();
 	}
 
 
@@ -84,6 +95,17 @@ public class UIController : MonoBehaviour {
         if (score_Value != _playerManager.score) {
             score_Value = _playerManager.score;
             score_UI.text = "Score:" + score_Value.ToString("D10");
+        }
+    }
+
+
+    //飛行時間
+    private void Fly_Time_UI() {
+        if (player != null) {
+            if (fly_Time_Value != _playerController.Get_Fly_Time()) {
+                fly_Time_Value = _playerController.Get_Fly_Time();
+                fly_Time_UI.value = 5 - fly_Time_Value;
+            }
         }
     }
 

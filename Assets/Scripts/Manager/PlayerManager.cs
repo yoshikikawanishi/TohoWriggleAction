@@ -61,6 +61,7 @@ public class PlayerManager : MonoBehaviour {
     public void Life_Up() {
         if(life < 9) {
             life++;
+            GameObject.FindWithTag("PlayerTag").transform.GetChild(7).GetComponents<AudioSource>()[0].Play();
         }     
     }
 
@@ -69,6 +70,7 @@ public class PlayerManager : MonoBehaviour {
     public void Get_Stock() {
         if(stock < 10) {
             stock++;
+            GameObject.FindWithTag("PlayerTag").transform.GetChild(7).GetComponents<AudioSource>()[1].Play();
         }
     }
 
@@ -98,5 +100,6 @@ public class PlayerManager : MonoBehaviour {
             case "Beetle": option_Type = next_Type; break;
             case "Bee": option_Type = next_Type; break;
         }
+        GameObject.FindWithTag("PlayerTag").transform.GetChild(7).GetComponents<AudioSource>()[2].Play();
     }
 }
