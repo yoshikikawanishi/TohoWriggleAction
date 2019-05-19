@@ -12,5 +12,4 @@ public class TitleController : MonoBehaviour {
         continue_Button.Select();
 	}
 	
-	
 }

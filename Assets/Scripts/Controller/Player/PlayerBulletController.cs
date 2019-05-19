@@ -68,7 +68,7 @@ public class PlayerBulletController : MonoBehaviour {
 
     //蜂弾
     private IEnumerator Bee_Bullet() {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.55f);
         gameObject.SetActive(false);
     }
 
