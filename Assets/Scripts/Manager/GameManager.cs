@@ -5,33 +5,37 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-    //シングルトン用
-    public static GameManager instance;
-    void Awake() {
-        //シングルトン
-        if (instance != null) {
-            Destroy(this.gameObject);
-        }
-        else if (instance == null) {
-            instance = this;
-        }
-        //シーンを遷移してもオブジェクトを消さない
-        DontDestroyOnLoad(gameObject);
-    }
-
-
     //スクリプト
     private PlayerManager _playerManager;
 
+    //進行度
+    private Dictionary<string, bool> progress_Dic = new Dictionary<string, bool>();
 
-	// Use this for initialization
-	void Start () {
+
+    //Awake
+    private void Awake() {
+        //進行度の初期設定
+        Progress_Dic_Setting();
+
+        //シーン読み込みのデリケート
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+
+    // Use this for initialization
+    void Start () {
         //スクリプトの取得
         _playerManager = GetComponent<PlayerManager>();
 
         /*　データ消去のテスト */
         //DeleteData();
+    }
 
+
+    //シーン読み込み時に呼ばれる関数
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        //進行度の更新
+        StartCoroutine("Update_Progress", scene.name);
     }
 
 
@@ -49,6 +53,7 @@ public class GameManager : MonoBehaviour {
         PlayerPrefs.SetInt("Stock", _playerManager.stock);
         PlayerPrefs.SetInt("Continue", _playerManager.continue_Count);
         PlayerPrefs.SetString("Option", _playerManager.option_Type);
+        PlayerPrefs.SetInt("Progress", Get_Progress_Num());
     }
 
 
@@ -65,6 +70,7 @@ public class GameManager : MonoBehaviour {
             PlayerPrefs.SetInt("Stock", 3);
             PlayerPrefs.SetInt("Continue", 0);
             PlayerPrefs.SetString("Option", "Flies");
+            PlayerPrefs.SetInt("Progress", 0);
         }
         //データの読み込み
         SceneManager.LoadScene(PlayerPrefs.GetString("Scene"));
@@ -80,12 +86,73 @@ public class GameManager : MonoBehaviour {
         _playerManager.stock = PlayerPrefs.GetInt("Stock");
         _playerManager.continue_Count = PlayerPrefs.GetInt("Continue");
         _playerManager.option_Type = PlayerPrefs.GetString("Option");
+        Set_Progress(PlayerPrefs.GetInt("Progress"));
     }
 
 
     //データの消去
     public void DeleteData() {
         PlayerPrefs.DeleteAll();
+    }
+
+
+    /*-----------------進行度の初期設定-----------------*/
+    private void Progress_Dic_Setting() {
+        progress_Dic.Add("Stage1_1Scene", false);
+        progress_Dic.Add("Stage1_BossScene", false);
+        progress_Dic.Add("Stage2_1Scene", false);
+    }
+
+
+    //進行度の更新
+    private IEnumerator Update_Progress(string loaded_Scene) {
+        //ロードされたシーンのスタートで、更新前の進行度を取得できるようにする
+        yield return null;
+        yield return null;
+        //更新
+        if (progress_Dic.ContainsKey(loaded_Scene)) {
+            if (!progress_Dic[loaded_Scene]) {
+                progress_Dic[loaded_Scene] = true;
+                PlayerPrefs.SetInt("Progress", Get_Progress_Num());
+            }
+        }
+    }
+
+
+    //進行度の取得用
+    public bool Get_Progress(string scene_Name) {
+        if (progress_Dic[scene_Name]) {
+            return true;
+        }
+        return false;
+    }
+
+
+    //何番目のシーンまで進んだか
+    private int Get_Progress_Num() {
+        int progress_Num = 0;
+        foreach (bool value in progress_Dic.Values) {
+            if (!value) {
+                break;
+            }
+            progress_Num++;
+        }
+        return progress_Num;
+    }
+
+
+    //引数番目までの進行度をtrueにする
+    private void Set_Progress(int progress_Num) {
+        List<string> keyList = new List<string>(progress_Dic.Keys);
+        foreach (string key in keyList) {
+            if(progress_Num > 0) {
+                progress_Dic[key] = true;
+            }
+            else {
+                break;
+            }
+            progress_Num--;
+        }
     }
 
 }

@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour {
         }
         //体力回復
         else if (fly_Time >= 0 && !is_Fly) {
-            fly_Time -= Time.deltaTime;
+            fly_Time -= Time.deltaTime * 1.2f;
         }
         //しゃがみの解除
         if (is_Squat && is_Fly) {

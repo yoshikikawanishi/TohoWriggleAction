@@ -11,10 +11,14 @@ public class Stage1_BossController : MonoBehaviour {
     private GameObject larva;
 
     //スクリプト
+    private GameManager _gameManager;
     private MessageDisplay _message;
     private PlayerController _playerController;
     private BossEnemy __bossEnemy;
     private PauseManager _pause;
+
+    //初めてかどうか
+    private bool is_First_Visit = true;
 
 
 	// Use this for initialization
@@ -22,10 +26,19 @@ public class Stage1_BossController : MonoBehaviour {
         //取得
         player = GameObject.FindWithTag("PlayerTag");
         larva = GameObject.Find("Larva");
+        _gameManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
         _message = GetComponent<MessageDisplay>();
         _playerController = player.GetComponent<PlayerController>();
         __bossEnemy = larva.GetComponent<BossEnemy>();
         _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
+
+        //初めてのボス戦かどうか
+        if (_gameManager.Get_Progress("Stage1_BossScene")) {
+            is_First_Visit = false;
+        }
+        else {
+            is_First_Visit = true;
+        }
 
         //ボス前ムービー
         StartCoroutine("Before_Movie");
@@ -53,8 +66,12 @@ public class Stage1_BossController : MonoBehaviour {
         }
         _playerController.Change_Parameter("IdleBool");
         //ラルバの登場
-        _message.Start_Display("LarvaAppearText");
-        yield return new WaitUntil(_message.End_Message);
+        //メッセージ
+        if (is_First_Visit) {
+            _message.Start_Display("LarvaAppearText");
+            yield return new WaitUntil(_message.End_Message);
+        }
+        //移動
         larva.GetComponent<LarvaController>().Change_Parameter("DashBool");
         MoveBetweenTwoPoints larva_Move = larva.GetComponent<MoveBetweenTwoPoints>();
         larva_Move.Set_Status(-16f, 0.01f);
@@ -62,8 +79,10 @@ public class Stage1_BossController : MonoBehaviour {
         yield return new WaitUntil(larva_Move.End_Move);
         larva.GetComponent<LarvaController>().Change_Parameter("IdleBool");
         //メッセージ表示
-        _message.Start_Display("LarvaText");
-        yield return new WaitUntil(_message.End_Message);
+        if (is_First_Visit) {
+            _message.Start_Display("LarvaText");
+            yield return new WaitUntil(_message.End_Message);
+        }
         //戦闘開始
         _pause.Set_Pausable(true);
         _playerController.Set_Playable(true);

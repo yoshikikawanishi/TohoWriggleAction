@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114364870590056734}
   - component: {fileID: 114018609177597324}
   - component: {fileID: 114011020750076668}
+  - component: {fileID: 114757422732671084}
   m_Layer: 0
   m_Name: CommonScripts
   m_TagString: CommonScriptsTag
@@ -92,5 +93,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7046507be4a76344d84e4c5f7b582e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114757422732671084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1190771616149862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777c618fe2d790a418b71824e4644392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
