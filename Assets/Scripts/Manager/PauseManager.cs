@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour {
 
@@ -8,75 +9,65 @@ public class PauseManager : MonoBehaviour {
     private bool is_Pause = false;
     //一時停止可能かどうか
     public bool can_Pause = true;
-    //一時停止になったことを検知する用
-    private bool pause_Trigger = false;
-    //一時停止解除を検知する用
-    private bool release_Pause_Trigger = false;
+    //ポーズ画面
+    private GameObject pause_Canvas;
 
-	
-	// Update is called once per frame
-	void Update () {
+
+    //Start
+    private void Start() {
+        //ポーズ画面の取得
+        pause_Canvas = Resources.Load("PauseCanvas") as GameObject;
+    }
+
+
+    // Update is called once per frame
+    void Update () {
         //一時停止の処理
         if (Input.GetKeyDown(KeyCode.Escape) && can_Pause && !is_Pause) {
-            Time.timeScale = 0;
-            is_Pause = true;
-            pause_Trigger = true;
             Pause_Game();
         }
         //一時停止解除
         else if (Input.GetKeyDown(KeyCode.Escape) && is_Pause) {
-            Time.timeScale =1;
-            is_Pause = false;
-            release_Pause_Trigger = true;
             Release_Pause_Game();
         }
-        //一時停止検知用
-        Pause_Trigger();
         
     }
 
     //一時停止時の処理
     private void Pause_Game() {
+        is_Pause = true;
+        //時間止める
+        Time.timeScale = 0;
         //自機の操作を止める
         GameObject player = GameObject.FindWithTag("PlayerTag");
         if (player != null) {
             PlayerController _playerController = player.GetComponent<PlayerController>();
             _playerController.Set_Playable(false);
         }
+        //ポーズ画面を出す
+        pause_Canvas = Instantiate(Resources.Load("PauseCanvas")) as GameObject;
+        pause_Canvas.transform.GetChild(0).GetComponent<Button>().Select();
     }
 
     //一時停止解除時の処理
-    private void Release_Pause_Game() {
+    public void Release_Pause_Game() {
+        is_Pause = false;
+        //時間動かす
+        Time.timeScale = 1;
+        //自機を動けるようにする
         GameObject player = GameObject.FindWithTag("PlayerTag");
         if (player != null) {
             PlayerController _playerController = player.GetComponent<PlayerController>();
             _playerController.Set_Playable(true);
         }
+        //ポーズ画面を消す
+        Destroy(pause_Canvas);
     }
 
 
     //1時停止中かどうかを返すメソッド
     public bool Is_Pause() {
         if (is_Pause) {
-            return true;
-        }
-        return false;
-    }
-
-
-    //一時停止を検知するよう
-    public bool Pause_Trigger() {
-        if (pause_Trigger) {
-            pause_Trigger = false;
-            return true;
-        }
-        return false;
-    }
-
-    //一時停止解除を検知する用
-    public bool Release_Pause_Trigger() {
-        if (release_Pause_Trigger) {
-            release_Pause_Trigger = false;
             return true;
         }
         return false;

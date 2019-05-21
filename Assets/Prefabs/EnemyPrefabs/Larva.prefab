@@ -511,8 +511,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage_Sound: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
   _shake: {fileID: 0}
-  life: 130
+  life: 3c00000046000000
   phase_Life_Border: 46000000
+  phase_Num: 2
   power_Value: 15
   score_Value: 5000
   phase_Change_Bomb: {fileID: 1439832585991350, guid: 6d2505b4b9f621b46b2f8e32574cd505,

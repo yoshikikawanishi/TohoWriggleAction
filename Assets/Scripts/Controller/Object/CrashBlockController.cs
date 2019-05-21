@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class CrashBlockController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-
-
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag") {

@@ -10,7 +10,7 @@ public class UIController : MonoBehaviour {
 
     //自機
     private GameObject player;
-    private PlayerController _playerController;
+    private WriggleController _playerController;
 
     //UI
     private GameObject[] life_UI = new GameObject[9];
@@ -18,6 +18,10 @@ public class UIController : MonoBehaviour {
     private Text power_UI;
     private Text score_UI;
     private Slider fly_Time_UI;
+    private Image fly_Time_Image;
+
+    //オーディオ
+    private AudioSource alert_Sound;
 
     //数値
     private int life_Num = 0;
@@ -34,7 +38,7 @@ public class UIController : MonoBehaviour {
         //自機の取得
         player = GameObject.FindWithTag("PlayerTag");
         if (player != null) {
-            _playerController = player.GetComponent<PlayerController>();
+            _playerController = player.GetComponent<WriggleController>();
         }
         //UIの取得
         for(int i = 0; i < 9; i++) {
@@ -44,6 +48,9 @@ public class UIController : MonoBehaviour {
         power_UI = transform.Find("PowerUI").GetComponent<Text>();
         score_UI = transform.Find("ScoreUI").GetComponent<Text>();
         fly_Time_UI = transform.Find("FlyTimeUI").GetComponent<Slider>();
+        fly_Time_Image = GameObject.Find("FlyTimeFill").GetComponent<Image>();
+        //オーディオ
+        alert_Sound = transform.Find("FlyTimeUI").GetComponent<AudioSource>(); 
 	}
 	
 	// Update is called once per frame
@@ -99,13 +106,23 @@ public class UIController : MonoBehaviour {
     }
 
 
-    //飛行時間
+    //飛行時間のUIの表示
     private void Fly_Time_UI() {
+        //PlayerControllerから数値を取得
         if (player != null) {
             if (fly_Time_Value != _playerController.Get_Fly_Time()) {
                 fly_Time_Value = _playerController.Get_Fly_Time();
                 fly_Time_UI.value = 5 - fly_Time_Value;
             }
+        }
+        //少なくなってきたとき赤色にして警告音
+        if(fly_Time_UI.value < 1.5f && !Mathf.Approximately(1, fly_Time_Image.color.r)) {
+            fly_Time_Image.color = new Color(1, 0.25f, 0.25f);
+            alert_Sound.Play();
+        }
+        //元の色に戻す
+        else if(fly_Time_UI.value >= 1.5f && !Mathf.Approximately(0.4f, fly_Time_Image.color.r)) {
+            fly_Time_Image.color = new Color(0.4f, 1, 0.5f);
         }
     }
 

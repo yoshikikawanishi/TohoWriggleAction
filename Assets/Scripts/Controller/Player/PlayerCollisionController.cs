@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerCollisionController : MonoBehaviour {
+public abstract class PlayerCollisionController : MonoBehaviour {
 
     //コンポーネント
     private Renderer _renderer;
-    //オーディオ
-    private AudioSource get_Item_Sound;
-
+    
     //スクリプト
-    private PlayerManager _playerManager;
+    protected PlayerManager _playerManager;
 
     //自機
     private GameObject player;
-    //カメラ
-    private GameObject main_Camera;
     //ダメージエフェクト
-    private GameObject bolt_Effect;
+    [SerializeField] private GameObject damaged_Bomb;
+    //死亡エフェクト
+    [SerializeField] private GameObject miss_Effect;
 
     //被弾時の無敵時間
     private float INVINCIBLE_TIME = 1.5f;
@@ -26,29 +24,23 @@ public class PlayerCollisionController : MonoBehaviour {
     //被弾の判定
     private bool damaged_Trigger = false;
     //ミスの判定
-    private bool miss_Trigger = false;
+    protected bool miss_Trigger = false;
 
 
 	// Use this for initialization
-	void Start () {
+	protected void Start () {
         //コンポーネントの取得
         _renderer = GetComponentInParent<Renderer>();
-        //オーディオの取得
-        get_Item_Sound = GetComponent<AudioSource>();
         //スクリプトの取得
         _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
         //自機
         player = transform.parent.gameObject;
-        //カメラとダメージエフェクト
-        main_Camera = GameObject.Find("Main Camera");
-        bolt_Effect = Instantiate(Resources.Load("Effect/BoltEffect")) as GameObject;
-        bolt_Effect.transform.SetParent(main_Camera.transform);
-        bolt_Effect.transform.localPosition = new Vector3(0, 0, 10);
+
     }
 
 
     //OnTriggerEnter
-    private void OnTriggerEnter2D(Collider2D collision) {
+    protected void OnTriggerEnter2D(Collider2D collision) {
         //被弾時
         if (collision.tag == "EnemyTag" || collision.tag == "EnemyBulletTag") {
             Damaged(1);
@@ -57,20 +49,12 @@ public class PlayerCollisionController : MonoBehaviour {
         else if(collision.tag == "MissZoneTag") {
             Damaged(_playerManager.life + 2);
         }
-        //点とPの獲得
-        if (collision.tag == "ScoreTag") {
-            _playerManager.Get_Score();
-            get_Item_Sound.Play();
-        }
-        else if (collision.tag == "PowerTag") {
-            _playerManager.Get_Power();
-            get_Item_Sound.Play();
-        }
+        
     }
 
 
     //OnCollisionEnter
-    private void OnCollisionEnter2D(Collision2D collision) {
+    protected void OnCollisionEnter2D(Collision2D collision) {
         //被弾時
         if (collision.gameObject.tag == "EnemyTag" || collision.gameObject.tag == "EnemyBulletTag") {
             Damaged(1);
@@ -79,13 +63,11 @@ public class PlayerCollisionController : MonoBehaviour {
 
 
     //被弾時の処理
-    private void Damaged(int damage) {
+    protected void Damaged(int damage) {
         if (!damaged_Trigger) {
             damaged_Trigger = true; 
             //ライフを減らす
             _playerManager.life -= damage;
-            //powerを減らす
-            Reduce_Power();
             //死亡時の処理
             if (_playerManager.life <= 0 && !miss_Trigger) {
                 gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
@@ -96,25 +78,11 @@ public class PlayerCollisionController : MonoBehaviour {
                 //反動
                 player.GetComponent<Rigidbody2D>().velocity = new Vector2(-player.transform.localScale.x, 2) * 100f;
                 //ボムエフェクト
-                GameObject bomb = Instantiate(Resources.Load("Effect/PlayerDamagedBomb")) as GameObject;
+                GameObject bomb = Instantiate(damaged_Bomb) as GameObject;
                 bomb.transform.position = transform.position;
-                bolt_Effect.GetComponent<ParticleSystem>().Play();
                 //点滅、無敵化
                 StartCoroutine("Blink");
             }
-        }
-    }
-
-
-    //powerを出す
-    private void Reduce_Power() {
-        int num = _playerManager.power / 4;
-        float space = 800f / num;
-        _playerManager.power /= 2;
-        for(int i = 0; i < num; i++) {
-            GameObject p = Instantiate(Resources.Load("Power")) as GameObject;
-            p.transform.position = transform.position + new Vector3(0, 64f);
-            p.GetComponent<Rigidbody2D>().velocity = new Vector2(-400f + space * i, Random.Range(350f, 450f));
         }
     }
 
@@ -137,7 +105,7 @@ public class PlayerCollisionController : MonoBehaviour {
     //ライフが0になった時の処理
     private void Miss() {
         //エフェクト
-        GameObject effect = Instantiate(Resources.Load("Effect/PlayerMissEffect")) as GameObject;
+        GameObject effect = Instantiate(miss_Effect) as GameObject;
         effect.transform.position = transform.position;
         //死亡と復活
         _playerManager.stock--;

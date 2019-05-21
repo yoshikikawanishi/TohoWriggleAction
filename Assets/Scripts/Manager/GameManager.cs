@@ -128,19 +128,6 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    //何番目のシーンまで進んだか
-    private int Get_Progress_Num() {
-        int progress_Num = 0;
-        foreach (bool value in progress_Dic.Values) {
-            if (!value) {
-                break;
-            }
-            progress_Num++;
-        }
-        return progress_Num;
-    }
-
-
     //引数番目までの進行度をtrueにする
     private void Set_Progress(int progress_Num) {
         List<string> keyList = new List<string>(progress_Dic.Keys);
@@ -155,4 +142,16 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+
+    //何番目のシーンまで進んだか
+    private int Get_Progress_Num() {
+        int progress_Num = 0;
+        foreach (bool value in progress_Dic.Values) {
+            if (!value) {
+                break;
+            }
+            progress_Num++;
+        }
+        return progress_Num;
+    }
 }

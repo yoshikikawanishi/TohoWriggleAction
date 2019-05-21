@@ -7,8 +7,8 @@ public class BonusSceneManager : MonoBehaviour {
 
     //元のシーンの情報
     private string origin_Scene;
-    private Vector3 origin_Pos;
-
+    private Vector3 back_Pos;
+    
     //start
     private void Start() {
         /*鍵を開ける*/
@@ -17,10 +17,10 @@ public class BonusSceneManager : MonoBehaviour {
 
 
     //ボーナスシーンに入る
-    public void Enter_Bonus_Scene(string bonus_Scene_Name) {
+    public void Enter_Bonus_Scene(string bonus_Scene_Name, Vector3 back_Pos) {
         //元のシーンの情報を取得
         origin_Scene = SceneManager.GetActiveScene().name;
-        origin_Pos = GameObject.FindWithTag("PlayerTag").transform.position + new Vector3(64f, 0);
+        this.back_Pos = back_Pos;
         //遷移
         SceneManager.LoadScene(bonus_Scene_Name);
     }
@@ -32,7 +32,7 @@ public class BonusSceneManager : MonoBehaviour {
         yield return null;
         GameObject player = GameObject.FindWithTag("PlayerTag");
         if (player != null){
-            player.transform.position = origin_Pos;
+            player.transform.position = back_Pos;
         }
     }
 }

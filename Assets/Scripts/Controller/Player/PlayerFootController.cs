@@ -18,11 +18,6 @@ public class PlayerFootController : MonoBehaviour {
         player_Controller = transform.GetComponentInParent<PlayerController>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 
     //OnTriggerStay
     private void OnTriggerStay2D(Collider2D collision) {

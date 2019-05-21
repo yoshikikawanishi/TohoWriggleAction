@@ -64,7 +64,7 @@ public class ChikuwaBlockController : MonoBehaviour {
     //落下
     private IEnumerator Drop() {
         while(transform.position.y > -160f) {
-            transform.position -= new Vector3(0, 1f, 0);
+            transform.position -= new Vector3(0, 1f, 0) * Time.timeScale;
             yield return null;
         }
         Destroy(gameObject);

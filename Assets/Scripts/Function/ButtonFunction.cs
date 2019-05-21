@@ -40,6 +40,17 @@ public class ButtonFunction : MonoBehaviour {
         SceneManager.LoadScene("TitleScene");
     }
 
+    //ゲーム再開ボタン押下時
+    public void Resume_Button() {
+        GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>().Release_Pause_Game();
+    }
+
+    //ポーズ画面からタイトルに戻るボタン押下時
+    public void Title_From_Pause_Button() {
+        GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>().Release_Pause_Game();
+        SceneManager.LoadScene("TitleScene");
+    }
+
 
  
 

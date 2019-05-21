@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public class BossEnemy : MonoBehaviour {
 
@@ -13,10 +14,14 @@ public class BossEnemy : MonoBehaviour {
     private ObjectPool _pool;
     public CameraShake _shake;
 
+    //体力バー
+    private Slider life_Bar;
+
     //体力
-    public int life = 1;
-    //フェーズごとの体力
-    [SerializeField] private List<int> phase_Life_Border = new List<int>();
+    [SerializeField] private List<int> life = new List<int>();
+    private List<int> LIFE;
+    //フェーズの数
+    private int phase_Num = 1;
     //現在のフェーズ
     private int now_Phase = -1;
     //落とすアイテム
@@ -52,9 +57,13 @@ public class BossEnemy : MonoBehaviour {
         _pool.CreatePool(damage_Effect, 10);
         //カメラを揺らす用
         _shake = gameObject.AddComponent<CameraShake>();
+        //体力バー
+        life_Bar = GameObject.Find("BossLifeBar").GetComponent<Slider>();
 
-        //Damage()内のforループ用
-        phase_Life_Border.Add(0);
+        //初期値代入
+        LIFE = new List<int>(life);
+        phase_Num = life.Count();
+        life.Add(0);
         
 	}
 
@@ -75,7 +84,8 @@ public class BossEnemy : MonoBehaviour {
 
     //被弾時の処理
     private void Damaged(int damage) {
-        life -= damage;
+        life[now_Phase-1] -= damage;
+        Show_Life_Bar();
         //効果音
         damage_Audio_Source.Play();
         //エフェクト
@@ -83,14 +93,11 @@ public class BossEnemy : MonoBehaviour {
         //点滅
         StartCoroutine("Blink");
         //フェーズ切り替え
-        int n = phase_Life_Border.Count();
-        for(int i = 0; i < n-1; i++) {
-            if(now_Phase != i+2 && phase_Life_Border[i+1] < life && life < phase_Life_Border[i]) {
-                Phase_Change(i + 2);    /* phase_Life_Border[0]以上[1]以下になった時フェーズを2に変える */
-            }
-        }   
+        if(life[now_Phase-1] <= 0) {
+            Phase_Change(now_Phase + 1);
+        }
         //体力0でクリア
-        if(life < 0) {
+        if(now_Phase > phase_Num) {
             Clear();
             //無敵化
             gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
@@ -122,6 +129,17 @@ public class BossEnemy : MonoBehaviour {
         var bomb = Instantiate(phase_Change_Bomb) as GameObject;
         bomb.transform.position = transform.position;
         now_Phase = next_Phase;
+    }
+
+
+    //体力バーの表示
+    private void Show_Life_Bar() {
+        if (life_Bar.maxValue != LIFE[now_Phase - 1]) {
+            life_Bar.maxValue = LIFE[now_Phase - 1];
+        }
+        if(life_Bar.value != life[now_Phase - 1]) {
+            life_Bar.value = life[now_Phase - 1];
+        }
     }
 
 

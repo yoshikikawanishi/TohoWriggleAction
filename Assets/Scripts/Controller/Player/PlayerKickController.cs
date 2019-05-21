@@ -6,19 +6,15 @@ public class PlayerKickController : MonoBehaviour {
 
     //自機
     private GameObject player;
-    private PlayerController player_Controller;
+    private WriggleController player_Controller;
 
 
 	// Use this for initialization
 	void Start () {
         player = transform.parent.gameObject;
-        player_Controller = GetComponentInParent<PlayerController>();
+        player_Controller = GetComponentInParent<WriggleController>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     //FixedUpdate
     private void FixedUpdate() {
