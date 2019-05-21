@@ -53,7 +53,7 @@ public class TreasureChestController : MonoBehaviour {
     private void Appear_Chest() {
         _anim.SetTrigger("AppearTrigger");
         _sprite.color = new Color(1, 1, 1, 1);
-        _rigid.gravityScale = 7f;
+        _rigid.gravityScale = 20f;
         _rigid.velocity = new Vector2(0, 50f);
         _collider.isTrigger = false;
     }
