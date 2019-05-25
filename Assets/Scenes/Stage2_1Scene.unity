@@ -7880,19 +7880,18 @@ AudioSource:
 --- !u!114 &1068050289
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114385821802326710, guid: 184bc0bdf281953409ab2c5bcb660973,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1068050287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7453bac3b18d3a946870861ffa85b889, type: 3}
+  m_Script: {fileID: 11500000, guid: 83b379567311bcb449f7ec499eda377b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   life: 14
   score_Value: 200
   power_Value: 2
-  probability_Recover_Item: 20
+  probability_Recover_Item: 0
   item_Out_Speed: 500
 --- !u!114 &1068050290
 MonoBehaviour:
@@ -19292,19 +19291,18 @@ AudioSource:
 --- !u!114 &2060970255
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114385821802326710, guid: 184bc0bdf281953409ab2c5bcb660973,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2060970253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7453bac3b18d3a946870861ffa85b889, type: 3}
+  m_Script: {fileID: 11500000, guid: 83b379567311bcb449f7ec499eda377b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   life: 14
   score_Value: 200
   power_Value: 2
-  probability_Recover_Item: 20
+  probability_Recover_Item: 0
   item_Out_Speed: 500
 --- !u!114 &2060970256
 MonoBehaviour:

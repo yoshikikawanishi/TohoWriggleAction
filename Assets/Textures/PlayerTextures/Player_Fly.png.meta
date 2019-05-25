@@ -129,13 +129,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed49a632befd2d24b9f74a273c7bff3b
+      spriteID: 0c761e07114085647915258c3394eeed
       vertices: []
       indices: 
       edges: []
@@ -149,13 +149,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7190a40e420724e49a94e03041be1ce3
+      spriteID: 86bf5be1d62f25e43b243055ed04c516
       vertices: []
       indices: 
       edges: []
@@ -164,18 +164,18 @@ TextureImporter:
       name: Player_Fly_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 63
         y: 0
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29bba7bc75be5d94393c5221cb238aa5
+      spriteID: c5a7aabb53491634e802c59bc1fe2e6c
       vertices: []
       indices: 
       edges: []
@@ -189,13 +189,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e97902d25fc418c48a034d1e17574e22
+      spriteID: c1c338fc67566994697f19a996950dd8
       vertices: []
       indices: 
       edges: []
@@ -203,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5cab95515a764744f8c6d866970d6c47
+    spriteID: 826211ab20d7c014fb4e4406e1d031c0
     vertices: []
     indices: 
     edges: []

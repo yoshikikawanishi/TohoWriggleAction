@@ -127,7 +127,7 @@ TextureImporter:
         x: 0
         y: 0
         width: 32
-        height: 34
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,7 +135,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3da0721e89d100b49b155963fef63775
+      spriteID: e4f5ccc8e3013b245af625d2c152b7c0
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,7 @@ TextureImporter:
         x: 32
         y: 0
         width: 32
-        height: 34
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,7 +155,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5d7ce6c183a4b84e9a560aa73da342e
+      spriteID: 9aa8389829a46234abed81a9ff0dec70
       vertices: []
       indices: 
       edges: []
@@ -167,7 +167,7 @@ TextureImporter:
         x: 64
         y: 0
         width: 32
-        height: 34
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,7 +175,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1d75569c7e2a4d409f62bbb241b7d72
+      spriteID: 4397f3efd0d2c0d4ba1223916bdd1870
       vertices: []
       indices: 
       edges: []
@@ -187,7 +187,7 @@ TextureImporter:
         x: 96
         y: 0
         width: 32
-        height: 34
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,7 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b888b6de255ffa943a631b25f995396f
+      spriteID: 4ac13b99906325a4c87d1e973718f7f9
       vertices: []
       indices: 
       edges: []
@@ -203,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 74741d55be0e3de44bd854fe401069e9
+    spriteID: 67f882b8f4068bf4185b1d3154c19dbf
     vertices: []
     indices: 
     edges: []
