@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     //体力
-    [SerializeField] protected int life = 1;
+    [SerializeField] public int life = 1;
     //消滅時のエフェクト
     protected GameObject vanish_Effect;
     //点
