@@ -11,13 +11,16 @@ public class GoAroundFamiliar : Enemy {
     //位相
     private float angle = 0;
     private float time = 0;
+    //透明かどうか
+    private bool is_Visible = true;
 
 
     // Use this for initialization
     new void Start () {
+        //取得        
         base.Start();
         parent = transform.parent.gameObject;
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -25,5 +28,27 @@ public class GoAroundFamiliar : Enemy {
         time += Time.deltaTime;
         angle = (default_Angle + time * 50f) * Mathf.PI / 180f;
         transform.position = parent.transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * 48f;
-	} 
+        Become_Invisible();
+    }
+
+
+    //LShiftで透明化
+    private void Become_Invisible() {
+        //LShiftで透明化
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            is_Visible = false;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift)) {
+            is_Visible = true;
+        }
+        if (is_Visible && _sprite.color.a != 1) {
+            _sprite.color = base.default_Color;
+            gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
+        }
+        else if (!is_Visible && _sprite.color.a != 0) {
+            _sprite.color = new Color(1, 1, 1, 0);
+            gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        }
+    }
+
 }

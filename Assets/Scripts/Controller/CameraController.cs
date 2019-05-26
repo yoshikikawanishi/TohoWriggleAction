@@ -38,6 +38,11 @@ public class CameraController : MonoBehaviour {
             else {
                 transform.position = new Vector3(player.transform.position.x, 0, -10);
             }
+            //強制スクロール終了後、戻れなくする
+            if(transform.position.x >= scroll_Right_Side && player.transform.position.x <= scroll_Right_Side) {
+                transform.position = new Vector3(scroll_Right_Side, 0, -10);
+            }
+
         }
         //左端のときスクロールを止める
         if (transform.position.x < leftSide) {

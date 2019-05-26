@@ -6,6 +6,9 @@ public class ObjectPool : MonoBehaviour {
     private List<GameObject> _poolObjList;
     private GameObject _poolObj;
 
+    //オブジェクトプールされているかどうか
+    private bool is_Pooled = false;
+
     // オブジェクトプールを作成
     public void CreatePool(GameObject obj, int maxCount) {
         _poolObj = obj;
@@ -15,6 +18,7 @@ public class ObjectPool : MonoBehaviour {
             newObj.SetActive(false);
             _poolObjList.Add(newObj);
         }
+        is_Pooled = true;
     }
 
     public GameObject GetObject() {
@@ -39,6 +43,11 @@ public class ObjectPool : MonoBehaviour {
         newObj.name = _poolObj.name + (_poolObjList.Count + 1);
 
         return newObj;
+    }
+
+    //オブジェクトプールされているかどうか
+    public bool Is_Pooled() {
+        return is_Pooled;
     }
 
 }

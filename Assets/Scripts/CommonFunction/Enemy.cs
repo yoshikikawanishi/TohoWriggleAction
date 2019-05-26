@@ -19,11 +19,12 @@ public class Enemy : MonoBehaviour {
 
     //コンポーネント
     protected SpriteRenderer _sprite;
+    protected Renderer _renderer;
     //オーディオ
     private AudioSource damage_Sound;
 
     //デフォルトカラー
-    private Color default_Color;
+    protected Color default_Color;
 
     //消滅の処理に入ったかどうか
     protected bool is_Vanished = false;
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour {
 	public void Start () {
         //コンポーネントの取得
         _sprite = GetComponent<SpriteRenderer>();
+        _renderer = GetComponent<Renderer>();
         damage_Sound = GetComponents<AudioSource>()[0];
         //オブジェクト
         vanish_Effect = Resources.Load("Effect/EnemyVanishEffect") as GameObject;

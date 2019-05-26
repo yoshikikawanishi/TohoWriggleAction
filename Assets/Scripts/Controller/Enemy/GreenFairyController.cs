@@ -44,5 +44,9 @@ public class GreenFairyController : MonoBehaviour {
                 shot_Sound.Play();
             }
         }
+        //下に落ちたとき消す
+        if(transform.position.y < -160f) {
+            Destroy(gameObject);
+        }
 	}
 }

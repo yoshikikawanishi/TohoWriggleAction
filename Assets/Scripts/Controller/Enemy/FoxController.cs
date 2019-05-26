@@ -7,8 +7,6 @@ public class FoxController : MonoBehaviour {
     //コンポーネント
     private Rigidbody2D _rigid;
 
-    //時間
-    private float time = 0;
     //速度
     private float speed = 150f;
     //初期位置
