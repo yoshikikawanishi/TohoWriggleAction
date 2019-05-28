@@ -13,7 +13,7 @@ public class WriggleController : PlayerController {
     private GameObject player_Kick;
 
     //飛行状態かどうか
-    private bool is_Fly = false;
+   public bool is_Fly = false;
     private bool can_Fly = true;
     //キックが当たったかどうか
     public bool is_Hit_Kick = false;
@@ -51,7 +51,7 @@ public class WriggleController : PlayerController {
                 Kick();
             }
         }
-	}
+    }
 
 
     //移動
@@ -98,8 +98,8 @@ public class WriggleController : PlayerController {
             }
         }
         //体力回復
-        else if (fly_Time >= 0 && is_Ground) {
-            fly_Time -= Time.deltaTime * 3f;
+        else if(is_Ground && fly_Time >= 0) {
+
         }
         //しゃがみの解除
         if (is_Squat && is_Fly) {
@@ -109,11 +109,12 @@ public class WriggleController : PlayerController {
 
     //飛行
     private void Fly() {
+        is_Ground = false;
         max_Speed = 110f;  //速度
         acc = 13f;  //加速度
         dec = 0.8f; //減速度
         _rigid.gravityScale = 0;    //重力
-        Invoke("Change_Drag", 0.1f);    //空気抵抗
+        _rigid.drag = 3.0f;    //空気抵抗
         _collider.size = new Vector2(default_Collider_Size.x, default_Collider_Size.x); //当たり判定
         _collider.offset = default_Collider_Offset; //当たり判定
         hit_Decision.SetActive(true);   //当たり判定
@@ -130,13 +131,6 @@ public class WriggleController : PlayerController {
         hit_Decision.SetActive(false);  //当たり判定
     }
 
-    //空気抵抗を上げる
-    private void Change_Drag() {
-        if (is_Fly) {
-            _rigid.drag = 3.0f;
-        }
-    }
-
 
     //体力切れ
     private IEnumerator Fly_Interval_Time() {
@@ -145,6 +139,18 @@ public class WriggleController : PlayerController {
         Quit_Fly();
         yield return new WaitForSeconds(1.0f);
         can_Fly = true;
+    }
+
+
+    //体力回復(WriggleFootで着地判定時に呼ぶ)
+    public IEnumerator Heal_Fly_Time() {
+        while(fly_Time > 0) {
+            if(is_Fly && !is_Ground) {
+                break;
+            }
+            fly_Time -= Time.deltaTime * 3f;
+            yield return null;
+        }
     }
 
 

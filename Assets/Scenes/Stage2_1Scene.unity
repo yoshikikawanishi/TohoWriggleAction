@@ -2841,6 +2841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473d76e29960c4b44b5cfc243d38d73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMessage: []
 --- !u!4 &361694586
 Transform:
   m_ObjectHideFlags: 0
@@ -5713,7 +5714,7 @@ Transform:
   - {fileID: 1957514580}
   - {fileID: 453258648}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &647072674
 GameObject:
@@ -6348,7 +6349,7 @@ Transform:
   - {fileID: 623237854}
   - {fileID: 180539833}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &791492969
 Prefab:
@@ -18687,7 +18688,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4377975276010996, guid: a7e182efa0d35d442a9846898e1f3c8a, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 114219347653821274, guid: a7e182efa0d35d442a9846898e1f3c8a,
         type: 2}

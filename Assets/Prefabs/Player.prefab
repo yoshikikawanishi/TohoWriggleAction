@@ -105,8 +105,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4780383580979108}
   - component: {fileID: 61675946165170890}
-  - component: {fileID: 114864253565299304}
   - component: {fileID: 82093447936642236}
+  - component: {fileID: 114966595667033610}
   m_Layer: 8
   m_Name: PlayerFoot
   m_TagString: PlayerFootTag
@@ -1308,7 +1308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4963e99786d5748a1578bb01f9009b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114864253565299304
+--- !u!114 &114966595667033610
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1316,7 +1316,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1786775786606354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1fdba33ef701944ead2e4bf85bfb351, type: 3}
+  m_Script: {fileID: 11500000, guid: d9bcb397d82cbe44abc8faf360ba2590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212166976180223366

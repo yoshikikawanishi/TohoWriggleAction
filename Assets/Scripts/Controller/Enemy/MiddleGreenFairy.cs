@@ -12,12 +12,6 @@ public class MiddleGreenFairy : Enemy {
     //使い魔の消滅エフェクト
     private GameObject familiar_Vanish_Effect;
 
-    //自機
-    private GameObject player;
-
-    //行動開始
-    private bool start_Routine = false;
-
 
 	// Use this for initialization
 	new void Start () {
@@ -33,24 +27,15 @@ public class MiddleGreenFairy : Enemy {
         }
         //使い魔のエフェクト
         familiar_Vanish_Effect = Resources.Load("Effect/FamiliarVanishEffect") as GameObject;
-        //自機
-        player = GameObject.FindWithTag("PlayerTag");      
-    }
-	
-
-	// Update is called once per frame
-	void Update () {
-        //自機が近付いたら行動開始
-        if(transform.position.x - player.transform.position.x < 250f && !start_Routine) {
-            start_Routine = true;
-            switch (kind) {
-                case 1:
-                    StartCoroutine("Shoot_Red_Bullet");
-                    break;
-                case 2:
-                    StartCoroutine("Shoot_Blue_Bullet");
-                    break;
-            }
+       
+        //行動
+        switch (kind) {
+            case 1:
+                StartCoroutine("Shoot_Red_Bullet");
+                break;
+            case 2:
+                StartCoroutine("Shoot_Blue_Bullet");
+                break;
         }
     }
 

@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerFootController : MonoBehaviour {
 
     //オーディオ
-    private AudioSource landing_Sound;
+    protected AudioSource landing_Sound;
     //自機
-    private PlayerController player_Controller;
+    protected PlayerController player_Controller;
 
 
 	// Use this for initialization
-	void Start () {
+	protected void Start () {
         //オーディオの取得
         landing_Sound = GetComponents<AudioSource>()[0];
         //自機の取得
@@ -20,7 +20,7 @@ public class PlayerFootController : MonoBehaviour {
 	
 
     //OnTriggerStay
-    private void OnTriggerStay2D(Collider2D collision) {
+    protected void OnTriggerStay2D(Collider2D collision) {
         //着地判定
         if (collision.tag == "GroundTag") {
             if (!player_Controller.is_Ground) {
