@@ -100,9 +100,10 @@ public abstract class PlayerController : MonoBehaviour {
 
     //ジャンプ
     protected void Jump() {
-        if (Input.GetKeyDown(KeyCode.Z) && is_Ground) {
-            _rigid.velocity += new Vector2(0, 320f);
+        if (Input.GetKey(KeyCode.Z) && is_Ground) {
+            _rigid.velocity = new Vector2(_rigid.velocity.x, 320f);
             jump_Sound.Play();
+            is_Ground = false;
         }
         if (Input.GetKeyUp(KeyCode.Z) && _rigid.velocity.y > 0) {
             _rigid.velocity *= new Vector2(1, 0.5f);

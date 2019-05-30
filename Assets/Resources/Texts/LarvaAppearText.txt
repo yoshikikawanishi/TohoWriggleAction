@@ -1,2 +1,2 @@
 ﻿#ID	Name	Icon	Message
-1	ラルバ	赤	あああ
+1	ラルバ	Larva	あああ

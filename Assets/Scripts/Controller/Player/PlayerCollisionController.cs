@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public abstract class PlayerCollisionController : MonoBehaviour {
+public class PlayerCollisionController : MonoBehaviour {
 
     //コンポーネント
     private Renderer _renderer;

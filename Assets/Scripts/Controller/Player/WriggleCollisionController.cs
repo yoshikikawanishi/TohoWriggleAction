@@ -28,8 +28,14 @@ public class WriggleCollisionController : PlayerCollisionController {
 
     //OnTriggerEnter
     private new void OnTriggerEnter2D(Collider2D collision) {
-        //被弾、即死の判定
-        base.OnTriggerEnter2D(collision);
+        //被弾時
+        if (collision.tag == "EnemyTag" || collision.tag == "EnemyBulletTag") {
+            Damaged(1);
+        }
+        //即死
+        else if (collision.tag == "MissZoneTag") {
+            Damaged(_playerManager.life + 2);
+        }
         //点とPの獲得
         if (collision.tag == "ScoreTag") {
             _playerManager.Get_Score();
@@ -42,8 +48,17 @@ public class WriggleCollisionController : PlayerCollisionController {
     }
 
 
+    //OnCollisionEnter
+    private new void OnCollisionEnter2D(Collision2D collision) {
+        //被弾時
+        if (collision.gameObject.tag == "EnemyTag" || collision.gameObject.tag == "EnemyBulletTag") {
+            Damaged(1);
+        }
+    }
+
+
     //被弾時の処理
-    private new void Damaged(int damage) {
+    protected new void Damaged(int damage) {
         base.Damaged(damage);
         //powerを減らす
         Reduce_Power();

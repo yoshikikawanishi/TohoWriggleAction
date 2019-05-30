@@ -61,9 +61,9 @@ public class BossEnemy : MonoBehaviour {
         life_Bar = GameObject.Find("BossLifeBar").GetComponent<Slider>();
 
         //初期値代入
+        phase_Num = life.Count();
         life.Add(0);
         LIFE = new List<int>(life);
-        phase_Num = life.Count();
         
 	}
 

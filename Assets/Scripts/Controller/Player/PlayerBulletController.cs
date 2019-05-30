@@ -68,7 +68,7 @@ public class PlayerBulletController : MonoBehaviour {
 
     //蜂弾
     private IEnumerator Bee_Bullet() {
-        yield return new WaitForSeconds(0.55f);
+        yield return new WaitForSeconds(0.40f);
         gameObject.SetActive(false);
     }
 
@@ -77,7 +77,7 @@ public class PlayerBulletController : MonoBehaviour {
     private IEnumerator ButterFly_Bullet() {
         yield return null;
         float center_Height = transform.position.y;
-        for(float t = 0; t < 0.8f; t += Time.deltaTime) {
+        for(float t = 0; t < 0.6f; t += Time.deltaTime) {
             transform.position = new Vector3(transform.position.x, center_Height + Mathf.Sin(t * 15) * 32f);
             yield return null;
         }

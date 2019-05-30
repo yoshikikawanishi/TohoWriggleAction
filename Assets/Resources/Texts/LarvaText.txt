@@ -1,3 +1,3 @@
 ﻿#ID	Name	Icon	Message
-1	ラルバ	赤	ああああ
-2	リグル	赤	いいいい
+1	ラルバ	Larva	ああああ
+2	リグル	Wriggle	いいいい

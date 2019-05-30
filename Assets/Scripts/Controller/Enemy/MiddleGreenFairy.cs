@@ -49,7 +49,7 @@ public class MiddleGreenFairy : Enemy {
             transform.position += new Vector3(0, -speed * Time.timeScale, 0);
             speed -= 0.05f * Time.timeScale;
         }
-        yield return new WaitForSeconds(1.7f);
+        yield return new WaitForSeconds(1.0f);
         //全方位弾
         _bullet.Set_Bullet(Resources.Load("Bullet/RedRiceBullet") as GameObject);
         _bullet.Diffusion_Bullet(16, 70, 0, 5.0f);
@@ -70,7 +70,7 @@ public class MiddleGreenFairy : Enemy {
             transform.position += new Vector3(0, speed * Time.timeScale, 0);
             speed -= 0.05f * Time.timeScale;
         }
-        yield return new WaitForSeconds(1.7f);
+        yield return new WaitForSeconds(1.0f);
         //全方位弾
         _bullet.Set_Bullet(Resources.Load("Bullet/BlueRiceBullet") as GameObject);
         _bullet.Diffusion_Bullet(16, 70, 0, 5.0f);

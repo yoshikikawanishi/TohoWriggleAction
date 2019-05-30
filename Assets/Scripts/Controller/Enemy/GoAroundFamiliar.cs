@@ -35,7 +35,7 @@ public class GoAroundFamiliar : Enemy {
     //LShiftで透明化
     private void Become_Invisible() {
         //LShiftで透明化
-        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+        if (Input.GetKey(KeyCode.LeftShift) && is_Visible) {
             is_Visible = false;
         }
         if (Input.GetKeyUp(KeyCode.LeftShift)) {

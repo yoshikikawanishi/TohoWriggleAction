@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage2_BonusScene.unity
     guid: ef5fb3845587f574bb99643cb83de2fc
+  - enabled: 1
+    path: Assets/Scenes/Stage2_BossScene.unity
+    guid: 8fee26d4dcfce994eb6c5015918fb883
   m_configObjects: {}

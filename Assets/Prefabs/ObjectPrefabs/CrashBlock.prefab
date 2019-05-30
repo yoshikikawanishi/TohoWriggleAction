@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212698140763031502}
   - component: {fileID: 114805872550730016}
   - component: {fileID: 61731215699071214}
+  - component: {fileID: 114953822987581478}
   m_Layer: 0
   m_Name: CrashBlock
   m_TagString: GroundTag
@@ -203,6 +204,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fb993961e5346041af8c46b95a00f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114953822987581478
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1792195644959012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76b8da7005d77b498ac6c3e49c6dcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!198 &198480330468645672

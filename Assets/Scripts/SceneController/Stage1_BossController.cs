@@ -97,7 +97,7 @@ public class Stage1_BossController : MonoBehaviour {
         larva.GetComponent<LarvaController>().Change_Parameter("IdleBool");
         larva.GetComponent<LarvaController>().StopAllCoroutines();
         Destroy(GameObject.Find("LarvaBackDesigns"));
-        yield return new WaitForSeconds(6.0f);
+        yield return new WaitForSeconds(4.0f);
         //一時停止不可
         _pause.Set_Pausable(false);
         //メッセージ表示

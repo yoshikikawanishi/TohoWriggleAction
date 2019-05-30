@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage2_1Controller : MonoBehaviour {
 
@@ -15,6 +16,8 @@ public class Stage2_1Controller : MonoBehaviour {
 
     //カメラ
     private GameObject main_Camera;
+    //自機
+    private GameObject player;
 
     //敵生成開始
     private bool start_Enemy_Gen = false;
@@ -24,6 +27,8 @@ public class Stage2_1Controller : MonoBehaviour {
     void Start () {
         //カメラ
         main_Camera = GameObject.Find("Main Camera");
+        //自機
+        player = GameObject.FindWithTag("PlayerTag");
 
         //テキストファイルの読み込み
         Read_Text("Stage2_1_Enemy_Gen");
@@ -35,6 +40,10 @@ public class Stage2_1Controller : MonoBehaviour {
         if (!start_Enemy_Gen && main_Camera.transform.position.x > 6700f) {
             start_Enemy_Gen = true;
             StartCoroutine("Enemy_Gen");
+        }
+        //シーンの遷移
+        if (player.transform.position.x > 9272f) {
+            SceneManager.LoadScene("Stage2_BossScene");
         }
 	}
 
