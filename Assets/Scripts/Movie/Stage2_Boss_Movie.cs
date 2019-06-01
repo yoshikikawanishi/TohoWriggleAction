@@ -18,11 +18,11 @@ public class Stage2_Boss_Movie : MonoBehaviour {
 
     
     // Use this for initialization
-    void Start () {
+    void Awake () {
         //自機、カメラ
         player = GameObject.FindWithTag("PlayerTag");
         main_Camera = GameObject.Find("Main Camera");
-       
+        
         //スクリプト
         _message = GetComponent<MessageDisplay>();
     }
@@ -136,13 +136,17 @@ public class Stage2_Boss_Movie : MonoBehaviour {
 
     //ボス前ムービー霊夢
     private IEnumerator Reimu_Timeline() {
+        //初期設定
+        GameObject reimu = GameObject.Find("Reimu");
+        ReimuWayController reimu_Controller = reimu.GetComponent<ReimuWayController>();
+        reimu_Controller.Set_Is_Shot_Bullet(false);
+
         yield return new WaitUntil(Is_End_Message); //霊夢発見
         yield return null;
         yield return new WaitUntil(Is_End_Message); //キック前セリフ
 
-        yield return new WaitForSeconds(0.2f);
         //キックよける
-        GameObject reimu = GameObject.Find("Reimu");
+        yield return new WaitForSeconds(0.2f);
         reimu.transform.position += new Vector3(-10f, 0);
 
         yield return new WaitUntil(Is_End_Message); //霊夢よけるセリフ
@@ -154,7 +158,9 @@ public class Stage2_Boss_Movie : MonoBehaviour {
         MoveBetweenTwoPoints reimu_Move = reimu.AddComponent<MoveBetweenTwoPoints>();
         reimu_Move.Set_Status(64f, 0.02f);
         reimu_Move.StartCoroutine("Move_Two_Points", new Vector3(128f, 16f));
-        reimu_Move.End_Move();
+        yield return new WaitUntil(reimu_Move.End_Move);
+        //ショット撃ち始める
+        reimu_Controller.Set_Is_Shot_Bullet(true);
     }
 
 
