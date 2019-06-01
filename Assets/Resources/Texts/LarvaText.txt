@@ -1,3 +1,5 @@
 ﻿#ID	Name	Icon	Message
 1	ラルバ	Larva	ああああ
-2	リグル	Wriggle	いいいい
+2	ラルバ	Larva	いいいい
+3	リグル	Wriggle	うううう
+4	ラルバ	Larva	ええええ

@@ -6,7 +6,10 @@ using UnityEngine.SceneManagement;
 public class CameraController : MonoBehaviour {
 
     //自機
-    GameObject player;
+    private GameObject player;
+
+    //スクロールを許すか
+    private bool can_Scroll = true;
 
     //ステージの左端
     [SerializeField] private float leftSide = 0f;
@@ -28,11 +31,10 @@ public class CameraController : MonoBehaviour {
 
     //FixedUpdaet
     private void FixedUpdate() {
-        if (player != null) {
+        if (player != null && can_Scroll) {
             //強制スクロール
             if (scroll_Left_Side < transform.position.x && transform.position.x <= scroll_Right_Side) {
                 transform.position += new Vector3(scroll_Speed, 0, 0);
-
             }        
             //自機追従
             else {
@@ -53,7 +55,12 @@ public class CameraController : MonoBehaviour {
             transform.position = new Vector3(rightSide, 0, -10);
         }
         
-        
+    }
+
+
+    //CanScrollのSetter
+    public void Set_Can_Scroll(bool can_Scroll) {
+        this.can_Scroll = can_Scroll;
     }
 
 }

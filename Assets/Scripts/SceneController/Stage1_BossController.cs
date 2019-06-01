@@ -68,7 +68,7 @@ public class Stage1_BossController : MonoBehaviour {
         //ラルバの登場
         //メッセージ
         if (is_First_Visit) {
-            _message.Start_Display("LarvaAppearText");
+            _message.Start_Display("LarvaText", 1, 1);
             yield return new WaitUntil(_message.End_Message);
         }
         //移動
@@ -80,7 +80,7 @@ public class Stage1_BossController : MonoBehaviour {
         larva.GetComponent<LarvaController>().Change_Parameter("IdleBool");
         //メッセージ表示
         if (is_First_Visit) {
-            _message.Start_Display("LarvaText");
+            _message.Start_Display("LarvaText", 2, 3);
             yield return new WaitUntil(_message.End_Message);
         }
         //戦闘開始
@@ -101,7 +101,7 @@ public class Stage1_BossController : MonoBehaviour {
         //一時停止不可
         _pause.Set_Pausable(false);
         //メッセージ表示
-        _message.Start_Display("LarvaClearText");
+        _message.Start_Display("LarvaText", 4, 4);
         yield return new WaitUntil(_message.End_Message);
         yield return new WaitForSeconds(1.5f);
         _pause.Set_Pausable(true);

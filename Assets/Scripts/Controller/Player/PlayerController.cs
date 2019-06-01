@@ -139,4 +139,11 @@ public abstract class PlayerController : MonoBehaviour {
     }
 
 
+    //重力
+    public void Set_Gravity(float gravity) {
+        _rigid.gravityScale = gravity;
+    }
+
+
+
 }

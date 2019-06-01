@@ -23,6 +23,10 @@ public class MessageDisplay : MonoBehaviour {
     //キャラのアイコン表示用
     private Image charactorIcon;
 
+    //表示するID番号
+    private int start_ID = 1;
+    private int end_ID = 1;
+
     //表示終了、
     private bool endMessage = false;
     
@@ -43,11 +47,14 @@ public class MessageDisplay : MonoBehaviour {
 
 
     //表示開始
-    public void Start_Display(string fileName) {
+    public void Start_Display(string fileName, int start_ID, int end_ID) {
         //テキストファイルの読み込み
         Read_Text(fileName);
         //セリフ枠の表示、テキスト、アイコンの取得
         Display_Panel();
+        //番号の代入
+        this.start_ID = start_ID;
+        this.end_ID = end_ID;
         //セリフの表示
         StartCoroutine("Print_Message");
     }
@@ -104,7 +111,7 @@ public class MessageDisplay : MonoBehaviour {
     //メッセージ表示
     private IEnumerator Print_Message() {
         //1行ずつ表示
-        for (int i = 1; i < rowLength; i++) {
+        for (int i = start_ID; i <= end_ID; i++) {
             //名前とアイコン
             nameText.text = textWords[i, 1];
             charactorIcon.sprite = Resources.Load<Sprite>("CharacterIcons/" + textWords[i, 2]);
@@ -147,4 +154,5 @@ public class MessageDisplay : MonoBehaviour {
         }
         return false;
     }
+    
 }
