@@ -19,7 +19,7 @@ public class WriggleCollisionController : PlayerCollisionController {
         //オーディオの取得
         get_Item_Sound = GetComponent<AudioSource>();
         //カメラとダメージエフェクト
-        main_Camera = GameObject.Find("Main Camera");
+        main_Camera = GameObject.FindWithTag("MainCamera");
         bolt_Effect = Instantiate(Resources.Load("Effect/BoltEffect")) as GameObject;
         bolt_Effect.transform.SetParent(main_Camera.transform);
         bolt_Effect.transform.localPosition = new Vector3(0, 0, 10);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Stage1_BossController : MonoBehaviour {
+public class Stage1_BossScene : MonoBehaviour {
 
     //自機
     private GameObject player;
@@ -33,11 +33,11 @@ public class Stage1_BossController : MonoBehaviour {
         _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
 
         //初めてのボス戦かどうか
-        if (_gameManager.Get_Progress("Stage1_BossScene")) {
-            is_First_Visit = false;
+        if (_gameManager.Is_First_Visit("Stage1_BossScene")) {
+            is_First_Visit = true;
         }
         else {
-            is_First_Visit = true;
+            is_First_Visit = false;
         }
 
         //ボス前ムービー

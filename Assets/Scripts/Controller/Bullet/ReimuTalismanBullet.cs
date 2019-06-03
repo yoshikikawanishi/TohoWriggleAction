@@ -36,7 +36,8 @@ public class ReimuTalismanBullet : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         //敵をホーミング
-		if(target != null && target.transform.position.x > reimu.transform.position.x + 32f) {
+        //消えていなくて、霊夢より右にいて、無敵化していない敵をホーミング
+		if(target != null && target.transform.position.x > reimu.transform.position.x && target.layer != 10) {
             To_Homing();
         }
         else {
@@ -59,7 +60,8 @@ public class ReimuTalismanBullet : MonoBehaviour {
         GameObject[] enemy_List = GameObject.FindGameObjectsWithTag("EnemyTag");
         foreach (GameObject enemy in enemy_List) {
             distance = Vector2.Distance(transform.position, enemy.transform.position);
-            if (distance < min_Distance && enemy.transform.position.x > reimu.transform.position.x) {
+            //一番近くて、霊夢より右側にいて、無敵化していない敵を探す
+            if (distance < min_Distance && enemy.transform.position.x > reimu.transform.position.x && enemy.layer != 10) {
                 min_Distance = distance;
                 target = enemy;
             }

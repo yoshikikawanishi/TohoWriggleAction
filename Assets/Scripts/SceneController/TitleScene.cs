@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TitleController : MonoBehaviour {
+public class TitleScene : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

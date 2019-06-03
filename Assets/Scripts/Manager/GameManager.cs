@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour {
         progress_Dic.Add("Stage1_1Scene", false);
         progress_Dic.Add("Stage1_BossScene", false);
         progress_Dic.Add("Stage2_1Scene", false);
+        progress_Dic.Add("Stage2_BossScene", false);
     }
 
 
@@ -119,20 +120,11 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    //進行度の取得用
-    public bool Get_Progress(string scene_Name) {
-        if (progress_Dic[scene_Name]) {
-            return true;
-        }
-        return false;
-    }
-
-
     //引数番目までの進行度をtrueにする
     private void Set_Progress(int progress_Num) {
         List<string> keyList = new List<string>(progress_Dic.Keys);
         foreach (string key in keyList) {
-            if(progress_Num > 0) {
+            if (progress_Num > 0) {
                 progress_Dic[key] = true;
             }
             else {
@@ -140,6 +132,15 @@ public class GameManager : MonoBehaviour {
             }
             progress_Num--;
         }
+    }
+
+
+    //進行度の取得用
+    public bool Is_First_Visit(string scene_Name) {
+        if (progress_Dic[scene_Name]) {
+            return false;
+        }
+        return true;
     }
 
 

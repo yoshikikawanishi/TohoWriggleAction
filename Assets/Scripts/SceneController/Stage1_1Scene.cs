@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Stage1_1Controller : MonoBehaviour {
+public class Stage1_1Scene : MonoBehaviour {
 
     //自機
     private GameObject player;
@@ -21,7 +21,7 @@ public class Stage1_1Controller : MonoBehaviour {
         //自機の取得
         player = GameObject.FindWithTag("PlayerTag");
         //カメラの取得
-        main_Camera = GameObject.Find("Main Camera");
+        main_Camera = GameObject.FindWithTag("MainCamera");
         _cameraController = main_Camera.GetComponent<CameraController>();
 	}
 	

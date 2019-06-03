@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Stage2_Boss_Movie : MonoBehaviour {
 
-    //自機、カメラ
+    //自機
     private GameObject player;
-    private GameObject main_Camera;  
-
+    
     //スクリプト
     private MessageDisplay _message;
-    
+    private Stage2_BossScene _sceneController;
+    private GameManager _gameManager;
+
     //ムービー終了検知用
     private bool is_End_Before_Movie = false;
     //メッセージ終了検知用
@@ -19,12 +20,13 @@ public class Stage2_Boss_Movie : MonoBehaviour {
     
     // Use this for initialization
     void Awake () {
-        //自機、カメラ
+        //自機
         player = GameObject.FindWithTag("PlayerTag");
-        main_Camera = GameObject.Find("Main Camera");
         
         //スクリプト
         _message = GetComponent<MessageDisplay>();
+        _sceneController = GameObject.Find("Scripts").GetComponent<Stage2_BossScene>();
+        _gameManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
     }
 	
 
@@ -52,40 +54,70 @@ public class Stage2_Boss_Movie : MonoBehaviour {
 
 
     //ボス前ムービー
-    public IEnumerator Before_Movie() {
-        StartCoroutine("Wriggle_Timeline");
-        StartCoroutine("Reimu_Timeline");
-        StartCoroutine("Scroll_Ground");
+    public IEnumerator Boss_Movie() {
+        //初期設定
+        GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>().Set_Pausable(false);
+        //初戦時ムービー
+        if (_gameManager.Is_First_Visit("Stage2_BossScene")) {
+            //それぞれのタイムライン
+            StartCoroutine("Wriggle_Timeline");
+            StartCoroutine("Reimu_Timeline");
+            StartCoroutine("Scroll_Ground");
 
-        //カメラのスクロール止める
-        main_Camera.GetComponent<CameraController>().Set_Can_Scroll(false);
+            //背景のスクロールを止める
+            _sceneController.Set_Is_Scroll(false);
 
-        yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1.0f);
 
-        _message.Start_Display("ReimuText", 1, 1);  //霊夢発見セリフ
-        yield return new WaitUntil(Is_End_Message);
+            _message.Start_Display("ReimuText", 1, 1);  //霊夢発見セリフ
+            yield return new WaitUntil(Is_End_Message);
 
-        yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(2.0f);
 
-        _message.Start_Display("ReimuText", 2, 3);  //キック前セリフ
-        yield return new WaitUntil(Is_End_Message);
+            _message.Start_Display("ReimuText", 2, 3);  //キック前セリフ
+            yield return new WaitUntil(Is_End_Message);
 
-        yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.2f);
 
-        _message.Start_Display("ReimuText", 4, 4);  //霊夢よけるセリフ
-        yield return new WaitUntil(Is_End_Message);
+            _message.Start_Display("ReimuText", 4, 4);  //霊夢よけるセリフ
+            yield return new WaitUntil(Is_End_Message);
 
-        yield return new WaitForSeconds(0.5f);
-        
-        _message.Start_Display("ReimuText", 5, 5);  //霊夢無視セリフ
-        yield return new WaitUntil(Is_End_Message);
+            yield return new WaitForSeconds(0.5f);
 
-        yield return new WaitForSeconds(1.0f);
+            _message.Start_Display("ReimuText", 5, 5);  //霊夢無視セリフ
+            yield return new WaitUntil(Is_End_Message);
 
-        //カメラのスクロール始める
-        main_Camera.GetComponent<CameraController>().Set_Can_Scroll(true);
+            yield return new WaitForSeconds(1.0f);
+        }
+        //2回目以降ムービー
+        else {
+            StartCoroutine("Skip_Boss_Movie");
+        }
         //ムービー終了
         is_End_Before_Movie = true;
+        GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>().Set_Pausable(true);
+        //背景のスクロール始める
+        _sceneController.Set_Is_Scroll(true);
+        //敵生成始める
+        _sceneController.StartCoroutine("Generate_Enemy");
+    }
+
+
+    //2回目以降のムービー
+    private IEnumerator Skip_Boss_Movie() {
+        //自機の位置
+        player.transform.position = new Vector3(0, 0, 0);
+        //初期設定
+        GameObject reimu = GameObject.Find("Reimu");
+        ReimuWayController reimu_Controller = reimu.GetComponent<ReimuWayController>();
+        reimu_Controller.Set_Is_Shot_Bullet(false);
+        //霊夢の移動
+        MoveBetweenTwoPoints reimu_Move = reimu.AddComponent<MoveBetweenTwoPoints>();
+        reimu_Move.Set_Status(64f, 0.02f);
+        reimu_Move.StartCoroutine("Move_Two_Points", new Vector3(128f, 16f));
+        yield return new WaitUntil(reimu_Move.End_Move);
+        //ショット撃ち始める
+        reimu_Controller.Set_Is_Shot_Bullet(true);
     }
 
 
@@ -154,7 +186,6 @@ public class Stage2_Boss_Movie : MonoBehaviour {
         yield return new WaitUntil(Is_End_Message); //霊夢無視セリフ
 
         //霊夢の移動
-        reimu = GameObject.Find("Reimu");
         MoveBetweenTwoPoints reimu_Move = reimu.AddComponent<MoveBetweenTwoPoints>();
         reimu_Move.Set_Status(64f, 0.02f);
         reimu_Move.StartCoroutine("Move_Two_Points", new Vector3(128f, 16f));

@@ -10,7 +10,7 @@ public class CameraShake : MonoBehaviour {
     }
 
     private IEnumerator DoShake(float duration, float magnitude) {
-        GameObject main_Camera = GameObject.Find("Main Camera");
+        GameObject main_Camera = GameObject.FindWithTag("MainCamera");
         var pos = main_Camera.transform.localPosition;
 
         var elapsed = 0f;
