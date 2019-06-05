@@ -34,7 +34,7 @@ public class FoxController : MonoBehaviour {
         //速度
         //左向き
         if (transform.localScale.x == 1) {
-            if (transform.position.x > default_Pos_x - moving_Distance) {
+            if (transform.localPosition.x > default_Pos_x - moving_Distance) {
                 _rigid.velocity = new Vector2(-speed, _rigid.velocity.y);
             }
             else {
@@ -43,7 +43,7 @@ public class FoxController : MonoBehaviour {
         }
         //右向き
         if(transform.localScale.x == -1) {
-            if(transform.position.x < default_Pos_x + moving_Distance) {
+            if(transform.localPosition.x < default_Pos_x + moving_Distance) {
                 _rigid.velocity = new Vector2(speed, _rigid.velocity.y);
             }
             else {

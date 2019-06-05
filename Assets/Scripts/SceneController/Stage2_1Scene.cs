@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Stage2_1Scene : MonoBehaviour {
     
-
     //カメラ
     private GameObject main_Camera;
     //自機
@@ -38,6 +37,15 @@ public class Stage2_1Scene : MonoBehaviour {
         if (player.transform.position.x > 9272f) {
             SceneManager.LoadScene("Stage2_BossScene");
         }
+        //スクロール時、自機の動き
+        if(player.transform.position.x > 6000) {
+            if (player_Controller.Get_Is_Fly() && player.transform.parent != main_Camera.transform) {
+                player.transform.SetParent(main_Camera.transform);
+            }
+            else if(!player_Controller.Get_Is_Fly() && player.transform.parent != null) {
+                player.transform.SetParent(null);
+            }
+        }
         
 	}
 
@@ -50,6 +58,7 @@ public class Stage2_1Scene : MonoBehaviour {
         for (int i = 1; i < text.rowLength; i++) {
             yield return new WaitForSeconds(float.Parse(text.textWords[i, 1]));
             GameObject enemy = Instantiate(Resources.Load("Enemy/" + text.textWords[i, 0]) as GameObject);
+            enemy.transform.SetParent(main_Camera.transform);
             Vector3 pos = new Vector3(main_Camera.transform.position.x + float.Parse(text.textWords[i, 2]), float.Parse(text.textWords[i, 3]));
             enemy.transform.position = pos;
         }

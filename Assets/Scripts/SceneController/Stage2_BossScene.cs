@@ -11,6 +11,7 @@ public class Stage2_BossScene : MonoBehaviour {
     private Stage2_Boss_Movie _movie;
     //スクロール用
     private GameObject scroll_Objects;
+    [SerializeField] private float right_Side;
 
     //背景をスクロールするか否か
     private bool is_Scroll = true;
@@ -32,8 +33,8 @@ public class Stage2_BossScene : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //スクロール
-        if (is_Scroll) {
-            scroll_Objects.transform.position += new Vector3(-1.5f, 0, 0) * Time.timeScale;
+        if (is_Scroll && scroll_Objects.transform.position.x >= -right_Side) {
+            scroll_Objects.transform.position += new Vector3(-1.4f, 0, 0) * Time.timeScale;
         }
         //スクロール時の自機の動き
         if (player_Controller.Get_Is_Fly()) {
@@ -42,6 +43,7 @@ public class Stage2_BossScene : MonoBehaviour {
         else {
             player.transform.SetParent(scroll_Objects.transform);
         }
+        
     }
 
 

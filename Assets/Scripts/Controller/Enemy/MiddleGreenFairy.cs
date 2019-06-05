@@ -52,10 +52,10 @@ public class MiddleGreenFairy : Enemy {
         yield return new WaitForSeconds(1.0f);
         //全方位弾
         _bullet.Set_Bullet(Resources.Load("Bullet/RedRiceBullet") as GameObject);
-        _bullet.Diffusion_Bullet(16, 70, 0, 5.0f);
+        _bullet.Diffusion_Bullet(16, 70, 0, 7.0f);
         //奇数弾
-        for (int i = 0; i < 10; i++) {
-            _bullet.Odd_Num_Bullet(3, 30f, 90f, 5.0f);
+        for (int i = 0; i < 4; i++) {
+            _bullet.Odd_Num_Bullet(3, 30f, 90f, 7.0f);
             yield return new WaitForSeconds(2.5f);
         }
     }
@@ -73,14 +73,14 @@ public class MiddleGreenFairy : Enemy {
         yield return new WaitForSeconds(1.0f);
         //全方位弾
         _bullet.Set_Bullet(Resources.Load("Bullet/BlueRiceBullet") as GameObject);
-        _bullet.Diffusion_Bullet(16, 70, 0, 5.0f);
+        _bullet.Diffusion_Bullet(16, 70, 0, 7.0f);
         //自機狙い弾
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 4; i++) {
             for (int j = 0; j < transform.childCount; j++) {
                 BulletFunctions f_Bullet = transform.GetChild(j).GetComponent<BulletFunctions>();
                 f_Bullet.Set_Bullet(Resources.Load("Bullet/BlueBullet") as GameObject);
-                f_Bullet.Odd_Num_Bullet(1, 0, 90, 5.0f);
-                f_Bullet.Odd_Num_Bullet(1, 0, -90, 5.0f);
+                f_Bullet.Odd_Num_Bullet(1, 0, 90, 7.0f);
+                f_Bullet.Odd_Num_Bullet(1, 0, -90, 7.0f);
             }
             yield return new WaitForSeconds(2.5f);
         }
