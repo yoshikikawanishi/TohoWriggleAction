@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WriggleFootController : PlayerFootController {
+public class WriggleFoot : PlayerFoot {
 
     private WriggleController wriggle_Controller;
 

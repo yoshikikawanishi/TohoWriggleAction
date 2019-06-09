@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFootController : MonoBehaviour {
+public class PlayerFoot : MonoBehaviour {
 
     //オーディオ
     protected AudioSource landing_Sound;

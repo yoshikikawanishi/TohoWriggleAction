@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerKickController : MonoBehaviour {
+public class WriggleKickCollision : MonoBehaviour {
 
     //自機
     private GameObject player;

@@ -13,16 +13,6 @@ public class GameOverController : MonoBehaviour {
         Button continue_Button = GameObject.Find("ContinueButton").GetComponent<Button>();
         continue_Button.Select();
 
-        //コンティニュー回数を増やす
-        PlayerManager _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
-        _playerManager.continue_Count++;
-        PlayerPrefs.SetInt("Continue", _playerManager.continue_Count);
-
-        //ライフとストックを初期値に
-        _playerManager.life = 3;
-        _playerManager.stock = 3;
-        PlayerPrefs.SetInt("Life", _playerManager.life);
-        PlayerPrefs.SetInt("Stock", _playerManager.stock);
     }
 	
 }

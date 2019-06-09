@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage2_BossScene : MonoBehaviour {
 
@@ -33,9 +34,15 @@ public class Stage2_BossScene : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //スクロール
-        if (is_Scroll && scroll_Objects.transform.position.x >= -right_Side) {
+        if (is_Scroll) {
             scroll_Objects.transform.position += new Vector3(-1.4f, 0, 0) * Time.timeScale;
+            //右端でスクロール停止
+            if (scroll_Objects.transform.position.x <= -right_Side) {
+                is_Scroll = false;
+                StartCoroutine("Exit_Reimu");
+            }
         }
+        
         //スクロール時の自機の動き
         if (player_Controller.Get_Is_Fly()) {
             player.transform.SetParent(null);
@@ -44,6 +51,10 @@ public class Stage2_BossScene : MonoBehaviour {
             player.transform.SetParent(scroll_Objects.transform);
         }
         
+        //シーン遷移
+        if(!is_Scroll && player.transform.position.x > 230f) {
+            SceneManager.LoadScene("Stage2_EventBossScene");
+        }
     }
 
 
@@ -59,6 +70,16 @@ public class Stage2_BossScene : MonoBehaviour {
             Vector3 pos = new Vector3(main_Camera.transform.position.x + float.Parse(text.textWords[i, 2]), float.Parse(text.textWords[i, 3]));
             enemy.transform.position = pos;
         }
+    }
+
+
+    //霊夢退場
+    private IEnumerator Exit_Reimu() {
+        GameObject reimu = GameObject.Find("Reimu");
+        for(float t = 0; t < 5.0f; t += Time.deltaTime) {
+            reimu.transform.position += new Vector3(1.4f, 0, 0) * Time.timeScale;
+            yield return null;
+        }       
     }
 
 

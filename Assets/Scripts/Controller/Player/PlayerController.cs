@@ -13,8 +13,7 @@ public abstract class PlayerController : MonoBehaviour {
     private AudioSource jump_Sound;
     
     //子供
-    protected CapsuleCollider2D _collider;
-   
+    protected CapsuleCollider2D _collider;  
 
     //初期値  
     protected Vector2 default_Collider_Size;

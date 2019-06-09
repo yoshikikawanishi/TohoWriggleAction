@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShotController : MonoBehaviour {
+public class WriggleShot : MonoBehaviour {
 
     
     //オーディオ

@@ -176,7 +176,7 @@ public class WriggleController : PlayerController {
         else {
             _rigid.velocity = new Vector2(200f * transform.localScale.x, -250f);
         }
-        //キックが敵にヒットした時跳ね返る(PlayerKickControllerで衝突判定)
+        //キックが敵にヒットした時跳ね返る(WriggleKickCollisionで衝突判定)
         for (float time = 0; time < 0.3f; time += Time.deltaTime) {
             if (Is_Hit_Kick()) {
                 _rigid.velocity = new Vector2(40f * -transform.localScale.x, 180f);

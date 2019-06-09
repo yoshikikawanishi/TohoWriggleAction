@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour {
-
-    //スクリプト
-    private GameManager _gameManager;
 
     //ライフ
     public int life = 3;
@@ -22,35 +20,42 @@ public class PlayerManager : MonoBehaviour {
     public string option_Type = "Flies";
 
 
-	// Use this for initialization
-	void Start () {
-        //スクリプト
-        _gameManager = GetComponent<GameManager>();
-	}
-
-
     //自機の復活の処理
     public IEnumerator Revive() {
-        //パワーの保存
+        //パワーとオプションの保存
         PlayerPrefs.SetInt("Power", power);
+        PlayerPrefs.SetString("Option", option_Type);
         yield return new WaitForSeconds(1.0f);
         //セーブのロード
-        _gameManager.StartCoroutine("LoadData");
+        GetComponent<GameManager>().StartCoroutine("LoadData");
         yield return null;
         life = 3;
         stock--;
         //点滅
         GameObject player = GameObject.FindWithTag("PlayerTag");
         if (player != null) {
-            player.GetComponentInChildren<PlayerCollisionController>().StartCoroutine("Blink");
+            player.GetComponentInChildren<PlayerCollision>().StartCoroutine("Blink");
         }
+    }
+
+
+    //ゲームオーバーの処理
+    public IEnumerator Game_Over() {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("GameOverScene");
+        life = 3;
+        stock = 3;
+        continue_Count++;
+        PlayerPrefs.SetInt("Life", life);
+        PlayerPrefs.SetInt("Stock", stock);
+        PlayerPrefs.SetInt("Continue", continue_Count);
     }
 
 
     //コンテニューの処理
     public IEnumerator Continue() {
         //セーブのロード
-        _gameManager.StartCoroutine("LoadData");
+        GetComponent<GameManager>().StartCoroutine("LoadData");
         yield return null;
         life = 3;
         stock = 3;

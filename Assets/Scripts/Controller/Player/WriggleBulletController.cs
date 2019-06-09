@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBulletController : MonoBehaviour {
+public class WriggleBulletController : MonoBehaviour {
 
     //弾の種類分け
     [SerializeField] private string option_Type;
