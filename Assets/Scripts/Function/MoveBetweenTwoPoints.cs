@@ -12,17 +12,18 @@ public class MoveBetweenTwoPoints : MonoBehaviour {
     private float max_Speed = 0.02f;
 
 
-    //数値の代入、移動の準備
-    public void Set_Status(float height, float speed) {
+    //移動開始
+    public void Start_Move(Vector3 next_Pos, float height, float speed) {
         end_Move = false;
         slerp_Height = height;
         max_Speed = speed;
         StopCoroutine("Move_Two_Points");
+        StartCoroutine("Move_Two_Points", next_Pos);
     }
 
 
     //移動用のコルーチン
-    public IEnumerator Move_Two_Points(Vector3 next_Pos) {
+    private IEnumerator Move_Two_Points(Vector3 next_Pos) {
         float speed = 0;    //速度
         float now_Location = 0; //現在の移動距離割合
         Vector3 start_Pos = transform.position;

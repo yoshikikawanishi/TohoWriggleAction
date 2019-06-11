@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114440525708977366}
   - component: {fileID: 114627927060708800}
   m_Layer: 8
-  m_Name: ReimuBullet
+  m_Name: ReimuTalismanBullet
   m_TagString: PlayerBulletTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

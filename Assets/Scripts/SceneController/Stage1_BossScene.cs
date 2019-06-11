@@ -74,8 +74,7 @@ public class Stage1_BossScene : MonoBehaviour {
         //移動
         larva.GetComponent<LarvaController>().Change_Parameter("DashBool");
         MoveBetweenTwoPoints larva_Move = larva.GetComponent<MoveBetweenTwoPoints>();
-        larva_Move.Set_Status(-16f, 0.01f);
-        larva_Move.StartCoroutine("Move_Two_Points",new Vector3(110f, 16f));
+        larva_Move.Start_Move(new Vector3(110f, 16f), -16f, 0.01f);
         yield return new WaitUntil(larva_Move.End_Move);
         larva.GetComponent<LarvaController>().Change_Parameter("IdleBool");
         //メッセージ表示

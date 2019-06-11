@@ -35,7 +35,7 @@ public class Stage2_1Scene : MonoBehaviour {
         }
         //シーンの遷移
         if (player.transform.position.x > 9272f) {
-            SceneManager.LoadScene("Stage2_BossScene");
+            SceneManager.LoadScene("Stage2_2Scene");
         }
         //スクロール時、自機の動き
         if(player.transform.position.x > 6000) {

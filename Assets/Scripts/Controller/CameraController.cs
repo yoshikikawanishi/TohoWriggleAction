@@ -20,6 +20,9 @@ public class CameraController : MonoBehaviour {
     [SerializeField] private float scroll_Left_Side = 0;
     [SerializeField] private float scroll_Right_Side = 0;
     [SerializeField] private float scroll_Speed = 0;
+
+    //画面の中心と自機のずれ
+    private float difference_Player = 64f;
     
 
     // Use this for initialization
@@ -38,10 +41,10 @@ public class CameraController : MonoBehaviour {
             }        
             //自機追従
             else {
-                transform.position = new Vector3(player.transform.position.x, 0, -10);
+                transform.position = new Vector3(player.transform.position.x + difference_Player, 0, -10);
             }
             //強制スクロール終了後、戻れなくする
-            if(transform.position.x >= scroll_Right_Side && player.transform.position.x <= scroll_Right_Side) {
+            if(transform.position.x >= scroll_Right_Side && player.transform.position.x + difference_Player <= scroll_Right_Side) {
                 transform.position = new Vector3(scroll_Right_Side, 0, -10);
             }
 

@@ -2,32 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReimuWayController : MonoBehaviour {
+public class ReimuController : MonoBehaviour {
 
+    //自機
+    private GameObject player;
     //オブジェクトプール
     private ObjectPool _pool;
 
-    //ショットを打つかどうか
-    private bool is_Shot_Bullet;
+    //戦闘開始
+    public bool start_Battle = false;
 
     //ショットスパン
     private float shot_Span = 0.2f;
     private float shot_Time = 0;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        //自機
+        player = GameObject.FindWithTag("PlayerTag");
         //オブジェクトプール
         _pool = gameObject.AddComponent<ObjectPool>();
-        GameObject reimu_Bullet = Resources.Load("Bullet/PooledBullet/ReimuBullet") as GameObject;
+        GameObject reimu_Bullet = Resources.Load("Bullet/PooledBullet/ReimuTalismanBullet2") as GameObject;
         _pool.CreatePool(reimu_Bullet, 10);
-	}
+    }
+	
 
-    // Update is called once per frame
-    void Update() {
-        //ショット
-        if (is_Shot_Bullet) {
-            if (shot_Time < shot_Span) {
+	// Update is called once per frame
+	void Update () {
+        if (start_Battle && player != null) {
+            if(shot_Time < shot_Span) {
                 shot_Time += Time.deltaTime;
             }
             else {
@@ -36,11 +40,5 @@ public class ReimuWayController : MonoBehaviour {
                 bullet.transform.position = transform.position;
             }
         }
-    }
-
-
-    //is_Shot_BulletのSetter
-    public void Set_Is_Shot_Bullet(bool is_Shot_Bullet) {
-        this.is_Shot_Bullet = is_Shot_Bullet;
-    }
+	}
 }

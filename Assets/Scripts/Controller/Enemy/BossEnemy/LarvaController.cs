@@ -77,8 +77,7 @@ public class LarvaController : MonoBehaviour {
         back_Design.SetActive(true);
         back_Design.transform.localScale = new Vector3(0, 0, 1);
         //移動
-        _move.Set_Status(0, 0.03f);
-        _move.StartCoroutine("Move_Two_Points", new Vector3(110f, 16f, 0));
+        _move.Start_Move(new Vector3(110f, 16f, 0), 0, 0.03f);
         yield return new WaitUntil(_move.End_Move);
         while (__bossEnemy.Get_Now_Phase() == 1) {
             //弾の発射
@@ -224,8 +223,7 @@ public class LarvaController : MonoBehaviour {
     //移動
     private void Move(float height, float speed, Vector3 next_Pos) {
         Change_Parameter("DashBool");
-        _move.Set_Status(height, speed);
-        _move.StartCoroutine("Move_Two_Points", next_Pos);
+        _move.Start_Move(next_Pos, height, speed);
     }
 
 }

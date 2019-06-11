@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage2_Boss_Movie : MonoBehaviour {
+public class Stage2_2Movie : MonoBehaviour {
 
     //自機
     private GameObject player;
     
     //スクリプト
     private MessageDisplay _message;
-    private Stage2_BossScene _sceneController;
+    private Stage2_2Scene _sceneController;
     private GameManager _gameManager;
 
     //ムービー終了検知用
@@ -25,7 +25,7 @@ public class Stage2_Boss_Movie : MonoBehaviour {
         
         //スクリプト
         _message = GetComponent<MessageDisplay>();
-        _sceneController = GameObject.Find("Scripts").GetComponent<Stage2_BossScene>();
+        _sceneController = GameObject.Find("Scripts").GetComponent<Stage2_2Scene>();
         _gameManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
     }
 	
@@ -58,7 +58,7 @@ public class Stage2_Boss_Movie : MonoBehaviour {
         //初期設定
         GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>().Set_Pausable(false);
         //初戦時ムービー
-        if (_gameManager.Is_First_Visit("Stage2_BossScene")) {
+        if (_gameManager.Is_First_Visit("Stage2_2Scene")) {
             //それぞれのタイムライン
             StartCoroutine("Wriggle_Timeline");
             StartCoroutine("Reimu_Timeline");
@@ -113,8 +113,7 @@ public class Stage2_Boss_Movie : MonoBehaviour {
         reimu_Controller.Set_Is_Shot_Bullet(false);
         //霊夢の移動
         MoveBetweenTwoPoints reimu_Move = reimu.AddComponent<MoveBetweenTwoPoints>();
-        reimu_Move.Set_Status(64f, 0.02f);
-        reimu_Move.StartCoroutine("Move_Two_Points", new Vector3(128f, 16f));
+        reimu_Move.Start_Move(new Vector3(128f, 16f), 64f, 0.02f);
         yield return new WaitUntil(reimu_Move.End_Move);
         //ショット撃ち始める
         reimu_Controller.Set_Is_Shot_Bullet(true);
@@ -187,8 +186,7 @@ public class Stage2_Boss_Movie : MonoBehaviour {
 
         //霊夢の移動
         MoveBetweenTwoPoints reimu_Move = reimu.AddComponent<MoveBetweenTwoPoints>();
-        reimu_Move.Set_Status(64f, 0.02f);
-        reimu_Move.StartCoroutine("Move_Two_Points", new Vector3(128f, 16f));
+        reimu_Move.Start_Move(new Vector3(128f, 16f), 64f, 0.02f);
         yield return new WaitUntil(reimu_Move.End_Move);
         //ショット撃ち始める
         reimu_Controller.Set_Is_Shot_Bullet(true);
