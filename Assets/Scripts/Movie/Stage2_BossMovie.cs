@@ -78,11 +78,11 @@ public class Stage2_BossMovie : MonoBehaviour {
     private IEnumerator Reimu_Timeline() {
         GameObject reimu = GameObject.Find("Reimu");
         ReimuController reimu_Controller = reimu.GetComponent<ReimuController>();
+        reimu_Controller.Change_Parameter("DashBool");
 
         while(movie_Progress < 3) { yield return null; }
 
         //戦闘開始
-        yield return new WaitForSeconds(4.0f);
         reimu_Controller.start_Battle = true;
     }
 
@@ -95,7 +95,7 @@ public class Stage2_BossMovie : MonoBehaviour {
 
         while (movie_Progress < 4) {
             for (int i = 0; i < 2; i++) {
-                scroll_Grounds[i].transform.position += new Vector3(-1.5f, 0, 0);
+                scroll_Grounds[i].transform.position += new Vector3(-2f, 0, 0);
                 if(scroll_Grounds[i].transform.position.x < -560f) {
                     scroll_Grounds[i].transform.position = new Vector3(560f, 0);
                 }

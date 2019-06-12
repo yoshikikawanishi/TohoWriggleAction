@@ -97,10 +97,7 @@ public class WriggleController : PlayerController {
                 StartCoroutine("Fly_Interval_Time");
             }
         }
-        //体力回復
-        else if(is_Ground && fly_Time >= 0) {
-
-        }
+ 
         //しゃがみの解除
         if (is_Squat && is_Fly) {
             is_Squat = false;
@@ -148,7 +145,7 @@ public class WriggleController : PlayerController {
             if(is_Fly && !is_Ground) {
                 break;
             }
-            fly_Time -= Time.deltaTime * 3f;
+            fly_Time -= Time.deltaTime * 5f;
             yield return null;
         }
     }

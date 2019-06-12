@@ -6,6 +6,8 @@ public class ReimuController : MonoBehaviour {
 
     //自機
     private GameObject player;
+    //コンポーネント
+    private Animator _anim;
     //オブジェクトプール
     private ObjectPool _pool;
 
@@ -18,9 +20,11 @@ public class ReimuController : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         //自機
         player = GameObject.FindWithTag("PlayerTag");
+        //コンポーネント
+        _anim = GetComponent<Animator>();
         //オブジェクトプール
         _pool = gameObject.AddComponent<ObjectPool>();
         GameObject reimu_Bullet = Resources.Load("Bullet/PooledBullet/ReimuTalismanBullet2") as GameObject;
@@ -30,15 +34,15 @@ public class ReimuController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (start_Battle && player != null) {
-            if(shot_Time < shot_Span) {
-                shot_Time += Time.deltaTime;
-            }
-            else {
-                shot_Time = 0;
-                GameObject bullet = _pool.GetObject();
-                bullet.transform.position = transform.position;
-            }
-        }
+ 
 	}
+
+
+    //アニメーション
+    public void Change_Parameter(string change_Bool) {
+        _anim.SetBool("DashBool", false);
+        _anim.SetBool("AvoidBool", false);
+
+        _anim.SetBool(change_Bool, true);
+    }
 }

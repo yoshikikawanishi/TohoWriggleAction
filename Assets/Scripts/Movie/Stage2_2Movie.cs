@@ -112,11 +112,18 @@ public class Stage2_2Movie : MonoBehaviour {
         ReimuWayController reimu_Controller = reimu.GetComponent<ReimuWayController>();
         reimu_Controller.Set_Is_Shot_Bullet(false);
         //霊夢の移動
+        reimu_Controller.Change_Parameter("DashBool");
         MoveBetweenTwoPoints reimu_Move = reimu.AddComponent<MoveBetweenTwoPoints>();
-        reimu_Move.Start_Move(new Vector3(128f, 16f), 64f, 0.02f);
+        reimu_Move.Start_Move(new Vector3(-196f, 16f), 32f, 0.02f);
         yield return new WaitUntil(reimu_Move.End_Move);
         //ショット撃ち始める
         reimu_Controller.Set_Is_Shot_Bullet(true);
+
+        yield return new WaitForSeconds(10.0f);
+
+        //移動
+        reimu_Move.Start_Move(new Vector3(128f, -16f), 64f, 0.015f);
+        yield return new WaitUntil(reimu_Move.End_Move);
     }
 
 
@@ -171,6 +178,7 @@ public class Stage2_2Movie : MonoBehaviour {
         GameObject reimu = GameObject.Find("Reimu");
         ReimuWayController reimu_Controller = reimu.GetComponent<ReimuWayController>();
         reimu_Controller.Set_Is_Shot_Bullet(false);
+        reimu_Controller.Change_Parameter("DashBool");
 
         yield return new WaitUntil(Is_End_Message); //霊夢発見
         yield return null;
@@ -178,18 +186,29 @@ public class Stage2_2Movie : MonoBehaviour {
 
         //キックよける
         yield return new WaitForSeconds(0.2f);
-        reimu.transform.position += new Vector3(-10f, 0);
+        reimu_Controller.Change_Parameter("AvoidBool");
+        for(int i = 0; i < 5; i++) {
+            reimu.transform.position += new Vector3(-4f, 1);
+            yield return null;
+        }
 
         yield return new WaitUntil(Is_End_Message); //霊夢よけるセリフ
         yield return null;
         yield return new WaitUntil(Is_End_Message); //霊夢無視セリフ
 
         //霊夢の移動
+        reimu_Controller.Change_Parameter("DashBool");
         MoveBetweenTwoPoints reimu_Move = reimu.AddComponent<MoveBetweenTwoPoints>();
-        reimu_Move.Start_Move(new Vector3(128f, 16f), 64f, 0.02f);
+        reimu_Move.Start_Move(new Vector3(-196f, 16f), 32f, 0.02f);
         yield return new WaitUntil(reimu_Move.End_Move);
         //ショット撃ち始める
         reimu_Controller.Set_Is_Shot_Bullet(true);
+
+        yield return new WaitForSeconds(10.0f);
+
+        //移動
+        reimu_Move.Start_Move(new Vector3(128f, -16f), 64f, 0.015f);
+        yield return new WaitUntil(reimu_Move.End_Move);
     }
 
 

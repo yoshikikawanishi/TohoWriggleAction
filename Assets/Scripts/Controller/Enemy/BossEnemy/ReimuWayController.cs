@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ReimuWayController : MonoBehaviour {
 
+    //コンポネント
+    private Animator _anim;
     //オブジェクトプール
     private ObjectPool _pool;
 
@@ -16,7 +18,9 @@ public class ReimuWayController : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+        //コンポーネント
+        _anim = GetComponent<Animator>();
         //オブジェクトプール
         _pool = gameObject.AddComponent<ObjectPool>();
         GameObject reimu_Bullet = Resources.Load("Bullet/PooledBullet/ReimuTalismanBullet") as GameObject;
@@ -36,6 +40,15 @@ public class ReimuWayController : MonoBehaviour {
                 bullet.transform.position = transform.position;
             }
         }
+    }
+
+
+    //アニメーション
+    public void Change_Parameter(string change_Bool) {
+        _anim.SetBool("DashBool", false);
+        _anim.SetBool("AvoidBool", false);
+
+        _anim.SetBool(change_Bool, true);
     }
 
 
