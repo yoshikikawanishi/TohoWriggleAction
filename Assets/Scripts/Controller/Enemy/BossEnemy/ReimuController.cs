@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//霊夢
 public class ReimuController : MonoBehaviour {
 
     //自機
     private GameObject player;
     //コンポーネント
     private Animator _anim;
-    //オブジェクトプール
-    private ObjectPool _pool;
-
+    //スクリプト
+    private BossEnemyController boss_Controller;
+    private ReimuAttack _attack;
+    
     //戦闘開始
     public bool start_Battle = false;
-
-    //ショットスパン
-    private float shot_Span = 0.2f;
-    private float shot_Time = 0;
 
 
     // Use this for initialization
@@ -25,16 +23,20 @@ public class ReimuController : MonoBehaviour {
         player = GameObject.FindWithTag("PlayerTag");
         //コンポーネント
         _anim = GetComponent<Animator>();
-        //オブジェクトプール
-        _pool = gameObject.AddComponent<ObjectPool>();
-        GameObject reimu_Bullet = Resources.Load("Bullet/PooledBullet/ReimuTalismanBullet2") as GameObject;
-        _pool.CreatePool(reimu_Bullet, 10);
+        //スクリプト
+        boss_Controller = GetComponent<BossEnemyController>();
+        _attack = gameObject.AddComponent<ReimuAttack>();
     }
 	
 
 	// Update is called once per frame
 	void Update () {
- 
+        if (start_Battle) {
+            switch (boss_Controller.Get_Now_Phase()) {
+                case 1: _attack.Phase1(); break;
+                case 2: _attack.Phase2(); break;
+            }
+        }
 	}
 
 
@@ -42,6 +44,7 @@ public class ReimuController : MonoBehaviour {
     public void Change_Parameter(string change_Bool) {
         _anim.SetBool("DashBool", false);
         _anim.SetBool("AvoidBool", false);
+        _anim.SetBool("AttackBool", false);
 
         _anim.SetBool(change_Bool, true);
     }

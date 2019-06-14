@@ -14,7 +14,7 @@ public class Stage1_BossScene : MonoBehaviour {
     private GameManager _gameManager;
     private MessageDisplay _message;
     private PlayerController _playerController;
-    private BossEnemy __bossEnemy;
+    private BossEnemyController __BossEnemyController;
     private PauseManager _pause;
 
     //初めてかどうか
@@ -29,7 +29,7 @@ public class Stage1_BossScene : MonoBehaviour {
         _gameManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
         _message = GetComponent<MessageDisplay>();
         _playerController = player.GetComponent<PlayerController>();
-        __bossEnemy = larva.GetComponent<BossEnemy>();
+        __BossEnemyController = larva.GetComponent<BossEnemyController>();
         _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
 
         //初めてのボス戦かどうか
@@ -47,7 +47,7 @@ public class Stage1_BossScene : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //クリア後
-        if (__bossEnemy.Clear_Trigger()) {
+        if (__BossEnemyController.Clear_Trigger()) {
             StartCoroutine("Clear_Movie");
         }
 	}
@@ -85,7 +85,7 @@ public class Stage1_BossScene : MonoBehaviour {
         //戦闘開始
         _pause.Set_Pausable(true);
         _playerController.Set_Playable(true);
-        __bossEnemy.Set_Now_Phase(1);
+        larva.GetComponent<LarvaController>().start_Battle = true;
 
     }
 

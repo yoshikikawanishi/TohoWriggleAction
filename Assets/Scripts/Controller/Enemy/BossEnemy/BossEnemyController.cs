@@ -4,7 +4,8 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 
-public class BossEnemy : MonoBehaviour {
+//ボスの体力、被弾時の処理、クリア時の処理をするクラス
+public class BossEnemyController : MonoBehaviour {
 
     //コンポーネント
     private SpriteRenderer _sprite;
@@ -12,18 +13,16 @@ public class BossEnemy : MonoBehaviour {
     [SerializeField] AudioClip damage_Sound;
     //スクリプト
     private ObjectPool _pool;
-    public CameraShake _shake;
-
     //体力バー
     private Slider life_Bar;
 
     //体力
-    [SerializeField] private List<int> life = new List<int>();
+    public List<int> life = new List<int>();
     private List<int> LIFE;
     //フェーズの数
     private int phase_Num = 1;
     //現在のフェーズ
-    private int now_Phase = -1;
+    private int now_Phase = 1;
     //落とすアイテム
     [SerializeField] private int power_Value;
     [SerializeField] private int score_Value;
@@ -55,8 +54,6 @@ public class BossEnemy : MonoBehaviour {
         _pool = gameObject.AddComponent<ObjectPool>();
         damage_Effect = Resources.Load("Effect/BossDamagedEffect") as GameObject;
         _pool.CreatePool(damage_Effect, 10);
-        //カメラを揺らす用
-        _shake = gameObject.AddComponent<CameraShake>();
         //体力バー
         life_Bar = GameObject.Find("BossLifeBar").GetComponent<Slider>();
 
@@ -86,11 +83,9 @@ public class BossEnemy : MonoBehaviour {
     private void Damaged(int damage) {
         life[now_Phase-1] -= damage;
         Show_Life_Bar();
-        //効果音
-        damage_Audio_Source.Play();
         //エフェクト
+        damage_Audio_Source.Play();
         hit_Effect_Particle.Play();
-        //点滅
         StartCoroutine("Blink");
         //フェーズ切り替え
         if(life[now_Phase-1] <= 0) {
@@ -98,9 +93,7 @@ public class BossEnemy : MonoBehaviour {
         }
         //体力0でクリア
         if(now_Phase > phase_Num) {
-            Clear();
-            //無敵化
-            gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+            Clear();           
         }
     }
 
@@ -147,12 +140,15 @@ public class BossEnemy : MonoBehaviour {
     private void Clear() {
         now_Phase = -1;
         clear_Trigger = true;
+        //無敵化
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         //エフェクト
         var effect = Instantiate(clear_Effect) as GameObject;
         effect.transform.position = transform.position;
         var bomb = Instantiate(phase_Change_Bomb) as GameObject;
         bomb.transform.position = transform.position;
         //画面を揺らす
+        CameraShake _shake = gameObject.AddComponent<CameraShake>();
         _shake.Shake(0.25f, 3f);
         //アイテムを出す
         Put_Out_Item();

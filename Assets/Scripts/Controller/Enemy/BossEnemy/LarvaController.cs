@@ -9,7 +9,7 @@ public class LarvaController : MonoBehaviour {
     private Animator _anim;
     private AudioSource shot_Sound;
     //スクリプト
-    private BossEnemy __bossEnemy;
+    private BossEnemyController __BossEnemyController;
     private MoveBetweenTwoPoints _move;
     private BulletFunctions _bulletFunction;
 
@@ -22,6 +22,9 @@ public class LarvaController : MonoBehaviour {
     //固有弾
     [SerializeField] private GameObject scales_Bullet;
     [SerializeField] private GameObject rice_Bullets;
+
+    //戦闘開始
+    public bool start_Battle = false;
 
     /* フェーズ1用 */
     private bool start_Routine1 = false;
@@ -37,7 +40,7 @@ public class LarvaController : MonoBehaviour {
         _anim = GetComponent<Animator>();
         shot_Sound = GetComponents<AudioSource>()[0];
         //スクリプトの取得
-        __bossEnemy = GetComponent<BossEnemy>();
+        __BossEnemyController = GetComponent<BossEnemyController>();
         _move = GetComponent<MoveBetweenTwoPoints>();
         _bulletFunction = GetComponent<BulletFunctions>();
 
@@ -53,10 +56,11 @@ public class LarvaController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-        switch (__bossEnemy.Get_Now_Phase()) {
-            case 1: Phase1(); break;
-            case 2: Phase2(); break;
+        if (start_Battle) {
+            switch (__BossEnemyController.Get_Now_Phase()) {
+                case 1: Phase1(); break;
+                case 2: Phase2(); break;
+            }
         }
 	}
  
@@ -79,7 +83,7 @@ public class LarvaController : MonoBehaviour {
         //移動
         _move.Start_Move(new Vector3(110f, 16f, 0), 0, 0.03f);
         yield return new WaitUntil(_move.End_Move);
-        while (__bossEnemy.Get_Now_Phase() == 1) {
+        while (__BossEnemyController.Get_Now_Phase() == 1) {
             //弾の発射
             Change_Parameter("AttackBool");
             _bulletFunction.Set_Bullet(scales_Bullet);
@@ -145,7 +149,7 @@ public class LarvaController : MonoBehaviour {
         back_Design.transform.localScale = new Vector3(0, 0, 1);
         //弾の発射
         int roop_Count = 0;
-        while (__bossEnemy.Get_Now_Phase() == 2) {
+        while (__BossEnemyController.Get_Now_Phase() == 2) {
             Change_Parameter("AttackBool");
             //緑米弾
             _bulletFunction.Set_Bullet(rice_Bullets);

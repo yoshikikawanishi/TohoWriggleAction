@@ -14,6 +14,10 @@ TextureImporter:
     21300018: Reimu_9
     21300020: Reimu_10
     21300022: Reimu_11
+    21300024: Reimu_12
+    21300026: Reimu_13
+    21300028: Reimu_14
+    21300030: Reimu_15
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -133,17 +137,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 55
+        y: 91
         width: 22
         height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03e64648e19da0847821eb2319d8e6fc
+      spriteID: bd275a3137dad164aa93613603900dcc
       vertices: []
       indices: 
       edges: []
@@ -153,17 +157,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 34
-        y: 56
+        y: 91
         width: 22
         height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29f0f18e7d18acd46a0e5722655a2cef
+      spriteID: a676a3148a89a3745a119a903e828343
       vertices: []
       indices: 
       edges: []
@@ -173,17 +177,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 55
+        y: 91
         width: 22
         height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24d8f30c32f1b3c42a98dbb6826a99ce
+      spriteID: b7d5e66867e49d54e9f3cc3f0de7b543
       vertices: []
       indices: 
       edges: []
@@ -193,17 +197,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 94
-        y: 55
+        y: 91
         width: 22
-        height: 26
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10d5ba69b5401e945979220b323d28ab
+      spriteID: 23e1090cda5fde144af18804fdc7e621
       vertices: []
       indices: 
       edges: []
@@ -213,17 +217,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 28
+        y: 63
         width: 22
-        height: 26
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 849e57372a9b26347aeecfe515ba638c
+      spriteID: 847a1a61b3465764386c5bbfa22dfd57
       vertices: []
       indices: 
       edges: []
@@ -233,17 +237,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 34
-        y: 28
+        y: 63
         width: 22
-        height: 26
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96c76490b1acae44d8900e04503a85d3
+      spriteID: 9f59f7fb653fd0343b368fbbe36f8a72
       vertices: []
       indices: 
       edges: []
@@ -253,17 +257,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 28
+        y: 63
         width: 22
-        height: 26
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7494275f7840c1348afb284b8682c0ea
+      spriteID: e73f401228f16754ca899103a25dc9c6
       vertices: []
       indices: 
       edges: []
@@ -273,17 +277,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 94
-        y: 28
+        y: 63
         width: 22
-        height: 26
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a89130963ea550541849bc0eeeff1a8c
+      spriteID: 1521b0a4a6f84bd4b90befda30bcdb58
       vertices: []
       indices: 
       edges: []
@@ -293,17 +297,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 0
+        y: 35
         width: 22
-        height: 26
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e385f1c2990077d4d8d216962f89400a
+      spriteID: e04768cd4c91cd24a82748a4b3b74fa8
       vertices: []
       indices: 
       edges: []
@@ -313,17 +317,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 34
-        y: 0
+        y: 35
         width: 22
-        height: 26
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d604ae92317590c468b1c8a24dbe66b9
+      spriteID: cb4fb490264b0a545bb21fa6580c61d8
       vertices: []
       indices: 
       edges: []
@@ -333,17 +337,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 0
+        y: 35
         width: 22
-        height: 26
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36cb031106a407c47a9c07c05c51b08f
+      spriteID: 2fa41ab14e4e7194eab4850595c5bb39
       vertices: []
       indices: 
       edges: []
@@ -353,17 +357,97 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 94
-        y: 0
+        y: 35
         width: 22
-        height: 26
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3dd237f9a5936b4ca8fbbe665257396
+      spriteID: c842d0d7b8755a947b9bd5b4cdc4b7cb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Reimu_12
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 7
+        width: 30
+        height: 27
+      alignment: 9
+      pivot: {x: 0.36666667, y: 0.4814815}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7024a6838b5580f48b88fe54984f302d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Reimu_13
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 7
+        width: 30
+        height: 27
+      alignment: 9
+      pivot: {x: 0.36666667, y: 0.4814815}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b288151e0f4958c4a90e00fd8dc13f47
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Reimu_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 7
+        width: 30
+        height: 27
+      alignment: 9
+      pivot: {x: 0.36666667, y: 0.4814815}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 287688325733de842a475f097970917b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Reimu_15
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 7
+        width: 30
+        height: 27
+      alignment: 9
+      pivot: {x: 0.36666667, y: 0.4814815}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76f3311d43f9f92428d3921fc2626844
       vertices: []
       indices: 
       edges: []
@@ -371,7 +455,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a4409022829c1444682c1677fd31c54b
+    spriteID: 23c8341dc508b48428ac4231bd90447b
     vertices: []
     indices: 
     edges: []

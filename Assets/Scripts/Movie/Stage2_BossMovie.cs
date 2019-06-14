@@ -22,6 +22,7 @@ public class Stage2_BossMovie : MonoBehaviour {
 
     //ムービー
     public IEnumerator Previous_Movie() {
+        yield return null;
         //初期設定
         _pause.Set_Pausable(false);
         StartCoroutine("Player_Timeline");
