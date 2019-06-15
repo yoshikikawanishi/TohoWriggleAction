@@ -8,9 +8,7 @@ public class GreenFairyController : MonoBehaviour {
     private Rigidbody2D _rigid;
     private Renderer _renderer;
     private BulletFunctions _bulletFunc;
-    //オーディオ
-    private AudioSource shot_Sound;
-
+    
     //時間
     private float time = 1.8f;
 
@@ -21,9 +19,7 @@ public class GreenFairyController : MonoBehaviour {
         _rigid = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<Renderer>();
         _bulletFunc = gameObject.AddComponent<BulletFunctions>();
-        //オーディオ
-        shot_Sound = GetComponents<AudioSource>()[1];
-
+        
         //弾のセット
         GameObject bullet = Resources.Load("Bullet/GreenBullet") as GameObject;
         _bulletFunc.Set_Bullet(bullet);
@@ -41,7 +37,7 @@ public class GreenFairyController : MonoBehaviour {
             else {
                 time = 0;
                 _bulletFunc.Turn_Shoot_Bullet(70f, 150f, 7.0f);
-                shot_Sound.Play();
+                UsualSoundManager.Shot_Sound();
             }
         }
         //下に落ちたとき消す

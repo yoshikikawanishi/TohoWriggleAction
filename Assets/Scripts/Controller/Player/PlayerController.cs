@@ -33,7 +33,7 @@ public abstract class PlayerController : MonoBehaviour {
 
 
 	// Use this for initialization
-	protected void Start () {
+	protected void Awake () {
         //コンポーネントの取得
         _rigid = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();

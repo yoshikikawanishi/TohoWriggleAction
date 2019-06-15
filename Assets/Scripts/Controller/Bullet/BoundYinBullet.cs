@@ -12,7 +12,7 @@ public class BoundYinBullet : MonoBehaviour {
     private bool is_Invincible = false;
 
     //耐久
-    private int life = 8;
+    private int life = 2;
 
 
 
@@ -25,7 +25,7 @@ public class BoundYinBullet : MonoBehaviour {
         if (is_Big) {
             StartCoroutine("Big_Bullet_Move");
         }
-        _rigid.angularVelocity = 200f;
+        _rigid.angularVelocity = 500f;
     }
 	
 
@@ -47,9 +47,6 @@ public class BoundYinBullet : MonoBehaviour {
                 //消滅
                 Destroy(gameObject);
             }
-        }
-        if(transform.position.x > 260f) {
-            Destroy(gameObject);
         }
 	}
 
@@ -74,7 +71,6 @@ public class BoundYinBullet : MonoBehaviour {
         if (is_Invincible && collision.gameObject.tag == "PlayerTag") {
             gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
             _rigid.velocity = new Vector2(-150f, 100f);
-            Debug.Log("AAA");
         }
     }
 

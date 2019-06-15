@@ -11,11 +11,8 @@ public class Stage2_2Scene : MonoBehaviour {
     //スクリプト
     private Stage2_2Movie _movie;
     //スクロール用
-    private GameObject scroll_Objects;
+    private GameObject main_Camera;
     [SerializeField] private float right_Side;
-
-    //背景をスクロールするか否か
-    private bool is_Scroll = true;
 
 
     // Use this for initialization
@@ -26,33 +23,29 @@ public class Stage2_2Scene : MonoBehaviour {
         //スクリプトの取得
         _movie = GetComponent<Stage2_2Movie>();
         //オブジェクトの取得
-        scroll_Objects = GameObject.Find("ScrollObjects");
-        //ボス前ムービー開始
+        main_Camera = GameObject.FindWithTag("MainCamera");
+        //ムービー開始
         _movie.StartCoroutine("Boss_Movie");
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //スクロール
-        if (is_Scroll) {
-            scroll_Objects.transform.position += new Vector3(-1.4f, 0, 0) * Time.timeScale;
-            //右端でスクロール停止
-            if (scroll_Objects.transform.position.x <= -right_Side) {
-                is_Scroll = false;
-                StartCoroutine("Exit_Reimu");
-            }
-        }
-        
+              
         //スクロール時の自機の動き
-        if (player_Controller.Get_Is_Fly()) {
-            player.transform.SetParent(null);
+        if (player_Controller.Get_Is_Fly()) {    
+            player.transform.SetParent(main_Camera.transform);
         }
         else {
-            player.transform.SetParent(scroll_Objects.transform);
+            player.transform.SetParent(null);
         }
-        
+
+        //右端についた時
+        if(main_Camera.transform.position.x >= right_Side) {
+            Exit_Reimu();
+        }
+
         //シーン遷移
-        if(!is_Scroll && player.transform.position.x > 230f) {
+        if (player.transform.position.x > 5240f) {
             SceneManager.LoadScene("Stage2_BossScene");
         }
     }
@@ -69,23 +62,18 @@ public class Stage2_2Scene : MonoBehaviour {
             GameObject enemy = Instantiate(Resources.Load("Enemy/" + text.textWords[i, 0]) as GameObject);
             Vector3 pos = new Vector3(main_Camera.transform.position.x + float.Parse(text.textWords[i, 2]), float.Parse(text.textWords[i, 3]));
             enemy.transform.position = pos;
+            enemy.transform.SetParent(main_Camera.transform);
         }
     }
 
 
     //霊夢退場
-    private IEnumerator Exit_Reimu() {
+    private void Exit_Reimu() {
         GameObject reimu = GameObject.Find("Reimu");
-        for(float t = 0; t < 5.0f; t += Time.deltaTime) {
+        if (reimu != null) {
             reimu.transform.position += new Vector3(1.4f, 0, 0) * Time.timeScale;
-            yield return null;
-        }       
+        }
     }
 
-
-    //is_ScrollのSetter
-    public void Set_Is_Scroll(bool is_Scroll) {
-        this.is_Scroll = is_Scroll;
-    }
 
 }

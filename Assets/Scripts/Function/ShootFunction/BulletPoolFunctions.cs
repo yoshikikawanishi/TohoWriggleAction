@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletPoolFunctions : MonoBehaviour {
 
     //弾
-    public ObjectPool bullet_Pool = new ObjectPool();
+    public ObjectPool bullet_Pool;
 
     //弾のセット
     public void Set_Bullet_Pool(ObjectPool bullet_Pool) {
@@ -35,7 +35,7 @@ public class BulletPoolFunctions : MonoBehaviour {
         var shoot_Bullet = bullet_Pool.GetObject();
         shoot_Bullet.transform.position = transform.position;
         shoot_Bullet.GetComponent<Rigidbody2D>().velocity = velocity;
-        StartCoroutine(Delete_Bullet(shoot_Bullet, lifeTime));
+        Delete_Bullet(shoot_Bullet, lifeTime);
     }
 
     //弾の生成、方向転換して発射
@@ -47,7 +47,7 @@ public class BulletPoolFunctions : MonoBehaviour {
         turn_Bullet.transform.position = transform.position + new Vector3(Mathf.Cos(angle * Mathf.PI / 180f), Mathf.Sin(angle * Mathf.PI / 180), 0);
         turn_Bullet.transform.LookAt2D(transform, Vector2.right);
         turn_Bullet.GetComponent<Rigidbody2D>().velocity = turn_Bullet.transform.right * -speed;
-        StartCoroutine(Delete_Bullet(turn_Bullet, lifeTime));
+        Delete_Bullet(turn_Bullet, lifeTime);
     }
 
     //自機狙い奇数弾
@@ -70,7 +70,7 @@ public class BulletPoolFunctions : MonoBehaviour {
                 odd_Bullet.GetComponent<Rigidbody2D>().velocity = odd_Bullet.transform.right * speed;
                 //弾の消去
                 if (lifeTime > 0) {
-                    StartCoroutine(Delete_Bullet(odd_Bullet, lifeTime));
+                    Delete_Bullet(odd_Bullet, lifeTime);
                 }
             }
         }
@@ -99,7 +99,7 @@ public class BulletPoolFunctions : MonoBehaviour {
                 even_Bullet.GetComponent<Rigidbody2D>().velocity = even_Bullet.transform.right * speed;
                 //弾の消去
                 if (lifeTime > 0) {
-                    StartCoroutine(Delete_Bullet(even_Bullet, lifeTime));
+                    Delete_Bullet(even_Bullet, lifeTime);
                 }
             }
         }
@@ -147,9 +147,8 @@ public class BulletPoolFunctions : MonoBehaviour {
 
 
     //弾の消去
-    private IEnumerator Delete_Bullet(GameObject bullet, float lifeTime) {
-        yield return new WaitForSeconds(lifeTime);
-        bullet.SetActive(false);
+    private void Delete_Bullet(GameObject bullet, float lifeTime) {
+        bullet.GetComponent<EnemyBullet>().StartCoroutine("Delete_Pool_Bullet",lifeTime);
     }
 
 }

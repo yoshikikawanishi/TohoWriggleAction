@@ -747,7 +747,6 @@ GameObject:
   - component: {fileID: 830314624}
   - component: {fileID: 830314621}
   - component: {fileID: 830314623}
-  - component: {fileID: 830314626}
   m_Layer: 9
   m_Name: Reimu
   m_TagString: EnemyTag
@@ -857,7 +856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage_Sound: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
-  life: 1e00000050000000
+  life: 5000000050000000
   power_Value: 30
   score_Value: 5000
   phase_Change_Bomb: {fileID: 1439832585991350, guid: 6d2505b4b9f621b46b2f8e32574cd505,
@@ -896,20 +895,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 2, y: 0}
   serializedVersion: 2
-  m_Radius: 13
---- !u!114 &830314626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 830314618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c244578771ca6245bd67491cd5a1ccd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 20
 --- !u!1001 &858680437
 Prefab:
   m_ObjectHideFlags: 0
@@ -917,11 +905,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 224687240675684918, guid: 9ac775ade6937904687615aeb278cb63,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224687240675684918, guid: 9ac775ade6937904687615aeb278cb63,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -2025,6 +2008,24 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
+  - first: {x: 9, y: -5, z: 0}
+    second:
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 10, y: -5, z: 0}
+    second:
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
   - first: {x: -11, y: -4, z: 0}
     second:
       m_TileIndex: 2
@@ -2445,17 +2446,17 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 87acf779247f40c44af0cac279d16f6e, type: 2}
   - m_RefCount: 17
     m_Data: {fileID: 11400000, guid: 8ed61b4e69ecb0e4a894880e48b1a44d, type: 2}
-  - m_RefCount: 48
+  - m_RefCount: 50
     m_Data: {fileID: 11400000, guid: d0faf13e0012237448febe84c8918941, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300004, guid: 92e2bbd8e46480a4c93eaaa835707ed4, type: 3}
   - m_RefCount: 17
     m_Data: {fileID: 21300002, guid: 92e2bbd8e46480a4c93eaaa835707ed4, type: 3}
-  - m_RefCount: 48
+  - m_RefCount: 50
     m_Data: {fileID: 21300000, guid: d85607dd0d523574ba55941b7bc2d81d, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 66
+  - m_RefCount: 68
     m_Data:
       e00: 1
       e01: 0
@@ -2474,7 +2475,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 66
+  - m_RefCount: 68
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}

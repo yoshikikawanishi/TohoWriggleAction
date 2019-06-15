@@ -27,7 +27,7 @@ public class MoveBetweenTwoPoints : MonoBehaviour {
         float speed = 0;    //速度
         float now_Location = 0; //現在の移動距離割合
         Vector3 start_Pos = transform.position;
-
+   
         while (now_Location <= 1) {
             now_Location += speed * Time.timeScale;
             //直線

@@ -5,15 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    
+
     //スクリプト
     private PlayerManager _playerManager;
 
     //進行度
     private Dictionary<string, bool> progress_Dic = new Dictionary<string, bool>();
 
+    //シングルトン用
+    public static GameManager instance;
+    void Awake() {
+        //シングルトン
+        if (instance != null) {
+            Destroy(this.gameObject);
+        }
+        else if (instance == null) {
+            instance = this;
+        }
+        //シーンを遷移してもオブジェクトを消さない
+        DontDestroyOnLoad(gameObject);
 
-    //Awake
-    private void Awake() {
         //進行度の初期設定
         Progress_Dic_Setting();
 
@@ -96,12 +108,29 @@ public class GameManager : MonoBehaviour {
     }
 
 
+    /*-----------------ゲームシーンかどうか-------------*/
+    public bool Is_Game_Scene() {
+        List<string> not_Game_Scene_List = new List<string>();
+        not_Game_Scene_List.Add("TitleScene");
+        not_Game_Scene_List.Add("GameOverScene");
+
+        string now_Scene = SceneManager.GetActiveScene().name;
+        foreach (string scene in not_Game_Scene_List) {
+            if (now_Scene == scene) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     /*-----------------進行度の初期設定-----------------*/
     private void Progress_Dic_Setting() {
         progress_Dic.Add("Stage1_1Scene", false);
         progress_Dic.Add("Stage1_BossScene", false);
         progress_Dic.Add("Stage2_1Scene", false);
         progress_Dic.Add("Stage2_2Scene", false);
+        progress_Dic.Add("Stage2_BossScene", false);
     }
 
 

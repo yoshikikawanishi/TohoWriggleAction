@@ -9,7 +9,9 @@ public class TreasureChestController : MonoBehaviour {
     private SpriteRenderer _sprite;
     private BoxCollider2D _collider;
     private Rigidbody2D _rigid;
-
+    //オーディオ
+    private AudioSource appear_Sound;
+    private AudioSource open_Sound;
     //スクリプト
     private PlayerManager _playerManager;
 
@@ -26,7 +28,9 @@ public class TreasureChestController : MonoBehaviour {
         _rigid = GetComponent<Rigidbody2D>();
         //スクリプトの取得
         _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
-
+        //オーディオの取得
+        appear_Sound = GetComponents<AudioSource>()[0];
+        open_Sound = GetComponents<AudioSource>()[1];
         //初期設定
         _sprite.color = new Color(1, 1, 1, 0);
     }
@@ -52,6 +56,7 @@ public class TreasureChestController : MonoBehaviour {
     //宝箱が現れる
     private void Appear_Chest() {
         _anim.SetTrigger("AppearTrigger");
+        appear_Sound.Play();
         _sprite.color = new Color(1, 1, 1, 1);
         _rigid.gravityScale = 20f;
         _rigid.velocity = new Vector2(0, 50f);
@@ -62,6 +67,7 @@ public class TreasureChestController : MonoBehaviour {
     //宝箱を開く
     private IEnumerator Open_Chest() {
         _anim.SetBool("OpenBool", true);
+        open_Sound.Play();
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         yield return new WaitForSeconds(0.5f);
         //出すアイテムの決定

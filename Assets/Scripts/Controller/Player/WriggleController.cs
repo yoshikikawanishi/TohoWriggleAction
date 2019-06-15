@@ -7,6 +7,7 @@ public class WriggleController : PlayerController {
 
     //オーディオ
     private AudioSource kick_Sound;
+    private AudioSource fly_Sound;
 
     //子供
     private GameObject hit_Decision;
@@ -27,10 +28,11 @@ public class WriggleController : PlayerController {
 
 
     // Use this for initialization
-    new void Start () {
-        base.Start();
+    new void Awake () {
+        base.Awake();
         //オーディオの取得
         kick_Sound = GetComponents<AudioSource>()[1];
+        fly_Sound = GetComponents<AudioSource>()[3];
         //子供
         hit_Decision = transform.Find("HitDecision").gameObject;
         player_Kick = transform.Find("PlayerKick").gameObject;
@@ -115,6 +117,7 @@ public class WriggleController : PlayerController {
         _collider.size = new Vector2(default_Collider_Size.x, default_Collider_Size.x); //当たり判定
         _collider.offset = default_Collider_Offset; //当たり判定
         hit_Decision.SetActive(true);   //当たり判定
+        fly_Sound.Play();
     }
 
 

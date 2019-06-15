@@ -7,7 +7,7 @@ public class MiddleGreenFairy : Enemy {
     //種類
     [SerializeField] private int kind;
     //スクリプト
-    private BulletFunctions _bullet;
+    private BulletScrollFunctions _bullet;
 
     //使い魔の消滅エフェクト
     private GameObject familiar_Vanish_Effect;
@@ -17,12 +17,12 @@ public class MiddleGreenFairy : Enemy {
 	new void Start () {
         base.Start();
         //スクリプト
-        _bullet = gameObject.AddComponent<BulletFunctions>();
+        _bullet = gameObject.AddComponent<BulletScrollFunctions>();
 
         //使い魔にBulletFunctionsをアタッチ
-        List<BulletFunctions> familiars_Bullet = new List<BulletFunctions>();
+        List<BulletScrollFunctions> familiars_Bullet = new List<BulletScrollFunctions>();
         for (int i = 0; i < transform.childCount; i++) {
-            BulletFunctions b = transform.GetChild(i).gameObject.AddComponent<BulletFunctions>();
+            BulletScrollFunctions b = transform.GetChild(i).gameObject.AddComponent<BulletScrollFunctions>();
             familiars_Bullet.Add(b);
         }
         //使い魔のエフェクト
@@ -53,6 +53,7 @@ public class MiddleGreenFairy : Enemy {
         //全方位弾
         _bullet.Set_Bullet(Resources.Load("Bullet/RedRiceBullet") as GameObject);
         _bullet.Diffusion_Bullet(16, 70, 0, 7.0f);
+        UsualSoundManager.Shot_Sound();
         //奇数弾
         for (int i = 0; i < 4; i++) {
             _bullet.Odd_Num_Bullet(3, 30f, 90f, 7.0f);
@@ -74,10 +75,11 @@ public class MiddleGreenFairy : Enemy {
         //全方位弾
         _bullet.Set_Bullet(Resources.Load("Bullet/BlueRiceBullet") as GameObject);
         _bullet.Diffusion_Bullet(16, 70, 0, 7.0f);
+        UsualSoundManager.Shot_Sound();
         //自機狙い弾
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < transform.childCount; j++) {
-                BulletFunctions f_Bullet = transform.GetChild(j).GetComponent<BulletFunctions>();
+                BulletScrollFunctions f_Bullet = transform.GetChild(j).GetComponent<BulletScrollFunctions>();
                 f_Bullet.Set_Bullet(Resources.Load("Bullet/BlueBullet") as GameObject);
                 f_Bullet.Odd_Num_Bullet(1, 0, 90, 7.0f);
                 f_Bullet.Odd_Num_Bullet(1, 0, -90, 7.0f);

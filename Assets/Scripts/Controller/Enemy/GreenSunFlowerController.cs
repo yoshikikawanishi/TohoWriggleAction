@@ -29,7 +29,7 @@ public class GreenSunFlowerController : MonoBehaviour {
         b.Diffusion_Bullet(10, 90f, 5f, 5.0f);
         b.Diffusion_Bullet(10, 90f, -5f, 5.0f);
         //効果音
-        GetComponents<AudioSource>()[1].Play();
+        UsualSoundManager.Shot_Sound();
         yield return new WaitForSeconds(1.5f);
         //上にはける
         while (transform.position.y < 210f) {

@@ -22,7 +22,6 @@ public class Stage2_BossMovie : MonoBehaviour {
 
     //ムービー
     public IEnumerator Previous_Movie() {
-        yield return null;
         //初期設定
         _pause.Set_Pausable(false);
         StartCoroutine("Player_Timeline");
@@ -96,7 +95,7 @@ public class Stage2_BossMovie : MonoBehaviour {
 
         while (movie_Progress < 4) {
             for (int i = 0; i < 2; i++) {
-                scroll_Grounds[i].transform.position += new Vector3(-2f, 0, 0);
+                scroll_Grounds[i].transform.position += new Vector3(-2f, 0, 0) * Time.timeScale;
                 if(scroll_Grounds[i].transform.position.x < -560f) {
                     scroll_Grounds[i].transform.position = new Vector3(560f, 0);
                 }

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour {
 
+    //スクリプト
+    private GameManager _gameManager;
     //一時停止中かどうか
     private bool is_Pause = false;
     //一時停止可能かどうか
@@ -15,6 +17,7 @@ public class PauseManager : MonoBehaviour {
 
     //Start
     private void Start() {
+        _gameManager = GetComponent<GameManager>();
         //ポーズ画面の取得
         pause_Canvas = Resources.Load("PauseCanvas") as GameObject;
     }
@@ -23,11 +26,11 @@ public class PauseManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         //一時停止の処理
-        if (Input.GetKeyDown(KeyCode.Escape) && can_Pause && !is_Pause) {
+        if (Input.GetKeyDown(KeyCode.Escape) && can_Pause && !is_Pause && _gameManager.Is_Game_Scene()) {
             Pause_Game();
         }
         //一時停止解除
-        else if (Input.GetKeyDown(KeyCode.Escape) && is_Pause) {
+        else if (Input.GetKeyDown(KeyCode.Escape) && is_Pause && _gameManager.Is_Game_Scene()) {
             Release_Pause_Game();
         }
         
@@ -61,7 +64,9 @@ public class PauseManager : MonoBehaviour {
             _playerController.Set_Playable(true);
         }
         //ポーズ画面を消す
-        Destroy(pause_Canvas);
+        pause_Canvas.GetComponents<AudioSource>()[1].Play();
+        pause_Canvas.GetComponent<Canvas>().enabled = false;
+        Destroy(pause_Canvas, 0.5f);
     }
 
 

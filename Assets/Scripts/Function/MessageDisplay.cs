@@ -110,6 +110,8 @@ public class MessageDisplay : MonoBehaviour {
 
     //メッセージ表示
     private IEnumerator Print_Message() {
+        //効果音の取得
+        AudioSource sound = messagePanel.GetComponent<AudioSource>();
         //1行ずつ表示
         for (int i = start_ID; i <= end_ID; i++) {
             //名前とアイコン
@@ -123,6 +125,7 @@ public class MessageDisplay : MonoBehaviour {
                 }
                 else {
                     messageText.text += textWords[i, 3][j];
+                    sound.Play();
                 }
                 yield return new WaitForSeconds(textSpeed);
             }

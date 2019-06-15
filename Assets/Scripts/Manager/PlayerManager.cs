@@ -105,6 +105,5 @@ public class PlayerManager : MonoBehaviour {
             case "Beetle": option_Type = next_Type; break;
             case "Bee": option_Type = next_Type; break;
         }
-        GameObject.FindWithTag("PlayerTag").transform.GetChild(7).GetComponents<AudioSource>()[2].Play();
     }
 }

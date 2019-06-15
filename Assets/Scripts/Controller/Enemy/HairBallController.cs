@@ -19,10 +19,10 @@ public class HairBallController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(default_Height < 0) {
-            transform.position += new Vector3(-3, 2, 0);
+            transform.position += new Vector3(-3, 2, 0) * Time.timeScale;
         }
         else {
-            transform.position += new Vector3(-3, -2, 0);
+            transform.position += new Vector3(-3, -2, 0) * Time.timeScale;
         }
 	}
 }

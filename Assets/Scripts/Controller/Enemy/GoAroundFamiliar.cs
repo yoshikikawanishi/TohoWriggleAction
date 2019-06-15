@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GoAroundFamiliar : Enemy {
 
+    //出現音
+    private AudioSource appear_Sound;
     //親
     private GameObject parent;
     //初期位相
@@ -19,6 +21,7 @@ public class GoAroundFamiliar : Enemy {
     new void Start () {
         //取得        
         base.Start();
+        appear_Sound = GetComponents<AudioSource>()[1];
         parent = transform.parent.gameObject;
     }
 	
@@ -40,6 +43,7 @@ public class GoAroundFamiliar : Enemy {
         }
         if (Input.GetKeyUp(KeyCode.LeftShift)) {
             is_Visible = true;
+            appear_Sound.Play();
         }
         if (is_Visible && _sprite.color.a != 1) {
             _sprite.color = base.default_Color;

@@ -8,17 +8,6 @@ public class EnemyBullet : MonoBehaviour {
     [SerializeField] private bool is_Pool = false;
 
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-
     //TriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
         //ボム、自機、壁に当たった時消す
@@ -32,5 +21,11 @@ public class EnemyBullet : MonoBehaviour {
         }
     }
 
+
+    //オブジェクトプールした弾の消去用
+    public IEnumerator Delete_Pool_Bullet(float lifeTime) {
+        yield return new WaitForSeconds(lifeTime);
+        gameObject.SetActive(false);
+    }
 
 }

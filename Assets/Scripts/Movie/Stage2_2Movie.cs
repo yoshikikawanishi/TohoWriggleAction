@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Stage2_2Movie : MonoBehaviour {
 
-    //自機
+    //自機、カメラ
     private GameObject player;
+    private GameObject main_Camera;
     
     //スクリプト
     private MessageDisplay _message;
@@ -20,9 +21,9 @@ public class Stage2_2Movie : MonoBehaviour {
     
     // Use this for initialization
     void Awake () {
-        //自機
+        //自機、カメラ
         player = GameObject.FindWithTag("PlayerTag");
-        
+        main_Camera = GameObject.FindWithTag("MainCamera");
         //スクリプト
         _message = GetComponent<MessageDisplay>();
         _sceneController = GameObject.Find("Scripts").GetComponent<Stage2_2Scene>();
@@ -63,9 +64,9 @@ public class Stage2_2Movie : MonoBehaviour {
             StartCoroutine("Wriggle_Timeline");
             StartCoroutine("Reimu_Timeline");
             StartCoroutine("Scroll_Ground");
-
-            //背景のスクロールを止める
-            _sceneController.Set_Is_Scroll(false);
+            
+            //カメラのスクロールを止める
+            main_Camera.GetComponent<CameraController>().Set_Can_Scroll(false);
 
             yield return new WaitForSeconds(1.0f);
 
@@ -88,6 +89,8 @@ public class Stage2_2Movie : MonoBehaviour {
             yield return new WaitUntil(Is_End_Message);
 
             yield return new WaitForSeconds(1.0f);
+            //画面のスクロール始める
+            main_Camera.GetComponent<CameraController>().Set_Can_Scroll(true);
         }
         //2回目以降ムービー
         else {
@@ -96,8 +99,6 @@ public class Stage2_2Movie : MonoBehaviour {
         //ムービー終了
         is_End_Before_Movie = true;
         GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>().Set_Pausable(true);
-        //背景のスクロール始める
-        _sceneController.Set_Is_Scroll(true);
         //敵生成始める
         _sceneController.StartCoroutine("Generate_Enemy");
     }
@@ -105,8 +106,12 @@ public class Stage2_2Movie : MonoBehaviour {
 
     //2回目以降のムービー
     private IEnumerator Skip_Boss_Movie() {
+        //カメラのスクロールを止める
+        main_Camera.GetComponent<CameraController>().Set_Can_Scroll(false);
         //自機の位置
-        player.transform.position = new Vector3(0, 0, 0);
+        if (player.transform.position.x < 100f) {
+            player.transform.position = new Vector3(0, 0, 0);
+        }
         //初期設定
         GameObject reimu = GameObject.Find("Reimu");
         ReimuWayController reimu_Controller = reimu.GetComponent<ReimuWayController>();
@@ -116,13 +121,14 @@ public class Stage2_2Movie : MonoBehaviour {
         MoveBetweenTwoPoints reimu_Move = reimu.AddComponent<MoveBetweenTwoPoints>();
         reimu_Move.Start_Move(new Vector3(-196f, 16f), 32f, 0.02f);
         yield return new WaitUntil(reimu_Move.End_Move);
-        //ショット撃ち始める
         reimu_Controller.Set_Is_Shot_Bullet(true);
+        //画面のスクロール始める
+        main_Camera.GetComponent<CameraController>().Set_Can_Scroll(true);
 
         yield return new WaitForSeconds(10.0f);
 
         //移動
-        reimu_Move.Start_Move(new Vector3(128f, -16f), 64f, 0.015f);
+        reimu_Move.Start_Move(new Vector3(1000f, -16f), 64f, 0.015f);
         yield return new WaitUntil(reimu_Move.End_Move);
     }
 
@@ -207,7 +213,7 @@ public class Stage2_2Movie : MonoBehaviour {
         yield return new WaitForSeconds(10.0f);
 
         //移動
-        reimu_Move.Start_Move(new Vector3(128f, -16f), 64f, 0.015f);
+        reimu_Move.Start_Move(new Vector3(1000f, -16f), 64f, 0.015f);
         yield return new WaitUntil(reimu_Move.End_Move);
     }
 
