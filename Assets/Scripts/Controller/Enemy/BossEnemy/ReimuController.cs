@@ -37,9 +37,7 @@ public class ReimuController : MonoBehaviour {
                 case 2: _attack.Phase2(); break;
             }
         }
-        if (boss_Controller.Clear_Trigger()) {
-            _attack.StopAllCoroutines();
-        }
+        
 	}
 
 

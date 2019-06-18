@@ -104,7 +104,7 @@ public class ReimuAttack : MonoBehaviour {
             //弾をばらまきながら移動
             _controller.Change_Parameter("DashBool");
             _scatter_Bullet.Set_Bullet_Pool(red_Bullet_Pool);
-            _scatter_Bullet.Start_Scatter(30f, 50f, 3.0f, 9.0f);
+            _scatter_Bullet.Start_Scatter(30f, 50f, 2.0f, 9.0f);
             Vector3 next_Pos;
             if (transform.position.y < 0) {
                 next_Pos = new Vector3(140f, 24f);

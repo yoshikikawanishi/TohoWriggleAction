@@ -13,8 +13,6 @@ public class Stage2_2Movie : MonoBehaviour {
     private Stage2_2Scene _sceneController;
     private GameManager _gameManager;
 
-    //ムービー終了検知用
-    private bool is_End_Before_Movie = false;
     //メッセージ終了検知用
     private bool is_End_Message = false;
 
@@ -96,8 +94,6 @@ public class Stage2_2Movie : MonoBehaviour {
         else {
             StartCoroutine("Skip_Boss_Movie");
         }
-        //ムービー終了
-        is_End_Before_Movie = true;
         GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>().Set_Pausable(true);
         //敵生成始める
         _sceneController.StartCoroutine("Generate_Enemy");

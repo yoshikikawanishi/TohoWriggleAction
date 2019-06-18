@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage2_BossMovie : MonoBehaviour {
 
@@ -104,4 +105,21 @@ public class Stage2_BossMovie : MonoBehaviour {
         }
     }
 
+
+    //ボスクリア後
+    public IEnumerator Clear_Movie() {
+        //霊夢止める
+        GameObject.Find("Reimu").GetComponent<ReimuAttack>().StopAllCoroutines();
+        //明転
+        yield return new WaitForSeconds(3.0f);
+        SpriteRenderer white_Out_Sprite = GameObject.Find("WhiteOut").GetComponent<SpriteRenderer>();
+        while (white_Out_Sprite.color.a <= 1) {
+            white_Out_Sprite.color += new Color(0, 0, 0, 0.005f);
+            yield return null;
+        }
+        yield return new WaitForSeconds(2.0f);
+        //シーン遷移
+        SceneManager.LoadScene("Base_1Scene");
+    }
+    
 }
