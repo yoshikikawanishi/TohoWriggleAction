@@ -521,7 +521,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &406981419
 Transform:
   m_ObjectHideFlags: 0
@@ -530,7 +530,7 @@ Transform:
   m_GameObject: {fileID: 406981418}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children:
   - {fileID: 1603805124}
   - {fileID: 831952403}
@@ -554,8 +554,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49799a2b6ef6d854aa7dd414a004d72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spread_Speed: 0
-  max_Size: 2
+  spread_Speed: 0.1
+  max_Size: 3
   life_Time: 0
   angler_Velocity: 0.3
 --- !u!1 &453881101
@@ -1209,7 +1209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage_Sound: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
-  life: 500000003c000000
+  life: 6400000050000000
   power_Value: 30
   score_Value: 5000
   phase_Change_Bomb: {fileID: 1274293818446798, guid: bc95a990879cd11479877a6a1628eee2,

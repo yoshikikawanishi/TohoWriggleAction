@@ -139,6 +139,7 @@ public class GameManager : MonoBehaviour {
         //ロードされたシーンのスタートで、更新前の進行度を取得できるようにする
         yield return null;
         yield return null;
+        yield return null;
         //更新
         if (progress_Dic.ContainsKey(loaded_Scene)) {
             if (!progress_Dic[loaded_Scene]) {

@@ -8,6 +8,7 @@ public class Stage2_2Scene : MonoBehaviour {
     //自機
     private GameObject player;
     private WriggleController player_Controller;
+    GameObject reimu;
     //スクリプト
     private Stage2_2Movie _movie;
     //スクロール用
@@ -20,6 +21,7 @@ public class Stage2_2Scene : MonoBehaviour {
         //自機の取得
         player = GameObject.FindWithTag("PlayerTag");
         player_Controller = player.GetComponent<WriggleController>();
+        reimu = GameObject.Find("Reimu");
         //スクリプトの取得
         _movie = GetComponent<Stage2_2Movie>();
         //オブジェクトの取得
@@ -69,7 +71,6 @@ public class Stage2_2Scene : MonoBehaviour {
 
     //霊夢退場
     private void Exit_Reimu() {
-        GameObject reimu = GameObject.Find("Reimu");
         if (reimu != null) {
             reimu.transform.position += new Vector3(1.4f, 0, 0) * Time.timeScale;
         }

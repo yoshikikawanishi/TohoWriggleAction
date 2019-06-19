@@ -22,6 +22,21 @@ public class MoveBetweenTwoPoints : MonoBehaviour {
     }
 
 
+    //画面内ランダム移動(カメラの座標(0, 0)
+    public void Start_Random_Move(float move_Length, float speed) {
+        end_Move = false;
+        slerp_Height = 0;
+        max_Speed = speed;
+        StopCoroutine("Move_Two_Points");
+        Vector3 next_Pos;
+        do {
+            float angle = Random.Range(0, 2 * Mathf.PI);
+            next_Pos = transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * move_Length;
+        } while ((-220f > next_Pos.x || next_Pos.x > 220f) || (-100f > next_Pos.y || next_Pos.y > 100f));
+        StartCoroutine("Move_Two_Points", next_Pos);
+    }
+
+
     //移動用のコルーチン
     private IEnumerator Move_Two_Points(Vector3 next_Pos) {
         float speed = 0;    //速度

@@ -102,12 +102,15 @@ public class Stage2_2Movie : MonoBehaviour {
 
     //2回目以降のムービー
     private IEnumerator Skip_Boss_Movie() {
+        //ステージの最後でセーブしているか
+        if (PlayerPrefs.GetString("Scene") == "Stage2_2Scene") {
+            main_Camera.transform.position = new Vector3(5000f, 0, -10);
+            Destroy(GameObject.Find("Reimu"));
+            yield break;
+        }
         //カメラのスクロールを止める
         main_Camera.GetComponent<CameraController>().Set_Can_Scroll(false);
-        //自機の位置
-        if (player.transform.position.x < 100f) {
-            player.transform.position = new Vector3(0, 0, 0);
-        }
+        player.transform.position = new Vector3(0, 0, 0);
         //初期設定
         GameObject reimu = GameObject.Find("Reimu");
         ReimuWayController reimu_Controller = reimu.GetComponent<ReimuWayController>();

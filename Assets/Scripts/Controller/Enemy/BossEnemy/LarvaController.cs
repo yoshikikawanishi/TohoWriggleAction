@@ -81,7 +81,7 @@ public class LarvaController : MonoBehaviour {
         back_Design.SetActive(true);
         back_Design.transform.localScale = new Vector3(0, 0, 1);
         //移動
-        _move.Start_Move(new Vector3(110f, 16f, 0), 0, 0.03f);
+        _move.Start_Move(new Vector3(110f, -16f, 0), 0, 0.03f);
         yield return new WaitUntil(_move.End_Move);
         while (__BossEnemyController.Get_Now_Phase() == 1) {
             //弾の発射
@@ -90,13 +90,13 @@ public class LarvaController : MonoBehaviour {
             for (int i = 0; i < 2; i++) {
                 Shoot_Scales_Bullet();
                 //小移動
-                Vector3 vec = new Vector3(Random.Range(-64f, 64f), Random.Range(-64f, 64f));
-                Move(0, 0.01f, transform.position + vec);
+                Move(32f, 0.01f);
                 Change_Parameter("AttackBool");
                 yield return new WaitUntil(_move.End_Move);
             }
             //移動
-            Move(-75f, 0.01f, new Vector3(-110f * transform.localScale.x, 16f, 0));
+            _move.Start_Move(new Vector3(-110f * transform.localScale.x, -16f, 0), -75f, 0.01f);
+            Change_Parameter("DashBool");
             yield return new WaitUntil(_move.End_Move);
             //向きの変更
             transform.localScale = new Vector3(-transform.localScale.x, 1, 1);
@@ -139,7 +139,8 @@ public class LarvaController : MonoBehaviour {
         yield return new WaitForSeconds(1.0f);
         //移動
         Become_Invincible();
-        Move(0, 0.02f, new Vector3(150f, 0));
+        _move.Start_Move(new Vector3(160f, -32f), 32f, 0.1f);
+        Change_Parameter("DashBool");
         yield return new WaitUntil(_move.End_Move);
         Release_Invincible();
         //向き
@@ -156,7 +157,7 @@ public class LarvaController : MonoBehaviour {
             float player_Angle = Angle_To_Player();
             for (int i = 0; i < 8; i++) {
                 Shoot_Rice_Bullets(player_Angle, i);
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.3f);
             }
             //自機狙い赤弾
             _bulletFunction.Set_Bullet(Resources.Load("Bullet/RedBullet") as GameObject);
@@ -172,8 +173,7 @@ public class LarvaController : MonoBehaviour {
             }
             //小移動
             else {
-                Vector3 vec = new Vector3(Random.Range(-32f, 32f), Random.Range(-32f, 32f));
-                Move(0, 0.005f, transform.position + vec);
+                Move(32f, 0.005f);
             }
         }
     }
@@ -225,9 +225,9 @@ public class LarvaController : MonoBehaviour {
 
 
     //移動
-    private void Move(float height, float speed, Vector3 next_Pos) {
+    private void Move(float length, float speed) {
         Change_Parameter("DashBool");
-        _move.Start_Move(next_Pos, height, speed);
+        _move.Start_Random_Move(length, speed);
     }
 
 }

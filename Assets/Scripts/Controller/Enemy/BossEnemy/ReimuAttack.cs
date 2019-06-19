@@ -23,45 +23,46 @@ public class ReimuAttack : MonoBehaviour {
         MoveBetweenTwoPoints _move = gameObject.AddComponent<MoveBetweenTwoPoints>();
         BulletFunctions _bullet = gameObject.AddComponent<BulletFunctions>();
         ReimuController _controller = GetComponent<ReimuController>();
-        //移動
-        _controller.Change_Parameter("DashBool");
-        _move.Start_Move(new Vector3(180f, -64f), 64f, 0.015f);
-        yield return new WaitUntil(_move.End_Move);
-        _controller.Change_Parameter("AttackBool");
-        transform.localScale = new Vector3(-1, 1, 1);
-        yield return new WaitForSeconds(1.0f);
-        //ホーミング弾
-        GameObject homing_Bullet = Resources.Load("Bullet/ReimuHomingBullet") as GameObject;
-        for(int i = 0; i < 4; i++) {
-            _bullet.Set_Bullet(homing_Bullet);
-            _bullet.Some_Way_Bullet(4, 150f, 0, 30f, 4.0f);
-            UsualSoundManager.Shot_Sound();
-            Vector3 next_Pos = transform.position + new Vector3(Random.Range(-32f, 32f), Random.Range(-2f, 24f));
-            _move.Start_Move(next_Pos, 0, 0.03f);
+        while (true) {
+            //移動
+            _controller.Change_Parameter("DashBool");
+            _move.Start_Move(new Vector3(180f, -64f), 64f, 0.015f);
             yield return new WaitUntil(_move.End_Move);
+            _controller.Change_Parameter("AttackBool");
+            transform.localScale = new Vector3(-1, 1, 1);
+            //バックデザイン
+            transform.GetChild(1).gameObject.SetActive(true);
+            yield return new WaitForSeconds(1.0f);
+            //ホーミング弾
+            GameObject homing_Bullet = Resources.Load("Bullet/ReimuHomingBullet") as GameObject;
+            for (int i = 0; i < 4; i++) {
+                _bullet.Set_Bullet(homing_Bullet);
+                _bullet.Some_Way_Bullet(4, 150f, 0, 30f, 4.0f);
+                UsualSoundManager.Shot_Sound();
+                _move.Start_Random_Move(32f, 0.03f);
+                yield return new WaitUntil(_move.End_Move);
+            }
+            //陰陽玉
+            _move.Start_Move(new Vector3(150f, 0, 0), 0, 0.02f);
+            _move.End_Move();
+            //溜め
+            _controller.Change_Parameter("AvoidBool");
+            GameObject effect = Instantiate(Resources.Load("Effect/PowerChargeEffects") as GameObject);
+            effect.transform.position = transform.position;
+            effect.transform.SetParent(transform);
+            Destroy(effect, 3.0f);
+            yield return new WaitForSeconds(3.0f);
+            //発射
+            _controller.Change_Parameter("AttackBool");
+            GameObject yin_Bullet = Resources.Load("Bullet/BigYinBallBullet") as GameObject;
+            _bullet.Set_Bullet(yin_Bullet);
+            _bullet.Odd_Num_Bullet(1, 0, 200f, 0);
+            UsualSoundManager.Shot_Sound();
+            GameObject spread_Effect = Instantiate(Resources.Load("Effect/PowerSpreadEffect") as GameObject);
+            spread_Effect.transform.position = transform.position;
+            Destroy(spread_Effect, 3.0f);
+            yield return new WaitForSeconds(2.0f);
         }
-        //陰陽玉
-        _move.Start_Move(new Vector3(150f, 0, 0), 0, 0.02f);
-        _move.End_Move();
-        //溜め
-        _controller.Change_Parameter("AvoidBool");
-        GameObject effect = Instantiate(Resources.Load("Effect/PowerChargeEffects") as GameObject);
-        effect.transform.position = transform.position;
-        effect.transform.SetParent(transform);
-        Destroy(effect, 3.0f);
-        yield return new WaitForSeconds(3.0f);
-        //発射
-        _controller.Change_Parameter("AttackBool");
-        GameObject yin_Bullet = Resources.Load("Bullet/BigYinBallBullet") as GameObject;
-        _bullet.Set_Bullet(yin_Bullet);
-        _bullet.Odd_Num_Bullet(1, 0, 200f, 0);
-        UsualSoundManager.Shot_Sound();
-        GameObject spread_Effect = Instantiate(Resources.Load("Effect/PowerSpreadEffect") as GameObject);
-        spread_Effect.transform.position = transform.position;
-        Destroy(spread_Effect, 3.0f);
-        yield return new WaitForSeconds(2.0f);
-        //初めから
-        start_Phase1_Routine = true;
     }
 
     //フェーズ2
@@ -79,6 +80,8 @@ public class ReimuAttack : MonoBehaviour {
         MoveBetweenTwoPoints _move = GetComponent<MoveBetweenTwoPoints>();
         BulletPoolFunctions _bullet_Pool = gameObject.AddComponent<BulletPoolFunctions>();
         ScatterPoolBullet _scatter_Bullet = gameObject.AddComponent<ScatterPoolBullet>();
+        //バックデザイン
+        transform.GetChild(1).gameObject.SetActive(false);
         //弾のオブジェクトプール
         ObjectPool white_Talisman_Pool = gameObject.AddComponent<ObjectPool>();
         ObjectPool red_Talisman_Pool = gameObject.AddComponent<ObjectPool>();
@@ -88,6 +91,9 @@ public class ReimuAttack : MonoBehaviour {
         yield return new WaitForSeconds(1.0f);
         _move.Start_Move(new Vector3(140f, -12f), 32f, 0.02f);
         yield return new WaitUntil(_move.End_Move);
+        //バックデザイン
+        transform.GetChild(1).localScale = new Vector3(0, 0, 1);
+        transform.GetChild(1).gameObject.SetActive(true);
         while (true) {
             //全方位弾
             _controller.Change_Parameter("AttackBool");

@@ -22,7 +22,7 @@ public class Stage2_BossScene : MonoBehaviour {
         _movie.StartCoroutine("Previous_Movie");
 
         //セーブ
-        game_Manager.SaveData();
+        //game_Manager.SaveData();
 	}
 
     private void Update() {
