@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour {
 
 
     //何番目のシーンまで進んだか
-    private int Get_Progress_Num() {
+    public int Get_Progress_Num() {
         int progress_Num = 0;
         foreach (bool value in progress_Dic.Values) {
             if (!value) {

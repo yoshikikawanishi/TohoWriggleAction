@@ -26,11 +26,11 @@ public class PauseManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         //一時停止の処理
-        if (Input.GetKeyDown(KeyCode.Escape) && can_Pause && !is_Pause && _gameManager.Is_Game_Scene()) {
+        if (Input.GetButtonDown("Cancel") && can_Pause && !is_Pause && _gameManager.Is_Game_Scene()) {
             Pause_Game();
         }
         //一時停止解除
-        else if (Input.GetKeyDown(KeyCode.Escape) && is_Pause && _gameManager.Is_Game_Scene()) {
+        else if (Input.GetButtonDown("Cancel") && is_Pause && _gameManager.Is_Game_Scene()) {
             Release_Pause_Game();
         }
         

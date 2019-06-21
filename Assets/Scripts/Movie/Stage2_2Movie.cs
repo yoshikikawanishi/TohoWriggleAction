@@ -103,7 +103,7 @@ public class Stage2_2Movie : MonoBehaviour {
     //2回目以降のムービー
     private IEnumerator Skip_Boss_Movie() {
         //ステージの最後でセーブしているか
-        if (PlayerPrefs.GetString("Scene") == "Stage2_2Scene") {
+        if (PlayerPrefs.GetString("Scene") == "Stage2_2Scene" || PlayerPrefs.GetString("Scene") == "Stage2_BossScene") {
             main_Camera.transform.position = new Vector3(5000f, 0, -10);
             Destroy(GameObject.Find("Reimu"));
             yield break;
@@ -170,6 +170,7 @@ public class Stage2_2Movie : MonoBehaviour {
         player_Controller.Change_Parameter("KickBool");
         player_Controller.Set_Gravity(50f);
         player_Rigid.velocity = new Vector2(-200f, -250f);
+        player.GetComponents<AudioSource>()[1].Play();
         yield return new WaitForSeconds(2.0f);
 
         //終了設定

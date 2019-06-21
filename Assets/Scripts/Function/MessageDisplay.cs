@@ -37,10 +37,10 @@ public class MessageDisplay : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         //表示スピード
-        if (Input.GetKeyDown(KeyCode.Z)) {
+        if (Input.GetButtonDown("Submit")) {
             textSpeed = 0.01f;
         }
-        if (Input.GetKeyUp(KeyCode.Z)) {
+        if (Input.GetButtonUp("Submit")) {
             textSpeed = 0.05f;
         }
     }
@@ -129,7 +129,7 @@ public class MessageDisplay : MonoBehaviour {
                 }
                 yield return new WaitForSeconds(textSpeed);
             }
-            //1行分表示後Zが押されるのを待つ
+            //1行分表示後決定が押されるのを待つ
             yield return new WaitUntil(Wait_Input_Z);
             //次の行へ
             messageText.text = "";
@@ -142,7 +142,7 @@ public class MessageDisplay : MonoBehaviour {
 
     //Zが入力されるのを待つ
     private bool Wait_Input_Z() {
-        if (Input.GetKeyDown(KeyCode.Z)) {
+        if (Input.GetButtonDown("Submit")) {
             return true;
         }
         return false;

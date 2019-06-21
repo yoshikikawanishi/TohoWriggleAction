@@ -5,8 +5,6 @@ using UnityEngine;
 //霊夢
 public class ReimuController : MonoBehaviour {
 
-    //自機
-    private GameObject player;
     //コンポーネント
     private Animator _anim;
     //スクリプト
@@ -19,8 +17,6 @@ public class ReimuController : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        //自機
-        player = GameObject.FindWithTag("PlayerTag");
         //コンポーネント
         _anim = GetComponent<Animator>();
         //スクリプト

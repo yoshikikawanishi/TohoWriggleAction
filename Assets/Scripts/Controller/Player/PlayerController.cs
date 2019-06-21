@@ -63,13 +63,13 @@ public abstract class PlayerController : MonoBehaviour {
 
     //しゃがみ
     protected void Squat() {
-        if (is_Ground && Input.GetKey(KeyCode.DownArrow)) {
+        if (is_Ground && Input.GetAxisRaw("Vertical") < 0) {
             Change_Parameter("SquatBool");
             _collider.size = new Vector2(default_Collider_Size.x, default_Collider_Size.x) + new Vector2(0, 0.1f);
             _collider.offset = new Vector2(default_Collider_Offset.x, -8f);
             is_Squat = true;
         }
-        if (Input.GetKeyUp(KeyCode.DownArrow)) {
+        if (Input.GetAxisRaw("Vertical") >= 0 && is_Squat) {
             _collider.size = default_Collider_Size;
             _collider.offset = default_Collider_Offset;
             is_Squat = false;
@@ -80,12 +80,12 @@ public abstract class PlayerController : MonoBehaviour {
     //移動
     public void Transition() {
         //左右移動
-        if (Input.GetKey(KeyCode.RightArrow) && !is_Squat) {
+        if (Input.GetAxisRaw("Horizontal") > 0 && !is_Squat) {
             if (_rigid.velocity.x < max_Speed) {
                 _rigid.velocity += new Vector2(acc, 0);
             }
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) && !is_Squat) {
+        else if (Input.GetAxisRaw("Horizontal") < 0 && !is_Squat) {
             if (_rigid.velocity.x > -max_Speed) {
                 _rigid.velocity += new Vector2(-acc, 0);
             }
@@ -99,12 +99,12 @@ public abstract class PlayerController : MonoBehaviour {
 
     //ジャンプ
     protected void Jump() {
-        if (Input.GetKey(KeyCode.Z) && is_Ground) {
+        if (Input.GetButton("Jump") && is_Ground) {
             _rigid.velocity = new Vector2(_rigid.velocity.x, 320f);
             jump_Sound.Play();
             is_Ground = false;
         }
-        if (Input.GetKeyUp(KeyCode.Z) && _rigid.velocity.y > 0) {
+        if (Input.GetButtonUp("Jump") && _rigid.velocity.y > 0) {
             _rigid.velocity *= new Vector2(1, 0.5f);
         }
         //空中で動きにくくする

@@ -5,7 +5,6 @@ using UnityEngine;
 public class LarvaController : MonoBehaviour {
 
     //コンポーネント
-    private Rigidbody2D _rigid;
     private Animator _anim;
     private AudioSource shot_Sound;
     //スクリプト
@@ -36,7 +35,6 @@ public class LarvaController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //コンポーネントの取得
-        _rigid = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         shot_Sound = GetComponents<AudioSource>()[0];
         //スクリプトの取得

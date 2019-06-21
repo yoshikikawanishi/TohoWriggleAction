@@ -62,12 +62,12 @@ public class WriggleController : PlayerController {
         base.Transition();
         //飛行時上下移動追加
         if (is_Fly) {
-            if (Input.GetKey(KeyCode.UpArrow)) {
+            if (Input.GetAxisRaw("Vertical") > 0) {
                 if (_rigid.velocity.y < max_Speed) {
                     _rigid.velocity += new Vector2(0, acc);
                 }
             }
-            else if (Input.GetKey(KeyCode.DownArrow)) {
+            else if (Input.GetAxisRaw("Vertical") < 0) {
                 if (_rigid.velocity.y > -max_Speed) {
                     _rigid.velocity += new Vector2(0, -acc);
                 }
@@ -82,11 +82,11 @@ public class WriggleController : PlayerController {
 
     //飛行状態の切り替え
     private void Change_Fly_Status() {
-        if (Input.GetKey(KeyCode.LeftShift) && !is_Fly && can_Fly) {
+        if (Input.GetButton("Fly") && !is_Fly && can_Fly) {
             is_Fly = true;
             Fly();
         }
-        else if ((!Input.GetKey(KeyCode.LeftShift) && is_Fly)) {
+        else if ((!Input.GetButton("Fly") && is_Fly)) {
             is_Fly = false;
             Quit_Fly();
         }
@@ -156,7 +156,7 @@ public class WriggleController : PlayerController {
 
     //キック
     private void Kick() {
-        if (Input.GetKey(KeyCode.X) && Input.GetKey(KeyCode.DownArrow)) {
+        if (Input.GetButton("Shot") && Input.GetAxisRaw("Vertical") < 0) {
             StartCoroutine("Kick_Routine");
         }
     }
@@ -206,10 +206,10 @@ public class WriggleController : PlayerController {
         if (!is_Fly) {
             //地上
             if (is_Ground) {
-                if (Input.GetKey(KeyCode.RightArrow)) {
+                if (Input.GetAxisRaw("Horizontal") > 0) {
                     Change_Parameter("DashBool");
                 }
-                else if (Input.GetKey(KeyCode.LeftArrow)) {
+                else if (Input.GetAxisRaw("Horizontal") < 0) {
                     Change_Parameter("DashBool");
                 }
                 else {
@@ -223,16 +223,16 @@ public class WriggleController : PlayerController {
         }
         //飛行時
         else {
-            if (Input.GetKey(KeyCode.RightArrow)) {
+            if (Input.GetAxisRaw("Horizontal") > 0) {
                 Change_Parameter("FlyBool");
             }
-            else if (Input.GetKey(KeyCode.LeftArrow)) {
+            else if (Input.GetAxisRaw("Horizontal") < 0) {
                 Change_Parameter("FlyBool");
             }
-            else if (Input.GetKey(KeyCode.UpArrow)) {
+            else if (Input.GetAxisRaw("Vertical") > 0) {
                 Change_Parameter("FlyBool");
             }
-            else if (Input.GetKey(KeyCode.DownArrow)) {
+            else if (Input.GetAxisRaw("Vertical") < 0) {
                 Change_Parameter("FlyBool");
             }
             else {
@@ -240,10 +240,10 @@ public class WriggleController : PlayerController {
             }
         }
         //向き
-        if (Input.GetKey(KeyCode.RightArrow)) {
+        if (Input.GetAxisRaw("Horizontal") > 0) {
             transform.localScale = new Vector3(1, 1, 1);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow)) {
+        else if (Input.GetAxisRaw("Horizontal") < 0) {
             transform.localScale = new Vector3(-1, 1, 1);
         }
     }

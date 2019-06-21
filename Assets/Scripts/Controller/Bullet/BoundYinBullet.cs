@@ -10,10 +10,6 @@ public class BoundYinBullet : Enemy {
     //無敵化
     private bool is_Invincible = true;
 
-    //耐久
-    private int life = 2;
-
-
 
     // Use this for initialization
     new void Start() {

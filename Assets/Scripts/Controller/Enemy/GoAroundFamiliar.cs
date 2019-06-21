@@ -38,10 +38,10 @@ public class GoAroundFamiliar : Enemy {
     //LShiftで透明化
     private void Become_Invisible() {
         //LShiftで透明化
-        if (Input.GetKey(KeyCode.LeftShift) && is_Visible) {
+        if (Input.GetButton("Fly") && is_Visible) {
             is_Visible = false;
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift)) {
+        if (Input.GetButtonUp("Fly")) {
             is_Visible = true;
             appear_Sound.Play();
         }

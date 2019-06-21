@@ -130,7 +130,7 @@ public class WriggleShot : MonoBehaviour {
 
     //オプションがハエのとき
     private void Flies_Shot() {
-        if (Input.GetKey(KeyCode.X)) {
+        if (Input.GetButton("Shot")) {
             if (time < 0.15f) {
                 time += Time.deltaTime;
             }
@@ -165,7 +165,7 @@ public class WriggleShot : MonoBehaviour {
                 shot_Sound.Play();
             }
         }
-        else if (Input.GetKeyUp(KeyCode.X)) {
+        else if (Input.GetButtonUp("Shot")) {
             time = 0.15f;
         }
     }
@@ -173,7 +173,7 @@ public class WriggleShot : MonoBehaviour {
 
     //オプションが蝶のとき
     private void ButterFly_Shot() {
-        if (Input.GetKey(KeyCode.X)) {
+        if (Input.GetButton("Shot")) {
             if (time < 0.1f) {
                 time += Time.deltaTime;
             }
@@ -208,7 +208,7 @@ public class WriggleShot : MonoBehaviour {
                 shot_Sound.Play();
             }
         }
-        else if (Input.GetKeyUp(KeyCode.X)) {
+        else if (Input.GetButtonUp("Shot")) {
             time = 0.1f;
         }
     }
@@ -220,7 +220,7 @@ public class WriggleShot : MonoBehaviour {
         if(time < beetle_Shot_Span) {
             time += Time.deltaTime;
         }
-        else if (Input.GetKeyDown(KeyCode.X)) {
+        else if (Input.GetButtonDown("Shot")) {
             time = 0;
             beetle_Shot_Span = 0.4f;
             int bullet_Num = 1;
@@ -255,7 +255,7 @@ public class WriggleShot : MonoBehaviour {
 
     //オプションが蜂のとき
     private void Bee_Shot() {
-        if (Input.GetKey(KeyCode.X)) {
+        if (Input.GetButton("Shot")) {
             if (time < 0.3f) {
                 time += Time.deltaTime;
             }
@@ -293,7 +293,7 @@ public class WriggleShot : MonoBehaviour {
                 shot_Sound.Play();
             }          
         }
-        else if (Input.GetKeyUp(KeyCode.X)) {
+        else if (Input.GetButtonUp("Shot")) {
             time = 0.3f;
         }
     }

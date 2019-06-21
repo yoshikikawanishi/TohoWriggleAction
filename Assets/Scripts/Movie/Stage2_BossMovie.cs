@@ -108,8 +108,11 @@ public class Stage2_BossMovie : MonoBehaviour {
 
     //ボスクリア後
     public IEnumerator Clear_Movie() {
+        _pause.Set_Pausable(false);
         //霊夢止める
         GameObject.Find("Reimu").GetComponent<ReimuAttack>().StopAllCoroutines();
+        //自機無敵
+        GameObject.FindWithTag("PlayerTag").layer = LayerMask.NameToLayer("InvincibleLayer");
         //明転
         yield return new WaitForSeconds(3.0f);
         SpriteRenderer white_Out_Sprite = GameObject.Find("WhiteOut").GetComponent<SpriteRenderer>();
@@ -120,6 +123,7 @@ public class Stage2_BossMovie : MonoBehaviour {
         yield return new WaitForSeconds(2.0f);
         //シーン遷移
         SceneManager.LoadScene("Base_1Scene");
+        _pause.Set_Pausable(true);
     }
     
 }
