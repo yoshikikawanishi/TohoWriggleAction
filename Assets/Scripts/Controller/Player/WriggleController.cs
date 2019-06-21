@@ -156,7 +156,7 @@ public class WriggleController : PlayerController {
 
     //キック
     private void Kick() {
-        if (Input.GetButton("Shot") && Input.GetAxisRaw("Vertical") < 0) {
+        if (Input.GetButton("Shot/Cancel") && Input.GetAxisRaw("Vertical") < 0) {
             StartCoroutine("Kick_Routine");
         }
     }

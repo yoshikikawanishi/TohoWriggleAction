@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
 
         //シーン読み込みのデリケート
         SceneManager.sceneLoaded += OnSceneLoaded;
+
     }
 
 
@@ -38,9 +39,19 @@ public class GameManager : MonoBehaviour {
     void Start () {
         //スクリプトの取得
         _playerManager = GetComponent<PlayerManager>();
+        //キー
+        KeyConfig keyConfig = new KeyConfig();
+        keyConfig.Create_InputManager();
 
         /*　データ消去のテスト */
         //DeleteData();
+
+        /* コンフィグテスト */
+        /*
+        KeyConfig keyConfig = new KeyConfig();
+        keyConfig.Change_Button("Jump/Submit", "z", false);
+        keyConfig.Create_InputManager();
+        */
     }
 
 

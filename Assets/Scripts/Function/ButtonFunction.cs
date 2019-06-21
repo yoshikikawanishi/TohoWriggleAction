@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ButtonFunction : MonoBehaviour {
 
@@ -52,6 +54,42 @@ public class ButtonFunction : MonoBehaviour {
     }
 
 
+    /*---------------------キーコンフィグ---------------------*/
+    //入力待ち
+    private bool wait_Input = false;
+
+    private IEnumerator Wait_Input(string name, GameObject button) {
+        wait_Input = true;
+        KeyConfig keyConfig = new KeyConfig();
+        //色の変更
+        button.GetComponent<Image>().color = new Color(1, 0.4f, 0.4f);
+        //テキストの変更
+        button.GetComponentInChildren<Text>().text = "";
+        //入力待ち
+        yield return null;
+        while (true) {
+            if (Input.GetButtonDown("joystick button 3")) {
+                keyConfig.Change_Button(name, "joystick button 3", true);
+                keyConfig.Create_InputManager();
+                //テキスト変更
+                button.GetComponentInChildren<Text>().text = "button 3";
+                break;
+            }
+            yield return null;
+        }
+        //色を戻す
+        button.GetComponent<Image>().color = new Color(1, 1, 1);
+        wait_Input = false;
+    }
+
+
+    //ジャンプ、決定ボタンの変更
+    public void Jump_Submit_Button() {
+        if (!wait_Input) {
+            GameObject button = GameObject.Find("Jump/Submit");
+            StartCoroutine(Wait_Input("Jump/Submit", button));
+        }
+    }
  
 
 }

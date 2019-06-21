@@ -130,7 +130,7 @@ public class WriggleShot : MonoBehaviour {
 
     //オプションがハエのとき
     private void Flies_Shot() {
-        if (Input.GetButton("Shot")) {
+        if (Input.GetButton("Shot/Cancel")) {
             if (time < 0.15f) {
                 time += Time.deltaTime;
             }
@@ -165,7 +165,7 @@ public class WriggleShot : MonoBehaviour {
                 shot_Sound.Play();
             }
         }
-        else if (Input.GetButtonUp("Shot")) {
+        else if (Input.GetButtonUp("Shot/Cancel")) {
             time = 0.15f;
         }
     }
@@ -173,7 +173,7 @@ public class WriggleShot : MonoBehaviour {
 
     //オプションが蝶のとき
     private void ButterFly_Shot() {
-        if (Input.GetButton("Shot")) {
+        if (Input.GetButton("Shot/Cancel")) {
             if (time < 0.1f) {
                 time += Time.deltaTime;
             }
@@ -208,7 +208,7 @@ public class WriggleShot : MonoBehaviour {
                 shot_Sound.Play();
             }
         }
-        else if (Input.GetButtonUp("Shot")) {
+        else if (Input.GetButtonUp("Shot/Cancel")) {
             time = 0.1f;
         }
     }
@@ -220,7 +220,7 @@ public class WriggleShot : MonoBehaviour {
         if(time < beetle_Shot_Span) {
             time += Time.deltaTime;
         }
-        else if (Input.GetButtonDown("Shot")) {
+        else if (Input.GetButtonDown("Shot/Cancel")) {
             time = 0;
             beetle_Shot_Span = 0.4f;
             int bullet_Num = 1;
@@ -255,7 +255,7 @@ public class WriggleShot : MonoBehaviour {
 
     //オプションが蜂のとき
     private void Bee_Shot() {
-        if (Input.GetButton("Shot")) {
+        if (Input.GetButton("Shot/Cancel")) {
             if (time < 0.3f) {
                 time += Time.deltaTime;
             }
@@ -293,7 +293,7 @@ public class WriggleShot : MonoBehaviour {
                 shot_Sound.Play();
             }          
         }
-        else if (Input.GetButtonUp("Shot")) {
+        else if (Input.GetButtonUp("Shot/Cancel")) {
             time = 0.3f;
         }
     }
