@@ -53,7 +53,8 @@ public class KeyConfig  {
 
 
     //コンフィグの変更
-    public void Change_Button(string name, string button, bool is_Pad) {
+    public void Change_Button(string change_Axis, string button, bool is_Pad) {
+        //ファイル読み込み
         string filePath = Application.dataPath + @"\KeyConfig.csv";
         TextReader text = new TextReader();
         text.Read_Text_File(filePath);
@@ -70,12 +71,13 @@ public class KeyConfig  {
         }
         //何行目か
         for (int i = 1; i < text.rowLength; i++) {
-            if (name == text.textWords[i, 0]) {
+            if (change_Axis == text.textWords[i, 0]) {
                 row = i;
                 break;
             }
         }
-        //書き換え
+        //ファイル書き換え
+        string before_Button = text.textWords[row, colum];
         StreamWriter sw_Clear = new StreamWriter(filePath, false);
         sw_Clear.Write("#NAME\t#KEYCODE\t#BUTTON");
         sw_Clear.Flush();
@@ -86,6 +88,9 @@ public class KeyConfig  {
             for (int j = 0; j < text.columnLength; j++) {
                 if (i == row && j == colum) {
                     sw.Write(button + "\t");
+                }
+                else if(text.textWords[i, j] == button) {
+                    sw.Write(before_Button + "\t");
                 }
                 else {
                     sw.Write(text.textWords[i, j] + "\t");

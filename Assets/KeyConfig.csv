@@ -1,5 +1,5 @@
 #NAME	#KEYCODE	#BUTTON
-Jump/Submit	Z	joystick button 3	
+Jump/Submit	z	joystick button 0	
 Shot/Cancel	x	joystick button 2	
 Fly	left shift	joystick button 4	
 Pause	escape	joystick button 7	

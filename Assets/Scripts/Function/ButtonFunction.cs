@@ -53,13 +53,15 @@ public class ButtonFunction : MonoBehaviour {
         SceneManager.LoadScene("TitleScene");
     }
 
+    //キーコンフィグボタン押下時
+    public void Go_Key_Config() {
+        SceneManager.LoadScene("ConfigScene");
+    }
+
 
     /*---------------------キーコンフィグ---------------------*/
-    //入力待ち
-    private bool wait_Input = false;
-
-    private IEnumerator Wait_Input(string name, GameObject button) {
-        wait_Input = true;
+    
+    private IEnumerator Wait_Input(string change_Key, GameObject button) {
         KeyConfig keyConfig = new KeyConfig();
         //色の変更
         button.GetComponent<Image>().color = new Color(1, 0.4f, 0.4f);
@@ -68,28 +70,70 @@ public class ButtonFunction : MonoBehaviour {
         //入力待ち
         yield return null;
         while (true) {
-            if (Input.GetButtonDown("joystick button 3")) {
-                keyConfig.Change_Button(name, "joystick button 3", true);
-                keyConfig.Create_InputManager();
-                //テキスト変更
-                button.GetComponentInChildren<Text>().text = "button 3";
+            button.GetComponent<Button>().Select();
+            if (Input.anyKeyDown) {
+                //押されたキーコードの取得
+                string put_Button = "";
+                foreach (KeyCode code in Enum.GetValues(typeof(KeyCode))) {
+                    if (Input.GetKeyDown(code)) {
+                        put_Button = code.ToString();
+                        break;
+                    }
+                }
+                put_Button = put_Button.ToLower();
+                //ゲームパッド
+                bool is_GamePad = false;
+                for (int i = 0; i < 12; i++) {
+                    if (Input.GetKeyDown("joystick button " + i.ToString())) {
+                        keyConfig.Change_Button(change_Key, "joystick button " + i.ToString(), true);
+                        button.GetComponentInChildren<Text>().text = "button " + i.ToString();
+                        is_GamePad = true;
+                        break;
+                    }
+                }
+                //ゲームパッドじゃなかったとき
+                if (!is_GamePad) {
+                    if (put_Button == "leftshift") {
+                        put_Button = "left shift";
+                    }
+                    keyConfig.Change_Button(change_Key, put_Button, false);
+                    button.GetComponentInChildren<Text>().text = put_Button;
+                }
                 break;
             }
             yield return null;
         }
+        //反映
+        keyConfig.Create_InputManager();
+        //ボタンのテキスト書き換え
+        GetComponent<ConfigScene>().Button_Text_Change();
         //色を戻す
         button.GetComponent<Image>().color = new Color(1, 1, 1);
-        wait_Input = false;
     }
 
 
     //ジャンプ、決定ボタンの変更
     public void Jump_Submit_Button() {
-        if (!wait_Input) {
-            GameObject button = GameObject.Find("Jump/Submit");
-            StartCoroutine(Wait_Input("Jump/Submit", button));
-        }
+        GameObject button = GameObject.Find("Jump/Submit");
+        StartCoroutine(Wait_Input("Jump/Submit", button));    
+    }
+
+    //ショット、戻るボタンの変更
+    public void Shot_Cancel_Button() {
+        GameObject button = GameObject.Find("Shot/Cancel");
+        StartCoroutine(Wait_Input("Shot/Cancel", button)); 
     }
  
+    //飛行ボタンの変更
+    public void Fly_Button() {
+        GameObject button = GameObject.Find("Fly");
+        StartCoroutine(Wait_Input("Fly", button));
+    }
+
+    //ポーズボタンの変更
+    public void Pause_Button() {
+        GameObject button = GameObject.Find("Pause");
+        StartCoroutine(Wait_Input("Pause", button));
+    }
 
 }
