@@ -60,7 +60,8 @@ public class ButtonFunction : MonoBehaviour {
 
 
     /*---------------------キーコンフィグ---------------------*/
-    
+    private bool wait_Input = false;
+
     private IEnumerator Wait_Input(string change_Key, GameObject button) {
         KeyConfig keyConfig = new KeyConfig();
         //色の変更
@@ -68,6 +69,7 @@ public class ButtonFunction : MonoBehaviour {
         //テキストの変更
         button.GetComponentInChildren<Text>().text = "";
         //入力待ち
+        wait_Input = true;
         yield return null;
         while (true) {
             button.GetComponent<Button>().Select();
@@ -103,6 +105,7 @@ public class ButtonFunction : MonoBehaviour {
             }
             yield return null;
         }
+        wait_Input = false;
         //反映
         keyConfig.Create_InputManager();
         //ボタンのテキスト書き換え
@@ -114,26 +117,34 @@ public class ButtonFunction : MonoBehaviour {
 
     //ジャンプ、決定ボタンの変更
     public void Jump_Submit_Button() {
-        GameObject button = GameObject.Find("Jump/Submit");
-        StartCoroutine(Wait_Input("Jump/Submit", button));    
+        if (!wait_Input) {
+            GameObject button = GameObject.Find("Jump/Submit");
+            StartCoroutine(Wait_Input("Jump/Submit", button));
+        }
     }
 
     //ショット、戻るボタンの変更
     public void Shot_Cancel_Button() {
-        GameObject button = GameObject.Find("Shot/Cancel");
-        StartCoroutine(Wait_Input("Shot/Cancel", button)); 
+        if (!wait_Input) {
+            GameObject button = GameObject.Find("Shot/Cancel");
+            StartCoroutine(Wait_Input("Shot/Cancel", button));
+        }
     }
- 
+
     //飛行ボタンの変更
     public void Fly_Button() {
-        GameObject button = GameObject.Find("Fly");
-        StartCoroutine(Wait_Input("Fly", button));
+        if (!wait_Input) {
+            GameObject button = GameObject.Find("Fly");
+            StartCoroutine(Wait_Input("Fly", button));
+        }
     }
 
     //ポーズボタンの変更
     public void Pause_Button() {
-        GameObject button = GameObject.Find("Pause");
-        StartCoroutine(Wait_Input("Pause", button));
+        if (!wait_Input) {
+            GameObject button = GameObject.Find("Pause");
+            StartCoroutine(Wait_Input("Pause", button));
+        }
     }
 
 }

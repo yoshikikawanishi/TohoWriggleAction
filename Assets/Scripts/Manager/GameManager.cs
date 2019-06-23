@@ -143,6 +143,7 @@ public class GameManager : MonoBehaviour {
         progress_Dic.Add("Stage2_1Scene", false);
         progress_Dic.Add("Stage2_2Scene", false);
         progress_Dic.Add("Stage2_BossScene", false);
+        progress_Dic.Add("Base_1Scene", false);
     }
 
 
