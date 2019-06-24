@@ -7,6 +7,10 @@ public class TalkCharacter : MonoBehaviour {
     //スクリプト
     protected MessageDisplay _message;
 
+    //吹き出し
+    private GameObject mark_Up_Baloon;
+    [SerializeField] private Vector3 baloon_Pos;
+
     //読み込むテキストファイル
     public string fileName;
     public int start_ID;
@@ -20,7 +24,12 @@ public class TalkCharacter : MonoBehaviour {
 
     //Start
     protected void Start() {
+        //スクリプト
         _message = gameObject.AddComponent<MessageDisplay>();
+        //吹き出し
+        mark_Up_Baloon = Instantiate(Resources.Load("Object/MarkUpBaloon") as GameObject);
+        mark_Up_Baloon.transform.position = transform.position + baloon_Pos;
+        mark_Up_Baloon.SetActive(false);
     }
 
 
@@ -30,6 +39,20 @@ public class TalkCharacter : MonoBehaviour {
             if (!is_Talking && Input.GetButtonDown("Submit")) {
                 StartCoroutine("Talk");
             }
+        }
+    }
+
+    //OnTriggerEnter
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "PlayerBodyTag") {
+            mark_Up_Baloon.SetActive(true);
+        }
+    }
+
+    //OnTriggerExit
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.tag == "PlayerBodyTag") {
+            mark_Up_Baloon.SetActive(false);
         }
     }
 

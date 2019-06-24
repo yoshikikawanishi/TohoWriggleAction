@@ -644,6 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f280ee778a0c3641966df10538fa7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baloon_Pos: {x: 10, y: 0, z: 0}
   fileName: Base1_ClerkText
   start_ID: 1
   end_ID: 2
