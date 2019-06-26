@@ -61,6 +61,10 @@ public class Enemy : MonoBehaviour {
         if (collision.gameObject.tag == "PlayerTag") {
             Damaged(25);
         }
+        //ダメージ床に当たった時(地上を歩く敵)
+        else if(collision.gameObject.tag == "DamageGroundTag") {
+            Damaged(life);
+        }
     }
 
 

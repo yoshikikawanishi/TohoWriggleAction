@@ -91,8 +91,17 @@ public class PlayerManager : MonoBehaviour {
 
     //Pの獲得
     public void Get_Power() {
-        if (power <= 128) {
+        if (power < 128) {
             power++;
+        }
+    }
+    public void Set_Power(int p) {
+        power = p;
+        if (p <= 0) {
+            power = 0;
+        }
+        else if(p >= 128) {
+            power = 128;
         }
     }
 

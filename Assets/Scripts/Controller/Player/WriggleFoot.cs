@@ -21,8 +21,17 @@ public class WriggleFoot : PlayerFoot {
                 wriggle_Controller.StartCoroutine("Heal_Fly_Time");
             }
         }
+        //すり抜け床
         if (collision.tag == "ThroughGroundTag" && !wriggle_Controller.is_Fly && player_Rigid.velocity.y < 30f) {
             if (!player_Controller.is_Ground) {
+                player_Controller.is_Ground = true;
+                landing_Sound.Play();
+                player_Controller.StartCoroutine("Heal_Fly_Time");
+            }
+        }
+        //ダメージ床
+        if(collision.tag == "DamageGroundTag") {
+            if(!wriggle_Controller.is_Ground && !wriggle_Controller.is_Fly) {
                 player_Controller.is_Ground = true;
                 landing_Sound.Play();
                 player_Controller.StartCoroutine("Heal_Fly_Time");

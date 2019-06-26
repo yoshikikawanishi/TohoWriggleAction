@@ -64,18 +64,20 @@ public class TalkCharacter : MonoBehaviour {
         //自機を止める
         GameObject player = GameObject.FindWithTag("PlayerTag");
         PlayerController player_Controller = player.GetComponent<PlayerController>();
-        player_Controller.Set_Playable(false);
-        player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        player_Controller.Change_Parameter("IdleBool");
-        //ポーズ禁止
-        PauseManager _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
-        _pause.Set_Pausable(false);
-        //メッセージ開始
-        _message.Start_Display(fileName, start_ID, end_ID);
-        yield return new WaitUntil(_message.End_Message);
-        //終了
-        player_Controller.Set_Playable(true);
-        _pause.Set_Pausable(true);
+        if (player_Controller.Get_Playable()) {
+            player_Controller.Set_Playable(false);
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            player_Controller.Change_Parameter("IdleBool");
+            //ポーズ禁止
+            PauseManager _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
+            _pause.Set_Pausable(false);
+            //メッセージ開始
+            _message.Start_Display(fileName, start_ID, end_ID);
+            yield return new WaitUntil(_message.End_Message);
+            //終了
+            player_Controller.Set_Playable(true);
+            _pause.Set_Pausable(true);
+        }
         end_Talk = true;
         is_Talking = false;
     }

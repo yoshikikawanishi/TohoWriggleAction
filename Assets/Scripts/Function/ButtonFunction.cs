@@ -42,6 +42,12 @@ public class ButtonFunction : MonoBehaviour {
         SceneManager.LoadScene("TitleScene");
     }
 
+    //ゲームを辞めるボタン押下時
+    public void Quit_Button() {
+        UnityEditor.EditorApplication.isPlaying = false;
+        UnityEngine.Application.Quit();
+    }
+
     //ゲーム再開ボタン押下時
     public void Resume_Button() {
         GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>().Release_Pause_Game();

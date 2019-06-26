@@ -49,7 +49,7 @@ public class Sparrow : MonoBehaviour {
         _rigid.velocity = new Vector2(150f, 0);
         for(float t = 0; t < 1.0f; t += Time.deltaTime) {
             yield return null;
-            transform.position += new Vector3(0, -3f + t*3);
+            transform.position += new Vector3(0, -3f + t*3) * Time.timeScale;
         }
         //直進
         while (transform.position.x < player.transform.position.x + 360f) {
@@ -61,17 +61,14 @@ public class Sparrow : MonoBehaviour {
         gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
         transform.position = player.transform.position + new Vector3(360f, 0);
         _rigid.velocity = new Vector2(-200f, 0);
-        for(float t = 0; t < 2.0f; t+=Time.deltaTime) {
-            yield return null;
-        }
+        yield return new WaitForSeconds(2.5f);
         //上昇
         for(float t = 0; transform.position.y < 140f; t += Time.deltaTime) {
             yield return null;
-            transform.position += new Vector3(0, 1f + t);
+            transform.position += new Vector3(0, 1f + t) * Time.timeScale;
         }
         //通り過ぎたら消す
         Destroy(gameObject);
-
     }
 
     

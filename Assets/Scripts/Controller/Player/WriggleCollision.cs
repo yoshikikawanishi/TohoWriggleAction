@@ -57,7 +57,7 @@ public class WriggleCollision : PlayerCollision {
     //OnCollisionEnter
     private new void OnCollisionEnter2D(Collision2D collision) {
         //被弾時
-        if (collision.gameObject.tag == "EnemyTag" || collision.gameObject.tag == "EnemyBulletTag") {
+        if (collision.gameObject.tag == "EnemyTag" || collision.gameObject.tag == "EnemyBulletTag" || collision.gameObject.tag == "DamageGroundTag") {
             Get_Hit();
         }
     }

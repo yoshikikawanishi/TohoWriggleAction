@@ -21,22 +21,24 @@ public class ShopClerk : TalkCharacter {
 
     //会話
     override protected IEnumerator Talk() {
-        is_Talking = true;
-        end_Talk = false;
-        //自機を止める
         GameObject player = GameObject.FindWithTag("PlayerTag");
         PlayerController player_Controller = player.GetComponent<PlayerController>();
-        player_Controller.Set_Playable(false);
-        player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        player_Controller.Change_Parameter("IdleBool");
-        //ポーズ禁止
-        PauseManager _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
-        _pause.Set_Pausable(false);
-        //メッセージ開始
-        _message.Start_Display(fileName, start_ID, end_ID);
-        yield return new WaitUntil(_message.End_Message);
-        //トレード開始
-        Start_Trade();
+        if (player_Controller.Get_Playable()) {
+            is_Talking = true;
+            end_Talk = false;
+            //自機を止める
+            player_Controller.Set_Playable(false);
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            player_Controller.Change_Parameter("IdleBool");
+            //ポーズ禁止
+            PauseManager _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
+            _pause.Set_Pausable(false);
+            //メッセージ開始
+            _message.Start_Display(fileName, start_ID, end_ID);
+            yield return new WaitUntil(_message.End_Message);
+            //トレード開始
+            Start_Trade();
+        }
     }
 
     //ショップ
@@ -54,11 +56,33 @@ public class ShopClerk : TalkCharacter {
         player_Controller.Set_Playable(true);
         PauseManager _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
         _pause.Set_Pausable(true);
-        //仮面を消す
+        //画面を消す
         shop_Canvas.SetActive(false);
         //終了
         end_Talk = true;
         is_Talking = false;
+    }
+
+
+    //ライフ回復
+    public void Life_Up_Button() {
+        PlayerManager player_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
+        if (player_Manager.power > 20) {
+            player_Manager.Life_Up();
+            player_Manager.Set_Power(player_Manager.power - 20);
+            Quit_Button();
+        }
+    }
+
+
+    //1UP
+    public void Get_Stock_Button() {
+        PlayerManager player_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
+        if (player_Manager.power > 60) {
+            player_Manager.Get_Stock();
+            player_Manager.Set_Power(player_Manager.power - 60);
+            Quit_Button();
+        }
     }
 
 
