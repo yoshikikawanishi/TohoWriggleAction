@@ -10,11 +10,15 @@ public class ReimuLastBombEffect : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         StartCoroutine("Effect_Routine");
-	}
+    }
 	
     private IEnumerator Effect_Routine() {
         GameObject player = GameObject.FindWithTag("PlayerTag");
-
+        //喰らいボム
+        Time.timeScale = 0;
+        for(float t = 0; t < 0.1f; t += 0.02f) { yield return null; }
+        Time.timeScale = 1;
+        GameObject.Find("RedCover").GetComponent<SpriteRenderer>().color = new Color(1, 0.3f, 0.3f, 0.1f);
         yield return new WaitForSeconds(1.5f);
         //霊夢の周りにエフェクト生成
         CircleDeposit inside_Circle = new CircleDeposit(transform.position, 0, CIRCLE_EFFECT_NUM, CIRCLE_RADIAN);
@@ -37,6 +41,10 @@ public class ReimuLastBombEffect : MonoBehaviour {
         for(int i = 0; i < 7; i++) {
             GameObject effect = Instantiate(Resources.Load("Effect/CalmBurstEffect") as GameObject);
             effect.transform.position = player.transform.position;
+            GameObject color_Effect = Instantiate(Resources.Load("Effect/CalmBurstEffect") as GameObject);
+            color_Effect.transform.position = new Vector3(Random.Range(-200f, 160f), Random.Range(-100f, 100f));
+            ParticleSystem.MainModule pm = color_Effect.GetComponent<ParticleSystem>().main;
+            pm.startColor = new Color(i / 7f, (7f - i) / 7f, i / 14f);
             UsualSoundManager.Shot_Sound();
             CameraShake _shake = gameObject.AddComponent<CameraShake>();
             _shake.Shake(0.25f, 2);

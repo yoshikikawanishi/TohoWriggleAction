@@ -33,7 +33,7 @@ public class Sparrow : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //自機が通り過ぎたら後ろから登場
-        if(player.transform.position.x > transform.position.x && !start_Action) {
+        if(Mathf.Abs(player.transform.position.x - transform.position.x) < 32f && !start_Action) {
             start_Action = true;
             StartCoroutine("Sparrow_Action");
         } 

@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] private float probability_Recover_Item = 20f;
     //点、pを出す速度
     [SerializeField] private float item_Out_Speed = 500f;
+    [SerializeField] private bool is_Hit_Spikes = false;
 
     //コンポーネント
     protected SpriteRenderer _sprite;
@@ -54,6 +55,10 @@ public class Enemy : MonoBehaviour {
         else if(collision.tag == "PlayerAttackTag" || collision.tag == "BombTag") {
             Damaged(25);
         }
+        //ダメージ床に当たった時(地上を歩く敵)
+        else if (collision.tag == "DamageGroundTag" && is_Hit_Spikes) {
+            Damaged(life);
+        }
     }
     //CollisionEnter2D
     public void OnCollisionEnter2D(Collision2D collision) {
@@ -62,7 +67,7 @@ public class Enemy : MonoBehaviour {
             Damaged(25);
         }
         //ダメージ床に当たった時(地上を歩く敵)
-        else if(collision.gameObject.tag == "DamageGroundTag") {
+        else if(collision.gameObject.tag == "DamageGroundTag" && is_Hit_Spikes) {
             Damaged(life);
         }
     }

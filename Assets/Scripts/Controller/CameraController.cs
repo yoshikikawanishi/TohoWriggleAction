@@ -32,22 +32,17 @@ public class CameraController : MonoBehaviour {
     }
 
 
-    //FixedUpdaet
-    private void FixedUpdate() {
-        if (player != null && can_Scroll) {
-            //強制スクロール
-            if (scroll_Left_Side < transform.position.x && transform.position.x <= scroll_Right_Side) {
-                transform.position += new Vector3(scroll_Speed, 0, 0);
-            }        
+    //Updaet
+    private void LateUpdate() {
+        if (player != null && can_Scroll) {                 
             //自機追従
-            else {
+            if(scroll_Left_Side >= transform.position.x || transform.position.x > scroll_Right_Side)  {
                 transform.position = new Vector3(player.transform.position.x + difference_Player, 0, -10);
             }
             //強制スクロール終了後、戻れなくする
-            if(transform.position.x >= scroll_Right_Side && player.transform.position.x + difference_Player <= scroll_Right_Side) {
+            if (transform.position.x >= scroll_Right_Side && player.transform.position.x + difference_Player <= scroll_Right_Side) {
                 transform.position = new Vector3(scroll_Right_Side, 0, -10);
             }
-
         }
         //左端のときスクロールを止める
         if (transform.position.x < leftSide) {
@@ -56,8 +51,21 @@ public class CameraController : MonoBehaviour {
         //右端のときスクロールをとめる
         if (transform.position.x >= rightSide) {
             transform.position = new Vector3(rightSide, 0, -10);
+        }     
+    }
+
+
+    //強制スクロール
+    private void FixedUpdate() {
+        if(player != null && can_Scroll) {
+            if (scroll_Left_Side < transform.position.x && transform.position.x <= scroll_Right_Side) {
+                transform.position += new Vector3(scroll_Speed, 0, 0);
+            }
+            //強制スクロール終了後、戻れなくする
+            if (transform.position.x >= scroll_Right_Side && player.transform.position.x + difference_Player <= scroll_Right_Side) {
+                transform.position = new Vector3(scroll_Right_Side, 0, -10);
+            }
         }
-        
     }
 
 

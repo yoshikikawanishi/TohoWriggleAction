@@ -111,6 +111,7 @@ public class Stage2_BossMovie : MonoBehaviour {
         _pause.Set_Pausable(false);
         //霊夢止める
         GameObject.Find("Reimu").GetComponent<ReimuAttack>().StopAllCoroutines();
+        GameObject.Find("Reimu").GetComponent<MoveBetweenTwoPoints>().StopAllCoroutines();
         //自機無敵
         GameObject.FindWithTag("PlayerBodyTag").layer = LayerMask.NameToLayer("InvincibleLayer");
         //明転

@@ -84,7 +84,7 @@ public class Stage1_1Scene : MonoBehaviour {
             for (int i = 0; i < 25; i++) {
                 var yin = Instantiate(Resources.Load("Enemy/YinBall")) as GameObject;
                 Vector3 pos = new Vector3(Random.Range(-64f, 64f), Random.Range(195f, 200f), 0);
-                yin.transform.position = new Vector3(main_Camera.transform.position.x + 260f, 0, 0) + pos;
+                yin.transform.position = new Vector3(main_Camera.transform.position.x, 0, 0) + pos;
                 yield return new WaitForSeconds(0.3f);
             }
 

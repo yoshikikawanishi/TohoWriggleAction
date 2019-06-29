@@ -6,6 +6,7 @@ public class UsualSoundManager : MonoBehaviour {
 
     //ショット音
     static public AudioSource shot_Sound;
+    static public AudioSource crap_Sound;
 
     //シングルトン用
     public static UsualSoundManager instance;
@@ -21,11 +22,17 @@ public class UsualSoundManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
 
         shot_Sound = GetComponents<AudioSource>()[0];
+        crap_Sound = GetComponents<AudioSource>()[1];
     }
 
 
     //ショット音
     static public void Shot_Sound() {
         shot_Sound.Play();
+    }
+
+    //はじける音
+    static public void Crap_Sound() {
+        crap_Sound.Play();
     }
 }

@@ -229,12 +229,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 3
-  vanish_Effect: {fileID: 1901817575273748, guid: 20dfbcca07249104a9b30d99e5064b93,
-    type: 2}
   score_Value: 200
   power_Value: 0
   probability_Recover_Item: 0
   item_Out_Speed: 500
+  is_Hit_Spikes: 1
 --- !u!212 &212613755211942422
 SpriteRenderer:
   m_ObjectHideFlags: 1
