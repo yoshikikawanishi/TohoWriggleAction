@@ -37,6 +37,21 @@ public class BombBlockController : MonoBehaviour {
     }
 
 
+    //OnCollisionEnter
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.tag == "DamageGroundTag") {
+            if (transform.childCount != 0) {
+                //エフェクト出す
+                Effect(gameObject);
+                //誘爆
+                StartCoroutine("Caused_Explode");
+                //消滅
+                gameObject.GetComponent<Renderer>().enabled = false;
+                gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+            }
+        }
+    }
+
     //誘爆
     private IEnumerator Caused_Explode() {
         for(int i = 0; i < caused_Blocks.Count; i++) { 

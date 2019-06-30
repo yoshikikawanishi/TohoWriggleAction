@@ -15,6 +15,17 @@ public class CrashBlockController : MonoBehaviour {
         }
     }
 
+    //OnCollisionEnter
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.tag == "DamageGroundTag") {
+            if (transform.childCount != 0) {
+                //エフェクト出す
+                Effect();
+                Destroy(gameObject);
+            }
+        }
+    }
+
 
     //エフェクト
     private void Effect() {

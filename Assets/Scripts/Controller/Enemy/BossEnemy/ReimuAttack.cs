@@ -26,7 +26,7 @@ public class ReimuAttack : MonoBehaviour {
         while (true) {
             //移動
             _controller.Change_Parameter("DashBool");
-            _move.Start_Move(new Vector3(180f, -64f), 64f, 0.015f);
+            _move.Start_Move(new Vector3(180f, -64f), 64f, 0.014f);
             yield return new WaitUntil(_move.End_Move);
             _controller.Change_Parameter("AttackBool");
             transform.localScale = new Vector3(-1, 1, 1);
@@ -58,6 +58,7 @@ public class ReimuAttack : MonoBehaviour {
             _bullet.Set_Bullet(yin_Bullet);
             _bullet.Odd_Num_Bullet(1, 0, 200f, 0);
             UsualSoundManager.Shot_Sound();
+            UsualSoundManager.Small_Shot_Sound();
             GameObject spread_Effect = Instantiate(Resources.Load("Effect/PowerSpreadEffect") as GameObject);
             spread_Effect.transform.position = transform.position;
             Destroy(spread_Effect, 3.0f);
@@ -100,17 +101,20 @@ public class ReimuAttack : MonoBehaviour {
             _bullet_Pool.Set_Bullet_Pool(white_Talisman_Pool);
             float center_Angle = Random.Range(-90, 90);
             _bullet_Pool.Diffusion_Bullet(24, 90f, center_Angle, 7.0f);
+            UsualSoundManager.Shot_Sound();
             yield return new WaitForSeconds(0.3f);
             center_Angle += 7f;
             _bullet_Pool.Set_Bullet_Pool(red_Talisman_Pool);
             for (int i = 1; i < 4; i++) {
                 _bullet_Pool.Diffusion_Bullet(24, (90f - i * 5), (center_Angle + i * 3), 7.0f);
             }
+            UsualSoundManager.Shot_Sound();
             yield return new WaitForSeconds(0.5f);
             //弾をばらまきながら移動
             _controller.Change_Parameter("DashBool");
             _scatter_Bullet.Set_Bullet_Pool(red_Bullet_Pool);
             _scatter_Bullet.Start_Scatter(30f, 50f, 2.0f, 9.0f);
+            UsualSoundManager.Small_Shot_Sound();
             Vector3 next_Pos;
             if (transform.position.y < 0) {
                 next_Pos = new Vector3(140f, 24f);

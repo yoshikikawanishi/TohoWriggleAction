@@ -155,6 +155,7 @@ public class LarvaController : MonoBehaviour {
             float player_Angle = Angle_To_Player();
             for (int i = 0; i < 8; i++) {
                 Shoot_Rice_Bullets(player_Angle, i);
+                UsualSoundManager.Small_Shot_Sound();
                 yield return new WaitForSeconds(0.3f);
             }
             //自機狙い赤弾

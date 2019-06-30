@@ -32,7 +32,7 @@ public class HomingPlayerBullet : MonoBehaviour {
         for (float t = 0; t < 1f; t += Time.deltaTime) {
             if(player != null) {
                 transform.LookAt2D(player.transform, Vector2.right);
-                _rigid.velocity += (Vector2)transform.right * 5f;
+                _rigid.velocity += (Vector2)transform.right * 4f;
                 float dirVelocity = Mathf.Atan2(GetComponent<Rigidbody2D>().velocity.y, GetComponent<Rigidbody2D>().velocity.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(dirVelocity, new Vector3(0, 0, 1));
             }

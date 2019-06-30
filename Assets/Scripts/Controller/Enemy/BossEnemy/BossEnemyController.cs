@@ -149,7 +149,7 @@ public class BossEnemyController : MonoBehaviour {
         bomb.transform.position = transform.position;
         //画面を揺らす
         CameraShake _shake = gameObject.AddComponent<CameraShake>();
-        _shake.Shake(0.25f, 3f);
+        _shake.Shake(0.25f, 4f);
         //アイテムを出す
         Put_Out_Item();
     }

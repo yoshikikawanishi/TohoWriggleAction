@@ -57,7 +57,7 @@ public class MoveBetweenTwoPoints : MonoBehaviour {
             if (now_Location >= 0.8f && Time.timeScale != 0) {
                 speed *= 0.9f;
             }
-            yield return null;
+            yield return new WaitForSeconds(0.016f);
         }
 
         end_Move = true;

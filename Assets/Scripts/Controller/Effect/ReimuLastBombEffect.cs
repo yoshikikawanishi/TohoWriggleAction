@@ -47,7 +47,7 @@ public class ReimuLastBombEffect : MonoBehaviour {
             pm.startColor = new Color(i / 7f, (7f - i) / 7f, i / 14f);
             UsualSoundManager.Shot_Sound();
             CameraShake _shake = gameObject.AddComponent<CameraShake>();
-            _shake.Shake(0.25f, 2);
+            _shake.Shake(0.25f, 3);
             yield return new WaitForSeconds(0.6f);
         }
     }
