@@ -22605,7 +22605,7 @@ MonoBehaviour:
   rightSide: 9000
   scroll_Left_Side: 6000
   scroll_Right_Side: 9000
-  scroll_Speed: 1
+  scroll_Speed: 0.8
 --- !u!114 &1763222467
 MonoBehaviour:
   m_ObjectHideFlags: 0

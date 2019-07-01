@@ -3473,7 +3473,7 @@ MonoBehaviour:
   rightSide: 5000
   scroll_Left_Side: -1
   scroll_Right_Side: 5000
-  scroll_Speed: 1.5
+  scroll_Speed: 1.2
 --- !u!81 &905340902
 AudioListener:
   m_ObjectHideFlags: 0
