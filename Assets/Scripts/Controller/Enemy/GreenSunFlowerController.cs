@@ -12,6 +12,7 @@ public class GreenSunFlowerController : MonoBehaviour {
 
     //登場後の流れ
     private IEnumerator SunFlowerFairy_Routine() {
+        UsualSoundManager.Small_Shot_Sound();
         //上から降りてくる
         float speed = 4.5f;
         while (speed >= 0){

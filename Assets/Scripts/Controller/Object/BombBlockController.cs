@@ -24,15 +24,7 @@ public class BombBlockController : MonoBehaviour {
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "PlayerAttackTag") {
-            if (transform.childCount != 0) {
-                //エフェクト出す
-                Effect(gameObject);
-                //誘爆
-                StartCoroutine("Caused_Explode");
-                //消滅
-                gameObject.GetComponent<Renderer>().enabled = false;
-                gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
-            }
+            Crash();
         }
     }
 
@@ -40,17 +32,25 @@ public class BombBlockController : MonoBehaviour {
     //OnCollisionEnter
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "DamageGroundTag") {
-            if (transform.childCount != 0) {
-                //エフェクト出す
-                Effect(gameObject);
-                //誘爆
-                StartCoroutine("Caused_Explode");
-                //消滅
-                gameObject.GetComponent<Renderer>().enabled = false;
-                gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
-            }
+            Crash();   
         }
     }
+
+
+    //爆発
+    private void Crash() {
+        if (transform.childCount != 0) {
+            //エフェクト出す
+            Effect(gameObject);
+            //誘爆
+            StartCoroutine("Caused_Explode");
+            //消滅
+            gameObject.GetComponent<Renderer>().enabled = false;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        }
+    }
+
 
     //誘爆
     private IEnumerator Caused_Explode() {

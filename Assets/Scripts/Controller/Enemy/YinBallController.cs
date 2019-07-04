@@ -30,7 +30,7 @@ public class YinBallController : MonoBehaviour {
 
     //登場後の流れ
     private IEnumerator YinBall_Routine() {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(6f/7f);
         //弾の発射
         BulletFunctions b = GetComponent<BulletFunctions>();
         var bullet = Resources.Load("Bullet/PurpleBullet") as GameObject;

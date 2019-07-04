@@ -63,32 +63,30 @@ public class Stage1_1Scene : MonoBehaviour {
                     }
                     yield return new WaitForSeconds(0.1f);
                 }
-                yield return new WaitForSeconds(1.5f);
+                yield return new WaitForSeconds(24f/7f - 0.4f);
             }
-
-            yield return new WaitForSeconds(0.8f);
 
             //SunFlowerEnemyの生成
             var sun = Instantiate(Resources.Load("Enemy/GreenSunFlowerFairy")) as GameObject;
             sun.transform.position = new Vector3(main_Camera.transform.position.x + 200f, 216f, 0);
-            yield return new WaitForSeconds(4.0f);
+            yield return new WaitForSeconds(24f/7f);
             GameObject[] suns = new GameObject[2];
             suns[0] = Instantiate(Resources.Load("Enemy/GreenSunFlowerFairy")) as GameObject;
             suns[1] = Instantiate(Resources.Load("Enemy/GreenSunFlowerFairy")) as GameObject;
             suns[0].transform.position = new Vector3(main_Camera.transform.position.x + 200f, 264f, 0);
             suns[1].transform.position = new Vector3(main_Camera.transform.position.x + 200f, 160f, 0);
 
-            yield return new WaitForSeconds(6.0f);
+            yield return new WaitForSeconds(48f/7f);
 
             //YinBallの生成
             for (int i = 0; i < 25; i++) {
                 var yin = Instantiate(Resources.Load("Enemy/YinBall")) as GameObject;
                 Vector3 pos = new Vector3(Random.Range(-64f, 64f), Random.Range(195f, 200f), 0);
                 yin.transform.position = new Vector3(main_Camera.transform.position.x, 0, 0) + pos;
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(3f/7f);
             }
 
-            yield return new WaitForSeconds(6.0f);
+            yield return new WaitForSeconds(72f/7f - (3f*25f)/7f);
         }
     }
 

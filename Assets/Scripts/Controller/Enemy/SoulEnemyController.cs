@@ -14,6 +14,7 @@ public class SoulEnemyController : MonoBehaviour {
         _rigid = GetComponent<Rigidbody2D>();
         //登場後の流れ
         StartCoroutine("SoulEnemy_Routine");
+        UsualSoundManager.Small_Shot_Sound();
     }
 	
 
@@ -32,7 +33,7 @@ public class SoulEnemyController : MonoBehaviour {
 
     //登場後の流れ
     private IEnumerator SoulEnemy_Routine() {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(12f/7f);
         //弾の発射
         var bullet = Instantiate(Resources.Load("Bullet/PurpleBullet")) as GameObject;
         bullet.transform.position = transform.position;

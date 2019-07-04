@@ -27,7 +27,9 @@ public class MiddleGreenFairy : Enemy {
         }
         //使い魔のエフェクト
         familiar_Vanish_Effect = Resources.Load("Effect/FamiliarVanishEffect") as GameObject;
-       
+
+        UsualSoundManager.Small_Shot_Sound();
+
         //行動
         switch (kind) {
             case 1:
@@ -57,7 +59,7 @@ public class MiddleGreenFairy : Enemy {
         //奇数弾
         for (int i = 0; i < 4; i++) {
             _bullet.Odd_Num_Bullet(3, 30f, 90f, 7.0f);
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(12f/7f);
         }
     }
 
@@ -84,7 +86,7 @@ public class MiddleGreenFairy : Enemy {
                 f_Bullet.Odd_Num_Bullet(1, 0, 90, 7.0f);
                 f_Bullet.Odd_Num_Bullet(1, 0, -90, 7.0f);
             }
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(12f/7f);
         }
     }
 
