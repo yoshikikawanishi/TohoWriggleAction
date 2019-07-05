@@ -15,7 +15,7 @@ public class BirdFamiliarBullet : MonoBehaviour {
     private IEnumerator Move() {
         yield return new WaitForSeconds(48f / 7f);
         for(float t = 0; t < 7.0f; t += Time.deltaTime) {
-            transform.position += transform.right * -1.6f;
+            transform.position += transform.right * 1.6f;
             yield return new WaitForSeconds(0.016f);
         }
         Destroy(gameObject);

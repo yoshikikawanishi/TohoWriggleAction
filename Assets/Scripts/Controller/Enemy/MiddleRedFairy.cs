@@ -5,7 +5,7 @@ using UnityEngine;
 public class MiddleRedFairy : Enemy {
 
     //スクリプト
-    private BulletFunctions _bullet;
+    private BulletScrollFunctions _bullet_Scroll;
     private BulletScrollPoolFunctions _bullet_Scroll_Pool;
     
 
@@ -13,7 +13,7 @@ public class MiddleRedFairy : Enemy {
     new void Start () {
         base.Start();
         //スクリプト
-        _bullet = gameObject.AddComponent<BulletFunctions>();
+        _bullet_Scroll = gameObject.AddComponent<BulletScrollFunctions>();
         _bullet_Scroll_Pool = gameObject.AddComponent<BulletScrollPoolFunctions>();
 
         UsualSoundManager.Small_Shot_Sound();
@@ -34,8 +34,8 @@ public class MiddleRedFairy : Enemy {
         //使い魔突進
         GameObject familiar = transform.GetChild(0).gameObject;
         familiar.SetActive(true);
-        _bullet.Set_Bullet(familiar);
-        _bullet.Odd_Num_Bullet(3, 10f, 100f, 8.0f);
+        _bullet_Scroll.Set_Bullet(familiar);
+        _bullet_Scroll.Odd_Num_Bullet(3, 10f, 100f, 8.0f);
         Destroy(familiar);
         yield return new WaitForSeconds(12f / 7f);
         //ショット

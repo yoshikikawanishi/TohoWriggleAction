@@ -6,17 +6,21 @@ public class Familiar : MonoBehaviour {
 
     //コンポーネント
     private SpriteRenderer _sprite;
+    private Renderer _renderer;
 
 	// Use this for initialization
 	void Start () {
         //コンポーネント
         _sprite = GetComponent<SpriteRenderer>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        Become_Invisible();
-	}
+        _renderer = GetComponent<Renderer>();
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if (_renderer.isVisible) {
+            Become_Invisible();
+        }
+    }
 
     //LShiftで透明化
     private void Become_Invisible() {

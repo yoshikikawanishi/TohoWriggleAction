@@ -14,7 +14,6 @@ public class RedFairyController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
         //コンポーネントの取得
         _rigid = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<Renderer>();
