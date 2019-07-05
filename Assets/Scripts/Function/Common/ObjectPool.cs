@@ -8,6 +8,8 @@ public class ObjectPool : MonoBehaviour {
 
     //オブジェクトプールされているかどうか
     private bool is_Pooled = false;
+    //オブジェクトの数
+    private int obj_Num = 0;
 
     // オブジェクトプールを作成
     public void CreatePool(GameObject obj, int maxCount) {
@@ -41,13 +43,18 @@ public class ObjectPool : MonoBehaviour {
     private GameObject CreateNewObject() {
         var newObj = Instantiate(_poolObj);
         newObj.name = _poolObj.name + (_poolObjList.Count + 1);
-
+        obj_Num++;
         return newObj;
     }
 
     //オブジェクトプールされているかどうか
     public bool Is_Pooled() {
         return is_Pooled;
+    }
+
+    //オブジェクトの数
+    public int Obj_Num() {
+        return obj_Num;
     }
 
 }

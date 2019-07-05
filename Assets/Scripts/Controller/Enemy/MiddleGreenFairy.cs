@@ -9,9 +9,6 @@ public class MiddleGreenFairy : Enemy {
     //スクリプト
     private BulletScrollFunctions _bullet;
 
-    //使い魔の消滅エフェクト
-    private GameObject familiar_Vanish_Effect;
-
 
 	// Use this for initialization
 	new void Start () {
@@ -25,8 +22,6 @@ public class MiddleGreenFairy : Enemy {
             BulletScrollFunctions b = transform.GetChild(i).gameObject.AddComponent<BulletScrollFunctions>();
             familiars_Bullet.Add(b);
         }
-        //使い魔のエフェクト
-        familiar_Vanish_Effect = Resources.Load("Effect/FamiliarVanishEffect") as GameObject;
 
         UsualSoundManager.Small_Shot_Sound();
 
@@ -94,7 +89,8 @@ public class MiddleGreenFairy : Enemy {
     //消滅時
     protected override void Vanish() {
         //使い魔の消滅
-        for(int i = 0; i < transform.childCount; i++) {
+        GameObject familiar_Vanish_Effect = Resources.Load("Effect/FamiliarVanishEffect") as GameObject;
+        for (int i = 0; i < transform.childCount; i++) {
             GameObject effect = Instantiate(familiar_Vanish_Effect);
             effect.transform.position = transform.GetChild(i).position;
         }

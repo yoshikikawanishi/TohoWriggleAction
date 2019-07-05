@@ -7,6 +7,7 @@ public class UsualSoundManager : MonoBehaviour {
     //ショット音
     static public AudioSource shot_Sound;
     static public AudioSource small_Shot_Sound;
+    static public AudioSource familiar_Appear_Sound;
 
     //シングルトン用
     public static UsualSoundManager instance;
@@ -23,6 +24,7 @@ public class UsualSoundManager : MonoBehaviour {
 
         shot_Sound = GetComponents<AudioSource>()[0];
         small_Shot_Sound = GetComponents<AudioSource>()[1];
+        familiar_Appear_Sound = GetComponents<AudioSource>()[2];
     }
 
 
@@ -34,5 +36,10 @@ public class UsualSoundManager : MonoBehaviour {
     //はじける音
     static public void Small_Shot_Sound() {
         small_Shot_Sound.Play();
+    }
+
+    //使い魔実体化音
+    static public void Familiar_Appear_Sound() {
+        familiar_Appear_Sound.Play();
     }
 }
