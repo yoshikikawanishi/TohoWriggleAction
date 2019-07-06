@@ -7,14 +7,16 @@ public class MiddleGreenFairy : Enemy {
     //種類
     [SerializeField] private int kind;
     //スクリプト
-    private BulletScrollFunctions _bullet;
+    private BulletScrollPoolFunctions _bullet;
+    private ObjectPoolManager pool_Manager;
 
 
 	// Use this for initialization
 	new void Start () {
         base.Start();
         //スクリプト
-        _bullet = gameObject.AddComponent<BulletScrollFunctions>();
+        _bullet = gameObject.AddComponent<BulletScrollPoolFunctions>();
+        pool_Manager = GameObject.FindWithTag("BulletPoolTag").GetComponent<ObjectPoolManager>();
 
         //使い魔にBulletFunctionsをアタッチ
         List<BulletScrollFunctions> familiars_Bullet = new List<BulletScrollFunctions>();
@@ -48,7 +50,8 @@ public class MiddleGreenFairy : Enemy {
         }
         yield return new WaitForSeconds(1.0f);
         //全方位弾
-        _bullet.Set_Bullet(Resources.Load("Bullet/RedRiceBullet") as GameObject);
+        ObjectPool pool = pool_Manager.Get_Pool(Resources.Load("Bullet/PooledBullet/RedRiceBullet_Pool") as GameObject);
+        _bullet.Set_Bullet_Pool(pool);
         _bullet.Diffusion_Bullet(16, 70, 0, 7.0f);
         UsualSoundManager.Shot_Sound();
         //奇数弾
@@ -56,6 +59,14 @@ public class MiddleGreenFairy : Enemy {
             _bullet.Odd_Num_Bullet(3, 30f, 90f, 7.0f);
             yield return new WaitForSeconds(12f/7f);
         }
+        //上にはける
+        while (transform.position.y < 210f) {
+            transform.position += new Vector3(0, speed * Time.timeScale, 0);
+            speed += 0.05f * Time.timeScale;
+            yield return null;
+        }
+        //消す
+        Destroy(gameObject);
     }
 
 
@@ -70,7 +81,8 @@ public class MiddleGreenFairy : Enemy {
         }
         yield return new WaitForSeconds(1.0f);
         //全方位弾
-        _bullet.Set_Bullet(Resources.Load("Bullet/BlueRiceBullet") as GameObject);
+        ObjectPool pool = pool_Manager.Get_Pool(Resources.Load("Bullet/PooledBullet/BlueRiceBullet_Pool") as GameObject);
+        _bullet.Set_Bullet_Pool(pool);
         _bullet.Diffusion_Bullet(16, 70, 0, 7.0f);
         UsualSoundManager.Shot_Sound();
         //自機狙い弾
@@ -83,6 +95,14 @@ public class MiddleGreenFairy : Enemy {
             }
             yield return new WaitForSeconds(12f/7f);
         }
+        //下にはける
+        while (transform.position.y > -210f) {
+            transform.position += new Vector3(0, -speed * Time.timeScale, 0);
+            speed += 0.05f * Time.timeScale;
+            yield return null;
+        }
+        //消す
+        Destroy(gameObject);
     }
 
 

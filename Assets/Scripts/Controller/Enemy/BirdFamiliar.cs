@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BirdFamiliar : MonoBehaviour {
 
-    //自機
-    private GameObject player;
+    //コンポーネント
+    private ParticleSystem child_particle;
+    //カメラ
     private GameObject main_Camera;
     //行動開始
     private bool start_Action = false;
@@ -13,19 +14,20 @@ public class BirdFamiliar : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //自機
-        player = GameObject.FindWithTag("PlayerTag");
-        main_Camera = GameObject.FindWithTag("MainCamera");
-        
+        //コンポーネント
+        child_particle = GetComponentInChildren<ParticleSystem>();
+        //カメラ
+        main_Camera = GameObject.FindWithTag("MainCamera");       
     }
 	
 
     //FixedUpDate
     private void FixedUpdate() {
         //行動
-        if (main_Camera.transform.position.x > transform.position.x - 240f && !start_Action) {
+        if (main_Camera.transform.position.x > transform.position.x - 250f && !start_Action) {
             start_Action = true;
             transform.SetParent(main_Camera.transform);
+            child_particle.Play();
             StartCoroutine("Shot");
             Destroy(gameObject, 7.0f);
         }

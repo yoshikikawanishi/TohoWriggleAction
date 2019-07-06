@@ -35,7 +35,7 @@ public class MiddleRedFairy : Enemy {
         GameObject familiar = transform.GetChild(0).gameObject;
         familiar.SetActive(true);
         _bullet_Scroll.Set_Bullet(familiar);
-        _bullet_Scroll.Odd_Num_Bullet(3, 10f, 100f, 8.0f);
+        _bullet_Scroll.Odd_Num_Bullet(3, 10f, 150f, 8.0f);
         Destroy(familiar);
         yield return new WaitForSeconds(12f / 7f);
         //ショット
@@ -44,10 +44,18 @@ public class MiddleRedFairy : Enemy {
         _bullet_Scroll_Pool.Set_Bullet_Pool(pool_Manager.Get_Pool(bullet));
         for(int i = 0; i < 2; i++) {
             for(int j = 0; j < 7; j++) {
-                _bullet_Scroll_Pool.Odd_Num_Bullet(3, 25f, 50f+j*10f, 5.0f);
+                _bullet_Scroll_Pool.Odd_Num_Bullet(3, 25f, 70f+j*7f, 10.0f);
             }
             yield return new WaitForSeconds(12f / 7f);
         }
+        //上にはける
+        while (transform.position.y < 210f) {
+            transform.position += new Vector3(0, speed * Time.timeScale, 0);
+            speed += 0.05f * Time.timeScale;
+            yield return null;
+        }
+        //消す
+        Destroy(gameObject);
     }
 
 

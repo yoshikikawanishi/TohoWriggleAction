@@ -57,6 +57,7 @@ public class Sparrow : MonoBehaviour {
         }
         transform.SetParent(null);
         //突進
+        GetComponent<SpriteRenderer>().sortingOrder = -1;
         _anim.SetBool("AttackBool", true);
         gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
         transform.position = player.transform.position + new Vector3(360f, 0);

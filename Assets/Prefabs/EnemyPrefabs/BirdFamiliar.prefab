@@ -58,9 +58,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1437663418401064}
-  m_LocalRotation: {x: 0, y: -0, z: 0.9848078, w: -0.17364809}
-  m_LocalPosition: {x: 6381.9067, y: 115.70522, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.9848078, w: -0.17364809}
+  m_LocalPosition: {x: 6150.5, y: 83.3, z: 0}
+  m_LocalScale: {x: 0.5000001, y: 0.5000001, z: 1}
   m_Children:
   - {fileID: 4698516589353824}
   m_Father: {fileID: 0}
@@ -242,7 +242,7 @@ MonoBehaviour:
   life: 5
   score_Value: 200
   power_Value: 2
-  probability_Recover_Item: 20
+  probability_Recover_Item: 0
   item_Out_Speed: 500
   is_Hit_Spikes: 0
 --- !u!114 &114821446059812824
@@ -279,7 +279,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
