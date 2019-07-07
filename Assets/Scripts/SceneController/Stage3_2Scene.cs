@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage3_2Scene : MonoBehaviour {
 
@@ -23,7 +24,7 @@ public class Stage3_2Scene : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         //スクロール時の時期の動き
-        if(main_Camera.transform.position.x > 5800f && player != null) {
+        if (main_Camera.transform.position.x > 5800f && player != null) {
             if (player_Controller.Get_Is_Fly() && player.transform.parent != main_Camera.transform) {
                 player.transform.SetParent(main_Camera.transform);
             }
@@ -32,9 +33,13 @@ public class Stage3_2Scene : MonoBehaviour {
             }
         }
         //適生成
-        if(main_Camera.transform.position.x > 5800f && !start_Enemy_Gen) {
+        if (main_Camera.transform.position.x > 5800f && !start_Enemy_Gen) {
             start_Enemy_Gen = true;
             StartCoroutine("Enemy_Gen");
+        }
+        //シーン遷移
+        if (player.transform.position.x > 10240f) {
+            SceneManager.LoadScene("Stage3_BossScene");
         }
     }
 

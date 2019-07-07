@@ -6,7 +6,9 @@ public class SpikeBlock : MonoBehaviour {
 
     //カメラ
     private GameObject main_Camera;
-    
+
+    //消滅時のエフェクト
+    [SerializeField] private GameObject delete_Effect;
     //初期位置
     private float default_Y;
     //振幅
@@ -17,8 +19,8 @@ public class SpikeBlock : MonoBehaviour {
     private int direction = 1;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         main_Camera = GameObject.FindWithTag("MainCamera");
         default_Y = transform.position.y;
     }
@@ -26,15 +28,67 @@ public class SpikeBlock : MonoBehaviour {
 
     //FixedUpdate
     private void FixedUpdate() {
-        if(Mathf.Abs(main_Camera.transform.position.x - transform.position.x) < 240f) {
+        if (Mathf.Abs(main_Camera.transform.position.x - transform.position.x) < 240f) {
             transform.position += new Vector3(0, speed * direction);
             //方向転換
             if (transform.position.y >= default_Y + amplitude / 2 && direction == 1) {
                 direction = -1;
             }
-            else if(transform.position.y <= default_Y - amplitude / 2 && direction == -1) {
+            else if (transform.position.y <= default_Y - amplitude / 2 && direction == -1) {
                 direction = 1;
             }
         }
     }
+
+
+    //OnTriggerEnter
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "PlayerBodyTag" || collision.tag == "PlayerAttackTag" || collision.tag == "PlayerBulletTag") {
+            Crash();
+        }
+    }
+
+    //OnCollisionEnter
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "PlayerBodyTag") {
+            Crash();
+        }
+    }
+
+
+    //誘爆
+    private void Crash() {
+        //消す
+        GameObject effect = Instantiate(delete_Effect, transform);
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        GetComponent<Renderer>().enabled = false;
+        Destroy(gameObject, 3.0f);
+        //誘爆ブロックの取得
+        List<GameObject> upper_Blocks = new List<GameObject>();
+        List<GameObject> lower_Blocks = new List<GameObject>();
+        foreach(RaycastHit2D hit in Physics2D.RaycastAll(transform.position, new Vector2(0, 1), 150)) {
+            if(hit.collider.tag == "GroundTag") {
+                upper_Blocks.Add(hit.collider.gameObject);
+            }
+        }
+        foreach (RaycastHit2D hit in Physics2D.RaycastAll(transform.position, new Vector2(0, -1), 150)) {
+            if (hit.collider.tag == "GroundTag") {
+                lower_Blocks.Add(hit.collider.gameObject);
+            }
+        }
+        //誘爆ブロックを順番に消す
+        StartCoroutine(Order_Crash(upper_Blocks));
+        StartCoroutine(Order_Crash(lower_Blocks));
+    }
+
+
+    //誘爆ブロックを順番に消す
+    private IEnumerator Order_Crash(List<GameObject> blocks) {
+        for (int i = 0; i < blocks.Count; i++) {
+            Destroy(blocks[i]);
+            GetComponents<AudioSource>()[1].Play();
+            yield return new WaitForSeconds(3f / 28f);
+        }
+    }
+
 }

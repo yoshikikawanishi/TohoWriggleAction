@@ -174,7 +174,7 @@ public class WriggleController : PlayerController {
         }
         //空中ならライダーキック
         else {
-            _rigid.velocity = new Vector2(200f * transform.localScale.x, -250f);
+            _rigid.velocity = new Vector2(240f * transform.localScale.x, -270f);
         }
         //キックが敵にヒットした時跳ね返る(WriggleKickCollisionで衝突判定)
         for (float time = 0; time < 0.3f; time += Time.deltaTime) {

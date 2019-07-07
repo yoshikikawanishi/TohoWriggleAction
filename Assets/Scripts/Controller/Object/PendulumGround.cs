@@ -27,10 +27,11 @@ public class PendulumGround : MonoBehaviour {
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "PlayerFootTag") {
-            if (!start_Action && player_Rigid.velocity.y < 5f && !player_Controller.Get_Is_Fly()) {
+            if (!start_Action && player_Rigid.velocity.y < 7f && !player_Controller.Get_Is_Fly()) {
                 start_Action = true;
                 Pendulum_Move();
             }
+            StopCoroutine("Drop_Player");
             player.transform.SetParent(gameObject.transform);
         }
     }
@@ -38,15 +39,20 @@ public class PendulumGround : MonoBehaviour {
     //OnTriggerExit
     private void OnTriggerExit2D(Collider2D collision) {
         if (player.transform.parent == gameObject.transform) {
-            player.transform.SetParent(null);
+            StartCoroutine("Drop_Player");
         }
+    }
+
+    private IEnumerator Drop_Player() {
+        yield return new WaitForSeconds(0.1f);
+        player.transform.SetParent(null);
     }
 
     //動く
     private void Pendulum_Move() {
         MoveBetweenTwoPoints _move = gameObject.AddComponent<MoveBetweenTwoPoints>();
         Vector3 next_Pos = transform.position + new Vector3(move_Distance, 0);
-        _move.Start_Move(next_Pos, -64f, 0.015f);
+        _move.Start_Move(next_Pos, -64f, 0.016f);
     }
 
 }
