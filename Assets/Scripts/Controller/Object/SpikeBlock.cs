@@ -18,6 +18,9 @@ public class SpikeBlock : MonoBehaviour {
     //方向
     private int direction = 1;
 
+    //被弾の見地
+    private bool is_Hit = false;
+
 
     // Use this for initialization
     void Start() {
@@ -43,15 +46,17 @@ public class SpikeBlock : MonoBehaviour {
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "PlayerBodyTag" || collision.tag == "PlayerAttackTag" || collision.tag == "PlayerBulletTag") {
+        if (collision.tag == "PlayerAttackTag" || collision.tag == "PlayerBulletTag" && !is_Hit) {
             Crash();
+            is_Hit = true;
         }
     }
 
     //OnCollisionEnter
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "PlayerBodyTag") {
+        if (collision.gameObject.tag == "PlayerBodyTag" && !is_Hit) {
             Crash();
+            is_Hit = true;
         }
     }
 
@@ -85,6 +90,9 @@ public class SpikeBlock : MonoBehaviour {
     //誘爆ブロックを順番に消す
     private IEnumerator Order_Crash(List<GameObject> blocks) {
         for (int i = 0; i < blocks.Count; i++) {
+            GameObject effect = Instantiate(Resources.Load("Effect/SmokeEffect") as GameObject);
+            effect.transform.position = blocks[i].transform.position;
+            Destroy(effect, 0.2f);
             Destroy(blocks[i]);
             GetComponents<AudioSource>()[1].Play();
             yield return new WaitForSeconds(3f / 28f);

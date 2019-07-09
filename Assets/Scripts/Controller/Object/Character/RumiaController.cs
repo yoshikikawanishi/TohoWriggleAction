@@ -92,7 +92,7 @@ public class RumiaController : MonoBehaviour {
         }
         yield return new WaitForSeconds(1.0f);
         //逃げる
-        Escape();
+        //Escape();
     }
 
     //逃亡

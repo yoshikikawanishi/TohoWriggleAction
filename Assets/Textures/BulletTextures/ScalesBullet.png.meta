@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: bf3fdf39dd739bb4c97514f80bcfe46b
+guid: ee18cf90702a35a45acf489f863fe99c
 TextureImporter:
   fileIDToRecycleName:
-    21300000: BirdFamiliar_0
-    21300002: BirdFamiliar_1
-    21300004: BirdFamiliar_2
-    21300006: BirdFamiliar_3
+    21300000: ScalesBullet_0
+    21300002: ScalesBullet_1
+    21300004: ScalesBullet_2
+    21300006: ScalesBullet_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -121,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BirdFamiliar_0
+      name: ScalesBullet_0
       rect:
         serializedVersion: 2
-        x: 11
+        x: 2
         y: 1
-        width: 14
-        height: 30
+        width: 13
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,19 +135,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b32bb3c37e8451f4ca6e2afdc77babc8
+      spriteID: e5936bc6c2d47714fae93d73d9ae4ba7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BirdFamiliar_1
+      name: ScalesBullet_1
       rect:
         serializedVersion: 2
-        x: 36
-        y: 0
-        width: 14
-        height: 32
+        x: 17
+        y: 1
+        width: 13
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,19 +155,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 624cdd8a65219e94180d7c81b3dfc072
+      spriteID: eaef19fca7287544ba3ebcd734a0af28
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BirdFamiliar_2
+      name: ScalesBullet_2
       rect:
         serializedVersion: 2
-        x: 61
+        x: 32
         y: 1
-        width: 14
-        height: 30
+        width: 13
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,19 +175,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd63f78869d815e4da90ea1ca4a5d1a0
+      spriteID: a5abcbb7c48ce3e4585d2871593db6a0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BirdFamiliar_3
+      name: ScalesBullet_3
       rect:
         serializedVersion: 2
-        x: 86
+        x: 47
         y: 1
-        width: 14
-        height: 30
+        width: 13
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,7 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcfefc6b577f34f4682b8724e174e707
+      spriteID: 5853c77c7b43be84ea0e6aeab637f923
       vertices: []
       indices: 
       edges: []
@@ -203,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 840b4c962f57f1647b7e81d6f4e08a9c
+    spriteID: 404944e73bf48a14fb1f422fd24b2819
     vertices: []
     indices: 
     edges: []

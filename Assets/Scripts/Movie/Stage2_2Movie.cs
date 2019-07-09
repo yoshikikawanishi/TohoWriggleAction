@@ -173,6 +173,7 @@ public class Stage2_2Movie : MonoBehaviour {
         player.GetComponents<AudioSource>()[1].Play();
         yield return new WaitForSeconds(2.0f);
 
+        yield return new WaitUntil(Is_End_Message);
         //終了設定
         player_Controller.Set_Playable(true);
     }

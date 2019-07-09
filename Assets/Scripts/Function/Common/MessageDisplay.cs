@@ -127,7 +127,7 @@ public class MessageDisplay : MonoBehaviour {
                     messageText.text += textWords[i, 3][j];
                     sound.Play();
                 }
-                yield return new WaitForSeconds(textSpeed);
+                for (float t = 0; t < textSpeed; t += 0.016f) { yield return null; }
             }
             //1行分表示後決定が押されるのを待つ
             yield return new WaitUntil(Wait_Input_Z);

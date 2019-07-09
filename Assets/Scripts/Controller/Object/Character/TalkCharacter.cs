@@ -71,12 +71,15 @@ public class TalkCharacter : MonoBehaviour {
             //ポーズ禁止
             PauseManager _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
             _pause.Set_Pausable(false);
+            //停止
+            Time.timeScale = 0;
             //メッセージ開始
             _message.Start_Display(fileName, start_ID, end_ID);
             yield return new WaitUntil(_message.End_Message);
             //終了
             player_Controller.Set_Playable(true);
             _pause.Set_Pausable(true);
+            Time.timeScale = 1;
         }
         end_Talk = true;
         is_Talking = false;
