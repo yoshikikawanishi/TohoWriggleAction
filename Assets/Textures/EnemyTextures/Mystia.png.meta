@@ -1,15 +1,19 @@
 fileFormatVersion: 2
-guid: aaf8df2c871aafa4498a01b108b1c4f6
+guid: d70fcffbcb8ac624c9eb283e89524a80
 TextureImporter:
   fileIDToRecycleName:
-    21300000: BeetleBulletEffect_0
-    21300002: BeetleBulletEffect_1
-    21300004: BeetleBulletEffect_2
-    21300006: BeetleBulletEffect_3
-    21300008: BeetleBulletEffect_4
-    21300010: BeetleBulletEffect_5
-    21300012: BeetleBulletEffect_6
-    21300014: BeetleBulletEffect_7
+    21300000: Mystia_0
+    21300002: Mystia_1
+    21300004: Mystia_2
+    21300006: Mystia_3
+    21300008: Mystia_4
+    21300010: Mystia_5
+    21300012: Mystia_6
+    21300014: Mystia_7
+    21300016: Mystia_8
+    21300018: Mystia_9
+    21300020: Mystia_10
+    21300022: Mystia_11
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -71,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -82,7 +86,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -93,7 +97,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -104,7 +108,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,7 +119,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -125,161 +129,241 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BeetleBulletEffect_0
+      name: Mystia_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 14
-        width: 20
-        height: 16
+        x: 1
+        y: 68
+        width: 30
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfb9ca50efc7b3e408aaa5253594cc94
+      spriteID: 7428e77e349e8d644822b865b555d072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeetleBulletEffect_1
+      name: Mystia_1
       rect:
         serializedVersion: 2
-        x: 41
-        y: 10
-        width: 24
-        height: 22
+        x: 36
+        y: 68
+        width: 30
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 329614de3c62de041b7efd3fb7ef2cbb
+      spriteID: 84c5bdc517ecbee44bdcf19c35a373fb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeetleBulletEffect_2
+      name: Mystia_2
       rect:
         serializedVersion: 2
-        x: 80
-        y: 9
+        x: 71
+        y: 68
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdbfae99ecbb0904ebba1ad0e296c6a1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystia_3
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 68
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcde4ed8e10565b43bfa3cd2e4c1747b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystia_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 39
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26005269de02e3a4badae55ffe1f7594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystia_5
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 39
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b774162b2e630d40b8fdf140c1fa092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystia_6
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 39
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e953e036e050a146a250352cc4bcfb3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystia_7
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 39
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db7a050e852619843970fd50dd5578a8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystia_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
         width: 32
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43ebcd6d6f668314db553d618fe2307a
+      spriteID: b7062b1a69e297d4c927d7b277a08365
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeetleBulletEffect_3
+      name: Mystia_9
       rect:
         serializedVersion: 2
-        x: 125
-        y: 7
-        width: 37
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 35
+        y: 0
+        width: 32
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf2e77f05cde830418f4da0d9de0d9e1
+      spriteID: 61ebdbca93bff8b4a9572bc773707fa5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeetleBulletEffect_4
+      name: Mystia_10
       rect:
         serializedVersion: 2
-        x: 174
-        y: 2
-        width: 40
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 70
+        y: 0
+        width: 32
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdd854b78d1794a43b5933624d1c5dcd
+      spriteID: ff5920d5f92683d44a59102055b7baad
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeetleBulletEffect_5
+      name: Mystia_11
       rect:
         serializedVersion: 2
-        x: 224
-        y: 6
-        width: 37
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 105
+        y: 0
+        width: 32
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3593edc70f05e2347b8d8a5cc89fbf88
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BeetleBulletEffect_6
-      rect:
-        serializedVersion: 2
-        x: 266
-        y: 12
-        width: 19
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 211755089c8cb004b8c6dceb896d3e88
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BeetleBulletEffect_7
-      rect:
-        serializedVersion: 2
-        x: 298
-        y: 17
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2b5c8e813aea04d48ba73bb25f35d498
+      spriteID: 100390b22baea3e429713b84c8635723
       vertices: []
       indices: 
       edges: []
@@ -287,7 +371,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d696e494c8f11c14cb02c9cb5884ed86
+    spriteID: d459f05817a346e4a98a6fbf5563efc5
     vertices: []
     indices: 
     edges: []

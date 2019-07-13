@@ -79,6 +79,9 @@ public class Stage3_BossMovie : MonoBehaviour {
 
         //移動
         mystia_Move.Start_Move(new Vector3(150f, 0, 0), -16f, 0.016f);
+        mystia_Controller.Change_Parameter("DashBool");
+        yield return new WaitUntil(mystia_Move.End_Move);
+        mystia_Controller.Change_Parameter("IdleBool");
 
         //ミスティア登場会話
         while (movie_Progress < 2) { yield return null; }

@@ -52,11 +52,11 @@ public class Enemy : MonoBehaviour {
             Damaged(1);
         }
         //キック、ボムに当たった時
-        else if(collision.tag == "PlayerAttackTag" || collision.tag == "BombTag") {
-            Damaged(25);
+        if(collision.tag == "PlayerAttackTag" || collision.tag == "BombTag") {
+            Damaged(15);
         }
         //ダメージ床に当たった時(地上を歩く敵)
-        else if (collision.tag == "DamageGroundTag" && is_Hit_Spikes) {
+        if (collision.tag == "DamageGroundTag" && is_Hit_Spikes) {
             Damaged(life);
         }
     }

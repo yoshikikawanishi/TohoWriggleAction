@@ -78,6 +78,7 @@ public class RumiaController : MonoBehaviour {
         _rigid.gravityScale = 50f;
         _anim.SetBool("FallBool", true);
         transform.localScale = new Vector3(1, 1, 1);
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
     }
 
     //地面との衝突と点の発射
@@ -92,7 +93,7 @@ public class RumiaController : MonoBehaviour {
         }
         yield return new WaitForSeconds(1.0f);
         //逃げる
-        //Escape();
+        Escape();
     }
 
     //逃亡

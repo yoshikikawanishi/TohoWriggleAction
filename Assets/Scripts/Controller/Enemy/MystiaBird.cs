@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MystiaBird : MonoBehaviour {
 
+    public bool is_Phase1 = true;
+
     //方向
     public bool is_Right_Direction = true;
 
@@ -11,26 +13,52 @@ public class MystiaBird : MonoBehaviour {
     private Vector3 start_Pos;
     private Vector3 end_Pos;
 
+    //ショット
+    private float time = 0;
+    private float span;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start() {
         start_Pos = GameObject.Find("Mystia").transform.position;
-        //左向き
-        if (!is_Right_Direction) {
-            transform.localScale = new Vector3(-1, 1, 1);
-            end_Pos = start_Pos + new Vector3(-200f, 0);
+        if (is_Phase1) {
+            //左向き
+            if (!is_Right_Direction) {
+                transform.localScale = new Vector3(-1, 1, 1);
+                end_Pos = start_Pos + new Vector3(-200f, 0);
+            }
+            else {
+                end_Pos = start_Pos + new Vector3(200f, 0);
+            }
+            //移動
+            StartCoroutine("Move");
+            span = 3f / 7f;
         }
         else {
-            end_Pos = start_Pos + new Vector3(200f, 0);
+            span = 12f / 7f;
         }
-        //移動
-        StartCoroutine("Move");
-	}
+        time = span;
+    }
 	
+
 	// Update is called once per frame
 	void Update () {
-
+        //ショット
+        if(time < span) {
+            time += Time.deltaTime;
+        }
+        else {
+            time = 0;
+            GameObject bullet = Instantiate(Resources.Load("Bullet/MystiaScalesBullets") as GameObject);
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = transform.rotation;
+            if (is_Phase1) {
+                bullet.transform.Rotate(new Vector3(0, 0, 180f));
+            }
+            Destroy(bullet, 15f);
+        }
 	}
+
 
     //移動
     private IEnumerator Move() {
