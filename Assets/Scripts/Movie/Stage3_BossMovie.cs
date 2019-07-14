@@ -28,6 +28,7 @@ public class Stage3_BossMovie : MonoBehaviour {
     //ボス前ムービー
     public IEnumerator Before_Boss_Movie() {
         //初期設定
+        movie_Progress = 1;
         _pause.Set_Pausable(false);
         is_First_Visit = _gameManager.Is_First_Visit("Stage3_BossScene");
         StartCoroutine(Player_Timeline());
@@ -90,4 +91,12 @@ public class Stage3_BossMovie : MonoBehaviour {
         mystia_Controller.start_Battle = true;
     }
 	
+
+    //クリア後ムービー
+    public IEnumerator Clear_Movie() {
+        yield return null;
+        _message.Start_Display("MystiaText", 1, 1);
+        yield return new WaitUntil(_message.End_Message);
+    }
+
 }

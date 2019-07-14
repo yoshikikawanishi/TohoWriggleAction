@@ -13,6 +13,9 @@ public class Stage2_2Movie : MonoBehaviour {
     private Stage2_2Scene _sceneController;
     private GameManager _gameManager;
 
+    //ムービー進行度
+    private int movie_Progress = 1;
+
     //メッセージ終了検知用
     private bool is_End_Message = false;
 
@@ -27,30 +30,7 @@ public class Stage2_2Movie : MonoBehaviour {
         _sceneController = GameObject.Find("Scripts").GetComponent<Stage2_2Scene>();
         _gameManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
     }
-	
-
-	// Update is called once per frame
-	void Update () {
-        //メッセージ表示終了
-        if (_message.End_Message()) {
-            is_End_Message = true;
-        }
-    }
-
-    //LateUpdate
-    private void LateUpdate() {
-        //メッセージ表示終了の終了
-        is_End_Message = false;
-    }
-
-    //メッセージ表示終了の検知用
-    private bool Is_End_Message() {
-        if (is_End_Message) {
-            return true;
-        }
-        return false;
-    }
-
+    
 
     //ボス前ムービー
     public IEnumerator Boss_Movie() {
@@ -69,22 +49,26 @@ public class Stage2_2Movie : MonoBehaviour {
             yield return new WaitForSeconds(1.0f);
 
             _message.Start_Display("ReimuText", 1, 1);  //霊夢発見セリフ
-            yield return new WaitUntil(Is_End_Message);
+            yield return new WaitUntil(_message.End_Message);
+            movie_Progress = 2;
 
             yield return new WaitForSeconds(2.0f);
 
             _message.Start_Display("ReimuText", 2, 3);  //キック前セリフ
-            yield return new WaitUntil(Is_End_Message);
+            yield return new WaitUntil(_message.End_Message);
+            movie_Progress = 3;
 
             yield return new WaitForSeconds(0.2f);
 
             _message.Start_Display("ReimuText", 4, 4);  //霊夢よけるセリフ
-            yield return new WaitUntil(Is_End_Message);
+            yield return new WaitUntil(_message.End_Message);
+            movie_Progress = 4;
 
             yield return new WaitForSeconds(0.5f);
 
             _message.Start_Display("ReimuText", 5, 5);  //霊夢無視セリフ
-            yield return new WaitUntil(Is_End_Message);
+            yield return new WaitUntil(_message.End_Message);
+            movie_Progress = 5;
 
             yield return new WaitForSeconds(1.0f);
             //画面のスクロール始める
@@ -148,7 +132,7 @@ public class Stage2_2Movie : MonoBehaviour {
             yield return null;
         }
 
-        yield return new WaitUntil(Is_End_Message); //霊夢発見セリフ
+        while (movie_Progress < 2) { yield return null; } //霊夢発見セリフ
 
         //キック開始位置まで移動
         Vector3 start_Pos = player.transform.position;
@@ -164,7 +148,7 @@ public class Stage2_2Movie : MonoBehaviour {
             yield return null;
         }
 
-        yield return new WaitUntil(Is_End_Message); //キック前セリフ
+        while (movie_Progress < 3) { yield return null; } //キック前セリフ
 
         //キック
         player_Controller.Change_Parameter("KickBool");
@@ -173,7 +157,9 @@ public class Stage2_2Movie : MonoBehaviour {
         player.GetComponents<AudioSource>()[1].Play();
         yield return new WaitForSeconds(2.0f);
 
-        yield return new WaitUntil(Is_End_Message);
+        while (movie_Progress < 5) { yield return null; }
+
+        yield return null;
         //終了設定
         player_Controller.Set_Playable(true);
     }
@@ -187,9 +173,9 @@ public class Stage2_2Movie : MonoBehaviour {
         reimu_Controller.Set_Is_Shot_Bullet(false);
         reimu_Controller.Change_Parameter("DashBool");
 
-        yield return new WaitUntil(Is_End_Message); //霊夢発見
+        while (movie_Progress < 2) { yield return null; } //霊夢発見
         yield return null;
-        yield return new WaitUntil(Is_End_Message); //キック前セリフ
+        while (movie_Progress < 3) { yield return null; } //キック前セリフ
 
         //キックよける
         yield return new WaitForSeconds(0.2f);
@@ -199,9 +185,9 @@ public class Stage2_2Movie : MonoBehaviour {
             yield return null;
         }
 
-        yield return new WaitUntil(Is_End_Message); //霊夢よけるセリフ
+        while (movie_Progress < 4) { yield return null; } //霊夢よけるセリフ
         yield return null;
-        yield return new WaitUntil(Is_End_Message); //霊夢無視セリフ
+        while (movie_Progress < 5) { yield return null; } //霊夢無視セリフ
 
         //霊夢の移動
         reimu_Controller.Change_Parameter("DashBool");
@@ -225,17 +211,7 @@ public class Stage2_2Movie : MonoBehaviour {
         GameObject[] scroll_Grounds = new GameObject[2];
         scroll_Grounds[0] = GameObject.Find("ScrollGround1");
         scroll_Grounds[1] = GameObject.Find("ScrollGround2");
-        while (!Is_End_Message()) { //霊夢発見セリフ
-            yield return null;
-            for (int i = 0; i < 2; i++) {
-                scroll_Grounds[i].transform.position += new Vector3(-2f, 0, 0);
-                if (scroll_Grounds[i].transform.position.x < -570f) {
-                    scroll_Grounds[i].transform.position = new Vector3(500f, 0, 0);
-                }
-            }
-        }
-        yield return null;
-        while (!Is_End_Message()) { //キック前セリフ
+        while (movie_Progress < 3) { //キック前セリフまでスクロール
             yield return null;
             for (int i = 0; i < 2; i++) {
                 scroll_Grounds[i].transform.position += new Vector3(-2f, 0, 0);

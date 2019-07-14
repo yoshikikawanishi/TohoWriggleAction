@@ -486,6 +486,7 @@ MonoBehaviour:
     type: 2}
   rice_Bullets: {fileID: 1086337946178104, guid: 8385d257f8509c4499a0fe80917e0b7c,
     type: 2}
+  start_Battle: 0
 --- !u!114 &114353774648685822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -510,7 +511,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage_Sound: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
-  _shake: {fileID: 0}
   life: 3c00000046000000
   power_Value: 15
   score_Value: 5000
@@ -5216,7 +5216,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 33, y: 35}
+  m_Size: {x: 35, y: 34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

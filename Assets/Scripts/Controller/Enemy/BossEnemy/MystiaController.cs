@@ -50,6 +50,7 @@ public class MystiaController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        //戦闘
         if (start_Battle) {
             switch (boss_Controller.Get_Now_Phase()) {
                 case 1: Phase1(); break;
@@ -57,6 +58,7 @@ public class MystiaController : MonoBehaviour {
                 case 3: Phase3(); break;
             }
         }
+        
 	}
 
 
@@ -180,7 +182,7 @@ public class MystiaController : MonoBehaviour {
 
 
     //自機を鳥目にする、鳥目から回復する
-    private IEnumerator Bird_Eye(bool is_Revive) {
+    public IEnumerator Bird_Eye(bool is_Revive) {
         if (!is_Revive) {
             while (bird_Eye_Mask.transform.localScale.x > 3.0f) {
                 bird_Eye_Mask.transform.localScale += new Vector3(-0.03f, -0.03f) * Time.timeScale;
@@ -244,6 +246,16 @@ public class MystiaController : MonoBehaviour {
             StartCoroutine("Bird_Eye", true);
             yield return new WaitForSeconds(1.0f);
         }
+    }
+
+
+    //クリア後の処理
+    public void Clear() {
+        StopAllCoroutines();
+        _move.StopAllCoroutines();
+        StartCoroutine("Bird_Eye", true);
+        GetComponent<SpiralBulletFunction>().Stop_Spiral_Bullet();
+        Change_Parameter("IdleBool");
     }
 
 }
