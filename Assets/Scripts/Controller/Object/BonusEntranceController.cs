@@ -7,31 +7,28 @@ public class BonusEntranceController : MonoBehaviour {
 
     //スクリプト
     private BonusSceneManager _bonus_Scene_Manager;
-    //キー、そのボーナスシーンに入ったことがあるかどうか
-    [SerializeField] private string entrance_Key;
-    //遷移先
-    [SerializeField] private string bonus_Scene_Name;
-    [SerializeField] private Vector3 back_Pos;
 
+    //遷移先
+    [SerializeField] private string next_Scene_Name;
+    [SerializeField] private Vector3 next_Pos;
+
+    //2回目以降消滅する入り口かどうか
+    [SerializeField] private bool is_Delete = true;
 
     //Start
     private void Start() {
-        //スクリプトの取得
-        _bonus_Scene_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<BonusSceneManager>();   
+        _bonus_Scene_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<BonusSceneManager>();
+        if(PlayerPrefs.GetInt(next_Scene_Name) == 0 && is_Delete) {
+            Destroy(gameObject);
+        }
     }
+
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.tag == "PlayerBodyTag") {
-            //ボーナスシーンから出る
-            if (SceneManager.GetActiveScene().name == bonus_Scene_Name) {
-                _bonus_Scene_Manager.StartCoroutine("Exit_Bonus_Scene");
-            }
-            //ボーナスシーンに入る
-            else if (PlayerPrefs.GetInt(entrance_Key) == 0) {
-                _bonus_Scene_Manager.Enter_Bonus_Scene(bonus_Scene_Name, back_Pos);
-                PlayerPrefs.SetInt(entrance_Key, 1);
-            }
+        //シーン遷移
+        if (collision.tag == "PlayerBodyTag") {
+            _bonus_Scene_Manager.Change_Scene(next_Scene_Name, next_Pos);
         }
     }
 }

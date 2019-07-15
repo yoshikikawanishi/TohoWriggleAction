@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage3_BossMovie : MonoBehaviour {
 
@@ -30,7 +31,7 @@ public class Stage3_BossMovie : MonoBehaviour {
         //初期設定
         movie_Progress = 1;
         _pause.Set_Pausable(false);
-        is_First_Visit = _gameManager.Is_First_Visit("Stage3_BossScene");
+        is_First_Visit = _gameManager.Is_First_Visit();
         StartCoroutine(Player_Timeline());
         StartCoroutine(Mystia_Timeline());
 
@@ -94,9 +95,11 @@ public class Stage3_BossMovie : MonoBehaviour {
 
     //クリア後ムービー
     public IEnumerator Clear_Movie() {
-        yield return null;
+        yield return new WaitForSeconds(5.0f);
         _message.Start_Display("MystiaText", 1, 1);
         yield return new WaitUntil(_message.End_Message);
+        yield return new WaitForSeconds(3.0f);
+        SceneManager.LoadScene("Base_2Scene");
     }
 
 }

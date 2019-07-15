@@ -8,6 +8,8 @@ public class UsualSoundManager : MonoBehaviour {
     static public AudioSource shot_Sound;
     static public AudioSource small_Shot_Sound;
     static public AudioSource familiar_Appear_Sound;
+    static public AudioSource charge_Sound;
+
 
     //シングルトン用
     public static UsualSoundManager instance;
@@ -22,9 +24,11 @@ public class UsualSoundManager : MonoBehaviour {
         //シーンを遷移してもオブジェクトを消さない
         DontDestroyOnLoad(gameObject);
 
-        shot_Sound = GetComponents<AudioSource>()[0];
-        small_Shot_Sound = GetComponents<AudioSource>()[1];
-        familiar_Appear_Sound = GetComponents<AudioSource>()[2];
+        AudioSource[] audios = GetComponents<AudioSource>();
+        shot_Sound = audios[0];
+        small_Shot_Sound = audios[1];
+        familiar_Appear_Sound = audios[2];
+        charge_Sound = audios[3];
     }
 
 
@@ -41,5 +45,10 @@ public class UsualSoundManager : MonoBehaviour {
     //使い魔実体化音
     static public void Familiar_Appear_Sound() {
         familiar_Appear_Sound.Play();
+    }
+
+    //パワーチャージ音
+    static public void Charge_Sound() {
+        charge_Sound.Play();
     }
 }

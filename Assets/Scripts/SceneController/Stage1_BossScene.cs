@@ -33,7 +33,7 @@ public class Stage1_BossScene : MonoBehaviour {
         _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
 
         //初めてのボス戦かどうか
-        if (_gameManager.Is_First_Visit("Stage1_BossScene")) {
+        if (_gameManager.Is_First_Visit()) {
             is_First_Visit = true;
         }
         else {

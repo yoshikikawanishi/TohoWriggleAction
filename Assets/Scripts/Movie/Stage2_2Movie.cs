@@ -16,9 +16,6 @@ public class Stage2_2Movie : MonoBehaviour {
     //ムービー進行度
     private int movie_Progress = 1;
 
-    //メッセージ終了検知用
-    private bool is_End_Message = false;
-
     
     // Use this for initialization
     void Awake () {
@@ -37,7 +34,7 @@ public class Stage2_2Movie : MonoBehaviour {
         //初期設定
         GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>().Set_Pausable(false);
         //初戦時ムービー
-        if (_gameManager.Is_First_Visit("Stage2_2Scene")) {
+        if (_gameManager.Is_First_Visit()) {
             //それぞれのタイムライン
             StartCoroutine("Wriggle_Timeline");
             StartCoroutine("Reimu_Timeline");

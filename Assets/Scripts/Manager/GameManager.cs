@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-    
-
     //スクリプト
     private PlayerManager _playerManager;
 
     //進行度
     private Dictionary<string, bool> progress_Dic = new Dictionary<string, bool>();
+
+    //シーンに初めて訪れたかどうか
+    private bool first_Visit_Frag = true;
 
     //シングルトン用
     public static GameManager instance;
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour {
     //シーン読み込み時に呼ばれる関数
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         //進行度の更新
-        StartCoroutine("Update_Progress", scene.name);
+        Update_Progress(scene.name);
     }
 
 
@@ -125,6 +126,7 @@ public class GameManager : MonoBehaviour {
         not_Game_Scene_List.Add("TitleScene");
         not_Game_Scene_List.Add("GameOverScene");
         not_Game_Scene_List.Add("ConfigScene");
+        not_Game_Scene_List.Add("UnderGroundScene");
 
         string now_Scene = SceneManager.GetActiveScene().name;
         foreach (string scene in not_Game_Scene_List) {
@@ -147,20 +149,23 @@ public class GameManager : MonoBehaviour {
         progress_Dic.Add("Stage3_1Scene", false);
         progress_Dic.Add("Stage3_2Scene", false);
         progress_Dic.Add("Stage3_BossScene", false);
+        progress_Dic.Add("Base_2Scene", false);
     }
 
 
     //進行度の更新
-    private IEnumerator Update_Progress(string loaded_Scene) {
-        //ロードされたシーンのスタートで、更新前の進行度を取得できるようにする
-        yield return null;
-        yield return null;
-        yield return null;
+    private void Update_Progress(string loaded_Scene) {
         //更新
         if (progress_Dic.ContainsKey(loaded_Scene)) {
+            //訪れたことがなかった時
             if (!progress_Dic[loaded_Scene]) {
                 progress_Dic[loaded_Scene] = true;
+                first_Visit_Frag = true;
                 PlayerPrefs.SetInt("Progress", Get_Progress_Num());
+            }
+            //訪れたことがあるとき
+            else {
+                first_Visit_Frag = false;
             }
         }
     }
@@ -181,12 +186,12 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    //進行度の取得用
-    public bool Is_First_Visit(string scene_Name) {
-        if (progress_Dic[scene_Name]) {
-            return false;
+    //現在のシーンに初めて訪れたかどうか
+    public bool Is_First_Visit() {
+        if (first_Visit_Frag) {
+            return true;
         }
-        return true;
+        return false;
     }
 
 

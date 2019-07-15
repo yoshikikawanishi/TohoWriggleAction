@@ -21325,6 +21325,11 @@ Prefab:
       propertyPath: back_Pos.y
       value: -84
       objectReference: {fileID: 0}
+    - target: {fileID: 114219347653821274, guid: a7e182efa0d35d442a9846898e1f3c8a,
+        type: 2}
+      propertyPath: next_Scene_Name
+      value: Stage2_BonusScene
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7e182efa0d35d442a9846898e1f3c8a, type: 2}
   m_IsPrefabAsset: 0

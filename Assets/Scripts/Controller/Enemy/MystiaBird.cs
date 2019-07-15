@@ -56,6 +56,7 @@ public class MystiaBird : MonoBehaviour {
                 bullet.transform.Rotate(new Vector3(0, 0, 180f));
             }
             Destroy(bullet, 15f);
+            UsualSoundManager.Small_Shot_Sound();
         }
 	}
 

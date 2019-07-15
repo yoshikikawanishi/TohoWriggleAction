@@ -87,10 +87,14 @@ public class MystiaController : MonoBehaviour {
             yield return new WaitUntil(_move.End_Move);
             //斜め上に上がりながら鳥出す
             _move.Start_Move(transform.position + new Vector3(16f, -16f), 0, 0.01f);
+            GameObject charge_Effect = Instantiate(Resources.Load("Effect/PowerChargeEffects") as GameObject, transform);
             yield return new WaitUntil(_move.End_Move);
+            yield return new WaitForSeconds(0.5f);
+            Destroy(charge_Effect);
             Change_Parameter("DashBool");
             _move.Start_Move(new Vector3(-260f, 160f), 0, 0.005f);
-            while(transform.position.y < -100f) { yield return null; }
+            UsualSoundManager.Familiar_Appear_Sound();
+            while (transform.position.y < -100f) { yield return null; }
             Bird_Gen(false);
             while(transform.position.y < 100f) { yield return null; }
             Bird_Gen(true);
@@ -108,11 +112,13 @@ public class MystiaController : MonoBehaviour {
             transform.localScale = new Vector3(1, 1, 1);
             transform.position = new Vector3(260f, player.transform.position.y + 64f);
             _move.Start_Move(new Vector3(-260f, transform.position.y), -80f, 0.01f);
+            UsualSoundManager.Familiar_Appear_Sound();
             yield return new WaitUntil(_move.End_Move);
             yield return new WaitForSeconds(1.0f);
             transform.localScale = new Vector3(-1, 1, 1);
             transform.position = new Vector3(-260f, player.transform.position.y + 64f);
             _move.Start_Move(new Vector3(260f, transform.position.y), -80f, 0.01f);
+            UsualSoundManager.Familiar_Appear_Sound();
             yield return new WaitUntil(_move.End_Move);
             //移動
             transform.localScale = new Vector3(1, 1, 1);
@@ -127,6 +133,7 @@ public class MystiaController : MonoBehaviour {
         GameObject bird = Instantiate(Resources.Load("Enemy/MystiaBird") as GameObject);
         bird.transform.position = transform.position;
         bird.GetComponent<MystiaBird>().is_Right_Direction = is_Right;
+        UsualSoundManager.Shot_Sound();
         Destroy(bird, 8f);
     }
 
@@ -164,16 +171,23 @@ public class MystiaController : MonoBehaviour {
             GameObject familiar = Resources.Load("Enemy/MystiaBird2") as GameObject;
             _bullet.Set_Bullet(familiar);
             _bullet.Odd_Num_Bullet(12, 30f, 70f, 10.0f);
+            UsualSoundManager.Shot_Sound();
             yield return new WaitForSeconds(1.5f);
             //弾発射
             float inter_Angle = 30f, span = 0.1f;
             _spiral_Bullet.Start_Spiral_Bullet(70f, 0, inter_Angle, span, 7.0f);
+            UsualSoundManager.Small_Shot_Sound();
             yield return new WaitForSeconds(1.2f);
             _spiral_Bullet.Stop_Spiral_Bullet();
             _spiral_Bullet.Start_Spiral_Bullet(70f, 0, -inter_Angle, span, 7.0f);
+            UsualSoundManager.Small_Shot_Sound();
             yield return new WaitForSeconds(1.2f);
             _spiral_Bullet.Stop_Spiral_Bullet();
-            yield return new WaitForSeconds(10.0f);
+            yield return new WaitForSeconds(2.0f);
+            //使い魔発射
+            _bullet.Odd_Num_Bullet(12, 30f, 70f, 10.0f);
+            UsualSoundManager.Shot_Sound();
+            yield return new WaitForSeconds(8.0f);
             //鳥目解除
             StartCoroutine("Bird_Eye", true);
             yield return new WaitForSeconds(5.0f);
@@ -184,6 +198,7 @@ public class MystiaController : MonoBehaviour {
     //自機を鳥目にする、鳥目から回復する
     public IEnumerator Bird_Eye(bool is_Revive) {
         if (!is_Revive) {
+            UsualSoundManager.Charge_Sound();
             while (bird_Eye_Mask.transform.localScale.x > 3.0f) {
                 bird_Eye_Mask.transform.localScale += new Vector3(-0.03f, -0.03f) * Time.timeScale;
                 yield return null;
@@ -226,25 +241,34 @@ public class MystiaController : MonoBehaviour {
             GameObject familiar = Resources.Load("Enemy/MystiaBird2") as GameObject;
             _bullet.Set_Bullet(familiar);
             _bullet.Odd_Num_Bullet(12, 30f, 50f, 10.0f);
+            UsualSoundManager.Shot_Sound();
             yield return new WaitForSeconds(1.5f);
             //弾発射
             float inter_Angle = 20f, span = 0.05f;
             _spiral_Bullet.Start_Spiral_Bullet(60f, 0, inter_Angle, span, 7.0f);
+            UsualSoundManager.Small_Shot_Sound();
             yield return new WaitForSeconds(13f * 0.05f);
             _spiral_Bullet.Stop_Spiral_Bullet();
             _spiral_Bullet.Start_Spiral_Bullet(60f, 10, -inter_Angle, span, 7.0f);
+            UsualSoundManager.Small_Shot_Sound();
             yield return new WaitForSeconds(13f * 0.05f);
             _spiral_Bullet.Stop_Spiral_Bullet();
             _spiral_Bullet.Start_Spiral_Bullet(60f, 20, inter_Angle, span, 7.0f);
+            UsualSoundManager.Small_Shot_Sound();
             yield return new WaitForSeconds(13f * 0.05f);
             _spiral_Bullet.Stop_Spiral_Bullet();
             _spiral_Bullet.Start_Spiral_Bullet(60f, 30, -inter_Angle, span, 7.0f);
+            UsualSoundManager.Small_Shot_Sound();
             yield return new WaitForSeconds(13f * 0.05f);
             _spiral_Bullet.Stop_Spiral_Bullet();
-            yield return new WaitForSeconds(10.0f);
+            yield return new WaitForSeconds(2.0f);
+            //使い魔発射
+            _bullet.Odd_Num_Bullet(12, 30f, 70f, 10.0f);
+            UsualSoundManager.Shot_Sound();
+            yield return new WaitForSeconds(8.0f);
             //鳥目解除
             StartCoroutine("Bird_Eye", true);
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(3.0f);
         }
     }
 

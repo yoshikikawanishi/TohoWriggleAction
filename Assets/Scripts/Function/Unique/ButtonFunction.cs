@@ -44,6 +44,7 @@ public class ButtonFunction : MonoBehaviour {
 
     //ゲームを辞めるボタン押下時
     public void Quit_Button() {
+        PlayerPrefs.Save();
         UnityEditor.EditorApplication.isPlaying = false;
         UnityEngine.Application.Quit();
     }
