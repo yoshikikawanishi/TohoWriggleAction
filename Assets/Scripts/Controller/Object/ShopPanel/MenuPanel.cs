@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuPanel : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    //OnEnable
+    private void OnEnable() {
+        StartCoroutine("Wait_One_Frame");
+    }
+
+
+    private IEnumerator Wait_One_Frame() {
+        yield return null;
+        //ボタン選択
+        transform.GetChild(0).GetComponent<Button>().Select();
+    }
 }

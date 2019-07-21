@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class GoodsPanel : MonoBehaviour {
+public class ConfirmCanvas : MonoBehaviour {
 
     //OnEnable
     private void OnEnable() {
@@ -14,9 +13,6 @@ public class GoodsPanel : MonoBehaviour {
     private IEnumerator Wait_One_Frame() {
         yield return null;
         //ボタン選択
-        transform.GetChild(4).GetComponent<Button>().Select();
+        transform.GetChild(0).GetComponent<Button>().Select();
     }
-
-
-    
 }

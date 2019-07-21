@@ -26,7 +26,7 @@ public class SentenceDisplay : MonoBehaviour {
         string sentence = text_Words.textWords[id, 1];
         for (int i = 0; i < sentence.Length; i++) {
             text.text += sentence[i];
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.03f);
         }
         is_End_Display = true;
     }

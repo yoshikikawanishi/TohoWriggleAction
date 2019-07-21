@@ -206,4 +206,12 @@ public class GameManager : MonoBehaviour {
         }
         return progress_Num;
     }
+
+
+    //シーンの遷移と自機の位置
+    public IEnumerator Load_Scene(string next_Scene, Vector2 player_Pos) {
+        SceneManager.LoadScene(next_Scene);
+        yield return null;
+        GameObject.FindWithTag("PlayerTag").transform.position = player_Pos;
+    }
 }
