@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class UnderGroundShoppingManager : MonoBehaviour {
 
@@ -68,6 +67,7 @@ public class UnderGroundShoppingManager : MonoBehaviour {
         big_Serif_Panel.SetActive(false);
         small_Serif_Panel.SetActive(false);
         comment_Panel.SetActive(false);
+        
         switch (left_Frame) {
             case 0: goods_Panel.SetActive(false); talk_Table_Panel.SetActive(false); big_Serif_Panel.SetActive(false); break;
             case 1: goods_Panel.SetActive(false); talk_Table_Panel.SetActive(false); big_Serif_Panel.SetActive(true); break;
@@ -108,6 +108,12 @@ public class UnderGroundShoppingManager : MonoBehaviour {
     public void Open_Talk_Table() {
         Change_Panel(3, 2, 0);
         small_Serif_Panel.GetComponent<SmallSerifPanel>().Ask_Topic_Serif();
+    }
+
+    //話す
+    public void Talk(int topic_Num) {
+        Change_Panel(1, 0, 0);
+        big_Serif_Panel.GetComponent<BigSerifPanel>().StartCoroutine("Talk_Serif", topic_Num);
     }
 
     //店を出る
@@ -199,6 +205,15 @@ public class UnderGroundShoppingManager : MonoBehaviour {
     }
 
     //話題
+    public void First_Topic_Button() {
+        Talk(1);
+    }
 
+    public void Second_Topic_Button() {
+        Talk(2);
+    }
 
+    public void Third_Topic_Button() {
+        Talk(3);
+    }
 }

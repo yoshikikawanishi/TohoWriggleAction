@@ -127,9 +127,9 @@ TextureImporter:
       name: TreasureChest_0
       rect:
         serializedVersion: 2
-        x: 10
+        x: 12
         y: 0
-        width: 55
+        width: 47
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -138,7 +138,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05ed826c8b4b7394e816e0abf98d1258
+      spriteID: 50e6bf600f97300448a919a1e172dd76
       vertices: []
       indices: 
       edges: []
@@ -147,9 +147,9 @@ TextureImporter:
       name: TreasureChest_1
       rect:
         serializedVersion: 2
-        x: 70
+        x: 212
         y: 0
-        width: 55
+        width: 47
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -158,7 +158,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9661cc56d4d115b40853c576b3b92d23
+      spriteID: 728d4289696412f438dc8cc509027952
       vertices: []
       indices: 
       edges: []
@@ -167,9 +167,9 @@ TextureImporter:
       name: TreasureChest_2
       rect:
         serializedVersion: 2
-        x: 130
+        x: 62
         y: 0
-        width: 55
+        width: 47
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -178,7 +178,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2394b07535c61b54cb0069a8e42f590b
+      spriteID: 686d122f3bd8e7747818b94dcc7ffb9a
       vertices: []
       indices: 
       edges: []
@@ -187,9 +187,9 @@ TextureImporter:
       name: TreasureChest_3
       rect:
         serializedVersion: 2
-        x: 190
+        x: 112
         y: 0
-        width: 55
+        width: 47
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -198,7 +198,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a438fb31ce2a3ba4c904518e9cb83c79
+      spriteID: 30c0adf35346e4647b5d6a59ea237c9a
       vertices: []
       indices: 
       edges: []
@@ -207,9 +207,9 @@ TextureImporter:
       name: TreasureChest_4
       rect:
         serializedVersion: 2
-        x: 250
+        x: 162
         y: 0
-        width: 55
+        width: 47
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -218,7 +218,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b3432b0b7632754188b9d2fa391531a
+      spriteID: c68ff3a5b0e5c78488b1bc1e6348234d
       vertices: []
       indices: 
       edges: []
@@ -227,9 +227,9 @@ TextureImporter:
       name: TreasureChest_5
       rect:
         serializedVersion: 2
-        x: 310
+        x: 262
         y: 0
-        width: 55
+        width: 47
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -238,7 +238,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16e8933f997aa924880f530f3391d037
+      spriteID: b709f9beb265baa47834e11b5faac441
       vertices: []
       indices: 
       edges: []
@@ -247,9 +247,9 @@ TextureImporter:
       name: TreasureChest_6
       rect:
         serializedVersion: 2
-        x: 370
+        x: 312
         y: 0
-        width: 55
+        width: 47
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -258,7 +258,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8610eafb1be17794f9ccc8826637db49
+      spriteID: 7d737df0a6893044091986a1ae9acc60
       vertices: []
       indices: 
       edges: []
@@ -266,7 +266,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 031bda9484b7a7940b133d07e91ea54e
+    spriteID: 2077b1f01be68814aae97985ceff6023
     vertices: []
     indices: 
     edges: []

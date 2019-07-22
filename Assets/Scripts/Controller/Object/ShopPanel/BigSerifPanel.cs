@@ -21,7 +21,7 @@ public class BigSerifPanel : MonoBehaviour {
     public IEnumerator Sold_Serif() {
         _sentence.Start_Display("YamameText", 2, text);
         yield return new WaitUntil(_sentence.End_Display);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         shop_Manager.Open_Menu();
     }
 
@@ -33,6 +33,14 @@ public class BigSerifPanel : MonoBehaviour {
     //店を出るとき
     public void Exit_Shop_Serif() {
         _sentence.Start_Display("YamameText", 3, text);
+    }
+
+    //話す
+    public IEnumerator Talk_Serif(int topic_Num) {
+        _sentence.Start_Display("YamameText", topic_Num + 8, text);
+        yield return new WaitUntil(_sentence.End_Display);
+        yield return new WaitForSeconds(0.4f);
+        shop_Manager.Open_Talk_Table();
     }
 
 

@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 4e8ed0b200595ae4f9bdf73100019f36
+guid: e12fe2a44df808f4da21f0f1a7add71f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: TreasureChest_Appear_0
-    21300002: TreasureChest_Appear_1
-    21300004: TreasureChest_Appear_2
-    21300006: TreasureChest_Appear_3
+    21300000: Item_Flies_0
+    21300002: Item_Flies_1
+    21300004: Item_Flies_2
+    21300006: Item_Flies_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -121,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TreasureChest_Appear_0
+      name: Item_Flies_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 0
-        width: 47
-        height: 48
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,19 +135,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 186fa5fc6b68ee649b1c2748d8f4d075
+      spriteID: 32ba82b06d32c6c49a78ed9751885ea1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TreasureChest_Appear_1
+      name: Item_Flies_1
       rect:
         serializedVersion: 2
-        x: 53
+        x: 7
         y: 0
-        width: 47
-        height: 48
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,19 +155,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0d6ec40564c19f449711cc172649d75
+      spriteID: 9998875b0a8ff504a9a50fd670331a5f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TreasureChest_Appear_2
+      name: Item_Flies_2
       rect:
         serializedVersion: 2
-        x: 113
+        x: 14
         y: 0
-        width: 47
-        height: 48
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,19 +175,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc726af35f6ff3c48888f57f9eb6c644
+      spriteID: 79c50eff8c2beaf4f9913d8f5b687ad5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TreasureChest_Appear_3
+      name: Item_Flies_3
       rect:
         serializedVersion: 2
-        x: 173
+        x: 21
         y: 0
-        width: 47
-        height: 48
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,7 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1680550bdcad39d4fb0f71b055f9a379
+      spriteID: 6249597f86720c84086275be291aa33e
       vertices: []
       indices: 
       edges: []
@@ -203,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: eb221d27898aff94f9aaa6d93440180a
+    spriteID: f086dd11e56f59c4ab84cb8d7cc5f9d4
     vertices: []
     indices: 
     edges: []

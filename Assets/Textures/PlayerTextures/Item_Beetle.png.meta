@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 4e8ed0b200595ae4f9bdf73100019f36
+guid: 3291a0bd4391fc74d9faa0114a7e2b01
 TextureImporter:
   fileIDToRecycleName:
-    21300000: TreasureChest_Appear_0
-    21300002: TreasureChest_Appear_1
-    21300004: TreasureChest_Appear_2
-    21300006: TreasureChest_Appear_3
+    21300000: Item_Beetle_0
+    21300002: Item_Beetle_1
+    21300004: Item_Beetle_2
+    21300006: Item_Beetle_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -121,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TreasureChest_Appear_0
+      name: Item_Beetle_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 0
-        width: 47
-        height: 48
+        width: 10
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,19 +135,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 186fa5fc6b68ee649b1c2748d8f4d075
+      spriteID: 24b96e688de0229408b40cd6c5cfa805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TreasureChest_Appear_1
+      name: Item_Beetle_1
       rect:
         serializedVersion: 2
-        x: 53
+        x: 11
         y: 0
-        width: 47
-        height: 48
+        width: 10
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,19 +155,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0d6ec40564c19f449711cc172649d75
+      spriteID: d7eec88fb6d4b82458fea67fb5557ff9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TreasureChest_Appear_2
+      name: Item_Beetle_2
       rect:
         serializedVersion: 2
-        x: 113
+        x: 22
         y: 0
-        width: 47
-        height: 48
+        width: 10
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,19 +175,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc726af35f6ff3c48888f57f9eb6c644
+      spriteID: 2a047b7edeb7b4b408b9871ac3b5acf5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TreasureChest_Appear_3
+      name: Item_Beetle_3
       rect:
         serializedVersion: 2
-        x: 173
+        x: 33
         y: 0
-        width: 47
-        height: 48
+        width: 10
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,7 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1680550bdcad39d4fb0f71b055f9a379
+      spriteID: 2918d37c6ea795b4cb8a69ca7f2aabbc
       vertices: []
       indices: 
       edges: []
@@ -203,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: eb221d27898aff94f9aaa6d93440180a
+    spriteID: 24fa37700132d4941a55f55086ed3311
     vertices: []
     indices: 
     edges: []

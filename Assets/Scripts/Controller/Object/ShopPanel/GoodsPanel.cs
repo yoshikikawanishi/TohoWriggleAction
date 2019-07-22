@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class GoodsPanel : MonoBehaviour {
-
+    
     //OnEnable
     private void OnEnable() {
         StartCoroutine("Wait_One_Frame");
@@ -14,9 +14,13 @@ public class GoodsPanel : MonoBehaviour {
     private IEnumerator Wait_One_Frame() {
         yield return null;
         //ボタン選択
-        transform.GetChild(4).GetComponent<Button>().Select();
+        if (EventSystem.current.currentSelectedGameObject != transform.GetChild(0).gameObject) {
+            transform.GetChild(0).GetComponent<Button>().Select();
+        }
+        else {
+            EventSystem.current.SetSelectedGameObject(null);
+            transform.GetChild(0).GetComponent<Button>().Select();
+        }
     }
 
-
-    
 }
