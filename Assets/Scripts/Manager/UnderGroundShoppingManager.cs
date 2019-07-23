@@ -29,12 +29,17 @@ public class UnderGroundShoppingManager : MonoBehaviour {
     private SentenceDisplay _sentence;
     private CanvasGroup canvas_Group;
 
+    //スクリプト
+    private UnderGroundBackGround _background;
+
 
 	// Use this for initialization
 	void Start () {
         //コンポーネント
         _sentence = GetComponent<SentenceDisplay>();
         canvas_Group = shop_Canvas.GetComponent<CanvasGroup>();
+        //スクリプト
+        _background = GetComponent<UnderGroundBackGround>();
         //パワー表示
         player_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
         now_Power_Text = GameObject.Find("PowerText").GetComponent<Text>();
@@ -89,6 +94,7 @@ public class UnderGroundShoppingManager : MonoBehaviour {
     //メニュー
     public void Open_Menu() {
         Change_Panel(1, 1, 0);
+        _background.Restore_Back_Ground();
         big_Serif_Panel.GetComponent<BigSerifPanel>().Welcome_Serif();
     }
 
@@ -120,6 +126,7 @@ public class UnderGroundShoppingManager : MonoBehaviour {
     public void Exit_Shop() {
         Change_Panel(1, 0, 0);
         big_Serif_Panel.GetComponent<BigSerifPanel>().Exit_Shop_Serif();
+        _background.Change_Back_Ground();
         StartCoroutine("Exit");
     }
     private IEnumerator Exit() {
@@ -131,6 +138,7 @@ public class UnderGroundShoppingManager : MonoBehaviour {
     //商品の確認
     private void Confirm_Goods() {
         Change_Panel(2, 2, 1);
+        _background.Restore_Back_Ground();
         if (power >= 10) {
             small_Serif_Panel.GetComponent<SmallSerifPanel>().Confirm_Goods_Serif();
             canvas_Group.interactable = false;
@@ -147,7 +155,9 @@ public class UnderGroundShoppingManager : MonoBehaviour {
         small_Serif_Panel.GetComponent<SmallSerifPanel>().Thank_Buying_Serif();
         canvas_Group.interactable = true;
         GameObject.Find("GoodsPanel").transform.GetChild(4).GetComponent<Button>().Select();
+        _background.Change_Back_Ground();
     }
+    
 
     /*-------ボタン--------*/
     //メニュー
