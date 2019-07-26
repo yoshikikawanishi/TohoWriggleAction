@@ -38,7 +38,7 @@ public class MessageDisplay : MonoBehaviour {
     private void Update() {
         //表示スピード
         if (Input.GetButtonDown("Submit")) {
-            textSpeed = 0.01f;
+            textSpeed = 0.005f;
         }
         if (Input.GetButtonUp("Submit")) {
             textSpeed = 0.05f;

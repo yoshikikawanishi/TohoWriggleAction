@@ -29,6 +29,7 @@ public class TalkCharacter : MonoBehaviour {
         //吹き出し
         mark_Up_Baloon = Instantiate(Resources.Load("Object/MarkUpBaloon") as GameObject);
         mark_Up_Baloon.transform.position = transform.position + baloon_Pos;
+        mark_Up_Baloon.transform.SetParent(gameObject.transform);
         mark_Up_Baloon.SetActive(false);
     }
 
@@ -95,4 +96,12 @@ public class TalkCharacter : MonoBehaviour {
         return false;
     }
 
+
+    //ステータス代入
+    public void Set_Status(string file_Name, int start_ID, int end_ID, Vector2 baloon_Pos) {
+        this.fileName = file_Name;
+        this.start_ID = start_ID;
+        this.end_ID = end_ID;
+        this.baloon_Pos = baloon_Pos;
+    }
 }
