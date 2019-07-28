@@ -98,7 +98,9 @@ public class Stage3_BossMovie : MonoBehaviour {
         yield return new WaitForSeconds(5.0f);
         _message.Start_Display("MystiaText", 1, 1);
         yield return new WaitUntil(_message.End_Message);
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(1.5f);
+        GetComponent<BorderFadeOut>().Start_Fade_Out(0.015f);
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("Base_2Scene");
     }
 

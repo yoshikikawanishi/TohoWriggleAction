@@ -46,6 +46,16 @@ public class Base_2Movie : MonoBehaviour {
         event_Background.transform.SetParent(null);
         player_Controller.Set_Playable(false);
         _pause.Set_Pausable(false);
+
+        //リグル移動
+        StartCoroutine("Wriggle_Timeline");
+
+        yield return new WaitForSeconds(1.0f);
+
+        //フェードイン
+        GetComponent<BorderFadeIn>().Start_Fade_In(0.01f);
+        yield return new WaitForSeconds(1.5f);
+
         //カメラを上げる
         float rais_Speed = 0;
         while(main_Camera.transform.position.y <= 1530f) {
@@ -122,6 +132,19 @@ public class Base_2Movie : MonoBehaviour {
         After_Movie();
     }
 
+
+    //リグル移動
+    private IEnumerator Wriggle_Timeline() {
+        GameObject player = GameObject.FindWithTag("PlayerTag");
+        player.GetComponent<WriggleController>().Change_Parameter("DashBool");
+        for (float t = 0; t < 1.5f; t += 0.016f) {
+            player.transform.position += new Vector3(1f, 0);
+            yield return new WaitForSeconds(0.016f);
+        }
+        player.GetComponent<WriggleController>().Change_Parameter("IdleBool");
+    }
+
+
     //終了設定
     private void After_Movie() {
         //慧音
@@ -137,5 +160,6 @@ public class Base_2Movie : MonoBehaviour {
         //自機
         player.transform.position = new Vector3(-226f, -80f);
     }
+
 
 }

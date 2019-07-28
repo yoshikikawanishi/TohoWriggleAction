@@ -45,7 +45,7 @@ public class UnderGroundShoppingManager : MonoBehaviour {
         now_Power_Text = GameObject.Find("PowerText").GetComponent<Text>();
         now_Power_Text.text = power.ToString() + " P";
         //入店
-        Open_Menu();
+        StartCoroutine("Enter_Shop");
 
 	}
 
@@ -90,6 +90,13 @@ public class UnderGroundShoppingManager : MonoBehaviour {
         }
     }
 
+    //入店時
+    private IEnumerator Enter_Shop() {
+        Change_Panel(0, 0, 0);
+        GetComponent<FadeInOut>().Start_Fade_In(0.005f);
+        yield return new WaitForSeconds(1.0f);
+        Open_Menu();
+    }
 
     //メニュー
     public void Open_Menu() {
