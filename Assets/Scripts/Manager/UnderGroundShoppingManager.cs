@@ -93,7 +93,7 @@ public class UnderGroundShoppingManager : MonoBehaviour {
     //入店時
     private IEnumerator Enter_Shop() {
         Change_Panel(0, 0, 0);
-        GetComponent<FadeInOut>().Start_Fade_In(0.005f);
+        GetComponent<FadeInOut>().Start_Fade_In();
         yield return new WaitForSeconds(1.0f);
         Open_Menu();
     }

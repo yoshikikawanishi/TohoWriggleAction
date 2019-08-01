@@ -8,16 +8,20 @@ public class Stage2_BossMovie : MonoBehaviour {
     //スクリプト
     private MessageDisplay _message;
     private PauseManager _pause;
+    private GameManager game_Manager;
 
     //ムービーの進行度
     private int movie_Progress = 0;
 
+    //初回かどうか
+    private bool is_First_Visit = true;
 
     // Use this for initialization
     void Start () {
         //スクリプトの取得
         _message = GetComponent<MessageDisplay>();
         _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
+        game_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
     }
 
 
@@ -25,6 +29,7 @@ public class Stage2_BossMovie : MonoBehaviour {
     public IEnumerator Previous_Movie() {
         //初期設定
         _pause.Set_Pausable(false);
+        is_First_Visit = game_Manager.Is_First_Visit();
         StartCoroutine("Player_Timeline");
         StartCoroutine("Reimu_Timeline");
         StartCoroutine("Back_Ground_Timeline");
@@ -32,15 +37,18 @@ public class Stage2_BossMovie : MonoBehaviour {
         movie_Progress = 1;
 
         yield return new WaitForSeconds(1.0f);
-        
-        _message.Start_Display("ReimuText", 7, 7);      //霊夢、紫会話
-        yield return new WaitUntil(_message.End_Message);
+        if (is_First_Visit) {
+            _message.Start_Display("ReimuText", 7, 7);      //霊夢、紫会話
+            yield return new WaitUntil(_message.End_Message);
+        }
         movie_Progress = 2;
 
         yield return new WaitForSeconds(2.0f);
 
-        _message.Start_Display("ReimuText", 7, 7);      //リグル、霊夢、紫会話
-        yield return new WaitUntil(_message.End_Message);
+        if (is_First_Visit) {
+            _message.Start_Display("ReimuText", 7, 7);      //リグル、霊夢、紫会話
+            yield return new WaitUntil(_message.End_Message);
+        }
         movie_Progress = 3;
 
         //戦闘開始

@@ -7,7 +7,7 @@ public class FadeInOut : MonoBehaviour {
     //フィールド
     public GameObject cover_Object;
     private SpriteRenderer obj_Sprite;
-    private float speed = 0;
+    public float speed = 0;
 
 
 	// Use this for initialization
@@ -17,7 +17,7 @@ public class FadeInOut : MonoBehaviour {
 	
 
 	//フェードイン
-    public void Start_Fade_In(float speed) {
+    public void Start_Fade_In() {
         this.speed = speed;
         StartCoroutine("Fade_In");
     }
@@ -30,7 +30,7 @@ public class FadeInOut : MonoBehaviour {
 
 
     //フェードアウト
-    public void Start_Fade_Out(float speed) {
+    public void Start_Fade_Out() {
         this.speed = speed;
         StartCoroutine("Fade_Out");
     }

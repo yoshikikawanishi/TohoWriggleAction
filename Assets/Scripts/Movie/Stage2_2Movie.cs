@@ -34,6 +34,7 @@ public class Stage2_2Movie : MonoBehaviour {
         //初期設定
         GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>().Set_Pausable(false);
         //初戦時ムービー
+        Debug.Log(_gameManager.Is_First_Visit());
         if (_gameManager.Is_First_Visit()) {
             //それぞれのタイムライン
             StartCoroutine("Wriggle_Timeline");

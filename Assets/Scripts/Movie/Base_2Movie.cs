@@ -12,6 +12,8 @@ public class Base_2Movie : MonoBehaviour {
     private KeineController keine_Controller;
     //カメラ
     private GameObject main_Camera;
+    //UI
+    private GameObject catch_Canvas;
     //スクリプト
     private PauseManager _pause;
 
@@ -26,18 +28,27 @@ public class Base_2Movie : MonoBehaviour {
         keine = GameObject.Find("Keine");
         keine_Controller = keine.GetComponent<KeineController>();
         main_Camera = GameObject.FindWithTag("MainCamera");
+        catch_Canvas = GameObject.Find("CatchCanvas");
         _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
     }
 
 
     // Use this for initialization
     void Start () {
-		
+        catch_Canvas.SetActive(false);
 	}
 
 
     //受け止めろ！イベント
     public IEnumerator Catch_Event() {
+        //2回目以降
+        if (!GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>().Is_First_Visit()) {
+            GetComponent<BorderFadeIn>().Start_Fade_In(1f);
+            Debug.Log("not first visit");
+            StopAllCoroutines();
+            yield return null;
+        }
+
         //初期設定
         main_Camera.GetComponent<CameraController>().enabled = false;
         GameObject scene_Background = main_Camera.transform.GetChild(0).gameObject;
@@ -60,7 +71,7 @@ public class Base_2Movie : MonoBehaviour {
         float rais_Speed = 0;
         while(main_Camera.transform.position.y <= 1530f) {
             //加速
-            if (rais_Speed < 6f) {
+            if (rais_Speed < 8f) {
                 rais_Speed += 0.02f;
             }
             main_Camera.transform.position += new Vector3(0, rais_Speed, 0);
@@ -83,21 +94,24 @@ public class Base_2Movie : MonoBehaviour {
         float drop_Speed = keine_Drop_Speed;
         keine.transform.SetParent(main_Camera.transform);
         while(main_Camera.transform.position.y > 800f) {
-            main_Camera.transform.position += new Vector3(0, -keine_Drop_Speed, 0);
+            main_Camera.transform.position += new Vector3(0, -drop_Speed, 0);
             yield return null;
         }
 
         keine.transform.SetParent(null); //慧音止める
 
         while (main_Camera.transform.position.y >= 0) {
-            main_Camera.transform.position += new Vector3(0, -keine_Drop_Speed, 0);
+            main_Camera.transform.position += new Vector3(0, -drop_Speed, 0);
             //減速
-            if(drop_Speed > 0.2f) {
-                drop_Speed -= 0.05f;
+            if(drop_Speed > 0.4f) {
+                drop_Speed -= 0.04f;
             }
             yield return null;
         }
         main_Camera.transform.position = new Vector3(0, 0, -10);
+
+        //UI表示
+        StartCoroutine("Catch_UI");
 
         //慧音落とす、受け止める
         player_Controller.Set_Playable(true);
@@ -119,7 +133,7 @@ public class Base_2Movie : MonoBehaviour {
             white_Sprite.color += new Color(0, 0, 0, 0.05f);
             yield return null;
         }
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
 
         //終了設定
         GameObject.Find("WhiteSprite").SetActive(false);
@@ -142,6 +156,16 @@ public class Base_2Movie : MonoBehaviour {
             yield return new WaitForSeconds(0.016f);
         }
         player.GetComponent<WriggleController>().Change_Parameter("IdleBool");
+    }
+
+    //受け止めろ!表示
+    private IEnumerator Catch_UI() {
+        for (int i = 0; i < 3; i++) {
+            catch_Canvas.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            catch_Canvas.SetActive(false);
+            yield return new WaitForSeconds(0.3f);
+        }
     }
 
 

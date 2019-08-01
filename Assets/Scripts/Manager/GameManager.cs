@@ -7,9 +7,7 @@ public class GameManager : MonoBehaviour {
 
     //スクリプト
     private PlayerManager _playerManager;
-
-    //進行度
-    private Dictionary<string, bool> progress_Dic = new Dictionary<string, bool>();
+    private SceneProgress _sceneProgress;
 
     //シーンに初めて訪れたかどうか
     private bool first_Visit_Frag = true;
@@ -27,9 +25,9 @@ public class GameManager : MonoBehaviour {
         //シーンを遷移してもオブジェクトを消さない
         DontDestroyOnLoad(gameObject);
 
-        //進行度の初期設定
-        Progress_Dic_Setting();
-
+        //スクリプトの取得
+        _sceneProgress = GetComponent<SceneProgress>();
+       
         //シーン読み込みのデリケート
         SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -58,8 +56,8 @@ public class GameManager : MonoBehaviour {
 
     //シーン読み込み時に呼ばれる関数
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        //進行度の更新
-        Update_Progress(scene.name);
+        //進行度の更新、初めて訪れたかどうかの確認
+        first_Visit_Frag = _sceneProgress.Update_Is_Visited(scene.name);
     }
 
 
@@ -77,7 +75,6 @@ public class GameManager : MonoBehaviour {
         PlayerPrefs.SetInt("Stock", _playerManager.stock);
         PlayerPrefs.SetInt("Continue", _playerManager.continue_Count);
         PlayerPrefs.SetString("Option", _playerManager.option_Type);
-        PlayerPrefs.SetInt("Progress", Get_Progress_Num());
     }
 
 
@@ -94,7 +91,6 @@ public class GameManager : MonoBehaviour {
             PlayerPrefs.SetInt("Stock", 3);
             PlayerPrefs.SetInt("Continue", 0);
             PlayerPrefs.SetString("Option", "Flies");
-            PlayerPrefs.SetInt("Progress", 0);
         }
         //データの読み込み
         SceneManager.LoadScene(PlayerPrefs.GetString("Scene"));
@@ -110,13 +106,13 @@ public class GameManager : MonoBehaviour {
         _playerManager.stock = PlayerPrefs.GetInt("Stock");
         _playerManager.continue_Count = PlayerPrefs.GetInt("Continue");
         _playerManager.option_Type = PlayerPrefs.GetString("Option");
-        Set_Progress(PlayerPrefs.GetInt("Progress"));
     }
 
 
     //データの消去
     public void DeleteData() {
         PlayerPrefs.DeleteAll();
+        _sceneProgress.Delete_Progress();
     }
 
 
@@ -138,73 +134,12 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    /*-----------------進行度の初期設定-----------------*/
-    private void Progress_Dic_Setting() {
-        progress_Dic.Add("Stage1_1Scene", false);
-        progress_Dic.Add("Stage1_BossScene", false);
-        progress_Dic.Add("Stage2_1Scene", false);
-        progress_Dic.Add("Stage2_2Scene", false);
-        progress_Dic.Add("Stage2_BossScene", false);
-        progress_Dic.Add("Base_1Scene", false);
-        progress_Dic.Add("Stage3_1Scene", false);
-        progress_Dic.Add("Stage3_2Scene", false);
-        progress_Dic.Add("Stage3_BossScene", false);
-        progress_Dic.Add("Base_2Scene", false);
-    }
-
-
-    //進行度の更新
-    private void Update_Progress(string loaded_Scene) {
-        //更新
-        if (progress_Dic.ContainsKey(loaded_Scene)) {
-            //訪れたことがなかった時
-            if (!progress_Dic[loaded_Scene]) {
-                progress_Dic[loaded_Scene] = true;
-                first_Visit_Frag = true;
-                PlayerPrefs.SetInt("Progress", Get_Progress_Num());
-            }
-            //訪れたことがあるとき
-            else {
-                first_Visit_Frag = false;
-            }
-        }
-    }
-
-
-    //引数番目までの進行度をtrueにする
-    private void Set_Progress(int progress_Num) {
-        List<string> keyList = new List<string>(progress_Dic.Keys);
-        foreach (string key in keyList) {
-            if (progress_Num > 0) {
-                progress_Dic[key] = true;
-            }
-            else {
-                break;
-            }
-            progress_Num--;
-        }
-    }
-
-
     //現在のシーンに初めて訪れたかどうか
     public bool Is_First_Visit() {
         if (first_Visit_Frag) {
             return true;
         }
         return false;
-    }
-
-
-    //何番目のシーンまで進んだか
-    public int Get_Progress_Num() {
-        int progress_Num = 0;
-        foreach (bool value in progress_Dic.Values) {
-            if (!value) {
-                break;
-            }
-            progress_Num++;
-        }
-        return progress_Num;
     }
 
 
