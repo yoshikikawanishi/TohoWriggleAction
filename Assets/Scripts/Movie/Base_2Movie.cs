@@ -80,8 +80,9 @@ public class Base_2Movie : MonoBehaviour {
         main_Camera.transform.position = new Vector3(0, 1530f, -10);
 
         yield return new WaitForSeconds(1.0f);
-        
+
         //慧音落ちてくる
+        keine_Controller.Change_Parameter(true);
         while (keine.transform.position.y > main_Camera.transform.position.y) {
             keine.transform.position += new Vector3(0, -keine_Drop_Speed, 0);
             yield return null;
@@ -115,6 +116,7 @@ public class Base_2Movie : MonoBehaviour {
 
         //慧音落とす、受け止める
         player_Controller.Set_Playable(true);
+        keine.transform.position = keine.transform.position += new Vector3(Random.Range(-100f, 100f), 0);
         while(keine.transform.position.y > -100f) {
             keine.transform.position += new Vector3(0, -3f, 0) * Time.timeScale;
             //時間の進みを遅くする
@@ -172,13 +174,14 @@ public class Base_2Movie : MonoBehaviour {
     //終了設定
     private void After_Movie() {
         //慧音
+        keine_Controller.Change_Parameter(false);
         keine_Controller.enabled = false;
         TalkCharacter keine_Talk = keine.AddComponent<TalkCharacter>();
         if (keine_Controller.Get_Is_Catched()) {
-            keine_Talk.Set_Status("KeineText", 1, 1, new Vector2(32f, 32f));
+            keine_Talk.Set_Status("KeineText", 1, 1, new Vector2(24f, 32f));
         }
         else {
-            keine_Talk.Set_Status("KeineText", 2, 2, new Vector2(32f, 32f));
+            keine_Talk.Set_Status("KeineText", 2, 2, new Vector2(24f, 32f));
         }
         keine.transform.position = new Vector3(220f, -80f);
         //自機

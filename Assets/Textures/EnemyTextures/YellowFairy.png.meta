@@ -1,15 +1,11 @@
 fileFormatVersion: 2
-guid: c7a9fac61996f3e47a3ce6952c09584b
+guid: bc4a8c43ea5c84342898e805156f33ba
 TextureImporter:
   fileIDToRecycleName:
-    21300000: House_0
-    21300002: House_1
-    21300004: House_2
-    21300006: House_3
-    21300008: House_4
-    21300010: House_5
-    21300012: House_6
-    21300014: House_7
+    21300000: YellowFairy_0
+    21300002: YellowFairy_1
+    21300004: YellowFairy_2
+    21300006: YellowFairy_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -71,7 +67,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -82,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -93,7 +89,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -104,7 +100,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,7 +111,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -125,92 +121,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: House_0
+      name: YellowFairy_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 112
-        width: 265
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 324b57ca9cddbf84fbed35b6f67c03ce
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: House_1
-      rect:
-        serializedVersion: 2
-        x: 285
-        y: 112
-        width: 302
-        height: 207
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6105aa426857454f8979279d6d05187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: House_2
-      rect:
-        serializedVersion: 2
-        x: 621
-        y: 113
-        width: 265
-        height: 144
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98406aeb2261cf644874d4e1678e1688
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: House_3
-      rect:
-        serializedVersion: 2
-        x: 935
-        y: 104
-        width: 221
-        height: 135
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 284337e6aa1099849aa0c233c4a520c1
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: House_4
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 37
-        width: 50
+        x: 0
+        y: 1
+        width: 28
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -219,19 +135,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 889bbdc0531a7cf4e855e4ed08e34711
+      spriteID: 0ec07514b691d504e91ae33cb0323fb0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: House_5
+      name: YellowFairy_1
       rect:
         serializedVersion: 2
-        x: 131
-        y: 28
-        width: 13
-        height: 38
+        x: 33
+        y: 1
+        width: 28
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,19 +155,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da8506d5049aeef44af338a3d584e622
+      spriteID: d9ecd21ed3ca9954cbf61c1a5724407e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: House_6
+      name: YellowFairy_2
       rect:
         serializedVersion: 2
-        x: 193
-        y: 16
-        width: 19
-        height: 54
+        x: 66
+        y: 1
+        width: 28
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,19 +175,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e60c649214152074e8c7a7ecbb8b6d1a
+      spriteID: c1d55c113279a6b4da88f1f65e0cee34
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: House_7
+      name: YellowFairy_3
       rect:
         serializedVersion: 2
-        x: 232
-        y: 17
-        width: 37
-        height: 49
+        x: 99
+        y: 1
+        width: 28
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,7 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2b729ccd9b168643b251e5aaf22a838
+      spriteID: 6dffef4bbbaeb7248b0a6175a788f1b7
       vertices: []
       indices: 
       edges: []
@@ -287,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0ae7aa82e9b948b4b94c4d44dd326876
+    spriteID: aeb36761d1a407a4e8bd17ad72243878
     vertices: []
     indices: 
     edges: []

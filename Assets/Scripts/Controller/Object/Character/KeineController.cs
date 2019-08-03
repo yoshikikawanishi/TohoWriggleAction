@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class KeineController : MonoBehaviour {
 
+    //コンポーネント
+    private Animator _anim;
+    
     //イベント中キャッチされたかどうか
     private bool is_Catched = false;
 
+    //Awake
+    private void Awake() {
+        _anim = GetComponent<Animator>();
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
 
 
     //OnTriggerEnter
@@ -25,4 +28,16 @@ public class KeineController : MonoBehaviour {
     public bool Get_Is_Catched() {
         return is_Catched;
     }
+
+
+    //アニメーション変更
+    public void Change_Parameter(bool is_Drop) {
+        if (is_Drop) {
+            _anim.SetBool("DropBool", true);
+        }
+        else {
+            _anim.SetBool("DropBool", false);
+        }
+    }
+
 }

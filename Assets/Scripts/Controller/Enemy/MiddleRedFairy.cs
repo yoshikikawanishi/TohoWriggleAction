@@ -44,7 +44,7 @@ public class MiddleRedFairy : Enemy {
         _bullet_Scroll_Pool.Set_Bullet_Pool(pool_Manager.Get_Pool(bullet));
         for(int i = 0; i < 2; i++) {
             for(int j = 0; j < 7; j++) {
-                _bullet_Scroll_Pool.Odd_Num_Bullet(3, 25f, 70f+j*7f, 10.0f);
+                _bullet_Scroll_Pool.Odd_Num_Bullet(3, 36f, 70f+j*7f, 10.0f);
             }
             yield return new WaitForSeconds(12f / 7f);
         }

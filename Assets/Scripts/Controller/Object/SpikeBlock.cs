@@ -64,7 +64,8 @@ public class SpikeBlock : MonoBehaviour {
     //誘爆
     private void Crash() {
         //消す
-        GameObject effect = Instantiate(delete_Effect, transform);
+        GameObject effect = Instantiate(delete_Effect);
+        effect.transform.position = transform.position;
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         GetComponent<Renderer>().enabled = false;
         Destroy(gameObject, 3.0f);

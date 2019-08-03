@@ -24,29 +24,27 @@ public class PendulumGround : MonoBehaviour {
 	}
 	
 
-    //OnTriggerEnter
-    private void OnTriggerEnter2D(Collider2D collision) {
+    //OnTriggerStay
+    private void OnTriggerStay2D(Collider2D collision) {
         if (collision.tag == "PlayerFootTag") {
             if (!start_Action && player_Rigid.velocity.y < 7f && !player_Controller.Get_Is_Fly()) {
                 start_Action = true;
                 Pendulum_Move();
             }
-            StopCoroutine("Drop_Player");
-            player.transform.SetParent(gameObject.transform);
+            if (player.transform.parent != gameObject.transform) {
+                player.transform.SetParent(gameObject.transform);
+            }
         }
     }
+
 
     //OnTriggerExit
     private void OnTriggerExit2D(Collider2D collision) {
         if (player.transform.parent == gameObject.transform) {
-            StartCoroutine("Drop_Player");
+            player.transform.SetParent(null);
         }
     }
 
-    private IEnumerator Drop_Player() {
-        yield return new WaitForSeconds(0.1f);
-        player.transform.SetParent(null);
-    }
 
     //動く
     private void Pendulum_Move() {

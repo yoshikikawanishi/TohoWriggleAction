@@ -1,19 +1,15 @@
 fileFormatVersion: 2
-guid: 3c916597d13cec34ea3d5c2259533de3
+guid: d64e4e3b042b4aa4f835b0d858c11f28
 TextureImporter:
   fileIDToRecycleName:
-    21300000: GroundTile2_1_0
-    21300002: GroundTile2_1_1
-    21300004: GroundTile2_1_2
-    21300006: GroundTile2_1_3
-    21300008: GroundTile2_1_4
-    21300010: GroundTile2_1_5
-    21300012: GroundTile2_1_6
-    21300014: GroundTile2_1_7
-    21300016: GroundTile2_1_8
-    21300018: GroundTile2_1_9
-    21300020: GroundTile2_1_10
-    21300022: GroundTile2_1_11
+    21300000: Rabit_0
+    21300002: Rabit_1
+    21300004: Rabit_2
+    21300006: Rabit_3
+    21300008: Rabit_4
+    21300010: Rabit_5
+    21300012: Rabit_6
+    21300014: Rabit_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -75,7 +71,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -86,7 +82,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -108,7 +104,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,7 +115,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -129,241 +125,161 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GroundTile2_1_0
+      name: Rabit_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 66
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 5
+        y: 35
+        width: 20
+        height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdd04f6d9471383408af9fc40fb24c10
+      spriteID: 4e7368563a7b8704f84b01279e5b269d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GroundTile2_1_1
+      name: Rabit_1
       rect:
         serializedVersion: 2
-        x: 33
-        y: 66
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 35
+        y: 35
+        width: 20
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 725fce39fd6319a4f93dfe8e5c0f42fd
+      spriteID: 94a8fb7ddf446a24b9015317f54cfd06
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GroundTile2_1_2
+      name: Rabit_2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 66
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 65
+        y: 35
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4889eb605d3c4614a88e09cd7edf780b
+      spriteID: a70a3b357f014814abf87e039834e0a3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GroundTile2_1_3
+      name: Rabit_3
       rect:
         serializedVersion: 2
-        x: 99
-        y: 66
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 95
+        y: 35
+        width: 20
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d5f50163fed56849893f347c70fa5ed
+      spriteID: 4649e572ab2bd404ea47f0634a71cb0a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GroundTile2_1_4
+      name: Rabit_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 33
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 5
+        y: 5
+        width: 16
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d546a6cf333cc34fabcce88d68e533f
+      spriteID: 44de84d19dc66264499ca0c5e587453a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GroundTile2_1_5
+      name: Rabit_5
       rect:
         serializedVersion: 2
-        x: 33
-        y: 33
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 35
+        y: 5
+        width: 16
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29b9ebba48f4b524d94394b180b78a0f
+      spriteID: 7537ff279eaaa68419e5a8c8a237c813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GroundTile2_1_6
+      name: Rabit_6
       rect:
         serializedVersion: 2
-        x: 66
-        y: 33
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 65
+        y: 5
+        width: 16
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21b39d52c80c8ee469243d2d52495fd7
+      spriteID: 258e9e34342d61840beb881dfc6cdaec
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GroundTile2_1_7
+      name: Rabit_7
       rect:
         serializedVersion: 2
-        x: 99
-        y: 33
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 95
+        y: 5
+        width: 16
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac3a67737de40224da816b05d19c303d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GroundTile2_1_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c10e31c479e32b3428bf8380f7919f1b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GroundTile2_1_9
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 20c5d4ae220543642898d31c685569be
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GroundTile2_1_10
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 396d2743d7823ac4489d90cdcf682a86
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GroundTile2_1_11
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3c885566ed0b00a4d897290e55ac4891
+      spriteID: 813f8164151aec54a89efda1e6a3290a
       vertices: []
       indices: 
       edges: []
@@ -371,7 +287,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 086bc9be4ba593c42aec05d869f3d8e2
+    spriteID: 21ad9f51797a59f42ba1ce5e3664d789
     vertices: []
     indices: 
     edges: []

@@ -8,6 +8,7 @@ public class Familiar : MonoBehaviour {
     private SpriteRenderer _sprite;
     private Renderer _renderer;
 
+
 	// Use this for initialization
 	void Start () {
         //コンポーネント
@@ -30,7 +31,7 @@ public class Familiar : MonoBehaviour {
     //LShiftで透明化
     private void Become_Invisible() {
         //LShiftで透明化
-        if (Input.GetButtonDown("Fly")) {
+        if (Input.GetButton("Fly") && _sprite.color.a != 0) {
             _sprite.color = new Color(1, 1, 1, 0);
             gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         }

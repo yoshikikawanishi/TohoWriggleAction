@@ -21,6 +21,7 @@ TagManager:
   - ThroughGroundTag
   - BulletPoolTag
   - DamageGroundTag
+  - ScriptsTag
   layers:
   - Default
   - TransparentFX
