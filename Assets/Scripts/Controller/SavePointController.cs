@@ -6,18 +6,14 @@ public class SavePointController : MonoBehaviour {
 
     //スクリプト
     private GameManager _gameManager;
+    private UIController ui_Controller;
 
 
 	// Use this for initialization
 	void Start () {
         _gameManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
-
+        ui_Controller = GameObject.Find("Canvas").GetComponent<UIController>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 
     //OnTriggerEnter
@@ -25,6 +21,7 @@ public class SavePointController : MonoBehaviour {
         //自機と接触したときセーブ
         if (collision.tag == "PlayerBodyTag") {
             _gameManager.SaveData();
+            ui_Controller.Save_UI();
         }
     }
 }

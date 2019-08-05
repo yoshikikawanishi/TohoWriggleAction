@@ -19,6 +19,7 @@ public class UIController : MonoBehaviour {
     private Text score_UI;
     private Slider fly_Time_UI;
     private Image fly_Time_Image;
+    private GameObject save_UI;
 
     //オーディオ
     private AudioSource alert_Sound;
@@ -49,6 +50,7 @@ public class UIController : MonoBehaviour {
         score_UI = transform.Find("ScoreUI").GetComponent<Text>();
         fly_Time_UI = transform.Find("FlyTimeUI").GetComponent<Slider>();
         fly_Time_Image = GameObject.Find("FlyTimeFill").GetComponent<Image>();
+        save_UI = transform.Find("SaveUI").gameObject;
         //オーディオ
         alert_Sound = transform.Find("FlyTimeUI").GetComponent<AudioSource>(); 
 	}
@@ -123,6 +125,20 @@ public class UIController : MonoBehaviour {
         //元の色に戻す
         else if(fly_Time_UI.value >= 1.5f && !Mathf.Approximately(0.4f, fly_Time_Image.color.r)) {
             fly_Time_Image.color = new Color(0.4f, 1, 0.5f);
+        }
+    }
+
+
+    //セーブUIの表示
+    public void Save_UI() {
+        StartCoroutine("Save_UI_Routine");
+    }
+    private IEnumerator Save_UI_Routine() {
+        for(int i = 0; i < 3; i++) {
+            save_UI.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            save_UI.SetActive(false);
+            yield return new WaitForSeconds(0.3f);
         }
     }
 

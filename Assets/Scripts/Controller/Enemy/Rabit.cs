@@ -45,7 +45,7 @@ public class Rabit : MonoBehaviour {
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.tag == "GroundTag") {
+        if(collision.tag == "GroundTag" || collision.tag == "ThroughGroundTag") {
             _anim.SetBool("JumpBool", false);
         }
     }

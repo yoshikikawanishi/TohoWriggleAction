@@ -32,23 +32,10 @@ public class WriggleBulletController : MonoBehaviour {
                 if(this.transform.childCount == 0) {
                     return;
                 }
-                for(int i = 0; i < 2; i++) {
-                    GameObject bullet_Debris = transform.GetChild(0).gameObject;
-                    bullet_Debris.transform.position = transform.position + new Vector3(0, 8f, 0);
-                    bullet_Debris.SetActive(true);
-                    bullet_Debris.transform.SetParent(null);
-                    bullet_Debris.GetComponent<Rigidbody2D>().velocity = new Vector2(-150f + i * 300f, 40f);
-                }
                 GameObject effect = transform.GetChild(0).gameObject;
                 effect.SetActive(true);
                 effect.transform.SetParent(null);
                 Destroy(effect, 0.3f);
-                Destroy(gameObject);
-            }
-        }
-        //はじけたカブトムシ弾敵地面に当たったら消す
-        else if(option_Type == "BeetleCrash") {
-            if(collision.tag == "GroundTag" || collision.tag == "EnemyTag") {
                 Destroy(gameObject);
             }
         }

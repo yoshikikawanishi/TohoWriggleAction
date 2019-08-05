@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour {
         PlayerPrefs.SetInt("Stock", _playerManager.stock);
         PlayerPrefs.SetInt("Continue", _playerManager.continue_Count);
         PlayerPrefs.SetString("Option", _playerManager.option_Type);
+      
     }
 
 

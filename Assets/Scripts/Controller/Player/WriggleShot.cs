@@ -227,11 +227,11 @@ public class WriggleShot : MonoBehaviour {
             Vector2 bullet_Speed = new Vector2(150f * transform.localScale.x, 300f);
             //1段階目以降
             if (power_Grade >= 1) {
-                beetle_Shot_Span = 0.3f;
+                beetle_Shot_Span = 0.5f;
             }
             //2段階目以降
             if (power_Grade >= 2) {
-                beetle_Shot_Span = 0.2f;
+                beetle_Shot_Span = 0.45f;
             }
             //3段階目以降
             if (power_Grade >= 3) {

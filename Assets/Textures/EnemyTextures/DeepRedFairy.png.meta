@@ -1,15 +1,11 @@
 fileFormatVersion: 2
-guid: 88a26e2eda7d2ac478f607443927f398
+guid: cd4ee27a22d83e748a95cd3a4bc8000f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Ground3_1_0
-    21300002: Ground3_1_1
-    21300004: Ground3_1_2
-    21300006: Ground3_1_3
-    21300008: Ground3_1_4
-    21300010: Ground3_1_5
-    21300012: Ground3_1_6
-    21300014: Ground3_1_7
+    21300000: DeepRedFairy_0
+    21300002: DeepRedFairy_1
+    21300004: DeepRedFairy_2
+    21300006: DeepRedFairy_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -125,161 +121,81 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ground3_1_0
+      name: DeepRedFairy_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 108
-        width: 32
-        height: 108
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        y: 1
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f1dcdf500b24f940bdb0c8ce6174de7
+      spriteID: 02a4856e49d36434e900a5265fd723bc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground3_1_1
+      name: DeepRedFairy_1
       rect:
         serializedVersion: 2
         x: 33
-        y: 108
-        width: 64
-        height: 108
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        y: 1
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25863cd07f13e97419d8d8b6c790e71d
+      spriteID: 5d4d61ce8f7c79942bd7560b12c03e30
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground3_1_2
+      name: DeepRedFairy_2
       rect:
         serializedVersion: 2
-        x: 98
-        y: 108
-        width: 96
-        height: 108
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 66
+        y: 1
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8d4415ca954a574eaf6cecddc2202b5
+      spriteID: 81a03a5f4b23e6744a9a82375036b824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground3_1_3
+      name: DeepRedFairy_3
       rect:
         serializedVersion: 2
-        x: 195
-        y: 108
-        width: 128
-        height: 108
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 99
+        y: 1
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e72c4f5183b5f6d4f97a7d853a515c79
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground3_1_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 216
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82aa756eb10635a4ca4bb8ba71926150
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground3_1_5
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 0
-        width: 64
-        height: 216
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a11c0299fcdcc2247ba551f11ee57ada
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground3_1_6
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 0
-        width: 96
-        height: 216
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b6096670daadea4085bda0f1e033f4e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground3_1_7
-      rect:
-        serializedVersion: 2
-        x: 195
-        y: 0
-        width: 128
-        height: 216
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9a431e39df3670f45b8a58d4ebda7c8d
+      spriteID: 310d8198d3208bd48a3857e3b10a3b02
       vertices: []
       indices: 
       edges: []
@@ -287,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: dd3ad67c0bff9aa4abdfe352cb590972
+    spriteID: 7c54e76f595ac4745a28ee486c4f9684
     vertices: []
     indices: 
     edges: []

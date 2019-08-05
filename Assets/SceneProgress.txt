@@ -1,7 +1,7 @@
 #SceneName	#isVisited
 Stage1_1Scene	true
 Stage1_2Scene	false
-Stage2_1Scene	false
+Stage2_1Scene	true
 Stage2_2Scene	false
 Stage2_BossScene	false
 Base_1Scene	false

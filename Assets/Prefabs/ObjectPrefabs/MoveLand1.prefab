@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4678569687924978}
   - component: {fileID: 212680854501426600}
+  - component: {fileID: 61575288311054072}
   - component: {fileID: 114143497842967310}
   - component: {fileID: 114611274518889936}
-  - component: {fileID: 61575288311054072}
   m_Layer: 0
   m_Name: MoveLand1
   m_TagString: GroundTag
@@ -55,10 +55,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -108}
+  m_Offset: {x: 16, y: -108}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 1}
+    pivot: {x: 0, y: 1}
     oldSize: {x: 32, y: 216}
     newSize: {x: 32, y: 216}
     adaptiveTilingThreshold: 0.5
@@ -128,7 +128,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -4
   m_Sprite: {fileID: 21300008, guid: 88a26e2eda7d2ac478f607443927f398, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

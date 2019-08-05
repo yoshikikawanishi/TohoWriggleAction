@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: bc4a8c43ea5c84342898e805156f33ba
+guid: 8cd1a385e9336a8468c9395b656413af
 TextureImporter:
   fileIDToRecycleName:
-    21300000: YellowFairy_0
-    21300002: YellowFairy_1
-    21300004: YellowFairy_2
-    21300006: YellowFairy_3
+    21300000: Chen_0
+    21300002: Chen_1
+    21300004: Chen_2
+    21300006: Chen_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -121,81 +121,81 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: YellowFairy_0
+      name: Chen_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 28
-        height: 23
+        x: 5
+        y: 5
+        width: 15
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ec07514b691d504e91ae33cb0323fb0
+      spriteID: 5198f09ab7fd687489b5deeffb7e208f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: YellowFairy_1
+      name: Chen_1
       rect:
         serializedVersion: 2
-        x: 33
-        y: 1
-        width: 28
-        height: 23
+        x: 30
+        y: 5
+        width: 16
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9ecd21ed3ca9954cbf61c1a5724407e
+      spriteID: e0d25f41a5c78664783b68a69148e120
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: YellowFairy_2
+      name: Chen_2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 1
-        width: 28
-        height: 23
+        x: 55
+        y: 5
+        width: 17
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1d55c113279a6b4da88f1f65e0cee34
+      spriteID: f72c4244ab1370e48b4af73b30e6d19d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: YellowFairy_3
+      name: Chen_3
       rect:
         serializedVersion: 2
-        x: 99
-        y: 1
-        width: 28
-        height: 23
+        x: 80
+        y: 5
+        width: 16
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dffef4bbbaeb7248b0a6175a788f1b7
+      spriteID: 42e8a2bdea2bf9c4ea770c9b9bf5ee05
       vertices: []
       indices: 
       edges: []
@@ -203,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: aeb36761d1a407a4e8bd17ad72243878
+    spriteID: c3720eb17e3273d48810e9faf1c78fa0
     vertices: []
     indices: 
     edges: []
