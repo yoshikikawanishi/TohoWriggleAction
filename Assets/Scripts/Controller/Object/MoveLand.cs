@@ -35,15 +35,15 @@ public class MoveLand : MonoBehaviour {
         else {
             time = 0;
             next_Pos = default_Pos + positions[count % positions.Count];
-            _move.Start_Move(next_Pos, 0, 0.02f);
+            _move.Start_Move(next_Pos, 0, 0.01f);
             count++;
         }
 	}
 
 
     //OnTriggerEnter
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "PlayerFootTag") {
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (collision.tag == "PlayerFootTag" && collision.transform.parent != gameObject.transform) {
             collision.transform.parent.SetParent(gameObject.transform);
         }
     }

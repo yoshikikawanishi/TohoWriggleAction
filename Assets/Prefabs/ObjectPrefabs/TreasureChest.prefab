@@ -29,7 +29,7 @@ GameObject:
   - component: {fileID: 82588592421745264}
   m_Layer: 11
   m_Name: TreasureChest
-  m_TagString: GroundTag
+  m_TagString: ThroughGroundTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

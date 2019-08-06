@@ -20,6 +20,9 @@ public class Base_2Movie : MonoBehaviour {
     //慧音落下速度
     private float keine_Drop_Speed = 8f;
 
+    //ムービー終了
+    public bool is_End_Movie = false;
+
 
     //Awake
     private void Awake() {
@@ -46,6 +49,7 @@ public class Base_2Movie : MonoBehaviour {
             GetComponent<BorderFadeIn>().Start_Fade_In(1f);
             Debug.Log("not first visit");
             StopAllCoroutines();
+            is_End_Movie = true;
             yield return null;
         }
 
@@ -146,6 +150,7 @@ public class Base_2Movie : MonoBehaviour {
         scene_Background.SetActive(true);
         scene_Background.transform.SetParent(main_Camera.transform);
         After_Movie();
+        is_End_Movie = true;
     }
 
 
