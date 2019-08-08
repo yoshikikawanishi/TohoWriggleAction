@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 20
-  score_Value: 900
+  score_Value: 800
   power_Value: 10
   probability_Recover_Item: 0
   item_Out_Speed: 500

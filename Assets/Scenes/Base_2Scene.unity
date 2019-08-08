@@ -2743,11 +2743,6 @@ Prefab:
     m_Modifications:
     - target: {fileID: 224090197772778972, guid: 7b7f50f01c7916b428a73b74499e9741,
         type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 224090197772778972, guid: 7b7f50f01c7916b428a73b74499e9741,
-        type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2836,36 +2831,21 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114980648996762466, guid: 7b7f50f01c7916b428a73b74499e9741,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1031892880}
-    - target: {fileID: 114980648996762466, guid: 7b7f50f01c7916b428a73b74499e9741,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Life_Up_Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 114593162746375134, guid: 7b7f50f01c7916b428a73b74499e9741,
+    - target: {fileID: 114152356207831052, guid: 7b7f50f01c7916b428a73b74499e9741,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1031892880}
     - target: {fileID: 114593162746375134, guid: 7b7f50f01c7916b428a73b74499e9741,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Get_Stock_Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152356207831052, guid: 7b7f50f01c7916b428a73b74499e9741,
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1031892880}
+    - target: {fileID: 114980648996762466, guid: 7b7f50f01c7916b428a73b74499e9741,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1031892880}
-    - target: {fileID: 114152356207831052, guid: 7b7f50f01c7916b428a73b74499e9741,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Quit_Button
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b7f50f01c7916b428a73b74499e9741, type: 2}
   m_IsPrefabAsset: 0

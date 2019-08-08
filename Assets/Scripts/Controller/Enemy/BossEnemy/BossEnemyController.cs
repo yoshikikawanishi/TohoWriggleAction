@@ -47,7 +47,7 @@ public class BossEnemyController : MonoBehaviour {
         //ダメージサウンドの設定
         damage_Audio_Source = gameObject.AddComponent<AudioSource>();
         damage_Audio_Source.clip = damage_Sound;
-        damage_Audio_Source.volume = 0.008f;
+        damage_Audio_Source.volume = 0.001f;
         //パーティクル
         hit_Effect_Particle = GameObject.Find("BossHitEffect").GetComponent<ParticleSystem>();
         //ダメージエフェクトのオブジェクトプール
@@ -94,6 +94,13 @@ public class BossEnemyController : MonoBehaviour {
         //体力0でクリア
         if(now_Phase > phase_Num) {
             Clear();           
+        }
+        //被弾音の切り替え
+        if(life[now_Phase-1] <= LIFE[now_Phase-1] / 5f) {
+            damage_Audio_Source.volume = 0.05f;
+        }
+        else {
+            damage_Audio_Source.volume = 0.01f;
         }
     }
 

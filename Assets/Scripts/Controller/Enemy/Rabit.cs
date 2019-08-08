@@ -8,6 +8,9 @@ public class Rabit : MonoBehaviour {
     private Rigidbody2D _rigid;
     private Animator _anim;
 
+    //自機
+    private GameObject player;
+    
     //ジャンプ
     private float jump_Speed = 180f;
     [SerializeField] private float horizon_Speed = 0;
@@ -16,6 +19,9 @@ public class Rabit : MonoBehaviour {
     private float time = 0;
 
     private int count = 0;
+
+    //横方向への移動開始
+    private bool start_Horizon_Jump = false;
 
 
     //Awake
@@ -26,19 +32,31 @@ public class Rabit : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        player = GameObject.FindWithTag("PlayerTag");
         span = GameObject.FindWithTag("ScriptsTag").GetComponent<Stage4_1Scene>().bgm_Match_Span;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(time < span[count % span.Length]) {
+        //ジャンプ
+        if (time < span[count % span.Length]) {
             time += Time.deltaTime;
         }
         else {
             time = 0;
-            _rigid.velocity = new Vector2(horizon_Speed, jump_Speed);
+            if (start_Horizon_Jump) {
+                _rigid.velocity = new Vector2(horizon_Speed, jump_Speed);
+            }
+            else {
+                _rigid.velocity = new Vector2(0, jump_Speed);
+            }
             _anim.SetBool("JumpBool", true);
             count++;
+        }
+
+        //横方向への移動開始
+        if(player.transform.position.x > transform.position.x - 300f && !start_Horizon_Jump) {
+            start_Horizon_Jump = true;
         }
 	}
 
@@ -47,6 +65,7 @@ public class Rabit : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "GroundTag" || collision.tag == "ThroughGroundTag") {
             _anim.SetBool("JumpBool", false);
+            _rigid.velocity = new Vector2(0, _rigid.velocity.y);
         }
     }
 }

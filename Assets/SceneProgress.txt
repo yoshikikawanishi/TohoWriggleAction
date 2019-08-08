@@ -4,8 +4,8 @@ Stage1_2Scene	false
 Stage2_1Scene	false
 Stage2_2Scene	false
 Stage2_BossScene	false
-Base_1Scene	false
-Stage3_1Scene	false
-Stage3_2Scene	false
-Stage3_BossScene	false
+Base_1Scene	true
+Stage3_1Scene	true
+Stage3_2Scene	true
+Stage3_BossScene	true
 Base_2Scene	true

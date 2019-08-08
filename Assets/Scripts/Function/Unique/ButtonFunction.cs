@@ -22,8 +22,24 @@ public class ButtonFunction : MonoBehaviour {
 
     //初めからボタン押下時
     public void Start_Game_Button() {
-        _gameManager.DeleteData();
-        _gameManager.StartCoroutine("LoadData");
+        TitleScene title_Scene_Controller = GameObject.Find("Scripts").GetComponent<TitleScene>();
+        if (title_Scene_Controller != null) {
+            title_Scene_Controller.Display_Confirm_Canvas();
+        }
+    }
+
+    //確認ボタン
+    public void Confirm_Start_Button(bool is_Start_Game) {
+        if (is_Start_Game) {
+            _gameManager.DeleteData();
+            _gameManager.StartCoroutine("LoadData");
+        }
+        else {
+            TitleScene title_Scene_Controller = GameObject.Find("Scripts").GetComponent<TitleScene>();
+            if(title_Scene_Controller != null) {
+                title_Scene_Controller.Delete_Confirm_Canvas();
+            }
+        }
     }
 
 
@@ -56,8 +72,19 @@ public class ButtonFunction : MonoBehaviour {
 
     //ポーズ画面からタイトルに戻るボタン押下時
     public void Title_From_Pause_Button() {
-        GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>().Release_Pause_Game();
-        SceneManager.LoadScene("TitleScene");
+        GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>().Confirm_Back_Title();
+    }
+
+    //確認画面のボタン
+    public void Confirm_Button(bool is_Back_Title) {
+        PauseManager _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
+        if (is_Back_Title) {
+            _pause.Release_Pause_Game();
+            SceneManager.LoadScene("TitleScene");
+        }
+        else {
+            _pause.Delete_Confirm_Canvas();
+        }
     }
 
     //キーコンフィグボタン押下時

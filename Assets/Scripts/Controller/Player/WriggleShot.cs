@@ -222,7 +222,7 @@ public class WriggleShot : MonoBehaviour {
         }
         else if (Input.GetButtonDown("Shot/Cancel")) {
             time = 0;
-            beetle_Shot_Span = 0.4f;
+            beetle_Shot_Span = 0.5f;
             int bullet_Num = 1;
             Vector2 bullet_Speed = new Vector2(150f * transform.localScale.x, 300f);
             //1段階目以降
@@ -231,15 +231,17 @@ public class WriggleShot : MonoBehaviour {
             }
             //2段階目以降
             if (power_Grade >= 2) {
-                beetle_Shot_Span = 0.45f;
+                beetle_Shot_Span = 0.4f;
             }
             //3段階目以降
             if (power_Grade >= 3) {
                 bullet_Num = 2;
+                beetle_Shot_Span = 0.35f;
             }
             //4段階目
             if (power_Grade >= 4) {
                 bullet_Num = 3;
+                beetle_Shot_Span = 0.3f;
             }
             //弾の発射
             for (int i = 0; i < bullet_Num; i++) {

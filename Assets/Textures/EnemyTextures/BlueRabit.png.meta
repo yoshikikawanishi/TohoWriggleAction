@@ -1,11 +1,15 @@
 fileFormatVersion: 2
-guid: 46e2b326c719742419b6ed4422000a76
+guid: 654691e0711872844b53614358441c12
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Kyoko_0
-    21300002: Kyoko_1
-    21300004: Kyoko_2
-    21300006: Kyoko_3
+    21300000: BlueRabit_0
+    21300002: BlueRabit_1
+    21300004: BlueRabit_2
+    21300006: BlueRabit_3
+    21300008: BlueRabit_4
+    21300010: BlueRabit_5
+    21300012: BlueRabit_6
+    21300014: BlueRabit_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -67,7 +71,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -78,7 +82,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -89,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +104,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -111,7 +115,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Kyoko_0
+      name: BlueRabit_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 5
-        width: 21
-        height: 27
+        x: 5
+        y: 35
+        width: 20
+        height: 22
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,19 +139,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59c03f33ad191144baac5802b9b9324c
+      spriteID: abd207a9d7a7e4449a955d3eb9b5b4dc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kyoko_1
+      name: BlueRabit_1
       rect:
         serializedVersion: 2
-        x: 29
-        y: 5
-        width: 21
-        height: 26
+        x: 35
+        y: 35
+        width: 20
+        height: 21
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,19 +159,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 694bf2943bdd6254c9c445c40ea0ca7b
+      spriteID: dcaef8386cb593644a57831b8121aaae
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kyoko_2
+      name: BlueRabit_2
       rect:
         serializedVersion: 2
-        x: 54
-        y: 5
-        width: 21
-        height: 27
+        x: 65
+        y: 35
+        width: 20
+        height: 20
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,19 +179,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68febdef2299b4f41b083b4f585a3f63
+      spriteID: 6ec4fd98d89457c42bef20d3f45a9bc1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kyoko_3
+      name: BlueRabit_3
       rect:
         serializedVersion: 2
-        x: 79
-        y: 5
-        width: 21
-        height: 28
+        x: 95
+        y: 35
+        width: 20
+        height: 21
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,7 +199,87 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe9027f3e3f416342a9478ea2afc5e02
+      spriteID: 6c66a1b1254bb9246b9ea166ddeca57d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlueRabit_4
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 5
+        width: 16
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efe608bbb7582e9428630605195c6cef
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlueRabit_5
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 5
+        width: 16
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 362de2478793d3540982b048d214ab09
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlueRabit_6
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 5
+        width: 16
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f0cb90b40ceb8145a9e24c450137f35
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlueRabit_7
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 5
+        width: 16
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe4ff534cc32195449ee5b9bc09e5ea9
       vertices: []
       indices: 
       edges: []
@@ -203,7 +287,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 51bc9f5695416354da09c32896b167e8
+    spriteID: 0297eaa4aa0821741b77d12ee9a55085
     vertices: []
     indices: 
     edges: []

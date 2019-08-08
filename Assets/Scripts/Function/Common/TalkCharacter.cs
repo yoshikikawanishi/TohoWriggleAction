@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TalkCharacter : MonoBehaviour {
 
+    
     //スクリプト
     protected MessageDisplay _message;
 
@@ -46,7 +47,7 @@ public class TalkCharacter : MonoBehaviour {
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "PlayerBodyTag") {
-            mark_Up_Baloon.SetActive(true);
+            mark_Up_Baloon.SetActive(true);            
         }
     }
 

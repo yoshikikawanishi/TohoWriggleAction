@@ -67,9 +67,9 @@ public class ShopClerk : TalkCharacter {
     //ライフ回復
     public void Life_Up_Button() {
         PlayerManager player_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
-        if (player_Manager.power > 20) {
+        if (player_Manager.power >= 16) {
             player_Manager.Life_Up();
-            player_Manager.Set_Power(player_Manager.power - 20);
+            player_Manager.Set_Power(player_Manager.power - 16);
             Quit_Button();
         }
     }
@@ -78,9 +78,9 @@ public class ShopClerk : TalkCharacter {
     //1UP
     public void Get_Stock_Button() {
         PlayerManager player_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
-        if (player_Manager.power > 60) {
+        if (player_Manager.power >= 48) {
             player_Manager.Get_Stock();
-            player_Manager.Set_Power(player_Manager.power - 60);
+            player_Manager.Set_Power(player_Manager.power - 48);
             Quit_Button();
         }
     }
