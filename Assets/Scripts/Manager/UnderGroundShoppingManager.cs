@@ -26,7 +26,6 @@ public class UnderGroundShoppingManager : MonoBehaviour {
     private string selecte_Option;
 
     //コンポーネント
-    private SentenceDisplay _sentence;
     private CanvasGroup canvas_Group;
 
     //スクリプト
@@ -36,7 +35,6 @@ public class UnderGroundShoppingManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //コンポーネント
-        _sentence = GetComponent<SentenceDisplay>();
         canvas_Group = shop_Canvas.GetComponent<CanvasGroup>();
         //スクリプト
         _background = GetComponent<UnderGroundBackGround>();

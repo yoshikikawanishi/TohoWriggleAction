@@ -18,7 +18,6 @@ public class FadeInOut : MonoBehaviour {
 
 	//フェードイン
     public void Start_Fade_In() {
-        this.speed = speed;
         StartCoroutine("Fade_In");
     }
     private IEnumerator Fade_In() {
@@ -31,7 +30,6 @@ public class FadeInOut : MonoBehaviour {
 
     //フェードアウト
     public void Start_Fade_Out() {
-        this.speed = speed;
         StartCoroutine("Fade_Out");
     }
     private IEnumerator Fade_Out() {

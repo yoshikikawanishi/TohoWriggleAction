@@ -45,7 +45,7 @@ public class Rabit : MonoBehaviour {
         else {
             time = 0;
             if (start_Horizon_Jump) {
-                _rigid.velocity = new Vector2(horizon_Speed, jump_Speed);
+                _rigid.velocity = new Vector2(horizon_Speed * transform.localScale.x, jump_Speed);
             }
             else {
                 _rigid.velocity = new Vector2(0, jump_Speed);

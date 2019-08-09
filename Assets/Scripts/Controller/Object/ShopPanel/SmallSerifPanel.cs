@@ -5,13 +5,11 @@ using UnityEngine.UI;
 
 public class SmallSerifPanel : MonoBehaviour {
 
-    private UnderGroundShoppingManager shop_Manager;
     private SentenceDisplay _sentence;
     private Text text;
 
     // Use this for initialization
     void Awake() {
-        shop_Manager = GameObject.Find("Scripts").GetComponent<UnderGroundShoppingManager>();
         _sentence = gameObject.AddComponent<SentenceDisplay>();
         text = GetComponentInChildren<Text>();
     }

@@ -24,6 +24,6 @@ public class GoAroundParent : MonoBehaviour {
         //親の周りをまわる
         time += Time.deltaTime;
         angle = (default_Angle + time * 50f) * Mathf.PI / 180f;
-        transform.position = parent.transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * 48f;
+        transform.position = parent.transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
     }
 }

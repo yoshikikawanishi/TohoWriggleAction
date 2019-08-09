@@ -26,18 +26,19 @@ public class EnemyGenerator : MonoBehaviour {
 
     /*  ファイルの形式
        
-        #ID #NAME   #Pos_X  #Pos_Y  #IntervalTime
-        1   EnemyName   0   0   1.0       
+        #ID #NAME   #Pos_X  #Pos_Y  #Direction  #IntervalTime
+        1   EnemyName   0   0   1   1.0       
     */
 
 
     //敵生成コルーチン
     private IEnumerator Enemy_Gen() {
         for(int i = start_ID; i <= end_ID; i++) {
-            yield return new WaitForSeconds(float.Parse(_text.textWords[i, 4]));
+            yield return new WaitForSeconds(float.Parse(_text.textWords[i, 5]));
             GameObject enemy = Instantiate(Resources.Load("Enemy/" + _text.textWords[i, 1])) as GameObject;
             enemy.transform.position = new Vector3(int.Parse(_text.textWords[i, 2]), int.Parse(_text.textWords[i, 3]));
             enemy.transform.SetParent(parent.transform);
+            enemy.transform.localScale = new Vector3(int.Parse(_text.textWords[i, 4]), 1, 1);
         }
         end_Generate = true;
     }

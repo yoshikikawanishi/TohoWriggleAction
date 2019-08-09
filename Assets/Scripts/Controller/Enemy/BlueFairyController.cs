@@ -14,6 +14,7 @@ public class BlueFairyController : MonoBehaviour {
         //コンポーネントの取得
         _rigid = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<Renderer>();
+
     }
 
 	
@@ -21,7 +22,7 @@ public class BlueFairyController : MonoBehaviour {
 	void Update () {
         //画面内に入ったら動き出す
         if (_renderer.isVisible) {
-            _rigid.velocity = new Vector2(-37f, 0);
+            _rigid.velocity = new Vector2(-37f * transform.localScale.x, 0);
         }
         //左端に行ったら消す
         if (transform.position.x < -320f) {

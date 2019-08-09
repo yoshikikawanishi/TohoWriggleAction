@@ -39,7 +39,11 @@ public class Stage4_1Scene : MonoBehaviour {
             start_Event_Battle1 = true;
             StartCoroutine("Event_Battle1_Routine");
         }
-	}
+        if (main_Camera.transform.position.x >= 9344f && !start_Event_Battle1) {
+            start_Event_Battle2 = true;
+            StartCoroutine("Event_Battle2_Routine");
+        }
+    }
 
 
     //イベント戦１
@@ -49,37 +53,64 @@ public class Stage4_1Scene : MonoBehaviour {
         //カメラの固定
         main_Camera.GetComponent<CameraController>().enabled = false;
         main_Camera.transform.position = new Vector3(8608f, 0, -10);
-        //敵の生成
         yield return new WaitForSeconds(0.5f);
-        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 1, 1, event_Enemy_Parent);
+        //敵の生成ウェーブ1
+        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 1, 2, event_Enemy_Parent);
         yield return new WaitUntil(_enemy_Gen.End_Generate);
-        //敵がすべて消えるまで待つ
         while (event_Enemy_Parent.transform.childCount != 0) {
             yield return null;
         }
-        //イベント終了
-        StartCoroutine(Delete_Blocks_Wall());
-        //カメラを自機に滑らかに近づける
-        float difference = 0;
-        do {
-            difference = main_Camera.transform.position.x - (player.transform.position.x + 64f);
-            main_Camera.transform.position += new Vector3(-difference / Mathf.Abs(difference) * 5f, 0);
+        //ウェーブ2
+        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 3, 6, event_Enemy_Parent);
+        yield return new WaitUntil(_enemy_Gen.End_Generate);
+        while (event_Enemy_Parent.transform.childCount != 0) {
             yield return null;
-        } while (Mathf.Abs(difference) > 3f);
-        main_Camera.GetComponent<CameraController>().enabled = true;
+        }
+        //ウェーブ3
+        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 7, 12, event_Enemy_Parent);
+        yield return new WaitUntil(_enemy_Gen.End_Generate);
+        while (event_Enemy_Parent.transform.childCount != 0) {
+            yield return null;
+        }
+        //イベント終了、壁の破壊
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(Delete_Blocks_Wall());
+        //カメラを自機の位置に滑らかに動かす
+        StartCoroutine("Approach_Camera");
     }
 
 
     //イベント戦２
     private IEnumerator Event_Battle2_Routine() {
         //壁の生成
-        StartCoroutine(Generate_Blocks_Wall(8408f, 8808f));
+        StartCoroutine(Generate_Blocks_Wall(9144f, 9544f));
         //カメラの固定
         main_Camera.GetComponent<CameraController>().enabled = false;
-        main_Camera.transform.position = new Vector3(8608f, 0, -10);
-        //敵の生成
+        main_Camera.transform.position = new Vector3(9344f, 0, -10);
         yield return new WaitForSeconds(0.5f);
-
+        //敵の生成ウェーブ1
+        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 1, 1, event_Enemy_Parent);
+        yield return new WaitUntil(_enemy_Gen.End_Generate);
+        while (event_Enemy_Parent.transform.childCount != 0) {
+            yield return null;
+        }
+        //ウェーブ2
+        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 1, 1, event_Enemy_Parent);
+        yield return new WaitUntil(_enemy_Gen.End_Generate);
+        while (event_Enemy_Parent.transform.childCount != 0) {
+            yield return null;
+        }
+        //ウェーブ3
+        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 1, 1, event_Enemy_Parent);
+        yield return new WaitUntil(_enemy_Gen.End_Generate);
+        while (event_Enemy_Parent.transform.childCount != 0) {
+            yield return null;
+        }
+        //イベント終了、壁の破壊
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(Delete_Blocks_Wall());
+        //カメラを自機の位置に滑らかに動かす
+        StartCoroutine("Approach_Camera");
         yield return null;
     }
 
@@ -103,6 +134,18 @@ public class Stage4_1Scene : MonoBehaviour {
             wall_Blocks[i+4].GetComponent<ObjectDestroyer>().Destroy_Object();
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+
+    //カメラを自機に滑らかに近づける
+    private IEnumerator Approach_Camera() {
+        float difference = 0;
+        do {
+            difference = main_Camera.transform.position.x - (player.transform.position.x + 64f);
+            main_Camera.transform.position += new Vector3(-difference / Mathf.Abs(difference) * 5f, 0);
+            yield return null;
+        } while (Mathf.Abs(difference) > 3f);
+        main_Camera.GetComponent<CameraController>().enabled = true;
     }
 
 }

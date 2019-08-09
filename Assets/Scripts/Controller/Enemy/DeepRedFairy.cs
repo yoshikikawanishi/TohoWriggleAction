@@ -32,7 +32,7 @@ public class DeepRedFairy : MonoBehaviour {
         //画面内に入ったら動き出す
         if (_renderer.isVisible && !start_Action) {
             start_Action = true;
-            _rigid.velocity = new Vector2(-37f, 0);
+            _rigid.velocity = new Vector2(-37f * transform.localScale.x, 0);
             StartCoroutine("Shot");
         }
         //左端に行ったら消す
@@ -62,5 +62,6 @@ public class DeepRedFairy : MonoBehaviour {
         _bullet.Set_Bullet(Resources.Load("Bullet/PurpleBullet") as GameObject);
         _bullet.Odd_Num_Bullet(3, 36f, 80f, 5.0f);
         _bullet.Odd_Num_Bullet(3, 36f, 70f, 5.0f);
+        UsualSoundManager.Shot_Sound();
     }
 }
