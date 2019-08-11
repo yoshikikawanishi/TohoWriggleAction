@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 114727430735047398}
   - component: {fileID: 114364870590056734}
   - component: {fileID: 114018609177597324}
-  - component: {fileID: 114011020750076668}
   - component: {fileID: 114249156632091630}
   m_Layer: 0
   m_Name: CommonScripts
@@ -44,17 +43,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114011020750076668
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1190771616149862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cd3818c8c8e5004dadeff7398eac15c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114018609177597324
 MonoBehaviour:
   m_ObjectHideFlags: 1

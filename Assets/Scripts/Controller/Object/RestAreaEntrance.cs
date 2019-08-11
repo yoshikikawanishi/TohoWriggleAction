@@ -12,13 +12,13 @@ public class RestAreaEntrance : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D collision) {
         //入口
         if (is_Entrance) {
-            if (collision.tag == "PlayerBodyTag" && Input.GetKeyDown(KeyCode.DownArrow)) {
+            if (collision.tag == "PlayerBodyTag" && Input.GetAxisRaw("Vertical") > 0) {
                 GameObject.FindWithTag("PlayerTag").transform.position = new Vector3(-800f, -80f);
             }
         }
         //出口
         else {
-            if (collision.tag == "PlayerBodyTag" && Input.GetKeyDown(KeyCode.DownArrow)) {
+            if (collision.tag == "PlayerBodyTag" && Input.GetAxisRaw("Vertical") > 0) {
                 GameObject.FindWithTag("PlayerTag").transform.position = new Vector3(800f, -80f);
             }
         }

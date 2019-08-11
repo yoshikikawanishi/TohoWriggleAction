@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage4_1Scene : MonoBehaviour {
 
@@ -21,6 +22,7 @@ public class Stage4_1Scene : MonoBehaviour {
     //イベント開始
     private bool start_Event_Battle1 = false;
     private bool start_Event_Battle2 = false;
+    private bool start_Event_Battle3 = false;
 
 
 	// Use this for initialization
@@ -39,9 +41,17 @@ public class Stage4_1Scene : MonoBehaviour {
             start_Event_Battle1 = true;
             StartCoroutine("Event_Battle1_Routine");
         }
-        if (main_Camera.transform.position.x >= 9344f && !start_Event_Battle1) {
+        if (main_Camera.transform.position.x >= 9344f && !start_Event_Battle2) {
             start_Event_Battle2 = true;
             StartCoroutine("Event_Battle2_Routine");
+        }
+        if(main_Camera.transform.position.x >= 10080f && !start_Event_Battle3) {
+            start_Event_Battle3 = true;
+            StartCoroutine("Event_Battle3_Routine");
+        }
+        //シーン遷移
+        if(player.transform.position.x > 10740f) {
+            SceneManager.LoadScene("Stage4_2Scene");
         }
     }
 
@@ -67,7 +77,7 @@ public class Stage4_1Scene : MonoBehaviour {
             yield return null;
         }
         //ウェーブ3
-        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 7, 12, event_Enemy_Parent);
+        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 7, 14, event_Enemy_Parent);
         yield return new WaitUntil(_enemy_Gen.End_Generate);
         while (event_Enemy_Parent.transform.childCount != 0) {
             yield return null;
@@ -89,19 +99,54 @@ public class Stage4_1Scene : MonoBehaviour {
         main_Camera.transform.position = new Vector3(9344f, 0, -10);
         yield return new WaitForSeconds(0.5f);
         //敵の生成ウェーブ1
-        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 1, 1, event_Enemy_Parent);
+        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 16, 19, event_Enemy_Parent);
         yield return new WaitUntil(_enemy_Gen.End_Generate);
         while (event_Enemy_Parent.transform.childCount != 0) {
             yield return null;
         }
         //ウェーブ2
-        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 1, 1, event_Enemy_Parent);
+        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 20, 23, event_Enemy_Parent);
         yield return new WaitUntil(_enemy_Gen.End_Generate);
         while (event_Enemy_Parent.transform.childCount != 0) {
             yield return null;
         }
         //ウェーブ3
-        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 1, 1, event_Enemy_Parent);
+        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 24, 29, event_Enemy_Parent);
+        yield return new WaitUntil(_enemy_Gen.End_Generate);
+        while (event_Enemy_Parent.transform.childCount != 0) {
+            yield return null;
+        }
+        //イベント終了、壁の破壊
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(Delete_Blocks_Wall());
+        //カメラを自機の位置に滑らかに動かす
+        StartCoroutine("Approach_Camera");
+        yield return null;
+    }
+
+
+    //イベント戦3
+    private IEnumerator Event_Battle3_Routine() {
+        //壁の生成
+        StartCoroutine(Generate_Blocks_Wall(9880f, 10280f));
+        //カメラの固定
+        main_Camera.GetComponent<CameraController>().enabled = false;
+        main_Camera.transform.position = new Vector3(10080f, 0, -10);
+        yield return new WaitForSeconds(0.5f);
+        //敵の生成ウェーブ1
+        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 31, 34, event_Enemy_Parent);
+        yield return new WaitUntil(_enemy_Gen.End_Generate);
+        while (event_Enemy_Parent.transform.childCount != 0) {
+            yield return null;
+        }
+        //ウェーブ2
+        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 35, 40, event_Enemy_Parent);
+        yield return new WaitUntil(_enemy_Gen.End_Generate);
+        while (event_Enemy_Parent.transform.childCount != 0) {
+            yield return null;
+        }
+        //ウェーブ3
+        _enemy_Gen.Start_Enemy_Gen("Stage4_Event_Battle", 42, 53, event_Enemy_Parent);
         yield return new WaitUntil(_enemy_Gen.End_Generate);
         while (event_Enemy_Parent.transform.childCount != 0) {
             yield return null;

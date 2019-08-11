@@ -86,7 +86,8 @@ public class Stage1_BossScene : MonoBehaviour {
         _pause.Set_Pausable(true);
         _playerController.Set_Playable(true);
         larva.GetComponent<LarvaController>().start_Battle = true;
-
+        //BGM
+        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Change_BGM_Index(2);
     }
 
 

@@ -6,6 +6,11 @@ public class GoAroundFamiliar : Enemy {
     
     //親
     private GameObject parent;
+    
+    //速度
+    [SerializeField] private float speed = 50f;
+    //半径
+    [SerializeField] private float radius = 48f;
     //初期位相
     [SerializeField] private float default_Angle = 0;
     //位相
@@ -24,8 +29,8 @@ public class GoAroundFamiliar : Enemy {
 	void Update () {
         //親の周りをまわる
         time += Time.deltaTime;
-        angle = (default_Angle + time * 50f) * Mathf.PI / 180f;
-        transform.position = parent.transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * 48f;
+        angle = (default_Angle + time * speed) * Mathf.PI / 180f;
+        transform.position = parent.transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
     }
 
 

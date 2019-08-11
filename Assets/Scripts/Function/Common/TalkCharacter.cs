@@ -38,7 +38,7 @@ public class TalkCharacter : MonoBehaviour {
     //OnTriggerStay
     protected void OnTriggerStay2D(Collider2D collision) {
         if (collision.tag == "PlayerBodyTag") {
-            if (!is_Talking && Input.GetButtonDown("Submit")) {
+            if (!is_Talking && Input.GetAxisRaw("Vertical") > 0) {
                 StartCoroutine("Talk");
             }
         }
@@ -75,13 +75,14 @@ public class TalkCharacter : MonoBehaviour {
             _pause.Set_Pausable(false);
             //停止
             Time.timeScale = 0;
-            //メッセージ開始
+            //メッセージ
             _message.Start_Display(fileName, start_ID, end_ID);
             yield return new WaitUntil(_message.End_Message);
             //終了
+            Time.timeScale = 1;
+            yield return new WaitForSeconds(0.1f);
             player_Controller.Set_Playable(true);
             _pause.Set_Pausable(true);
-            Time.timeScale = 1;
         }
         end_Talk = true;
         is_Talking = false;

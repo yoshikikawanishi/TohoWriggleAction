@@ -24,7 +24,7 @@ public class RedFairyController : MonoBehaviour {
 	void Update () {
         //画面内に入ったら動き出す
         if (_renderer.isVisible) {
-            _rigid.velocity = new Vector2(speed, _rigid.velocity.y);
+            _rigid.velocity = new Vector2(speed * transform.localScale.x, _rigid.velocity.y);
         }
         //下に落ちたら消す
         if (transform.position.y < -240f) {
@@ -37,7 +37,6 @@ public class RedFairyController : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         //反転用
         if (collision.tag == "InvisibleWallTag" || collision.tag == "EnemyTag") {
-            speed *= -1;
             transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
         }
     }

@@ -1,11 +1,4 @@
-#SceneName	#isVisited
-Stage1_1Scene	true
-Stage1_2Scene	false
-Stage2_1Scene	false
-Stage2_2Scene	false
-Stage2_BossScene	false
-Base_1Scene	true
-Stage3_1Scene	true
-Stage3_2Scene	true
-Stage3_BossScene	true
-Base_2Scene	true
+#HasVisitedScene
+Stage1_1Scene
+Stage1_BossScene
+Stage2_1Scene

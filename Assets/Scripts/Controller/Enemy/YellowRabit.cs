@@ -43,7 +43,7 @@ public class YellowRabit : MonoBehaviour {
             time = 0;
             _anim.SetTrigger("AttackTrigger");
             if (_renderer.isVisible) {
-                _bullet.Some_Way_Bullet(5, 60f, 0, 30, 6.0f);
+                _bullet.Some_Way_Bullet(5, 60f * transform.localScale.x, 0, 30, 6.0f);
                 UsualSoundManager.Shot_Sound();
             }
             count++;

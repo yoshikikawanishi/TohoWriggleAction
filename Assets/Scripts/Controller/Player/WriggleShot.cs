@@ -152,7 +152,7 @@ public class WriggleShot : MonoBehaviour {
                 }
                 //4段階目
                 if(power_Grade >= 4) {
-                    bullet_Num = 6;
+                    bullet_Num = 8;
                     bullet_Speed = 600f;
                 }
                 //弾の生成、発射

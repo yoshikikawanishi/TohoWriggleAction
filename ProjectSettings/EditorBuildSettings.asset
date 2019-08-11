@@ -53,10 +53,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Base_2Scene.unity
     guid: 0e7354631817a7344a640764988b30fe
-  - enabled: 0
-    path: Assets/Scenes/RestAreaScene.unity
-    guid: daaf7445cc2bb2e4b972790d51893dbb
   - enabled: 1
     path: Assets/Scenes/Stage4_1Scene.unity
     guid: a8b57428d4081e14abf6390b79a7b5bc
+  - enabled: 1
+    path: Assets/Scenes/Stage4_2Scene.unity
+    guid: ac259b9181ad27f4b8a7b0f962e44fdd
   m_configObjects: {}
