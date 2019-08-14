@@ -108,6 +108,11 @@ public class ButtonFunction : MonoBehaviour {
         while (true) {
             button.GetComponent<Button>().Select();
             if (Input.anyKeyDown) {
+                //矢印キーは受け付けない
+                if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow)) {
+                    yield return null;
+                    continue;
+                }
                 //押されたキーコードの取得
                 string put_Button = "";
                 foreach (KeyCode code in Enum.GetValues(typeof(KeyCode))) {
@@ -119,7 +124,7 @@ public class ButtonFunction : MonoBehaviour {
                 put_Button = put_Button.ToLower();
                 //ゲームパッド
                 bool is_GamePad = false;
-                for (int i = 0; i < 12; i++) {
+                for (int i = 0; i < 16; i++) {
                     if (Input.GetKeyDown("joystick button " + i.ToString())) {
                         keyConfig.Change_Button(change_Key, "joystick button " + i.ToString(), true);
                         button.GetComponentInChildren<Text>().text = "button " + i.ToString();

@@ -1,4 +1,5 @@
 #HasVisitedScene
 Stage1_1Scene
+TitleScene
 Stage1_BossScene
-Stage2_1Scene
+ConfigScene

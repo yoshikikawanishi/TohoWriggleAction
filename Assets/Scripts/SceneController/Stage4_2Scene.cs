@@ -32,10 +32,6 @@ public class Stage4_2Scene : MonoBehaviour {
 
     //update
     private void Update() {
-        //マスパテスト
-        if(main_Camera.transform.position.x >= 2000 && main_Camera.transform.position.x < 2010) {
-            Debug.Log(Time.time);
-        }
         //スクロール時の自機の動き
         if (player_Controller.Get_Is_Fly() && player.transform.parent != main_Camera.transform) {
             player.transform.SetParent(main_Camera.transform);

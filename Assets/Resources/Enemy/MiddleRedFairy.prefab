@@ -568,8 +568,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 15
-  score_Value: 200
-  power_Value: 2
+  score_Value: 500
+  power_Value: 7
   probability_Recover_Item: 1
   item_Out_Speed: 500
   is_Hit_Spikes: 0

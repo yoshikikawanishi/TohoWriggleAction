@@ -32,9 +32,13 @@ public class MasterSpark : MonoBehaviour {
             yield return new WaitForSeconds(0.016f);
         }
         yield return new WaitForSeconds(1.0f);
-        //広げる
+        //揺らす
         camera_Shake.Shake(4.0f, 1f, false);
-        while(transform.localScale.x < 0.3f) {
+        StartCoroutine(Shake(4.0f, 1f));
+        //効果音
+        GetComponent<AudioSource>().Play();
+        //広げる
+        while (transform.localScale.x < 0.3f) {
             transform.localScale += new Vector3(0.008f, 0);
             yield return new WaitForSeconds(0.016f);
         }
@@ -60,5 +64,23 @@ public class MasterSpark : MonoBehaviour {
             yield return new WaitForSeconds(0.016f);
         }
         Destroy(gameObject);
+    }
+
+
+    //揺らす
+    private IEnumerator Shake(float duraction, float magnitude) {
+        var pos = transform.localPosition;
+        var elapsed = 0f;
+        while (elapsed < duraction) {
+            var x = pos.x + Random.Range(-1f, 1f) * magnitude;
+            var y = pos.y + Random.Range(-1f, 1f) * magnitude;
+
+            transform.localPosition = new Vector3(x, y, pos.z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+        transform.localPosition = pos;
     }
 }

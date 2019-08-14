@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 224260157689521058}
   - component: {fileID: 222329276005646252}
   - component: {fileID: 114098169130117886}
+  - component: {fileID: 114077238653101014}
   m_Layer: 5
   m_Name: SaveUI
   m_TagString: Untagged
@@ -106,6 +107,7 @@ GameObject:
   - component: {fileID: 224950469133157722}
   - component: {fileID: 222037234814619228}
   - component: {fileID: 114890484559757484}
+  - component: {fileID: 114842149026279096}
   m_Layer: 5
   m_Name: ScoreUI
   m_TagString: Untagged
@@ -174,6 +176,7 @@ GameObject:
   - component: {fileID: 224967979623746862}
   - component: {fileID: 222057235033887652}
   - component: {fileID: 114179977918687576}
+  - component: {fileID: 114148279358107220}
   m_Layer: 5
   m_Name: PowerUI
   m_TagString: Untagged
@@ -191,6 +194,7 @@ GameObject:
   - component: {fileID: 224876149478286326}
   - component: {fileID: 222005642962890326}
   - component: {fileID: 114144251610029012}
+  - component: {fileID: 114706904368210356}
   m_Layer: 5
   m_Name: StockUI
   m_TagString: Untagged
@@ -685,6 +689,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114077238653101014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1122054683524862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0.5}
+  m_EffectDistance: {x: 3, y: 3}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114098169130117886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -751,6 +769,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\xD73"
+--- !u!114 &114148279358107220
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1292253007199306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0.5}
+  m_EffectDistance: {x: 3, y: 3}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114150973715286766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1162,6 +1194,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114706904368210356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1320091947927690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0.5}
+  m_EffectDistance: {x: 3, y: 3}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114761029983003152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1243,6 +1289,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114842149026279096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171609968818378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0.5}
+  m_EffectDistance: {x: 3, y: 3}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114847195316472170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1506,7 +1566,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 54.9, y: -42.2}
+  m_AnchoredPosition: {x: 54.899994, y: -42.19995}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.49999952, y: 0.5}
 --- !u!224 &224100136369343264
