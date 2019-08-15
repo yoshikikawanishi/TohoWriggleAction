@@ -58,7 +58,7 @@ public class TreasureChestController : MonoBehaviour {
         _anim.SetTrigger("AppearTrigger");
         appear_Sound.Play();
         _sprite.color = new Color(1, 1, 1, 1);
-        gameObject.tag = "GroundTag";
+        gameObject.tag = "ThroughGroundTag";
         _rigid.gravityScale = 20f;
         _rigid.velocity = new Vector2(0, 50f);
         _collider.isTrigger = false;

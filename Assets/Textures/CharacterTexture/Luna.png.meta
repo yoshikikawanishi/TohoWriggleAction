@@ -1,12 +1,15 @@
 fileFormatVersion: 2
-guid: 696f040be00174e41b80e411a49d3940
+guid: 8eb6762219bf6af458690560e26e91a3
 TextureImporter:
   fileIDToRecycleName:
-    21300000: RightArrow_0
-    21300002: RightArrow_1
-    21300004: RightArrow_2
-    21300006: RightArrow_3
-    21300008: RightArrow_4
+    21300000: Luna_0
+    21300002: Luna_1
+    21300004: Luna_2
+    21300006: Luna_3
+    21300008: Luna_4
+    21300010: Luna_5
+    21300012: Luna_6
+    21300014: Luna_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -68,7 +71,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -79,7 +82,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -90,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -101,7 +104,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,7 +115,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,101 +125,161 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RightArrow_0
+      name: Luna_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 3
+        y: 35
+        width: 23
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52199a6aba7ee9a469110e085e051649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Luna_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 35
+        width: 23
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2c540e2326c883498fa3c0a3e78b1c4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Luna_2
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 35
+        width: 23
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 538a7ee89536d3b4f937f08896ce81eb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Luna_3
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 35
+        width: 23
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1a9b7664e871b74db8ca499b68f86ec
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Luna_4
+      rect:
+        serializedVersion: 2
+        x: 3
         y: 0
-        width: 32
+        width: 23
         height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 995cd46b91cef984383404b8b2ec6bbf
+      spriteID: 56a5ee5bf9a4b7340b6dfee8e6d0e6f1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RightArrow_1
+      name: Luna_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 898d63c2359cf4d4c8d0e25e9f30ea88
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RightArrow_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e8e4ec83758efdf4a935e267b06311df
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RightArrow_3
-      rect:
-        serializedVersion: 2
-        x: 32
+        x: 33
         y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 27
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8c5115d251be374a8b961f5725a9eed
+      spriteID: 430039c32ba88d646ae5253756093fe1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RightArrow_4
+      name: Luna_6
       rect:
         serializedVersion: 2
-        x: 0
+        x: 63
         y: 0
-        width: 39
-        height: 37
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 27
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28ceea5f99224a542a8d895cede933b2
+      spriteID: 1310a66edafe30141992d79730ae7eaf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Luna_7
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 0
+        width: 27
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 756f9564a82efba42a24a232938e2744
       vertices: []
       indices: 
       edges: []
@@ -224,7 +287,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 83b4bc5e9b1bc9946b2d450b4ad65967
+    spriteID: f18de9394c3ce484e85a32053d56ffdc
     vertices: []
     indices: 
     edges: []

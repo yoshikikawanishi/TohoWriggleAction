@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 212940314645157616}
   - component: {fileID: 95291209489606230}
   - component: {fileID: 61523135564626030}
+  - component: {fileID: 50511535108712906}
   - component: {fileID: 114133472723794774}
   - component: {fileID: 114883342943710402}
   - component: {fileID: 82490078159151662}
@@ -190,6 +191,26 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1109748098155214}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!50 &50511535108712906
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1180883862183980}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -645,6 +666,8 @@ MonoBehaviour:
   probability_Recover_Item: 0
   item_Out_Speed: 500
   is_Hit_Spikes: 0
+  speed: 50
+  radius: 48
   default_Angle: 180
 --- !u!114 &114133472723794774
 MonoBehaviour:
@@ -725,6 +748,8 @@ MonoBehaviour:
   probability_Recover_Item: 0
   item_Out_Speed: 500
   is_Hit_Spikes: 0
+  speed: 50
+  radius: 48
   default_Angle: 0
 --- !u!198 &198358955862595510
 ParticleSystem:

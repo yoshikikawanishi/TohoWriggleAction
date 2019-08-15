@@ -52,8 +52,11 @@ public class Enemy : MonoBehaviour {
             Damaged(1);
         }
         //キック、ボムに当たった時
-        if(collision.tag == "PlayerAttackTag" || collision.tag == "BombTag") {
+        if(collision.tag == "PlayerAttackTag") {
             Damaged(15);
+        }
+        if(collision.tag == "BombTag") {
+            Damaged(10);
         }
         //ダメージ床に当たった時(地上を歩く敵)
         if (collision.tag == "DamageGroundTag" && is_Hit_Spikes) {

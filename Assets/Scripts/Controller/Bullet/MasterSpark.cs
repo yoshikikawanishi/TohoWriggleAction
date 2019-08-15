@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MasterSpark : MonoBehaviour {
 
+    //カメラ、自機
+    private GameObject main_Camera;
+    private GameObject player;
+
     //コア
     private GameObject laser_Core;
     private SpriteRenderer core_Sprite;
@@ -11,23 +15,37 @@ public class MasterSpark : MonoBehaviour {
     //画面を揺らす
     private CameraShake camera_Shake;
 
+    //始まり
+    private bool start_Action = false;
+
 
 	// Use this for initialization
 	void Start () {
         //取得
+        main_Camera = GameObject.FindWithTag("MainCamera");
+        player = GameObject.FindWithTag("PlayerTag");
         laser_Core = transform.GetChild(4).gameObject;
         core_Sprite = laser_Core.GetComponent<SpriteRenderer>();
         laser_Core.SetActive(false);
         camera_Shake = GetComponent<CameraShake>();
-        //動き
-        StartCoroutine("Action");
 	}
 
 
+    //Update
+    private void Update() {
+        if(main_Camera.transform.position.x > transform.position.x && !start_Action) {
+            start_Action = true;
+            StartCoroutine("Action");
+        }
+    }
+
     //動き
     private IEnumerator Action() {
+        transform.position = new Vector3(player.transform.position.x + 100f, 160f);
+        transform.SetParent(main_Camera.transform);
+        GetComponents<AudioSource>()[1].Play();
         //発射
-        while(transform.localScale.y < 1.5f) {
+        while (transform.localScale.y < 1.5f) {
             transform.localScale += new Vector3(0, 0.04f);
             yield return new WaitForSeconds(0.016f);
         }
@@ -36,7 +54,7 @@ public class MasterSpark : MonoBehaviour {
         camera_Shake.Shake(4.0f, 1f, false);
         StartCoroutine(Shake(4.0f, 1f));
         //効果音
-        GetComponent<AudioSource>().Play();
+        GetComponents<AudioSource>()[0].Play();
         //広げる
         while (transform.localScale.x < 0.3f) {
             transform.localScale += new Vector3(0.008f, 0);

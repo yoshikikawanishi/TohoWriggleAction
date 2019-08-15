@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 114111960184674202}
   - component: {fileID: 114688874578617732}
   - component: {fileID: 82695529454209076}
+  - component: {fileID: 50131526170888386}
   m_Layer: 9
   m_Name: MiddleGreenFairy2
   m_TagString: EnemyTag
@@ -328,6 +329,26 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1847477093825342}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!50 &50131526170888386
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433214490706930}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -1068,6 +1089,8 @@ MonoBehaviour:
   probability_Recover_Item: 0
   item_Out_Speed: 500
   is_Hit_Spikes: 0
+  speed: 50
+  radius: 48
   default_Angle: 0
 --- !u!114 &114019102429062740
 MonoBehaviour:
@@ -1097,6 +1120,8 @@ MonoBehaviour:
   probability_Recover_Item: 0
   item_Out_Speed: 500
   is_Hit_Spikes: 0
+  speed: 50
+  radius: 48
   default_Angle: 90
 --- !u!114 &114104364073818558
 MonoBehaviour:
@@ -1148,6 +1173,8 @@ MonoBehaviour:
   probability_Recover_Item: 0
   item_Out_Speed: 500
   is_Hit_Spikes: 0
+  speed: 50
+  radius: 48
   default_Angle: 180
 --- !u!114 &114220345865570740
 MonoBehaviour:
@@ -1166,6 +1193,8 @@ MonoBehaviour:
   probability_Recover_Item: 0
   item_Out_Speed: 500
   is_Hit_Spikes: 0
+  speed: 50
+  radius: 48
   default_Angle: -90
 --- !u!114 &114396616742847302
 MonoBehaviour:
