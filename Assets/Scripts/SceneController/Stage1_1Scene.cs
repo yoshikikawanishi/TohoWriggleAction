@@ -23,6 +23,12 @@ public class Stage1_1Scene : MonoBehaviour {
         //カメラの取得
         main_Camera = GameObject.FindWithTag("MainCamera");
         _cameraController = main_Camera.GetComponent<CameraController>();
+        //初回時フェードイン
+        FadeInOut f = GetComponent<FadeInOut>();
+        GameManager gm = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
+        if (gm.Is_First_Visit()) {
+            f.Start_Fade_In();
+        }
 	}
 	
 	// Update is called once per frame

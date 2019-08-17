@@ -32,7 +32,7 @@ public class ButtonFunction : MonoBehaviour {
     public void Confirm_Start_Button(bool is_Start_Game) {
         if (is_Start_Game) {
             _gameManager.DeleteData();
-            _gameManager.StartCoroutine("LoadData");
+            StartCoroutine(Start_Game());
         }
         else {
             TitleScene title_Scene_Controller = GameObject.Find("Scripts").GetComponent<TitleScene>();
@@ -40,6 +40,14 @@ public class ButtonFunction : MonoBehaviour {
                 title_Scene_Controller.Delete_Confirm_Canvas();
             }
         }
+    }
+
+    //初めから開始
+    private IEnumerator Start_Game() {
+        FadeInOut f = GameObject.FindWithTag("ScriptsTag").GetComponent<FadeInOut>();
+        f.Start_Fade_Out();
+        yield return new WaitForSeconds(1.0f);
+        _gameManager.StartCoroutine("LoadData");
     }
 
 

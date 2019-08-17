@@ -25,7 +25,7 @@ public class CameraShake : MonoBehaviour {
 
                 elapsed += Time.deltaTime;
 
-                yield return null;
+                yield return new WaitForSeconds(0.016f);
             }
             main_Camera.transform.position = pos;
         }
@@ -41,7 +41,7 @@ public class CameraShake : MonoBehaviour {
 
                 elapsed += Time.deltaTime;
 
-                yield return null;
+                yield return new WaitForSeconds(0.016f);
             }
             main_Camera.transform.position = new Vector3(main_Camera.transform.position.x, 0, default_Pos.z);
         }

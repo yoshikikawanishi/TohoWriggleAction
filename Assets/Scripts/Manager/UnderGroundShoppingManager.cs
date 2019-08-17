@@ -135,7 +135,9 @@ public class UnderGroundShoppingManager : MonoBehaviour {
         StartCoroutine("Exit");
     }
     private IEnumerator Exit() {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<FadeInOut>().Start_Fade_Out();
+        yield return new WaitForSeconds(1.5f);
         GameManager game_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
         game_Manager.StartCoroutine(game_Manager.Load_Scene("Stage3_2Scene", new Vector2(5330f, -70f)));
     }

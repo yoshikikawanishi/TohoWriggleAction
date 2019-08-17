@@ -280,16 +280,20 @@ public class WriggleShot : MonoBehaviour {
                 }
                 //4段階目
                 if (power_Grade >= 4) {
-                    bullet_Num = 4;
+                    bullet_Num = 5;
                     bullet_Speed = 1000f;
                 }
                 //弾の発射
-                for (int n = 0; n < 2; n++) {
-                    for (int i = 0; i < bullet_Num; i++) {
-                        var bullet = bee_Bullet_Pool.GetObject();
-                        float width = 12f + bullet_Num * 2;
-                        bullet.transform.position = transform.position + new Vector3(0, width / 2 - width * 2 / bullet_Num * i);
-                        bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
+                for (int i = 0; i < bullet_Num; i++) {
+                    var bullet = bee_Bullet_Pool.GetObject();
+                    float width = 12f + bullet_Num * 2;
+                    bullet.transform.position = transform.position + new Vector3(0, width / 2 - width * 2 / bullet_Num * i);
+                    bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
+                    //中心の弾は2重にする
+                    if (i == bullet_Num / 2 && bullet_Num != 2) {
+                        var bullet2 = bee_Bullet_Pool.GetObject();
+                        bullet2.transform.position = transform.position + new Vector3(0, width / 2 - width * 2 / bullet_Num * i);
+                        bullet2.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
                     }
                 }
                 shot_Sound.Play();

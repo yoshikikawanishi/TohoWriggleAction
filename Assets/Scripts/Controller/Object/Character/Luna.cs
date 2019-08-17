@@ -39,11 +39,13 @@ public class Luna : TalkCharacter {
         is_Talking = true;
         end_Talk = false;
         _anim.SetBool("FallBool", true);
+        GetComponent<SpriteRenderer>().sortingOrder = -1;
         is_Falled = true;
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(base.Talk());
         yield return new WaitUntil(End_Talk);
-        //会話できなくする
-        GetComponent<BoxCollider2D>().enabled = false;
+        //セリフ変える
+        base.start_ID = 2;
+        base.end_ID = 2;
     }
 }

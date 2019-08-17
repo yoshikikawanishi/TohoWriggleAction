@@ -20,6 +20,10 @@ public class EnemyGenerator : MonoBehaviour {
         this.end_ID = end_ID;
         this.parent = parent;
         _text.Read_Text(fileName);
+        if(start_ID == 0 || end_ID == 0) {
+            this.start_ID = 1;
+            this.end_ID = _text.rowLength - 1;
+        }
         StartCoroutine("Enemy_Gen");
     }
 
@@ -42,6 +46,12 @@ public class EnemyGenerator : MonoBehaviour {
             enemy.transform.localScale = new Vector3(int.Parse(_text.textWords[i, 4]), 1, 1);
         }
         end_Generate = true;
+    }
+
+
+    //敵生成停止用
+    public void Stop_Enemy_Gen() {
+        StopCoroutine("Enemy_Gen");
     }
 
 

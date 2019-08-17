@@ -8,7 +8,7 @@ public class MoveLand : MonoBehaviour {
     private MoveBetweenTwoPoints _move;
 
     //時間
-    private float[] span;
+    [SerializeField] private float span = 5.0f;
     private float time = 0;
 
     //移動
@@ -24,12 +24,11 @@ public class MoveLand : MonoBehaviour {
 	void Start () {
         _move = gameObject.AddComponent<MoveBetweenTwoPoints>();
         default_Pos = transform.position;
-        span = GameObject.FindWithTag("ScriptsTag").GetComponent<Stage4_1Scene>().bgm_Match_Span;
     }
 	
 	// Update is called once per frame
 	void Update () {
-	    if(time < span[count%span.Length]) {
+	    if(time < span) {
             time += Time.deltaTime;
         }
         else {

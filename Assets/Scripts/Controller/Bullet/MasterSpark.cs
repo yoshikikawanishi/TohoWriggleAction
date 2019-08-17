@@ -33,6 +33,9 @@ public class MasterSpark : MonoBehaviour {
 
     //Update
     private void Update() {
+        if(main_Camera.transform.position.x > transform.position.x + 64f) {
+            start_Action = true;
+        }
         if(main_Camera.transform.position.x > transform.position.x && !start_Action) {
             start_Action = true;
             StartCoroutine("Action");
@@ -41,7 +44,7 @@ public class MasterSpark : MonoBehaviour {
 
     //動き
     private IEnumerator Action() {
-        transform.position = new Vector3(player.transform.position.x + 100f, 160f);
+        transform.position = new Vector3(player.transform.position.x + 16f, 160f);
         transform.SetParent(main_Camera.transform);
         GetComponents<AudioSource>()[1].Play();
         //発射
@@ -97,7 +100,7 @@ public class MasterSpark : MonoBehaviour {
 
             elapsed += Time.deltaTime;
 
-            yield return null;
+            yield return new WaitForSeconds(0.016f);
         }
         transform.localPosition = pos;
     }

@@ -12,7 +12,12 @@ public class Base_1Scene : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //取得
-        player = GameObject.FindWithTag("PlayerTag");	
+        player = GameObject.FindWithTag("PlayerTag");
+        GameManager gm = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
+        if (gm.Is_First_Visit()) {
+            GetComponent<FadeInOut>().Start_Fade_In();
+            Debug.Log("AA");
+        }
 	}
 	
 	// Update is called once per frame

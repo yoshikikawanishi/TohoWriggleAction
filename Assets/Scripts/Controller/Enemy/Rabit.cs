@@ -15,7 +15,7 @@ public class Rabit : MonoBehaviour {
     private float jump_Speed = 180f;
     [SerializeField] private float horizon_Speed = 0;
 
-    private float[] span;
+    private float span = 5.0f;
     private float time = 0;
 
     private int count = 0;
@@ -33,13 +33,12 @@ public class Rabit : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = GameObject.FindWithTag("PlayerTag");
-        span = GameObject.FindWithTag("ScriptsTag").GetComponent<Stage4_1Scene>().bgm_Match_Span;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         //ジャンプ
-        if (time < span[count % span.Length]) {
+        if (time < span) {
             time += Time.deltaTime;
         }
         else {

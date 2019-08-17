@@ -21,6 +21,7 @@ public class FadeInOut : MonoBehaviour {
         StartCoroutine("Fade_In");
     }
     private IEnumerator Fade_In() {
+        cover_Object.SetActive(true);
         while(obj_Sprite.color.a >= 0) {
             obj_Sprite.color += new Color(0, 0, 0, -speed);
             yield return null;
@@ -33,6 +34,7 @@ public class FadeInOut : MonoBehaviour {
         StartCoroutine("Fade_Out");
     }
     private IEnumerator Fade_Out() {
+        cover_Object.SetActive(true);
         while (obj_Sprite.color.a <= 1) {
             obj_Sprite.color += new Color(0, 0, 0, speed);
             yield return null;

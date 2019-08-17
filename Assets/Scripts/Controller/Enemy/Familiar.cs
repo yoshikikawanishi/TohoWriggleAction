@@ -14,11 +14,7 @@ public class Familiar : MonoBehaviour {
         //コンポーネント
         _sprite = GetComponent<SpriteRenderer>();
         _renderer = GetComponent<Renderer>();
-        //透明化
-        if (Input.GetButton("Fly")) {
-            _sprite.color = new Color(1, 1, 1, 0);
-            gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
-        }
+        
     }
 
     // Update is called once per frame
