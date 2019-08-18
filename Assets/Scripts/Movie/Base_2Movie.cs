@@ -183,10 +183,10 @@ public class Base_2Movie : MonoBehaviour {
         keine_Controller.enabled = false;
         TalkCharacter keine_Talk = keine.AddComponent<TalkCharacter>();
         if (keine_Controller.Get_Is_Catched()) {
-            keine_Talk.Set_Status("KeineText", 1, 1, new Vector2(24f, 32f));
+            keine_Talk.Set_Status("KeineText", 1, 2, new Vector2(24f, 32f));
         }
         else {
-            keine_Talk.Set_Status("KeineText", 2, 2, new Vector2(24f, 32f));
+            keine_Talk.Set_Status("KeineText", 3, 4, new Vector2(24f, 32f));
         }
         keine.transform.position = new Vector3(220f, -80f);
         //自機

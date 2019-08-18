@@ -38,10 +38,16 @@ public class BGMManager : MonoBehaviour {
     //BGM止める
     public void Stop_BGM() {
         now_BGM.Stop();
+        now_BGM = null;
     }
 
-    //BGM始める
+    //BGM変える
     private void Change_BGM(AudioSource bgm) {
+        //BGM同じとき
+        if (now_BGM == bgm) {
+            return;
+        }
+        //変更時
         if (now_BGM != null) {
             now_BGM.Stop();
         }
@@ -63,9 +69,12 @@ public class BGMManager : MonoBehaviour {
     //シーン読み込み時に呼ばれる
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         switch (scene.name) {
+            case "TitleScene": Change_BGM(title_BGM); break;
+            case "GameOverScene": Stop_BGM(); break;
             case "Stage1_1Scene": Change_BGM(stage_BGM1); break;
             case "Stage2_1Scene": Change_BGM(stage_BGM1); break;
             case "Stage2_2Scene": Change_BGM(stage_BGM1); break;
+            case "Base_1Scene": Change_BGM(stage_BGM1); break;
             case "Stage3_1Scene": Change_BGM(stage_BGM1); break;
             case "Stage3_2Scene": Change_BGM(stage_BGM1); break;
         }

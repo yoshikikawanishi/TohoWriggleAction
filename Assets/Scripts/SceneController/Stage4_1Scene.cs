@@ -16,6 +16,7 @@ public class Stage4_1Scene : MonoBehaviour {
 
     //イベント戦の壁ブロック
     private GameObject[] wall_Blocks = new GameObject[8];
+    [SerializeField] private GameObject block_Appear_Effect;
     //イベント戦の敵置き場
     [SerializeField] private GameObject event_Enemy_Parent;
 
@@ -167,6 +168,7 @@ public class Stage4_1Scene : MonoBehaviour {
             wall_Blocks[i].transform.position = new Vector3(left_Side, -120f + i * 16);
             wall_Blocks[i+4] = Instantiate(Resources.Load("Object/HardBlock") as GameObject);
             wall_Blocks[i+4].transform.position = new Vector3(right_Side, -120f + i * 16);
+
             yield return new WaitForSeconds(0.1f);
         }
     }

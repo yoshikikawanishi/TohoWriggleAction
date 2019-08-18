@@ -636,6 +636,7 @@ MonoBehaviour:
   - 4
   - 4
   - 4
+  block_Appear_Effect: {fileID: 0}
   event_Enemy_Parent: {fileID: 1267817515}
 --- !u!4 &59048771
 Transform:

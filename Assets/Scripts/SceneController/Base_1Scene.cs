@@ -16,7 +16,6 @@ public class Base_1Scene : MonoBehaviour {
         GameManager gm = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
         if (gm.Is_First_Visit()) {
             GetComponent<FadeInOut>().Start_Fade_In();
-            Debug.Log("AA");
         }
 	}
 	

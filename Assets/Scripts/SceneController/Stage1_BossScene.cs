@@ -103,6 +103,7 @@ public class Stage1_BossScene : MonoBehaviour {
         //メッセージ表示
         _message.Start_Display("LarvaText", 4, 4);
         yield return new WaitUntil(_message.End_Message);
+        GetComponent<FadeInOut>().Start_Fade_Out();
         yield return new WaitForSeconds(1.5f);
         _pause.Set_Pausable(true);
         //シーン遷移

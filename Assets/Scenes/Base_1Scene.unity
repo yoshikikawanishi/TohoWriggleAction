@@ -147,7 +147,7 @@ MonoBehaviour:
   baloon_Pos: {x: 16, y: 40, z: 0}
   fileName: RaccoonDogText
   start_ID: 1
-  end_ID: 1
+  end_ID: 2
 --- !u!114 &57225142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea6bc1fdb1164e4f8d6a9a0647c746f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baloon_Pos: {x: 32, y: 32, z: 0}
+  baloon_Pos: {x: 24, y: 24, z: 0}
   fileName: PrismriverText
   start_ID: 1
   end_ID: 3
@@ -511,7 +511,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 70, y: 24}
+  m_Size: {x: 80, y: 24}
   m_EdgeRadius: 0
 --- !u!1 &490895352
 GameObject:
@@ -744,11 +744,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114152356207831052, guid: 7b7f50f01c7916b428a73b74499e9741,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 929834679}
     - target: {fileID: 114980648996762466, guid: 7b7f50f01c7916b428a73b74499e9741,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -759,6 +754,16 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 929834679}
+    - target: {fileID: 114152356207831052, guid: 7b7f50f01c7916b428a73b74499e9741,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 929834679}
+    - target: {fileID: 114085219239732724, guid: 7b7f50f01c7916b428a73b74499e9741,
+        type: 2}
+      propertyPath: m_Text
+      value: ' 8          30'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b7f50f01c7916b428a73b74499e9741, type: 2}
   m_IsPrefabAsset: 0
@@ -838,7 +843,7 @@ MonoBehaviour:
   baloon_Pos: {x: 16, y: 32, z: 0}
   fileName: ChenText
   start_ID: 1
-  end_ID: 1
+  end_ID: 2
 --- !u!61 &675669251
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -862,7 +867,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 32, y: 31}
+  m_Size: {x: 48, y: 31}
   m_EdgeRadius: 0
 --- !u!95 &675669252
 Animator:
@@ -935,7 +940,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 675669249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 430.8, y: -80.9, z: 0}
+  m_LocalPosition: {x: 450.6, y: -81.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1586,7 +1591,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 36, y: 28}
+  m_Size: {x: 48, y: 28}
   m_EdgeRadius: 0
 --- !u!1 &1349935960
 GameObject:
@@ -1645,7 +1650,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 32, y: 29}
+  m_Size: {x: 48, y: 29}
   m_EdgeRadius: 0
 --- !u!95 &1349935963
 Animator:

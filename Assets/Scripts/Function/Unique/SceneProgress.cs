@@ -39,6 +39,21 @@ public class SceneProgress : MonoBehaviour {
     }
 
 
+    //シーンの検索
+    public bool Is_Exist_Scene(string scene_Name) {
+        //ファイル読み込み
+        string filePath = Application.dataPath + @"\SceneProgress.txt";
+        TextReader text = new TextReader();
+        text.Read_Text_File(filePath);
+        for(int i = 1; i < text.rowLength; i++) {
+            if(text.textWords[i, 0] == scene_Name) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     //データの消去
     public void Delete_Progress() {
         //ファイル読み込み

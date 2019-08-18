@@ -436,7 +436,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c5ac424107b007c42b2185ea6a2c17be, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f6dcedcf3faa0429bc7d6e0e43a2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title_BGM: {fileID: 82945349255610858}
+  title_BGM: {fileID: 0}
   stage_BGM1: {fileID: 82953076410606754}
   stage1_Boss_BGM: {fileID: 82847905179159600}
   stage2_Boss_BGM: {fileID: 82986357597725534}

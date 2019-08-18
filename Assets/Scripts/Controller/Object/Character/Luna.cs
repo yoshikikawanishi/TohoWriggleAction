@@ -41,7 +41,7 @@ public class Luna : TalkCharacter {
         _anim.SetBool("FallBool", true);
         GetComponent<SpriteRenderer>().sortingOrder = -1;
         is_Falled = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         StartCoroutine(base.Talk());
         yield return new WaitUntil(End_Talk);
         //セリフ変える

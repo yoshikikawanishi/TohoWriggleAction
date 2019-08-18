@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
+  m_AmbientSkyColor: {r: 0.6981132, g: 0.6948202, b: 0.6948202, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -12501,7 +12501,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 6f0c9f8d50d70d549b51290264861f93, type: 3}
-  m_Color: {r: 0.8773585, g: 0.8473563, b: 0.5421413, a: 1}
+  m_Color: {r: 0.8018868, g: 0.6670168, b: 0.6014151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

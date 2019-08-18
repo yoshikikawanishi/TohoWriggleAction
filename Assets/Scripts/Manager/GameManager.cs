@@ -144,6 +144,12 @@ public class GameManager : MonoBehaviour {
     }
 
 
+    //引数シーンに訪れたことがあるかどうか
+    public bool Is_Visited(string scene_Name) {
+        return _sceneProgress.Is_Exist_Scene(scene_Name);
+    }
+
+
     //シーンの遷移と自機の位置
     public IEnumerator Load_Scene(string next_Scene, Vector2 player_Pos) {
         SceneManager.LoadScene(next_Scene);
