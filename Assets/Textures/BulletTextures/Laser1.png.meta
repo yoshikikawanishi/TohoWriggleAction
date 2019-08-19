@@ -1,12 +1,9 @@
 fileFormatVersion: 2
-guid: db19b930c31e3564280a2070ac5d6d74
+guid: 164fa6b9b0cc9e44693bc1917d6e0946
 TextureImporter:
   fileIDToRecycleName:
-    21300000: SmallStartBullet_0
-    21300002: SmallStartBullet_1
-    21300004: SmallStartBullet_2
-    21300006: SmallStartBullet_3
-    21300008: SmallStartBullet_4
+    21300000: Laser1_0
+    21300002: Laser1_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -122,101 +119,41 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SmallStartBullet_0
+      name: Laser1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1
+        y: 0
         width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 15
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac752a8a95573064ba1928206cc53294
+      spriteID: 3b4f1d3aae7098143b66dce3a99c0c0f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SmallStartBullet_1
+      name: Laser1_1
       rect:
         serializedVersion: 2
         x: 16
-        y: 1
+        y: 0
         width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 15
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dbc60b0423fcea46894b60a25990d14
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmallStartBullet_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 1
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eb6eb3cd3db8c7c4f8132465a1cfce8a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmallStartBullet_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 1
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: da29b2bf27605e94bba7e5f15a42507e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmallStartBullet_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 1
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4d8fdffd193565f4d9614a8431044740
+      spriteID: 1fbcf1a87d6e22a4d9c1b3afe7e480cd
       vertices: []
       indices: 
       edges: []
@@ -224,7 +161,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: c755f8367e1de134f9456d026480ad1f
+    spriteID: 6e77bf0c1c7bc304b9874874a519997a
     vertices: []
     indices: 
     edges: []

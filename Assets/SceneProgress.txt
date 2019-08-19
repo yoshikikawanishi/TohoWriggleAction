@@ -2,3 +2,4 @@
 Stage1_1Scene
 Stage4_BossScene
 TitleScene
+SampleScene

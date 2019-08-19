@@ -95,7 +95,7 @@ public class Stage4_BossMovie : MonoBehaviour {
         yield return new WaitUntil(marisa_Move.End_Move);
 
         //終了設定、戦闘開始
-
+        marisa_Controller.start_Battle = true;
     }
 
     
