@@ -74,7 +74,7 @@ public class BossEnemyController : MonoBehaviour {
         }
         //キックに当たった時
         else if (collision.tag == "PlayerAttackTag") {
-            Damaged(5);
+            Damaged(8);
         }
     }
 

@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 50023560123406614}
   - component: {fileID: 114956476943646200}
   - component: {fileID: 114578457352118338}
+  - component: {fileID: 114087070998185226}
   m_Layer: 9
   m_Name: Reimu
   m_TagString: EnemyTag
@@ -399,6 +400,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114087070998185226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1775345532307498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c244578771ca6245bd67491cd5a1ccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yukari_Hand:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114578457352118338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -412,8 +427,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage_Sound: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
   life: 6400000050000000
-  power_Value: 0
-  score_Value: 0
+  power_Value: 20
+  score_Value: 2000
   phase_Change_Bomb: {fileID: 1274293818446798, guid: bc95a990879cd11479877a6a1628eee2,
     type: 2}
   clear_Effect: {fileID: 1952110296115016, guid: 087afade4b4eee74a861a82744f016e1,

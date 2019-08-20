@@ -107,7 +107,7 @@ public class Stage2_BossMovie : MonoBehaviour {
             for (int i = 0; i < 2; i++) {
                 scroll_Grounds[i].transform.position += new Vector3(-2f, 0, 0) * Time.timeScale;
                 if(scroll_Grounds[i].transform.position.x < -560f) {
-                    scroll_Grounds[i].transform.position = new Vector3(560f, 0);
+                    scroll_Grounds[i].transform.position = new Vector3(560f, scroll_Grounds[i].transform.position.y);
                 }
             }        
              yield return null;

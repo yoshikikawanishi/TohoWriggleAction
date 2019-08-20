@@ -21,7 +21,7 @@ public class ReimuController : MonoBehaviour {
         _anim = GetComponent<Animator>();
         //スクリプト
         boss_Controller = GetComponent<BossEnemyController>();
-        _attack = gameObject.AddComponent<ReimuAttack>();
+        _attack = gameObject.GetComponent<ReimuAttack>();
     }
 	
 

@@ -16,7 +16,7 @@ public class PlayerCore : MonoBehaviour {
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "GroundTag") {
+        if (collision.gameObject.tag == "GroundTag" || collision.gameObject.tag == "ScreenWallTag") {
             _collision.Miss();
         }
     }

@@ -181,7 +181,7 @@ public class Base_2Movie : MonoBehaviour {
         //慧音
         keine_Controller.Change_Parameter(false);
         keine_Controller.enabled = false;
-        TalkCharacter keine_Talk = keine.AddComponent<TalkCharacter>();
+        KeineTalk keine_Talk = keine.AddComponent<KeineTalk>();
         if (keine_Controller.Get_Is_Catched()) {
             keine_Talk.Set_Status("KeineText", 1, 2, new Vector2(24f, 32f));
         }

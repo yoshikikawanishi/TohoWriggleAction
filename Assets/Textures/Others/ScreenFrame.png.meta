@@ -1,12 +1,7 @@
 fileFormatVersion: 2
-guid: db19b930c31e3564280a2070ac5d6d74
+guid: 786ee37bf31b2c84d8de092125fa6c1f
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: SmallStartBullet_0
-    21300002: SmallStartBullet_1
-    21300004: SmallStartBullet_2
-    21300006: SmallStartBullet_3
-    21300008: SmallStartBullet_4
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -36,7 +31,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -45,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -120,111 +115,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: SmallStartBullet_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 73dc902bc86aeb14c8e6dccac4de6eda
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmallStartBullet_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 1
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f0d4651cb47ada344948984b763feb60
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmallStartBullet_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 1
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c499dd99fe754649ad6302c1ec0d5fd
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmallStartBullet_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 1
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 248eb105be5290e45b51f77c6a0fcdb0
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmallStartBullet_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 1
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6624316d57be23147b6e0a3a46ef1b94
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1e881f39ee1cbc849806f0b4dec110eb
+    spriteID: 96763ebd7d97afb4cb1aa27b8696526b
     vertices: []
     indices: 
     edges: []

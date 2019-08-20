@@ -94,6 +94,10 @@ public abstract class PlayerController : MonoBehaviour {
         else {
             _rigid.velocity *= new Vector2(dec, 1);
         }
+        //限界速度
+        if(Mathf.Abs(_rigid.velocity.x) >= 300f) {
+            _rigid.velocity = new Vector2(_rigid.velocity.x / Mathf.Abs(_rigid.velocity.x) * 300f, _rigid.velocity.y);
+        }
     }
 
 

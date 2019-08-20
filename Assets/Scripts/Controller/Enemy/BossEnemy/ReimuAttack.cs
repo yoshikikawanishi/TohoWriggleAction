@@ -8,7 +8,10 @@ public class ReimuAttack : MonoBehaviour {
     private bool start_Phase1_Routine = true;
     private bool start_Phase2_Routine = true;
 
-    
+    //ゆかりの手
+    [SerializeField] private GameObject[] yukari_Hand = new GameObject[2];
+
+
     //フェーズ1
     public void Phase1() {
         if (start_Phase1_Routine) {
@@ -95,6 +98,8 @@ public class ReimuAttack : MonoBehaviour {
         //バックデザイン
         transform.GetChild(1).localScale = new Vector3(0, 0, 1);
         transform.GetChild(1).gameObject.SetActive(true);
+        //紫
+        StartCoroutine(Yukari_Hand());
         while (true) {
             //全方位弾
             _controller.Change_Parameter("AttackBool");
@@ -140,6 +145,55 @@ public class ReimuAttack : MonoBehaviour {
         pool1.CreatePool(white_Talisman_Bullet, 32);
         pool2.CreatePool(red_Talisman_Bullet, 32);
         pool3.CreatePool(red_Bullet, 30);
+    }
+
+
+    //フェーズ2紫
+    private IEnumerator Yukari_Hand() {
+        //初期設定
+
+        Vector2[] yukari_Default_Pos = new Vector2[2];
+        
+        for (int i = 0; i < 2; i++) {
+            yukari_Default_Pos[i] = yukari_Hand[i].transform.position;
+        }
+
+        yield return new WaitForSeconds(2.0f);
+        while (true) {
+            //地面動かす
+            StartCoroutine(Yukari_Hand_Move(yukari_Default_Pos[0] + new Vector2(0, 48f), 0));
+            yield return new WaitForSeconds(5.0f);
+            //画面端動かす
+            StartCoroutine(Yukari_Hand_Move(yukari_Default_Pos[1] + new Vector2(32, -48f), 1));
+            yield return new WaitForSeconds(5.0f);
+            //地面戻す
+            StartCoroutine(Yukari_Hand_Move(yukari_Default_Pos[0], 0));
+            yield return new WaitForSeconds(5.0f);
+            //画面端戻す
+            StartCoroutine(Yukari_Hand_Move(yukari_Default_Pos[1], 1));
+            yield return new WaitForSeconds(5.0f);
+
+        }
+    }
+
+    //紫の手の移動
+    private IEnumerator Yukari_Hand_Move(Vector2 next_Pos, int number) {
+        SpriteRenderer yukari_Sprite = yukari_Hand[number].GetComponent<SpriteRenderer>();
+        MoveBetweenTwoPoints yukari_Move = yukari_Hand[number].GetComponent<MoveBetweenTwoPoints>();
+        //出現
+        while (yukari_Sprite.color.a <= 1) {
+            yukari_Sprite.color += new Color(0, 0, 0, 0.01f);
+            yield return new WaitForSeconds(0.015f);
+        }
+        //移動
+        yukari_Move.Start_Move(next_Pos, 0, 0.01f);
+        yield return new WaitUntil(yukari_Move.End_Move);
+        //消える
+        while (yukari_Sprite.color.a >= 0) {
+            yukari_Sprite.color += new Color(0, 0, 0, -0.01f);
+            yield return new WaitForSeconds(0.015f);
+        }
+
     }
 
 }

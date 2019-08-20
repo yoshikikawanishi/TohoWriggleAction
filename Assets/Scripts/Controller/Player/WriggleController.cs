@@ -114,7 +114,7 @@ public class WriggleController : PlayerController {
         dec = 0.8f; //減速度
         _rigid.gravityScale = 0;    //重力
         _rigid.drag = 3.0f;    //空気抵抗
-        _collider.size = new Vector2(default_Collider_Size.x, default_Collider_Size.x); //当たり判定
+        _collider.size = new Vector2(10f, 10f); //当たり判定
         _collider.offset = default_Collider_Offset; //当たり判定
         hit_Decision.SetActive(true);   //当たり判定
         fly_Sound.Play();

@@ -1768,16 +1768,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 61142361750659822, guid: 530a8bcc190bcff4ca8d397c5493edcd,
-        type: 2}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: ed7c15006cfba5f4183b994ea6d4955c, type: 2}
-    - target: {fileID: 61820907046988998, guid: 530a8bcc190bcff4ca8d397c5493edcd,
-        type: 2}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: ed7c15006cfba5f4183b994ea6d4955c, type: 2}
+    - target: {fileID: 1741790887304466, guid: 530a8bcc190bcff4ca8d397c5493edcd, type: 2}
+      propertyPath: m_TagString
+      value: ScreenWallTag
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878410180468730, guid: 530a8bcc190bcff4ca8d397c5493edcd, type: 2}
+      propertyPath: m_TagString
+      value: ScreenWallTag
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 530a8bcc190bcff4ca8d397c5493edcd, type: 2}
   m_IsPrefabAsset: 0

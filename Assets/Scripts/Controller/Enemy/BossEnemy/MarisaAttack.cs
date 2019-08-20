@@ -62,22 +62,33 @@ public class MarisaAttack : MonoBehaviour {
         }
     }
     private IEnumerator Phase1_Routine() {
+        //初期位置に移動
+        phase1.progress = 1;
+        _move.Start_Move(phase1.start_Pos, 0, 0.02f);
+        yield return new WaitUntil(_move.End_Move);
+        yield return new WaitForSeconds(1.5f);
         while (true) {
-            //初期位置に移動
-            phase1.progress = 1;
-            _move.Start_Move(phase1.start_Pos, 0, 0.02f);
-            yield return new WaitUntil(_move.End_Move);
-            yield return new WaitForSeconds(1.0f);
             //上を横断しながら弾をばらまく
             phase1.progress = 2;
             StartCoroutine("Cross_Scattered");
             while (phase1.progress == 2) { yield return null; }
             //真ん中上部に移動、画面を狭める
-            StartCoroutine(Narrow_Screen());
-            _move.Start_Move(new Vector3(0, 64f), 0, 0.015f);
+            Narrow_Screen();
+            _move.Start_Move(new Vector3(-70, 64f), 0, 0.012f);
             yield return new WaitUntil(_move.End_Move);
+            yield return new WaitForSeconds(1.0f);
             //下部からレーザー、奇数段、全方位弾
-            StartCoroutine("Phase1_Main_Bullet");
+            StartCoroutine(Phase1_Main_Bullet(0));
+            yield return new WaitForSeconds(3.0f);
+            StartCoroutine(Phase1_Main_Bullet(30f));
+            yield return new WaitForSeconds(3.0f);
+            //画面広げる
+            Spread_Screen();
+            yield return new WaitForSeconds(1.0f);
+            //初期位置に戻る
+            phase1.progress = 1;
+            _move.Start_Move(phase1.start_Pos, 0, 0.02f);
+            yield return new WaitUntil(_move.End_Move);
             yield return new WaitForSeconds(3.0f);
         }
     }
@@ -116,27 +127,31 @@ public class MarisaAttack : MonoBehaviour {
     }
 
     //画面を狭める
-    private IEnumerator Narrow_Screen() {
-        yield return null;
+    private void Narrow_Screen() {
+        GameObject.Find("ScreenFrame").GetComponent<ScreenFrame>().Start_Narrow();
+    }
+    //画面広げる
+    private void Spread_Screen() {
+        GameObject.Find("ScreenFrame").GetComponent<ScreenFrame>().Start_Spread();
     }
 
     //レーザー、奇数弾、全方位弾
-    private IEnumerator Phase1_Main_Bullet() {
+    private IEnumerator Phase1_Main_Bullet(float laser_Differ) {
         BulletPoolFunctions _bullet_Pool = GetComponent<BulletPoolFunctions>();
         //レーザー
         GameObject laser = Resources.Load("Bullet/UpperLaser") as GameObject;
         for (int i = -2; i <= 2; i += 1) {
             GameObject bullet = Instantiate(laser);
-            bullet.transform.position = new Vector3(Random.Range(55f, 80f) * i, -140f);
+            bullet.transform.position = new Vector3(Random.Range(55f, 80f) * i -60 - laser_Differ, -140f);
             yield return new WaitForSeconds(0.1f);
         }
         yield return new WaitForSeconds(1.0f);
         //全方位弾、奇数段
         _bullet_Pool.Set_Bullet_Pool(yellow_Star_Bullet_Pool);
-        _bullet_Pool.Diffusion_Bullet(32, 80f, 0, 5.0f);
+        _bullet_Pool.Odd_Num_Bullet(20, 18f, 80f, 5.0f);
         yield return new WaitForSeconds(0.4f);
-        for(int i = 0; i < 7; i++) {
-            _bullet_Pool.Odd_Num_Bullet(3, 10f, 100f-i*5, 5.0f);
+        for(int i = 0; i < 5; i++) {
+            _bullet_Pool.Odd_Num_Bullet(3, 12f, 100f-i*5, 5.0f);
             yield return new WaitForSeconds(0.05f);
         }
     }

@@ -19,7 +19,7 @@ public class KeineController : MonoBehaviour {
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.tag == "PlayerBodyTag") {
+        if(collision.tag == "PlayerBodyTag" && this.enabled) {
             is_Catched = true;
         }
     }

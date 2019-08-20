@@ -23,6 +23,7 @@ TagManager:
   - DamageGroundTag
   - ScriptsTag
   - BGMTag
+  - ScreenWallTag
   layers:
   - Default
   - TransparentFX

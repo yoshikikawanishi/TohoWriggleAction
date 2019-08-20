@@ -38,7 +38,7 @@ public class Stage3_2Scene : MonoBehaviour {
             StartCoroutine("Enemy_Gen");
         }
         //シーン遷移
-        if (player.transform.position.x > 10240f) {
+        if (player.transform.position.x > 10500f) {
             SceneManager.LoadScene("Stage3_BossScene");
         }
     }
