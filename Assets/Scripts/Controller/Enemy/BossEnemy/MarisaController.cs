@@ -22,7 +22,9 @@ public class MarisaController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        //テスト用
+        Debug.Log("BossBattleTest");
+        //boss_Controller.Set_Now_Phase(2);
 	}
 	
 	// Update is called once per frame
@@ -31,7 +33,7 @@ public class MarisaController : MonoBehaviour {
         if (start_Battle) {
             switch (boss_Controller.Get_Now_Phase()) {
                 case 1: _attack.Phase1(); break;
-                case 2: break;
+                case 2: _attack.Phase2(); break;
                 case 3: break;
             }
         }

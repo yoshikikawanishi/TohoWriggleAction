@@ -17,6 +17,7 @@ public class MarisaAttack : MonoBehaviour {
     public class Phase2_Status {
         public bool start_Routine = true;
         public Vector2 start_Pos;
+        public GameObject enclosure_Stars;
     }
     
     //フェーズ3用
@@ -153,6 +154,58 @@ public class MarisaAttack : MonoBehaviour {
         for(int i = 0; i < 5; i++) {
             _bullet_Pool.Odd_Num_Bullet(3, 12f, 100f-i*5, 5.0f);
             yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+
+    //フェーズ2
+    public void Phase2() {
+        if (phase2.start_Routine) {
+            phase2.start_Routine = false;
+            StopAllCoroutines();
+            _move.StopAllCoroutines();
+            _rigid.velocity = new Vector2(0, 0);
+            Spread_Screen();
+            StartCoroutine("Phase2_Routine");
+        }
+    }
+    private IEnumerator Phase2_Routine() {
+        //初期設定
+        //無敵化、移動
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        _move.Start_Move(phase2.start_Pos, 0, 0.02f);
+        yield return new WaitUntil(_move.End_Move);
+        yield return new WaitForSeconds(0.5f);
+        //星弾で囲む
+        phase2.enclosure_Stars.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        //マスタースパーク
+        StartCoroutine("Mini_Master_Spark");
+        yield return new WaitForSeconds(20f);
+        //フェーズ2終了
+        phase2.enclosure_Stars.GetComponent<EnclosureStarsParent>().Disappear();
+        gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
+    }
+
+    //マスタースパークの生成
+    private IEnumerator Mini_Master_Spark() {
+        GameObject master_Spark = Resources.Load("Bullet/MiniMasterSpark") as GameObject;
+        //テキストから
+        TextReader text = new TextReader();
+        text.Read_Text("MiniMasterSparkText");        
+        for (int i = 1; i < text.rowLength; i++) {
+            yield return new WaitForSeconds(float.Parse(text.textWords[i, 4]));
+            GameObject bullet = Instantiate(master_Spark);
+            bullet.transform.position = new Vector2(float.Parse(text.textWords[i, 1]), float.Parse(text.textWords[i, 2]) - 24f);
+            bullet.transform.Rotate(new Vector3(0, 0, float.Parse(text.textWords[i, 3])));
+        }
+        yield return new WaitForSeconds(3.929f);
+        //円形
+        for (float r = 0; r < 360f; r += 10) {
+            GameObject bullet = Instantiate(master_Spark);
+            bullet.transform.position = new Vector3(Mathf.Cos(r * Mathf.PI / 180), Mathf.Sin(r * Mathf.PI / 180)) * 300f - new Vector3(0, 24f);
+            bullet.transform.Rotate(new Vector3(0, 0, -360 + r - 90));
+            yield return new WaitForSeconds(0.179f);
         }
     }
 

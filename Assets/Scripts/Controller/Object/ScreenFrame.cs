@@ -11,6 +11,7 @@ public class ScreenFrame : MonoBehaviour {
 
     //狭める
     public void Start_Narrow() {
+        StopCoroutine("Spread_Frame");
         StartCoroutine("Narrow_Frame");
     }
     private IEnumerator Narrow_Frame() {
@@ -35,6 +36,7 @@ public class ScreenFrame : MonoBehaviour {
 
     //広げる
     public void Start_Spread() {
+        StopCoroutine("Narrow_Frame");
         StartCoroutine("Spread_Frame");
     }
     private IEnumerator Spread_Frame() {
@@ -44,7 +46,7 @@ public class ScreenFrame : MonoBehaviour {
         frame_Canvas.SetActive(false);
         frame_Boss_Canvas.SetActive(false);
         
-        while (transform.localScale.x <= 5) {
+        while (transform.localScale.x <= 3) {
             transform.localScale += new Vector3(0.05f, 0.05f);
             yield return new WaitForSeconds(0.015f);
         }
