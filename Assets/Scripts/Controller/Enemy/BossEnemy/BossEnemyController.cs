@@ -125,6 +125,8 @@ public class BossEnemyController : MonoBehaviour {
 
     //フェーズ切り替え時の処理
     private void Phase_Change(int next_Phase) {
+        //アイテム出す
+        Put_Out_Item(score_Value / 2, power_Value / 2);
         //弾消し用のボム生成
         var bomb = Instantiate(phase_Change_Bomb) as GameObject;
         bomb.transform.position = transform.position;
@@ -158,12 +160,12 @@ public class BossEnemyController : MonoBehaviour {
         CameraShake _shake = gameObject.AddComponent<CameraShake>();
         _shake.Shake(0.25f, 4f, true);
         //アイテムを出す
-        Put_Out_Item();
+        Put_Out_Item(score_Value, power_Value);
     }
 
 
     //アイテムを出す
-    private void Put_Out_Item() {
+    private void Put_Out_Item(int score_Value, int power_Value) {
         //点
         int score_Num = score_Value / 100;
         for (int i = 0; i < score_Num; i++) {

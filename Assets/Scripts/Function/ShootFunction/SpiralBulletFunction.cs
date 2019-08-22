@@ -51,17 +51,16 @@ public class SpiralBulletFunction : MonoBehaviour {
             bullet.transform.LookAt2D(gameObject.transform, Vector2.right);
             bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * speed;
             //弾の消滅
-            StartCoroutine("Delete_Bullet", bullet);
+            Delete_Bullet(bullet, lifeTime);
             yield return new WaitForSeconds(span);
             //次の角度
             angle += inter_Angle * Mathf.PI / 180f;
         }
     }
 
-    //弾の消滅
-    private IEnumerator Delete_Bullet(GameObject obj) {
-        yield return new WaitForSeconds(lifeTime);
-        obj.SetActive(false);
+    //弾の消去
+    private void Delete_Bullet(GameObject bullet, float lifeTime) {
+        bullet.GetComponent<EnemyBullet>().StartCoroutine("Delete_Pool_Bullet", lifeTime);
     }
 
 

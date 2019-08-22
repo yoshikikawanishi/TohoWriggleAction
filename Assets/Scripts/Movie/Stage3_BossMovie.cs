@@ -45,6 +45,7 @@ public class Stage3_BossMovie : MonoBehaviour {
         movie_Progress = 2;
 
         //終了設定
+        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Change_BGM_Index(4);
         _pause.Set_Pausable(true);
     }
 

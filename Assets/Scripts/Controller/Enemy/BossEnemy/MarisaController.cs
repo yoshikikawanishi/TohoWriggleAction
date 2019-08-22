@@ -34,7 +34,8 @@ public class MarisaController : MonoBehaviour {
             switch (boss_Controller.Get_Now_Phase()) {
                 case 1: _attack.Phase1(); break;
                 case 2: _attack.Phase2(); break;
-                case 3: break;
+                case 3: _attack.Phase3(); break;
+                case 4: _attack.Phase4(); break;
             }
         }
         //クリア時

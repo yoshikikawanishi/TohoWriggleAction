@@ -9,6 +9,8 @@ public class ShopClerk : TalkCharacter {
     //ショップキャンバス
     private GameObject shop_Canvas;
 
+    private int life_Up_Price = 8;
+
 
 	// Use this for initialization
 	new void Start () {
@@ -44,9 +46,26 @@ public class ShopClerk : TalkCharacter {
     //ショップ
     private void Start_Trade() {
         //ショップ画面表示
+        Set_Up_Item_Price();
         shop_Canvas.SetActive(true);
         GameObject.Find("Item1Button").GetComponent<Button>().Select();
     }
+
+
+    //値段設定
+    private void Set_Up_Item_Price() {
+        PlayerManager player_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
+        switch (player_Manager.life) {
+            case 1: life_Up_Price = 4; break;
+            case 2: life_Up_Price = 8; break;
+            case 3: life_Up_Price = 16; break;
+            case 4: life_Up_Price = 32; break;
+            default: life_Up_Price = 64; break;
+        }
+        //テキスト変更
+        shop_Canvas.transform.GetChild(0).GetChild(3).GetComponent<Text>().text = life_Up_Price.ToString();
+    }
+
 
     /*---------------ショップのボタン関数--------------*/
     public void Quit_Button() {
@@ -67,9 +86,9 @@ public class ShopClerk : TalkCharacter {
     //ライフ回復
     public void Life_Up_Button() {
         PlayerManager player_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
-        if (player_Manager.power >= 8) {
+        if (player_Manager.power >= life_Up_Price) {
             player_Manager.Life_Up();
-            player_Manager.Set_Power(player_Manager.power - 8);
+            player_Manager.Set_Power(player_Manager.power - life_Up_Price);
             Quit_Button();
         }
     }
@@ -78,9 +97,9 @@ public class ShopClerk : TalkCharacter {
     //1UP
     public void Get_Stock_Button() {
         PlayerManager player_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
-        if (player_Manager.power >= 30) {
+        if (player_Manager.power >= 64) {
             player_Manager.Get_Stock();
-            player_Manager.Set_Power(player_Manager.power - 30);
+            player_Manager.Set_Power(player_Manager.power - 64);
             Quit_Button();
         }
     }

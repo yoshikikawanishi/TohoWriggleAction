@@ -31,7 +31,7 @@ public class MessageDisplay : MonoBehaviour {
     private bool endMessage = false;
     
     //メッセージ表示の速度
-    private float textSpeed = 0.05f;
+    private float textSpeed = 0.07f;
    
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class MessageDisplay : MonoBehaviour {
             textSpeed = 0.005f;
         }
         if (Input.GetButtonUp("Submit")) {
-            textSpeed = 0.05f;
+            textSpeed = 0.07f;
         }
     }
 

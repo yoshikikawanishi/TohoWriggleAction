@@ -79,7 +79,7 @@ public class Stage1_BossScene : MonoBehaviour {
         larva.GetComponent<LarvaController>().Change_Parameter("IdleBool");
         //メッセージ表示
         if (is_First_Visit) {
-            _message.Start_Display("LarvaText", 2, 3);
+            _message.Start_Display("LarvaText", 2, 5);
             yield return new WaitUntil(_message.End_Message);
         }
         //戦闘開始
@@ -101,7 +101,7 @@ public class Stage1_BossScene : MonoBehaviour {
         //一時停止不可
         _pause.Set_Pausable(false);
         //メッセージ表示
-        _message.Start_Display("LarvaText", 4, 4);
+        _message.Start_Display("LarvaText", 6, 7);
         yield return new WaitUntil(_message.End_Message);
         GetComponent<FadeInOut>().Start_Fade_Out();
         yield return new WaitForSeconds(1.5f);

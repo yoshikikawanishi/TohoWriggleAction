@@ -24,7 +24,7 @@ public class BlownEnemy : MonoBehaviour {
         if (_renderer.isVisible && !start_Action) {
             start_Action = true;
             StartCoroutine("Shot");
-            _rigid.velocity = new Vector2(-37f, 0);
+            _rigid.velocity = new Vector2(-37f * transform.localScale.x, 0);
         }
         //左端に行ったら消す
         if (transform.position.x < -320f) {

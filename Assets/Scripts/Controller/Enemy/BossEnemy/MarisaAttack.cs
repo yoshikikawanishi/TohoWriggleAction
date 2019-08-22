@@ -17,7 +17,7 @@ public class MarisaAttack : MonoBehaviour {
     public class Phase2_Status {
         public bool start_Routine = true;
         public Vector2 start_Pos;
-        public GameObject enclosure_Stars;
+        public GameObject familiars;
     }
     
     //フェーズ3用
@@ -27,16 +27,25 @@ public class MarisaAttack : MonoBehaviour {
         public Vector2 start_Pos;
     }
 
+    //フェーズ4用
+    [System.Serializable]
+    public class Phase4_Status {
+        public bool start_Routine = true;
+        public Vector2 start_Pos;
+        public GameObject enclosure_Stars;
+    }
+
     public Phase1_Status phase1;
     public Phase2_Status phase2;
     public Phase3_Status phase3;
+    public Phase4_Status phase4;
 
     //コンポーネント
     private MoveBetweenTwoPoints _move;
     private Rigidbody2D _rigid;
 
     //弾
-    private ObjectPool yellow_Star_Bullet_Pool;
+    private ObjectPool[] star_Bullet_Pool = new ObjectPool[5];  //赤、青、緑、黄、紫
 
 
     //Awake
@@ -49,9 +58,17 @@ public class MarisaAttack : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //弾のオブジェクトプール
-        yellow_Star_Bullet_Pool = gameObject.AddComponent<ObjectPool>();
-        yellow_Star_Bullet_Pool.CreatePool(Resources.Load("Bullet/PooledBullet/YellowStarBullet") as GameObject, 10);
+        //5色星弾のオブジェクトプール
+        star_Bullet_Pool[0] = gameObject.AddComponent<ObjectPool>();
+        star_Bullet_Pool[0].CreatePool(Resources.Load("Bullet/PooledBullet/RedStarBullet") as GameObject, 20);
+        star_Bullet_Pool[1] = gameObject.AddComponent<ObjectPool>();
+        star_Bullet_Pool[1].CreatePool(Resources.Load("Bullet/PooledBullet/BlueStarBullet") as GameObject, 20);
+        star_Bullet_Pool[2] = gameObject.AddComponent<ObjectPool>();
+        star_Bullet_Pool[2].CreatePool(Resources.Load("Bullet/PooledBullet/GreenStarBullet") as GameObject, 20);
+        star_Bullet_Pool[3] = gameObject.AddComponent<ObjectPool>();
+        star_Bullet_Pool[3].CreatePool(Resources.Load("Bullet/PooledBullet/YellowStarBullet") as GameObject, 20);
+        star_Bullet_Pool[4] = gameObject.AddComponent<ObjectPool>();
+        star_Bullet_Pool[4].CreatePool(Resources.Load("Bullet/PooledBullet/PurpleStarBullet") as GameObject, 20);
     }
 
 
@@ -121,7 +138,7 @@ public class MarisaAttack : MonoBehaviour {
 
     //星弾落とす
     private void Drop_Star_Bullet() {
-        GameObject bullet = yellow_Star_Bullet_Pool.GetObject();
+        GameObject bullet = star_Bullet_Pool[3].GetObject();
         bullet.transform.position = transform.position;
         bullet.GetComponent<Rigidbody2D>().gravityScale = 8f;
         bullet.GetComponent<EnemyBullet>().Delete_Pool_Bullet(5.0f);
@@ -148,7 +165,7 @@ public class MarisaAttack : MonoBehaviour {
         }
         yield return new WaitForSeconds(1.0f);
         //全方位弾、奇数段
-        _bullet_Pool.Set_Bullet_Pool(yellow_Star_Bullet_Pool);
+        _bullet_Pool.Set_Bullet_Pool(star_Bullet_Pool[3]);
         _bullet_Pool.Odd_Num_Bullet(20, 18f, 80f, 5.0f);
         yield return new WaitForSeconds(0.4f);
         for(int i = 0; i < 5; i++) {
@@ -170,20 +187,66 @@ public class MarisaAttack : MonoBehaviour {
         }
     }
     private IEnumerator Phase2_Routine() {
-        //初期設定
         //無敵化、移動
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         _move.Start_Move(phase2.start_Pos, 0, 0.02f);
         yield return new WaitUntil(_move.End_Move);
+        gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
+        //使い魔生成
+        phase2.familiars.SetActive(true);
+        phase2.familiars.transform.position = transform.position;
+        MarisaFamiliar familiars_Controller = phase2.familiars.GetComponent<MarisaFamiliar>();
+        yield return null;
+        familiars_Controller.StartCoroutine("Appear");
+        //弾発射
+        yield return new WaitForSeconds(1.5f);
+        familiars_Controller.Set_Bullet_Pools(star_Bullet_Pool);
+        familiars_Controller.Start_Spiral_Bullets();
+
+    }
+
+
+    //フェーズ3
+    public void Phase3() {
+        if (phase3.start_Routine) {
+            phase3.start_Routine = false;
+            StopAllCoroutines();
+            _move.StopAllCoroutines();
+            phase2.familiars.GetComponent<MarisaFamiliar>().Stop_Spiral_Bullets();
+            phase2.familiars.SetActive(false);
+            StartCoroutine("Phase3_Routine");
+        }
+    }
+    private IEnumerator Phase3_Routine() {
+        yield return null;
+    }
+
+
+    //フェーズ4
+    public void Phase4() {
+        if (phase4.start_Routine) {
+            phase4.start_Routine = false;
+            StopAllCoroutines();
+            _move.StopAllCoroutines();
+            _rigid.velocity = new Vector2(0, 0);
+            StartCoroutine("Phase4_Routine");
+        }
+    }
+    private IEnumerator Phase4_Routine() {
+        //初期設定
+        //無敵化、移動
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        _move.Start_Move(phase4.start_Pos, 0, 0.02f);
+        yield return new WaitUntil(_move.End_Move);
         yield return new WaitForSeconds(0.5f);
         //星弾で囲む
-        phase2.enclosure_Stars.SetActive(true);
+        phase4.enclosure_Stars.SetActive(true);
         yield return new WaitForSeconds(3.0f);
         //マスタースパーク
         StartCoroutine("Mini_Master_Spark");
         yield return new WaitForSeconds(20f);
         //フェーズ2終了
-        phase2.enclosure_Stars.GetComponent<EnclosureStarsParent>().Disappear();
+        phase4.enclosure_Stars.GetComponent<EnclosureStarsParent>().Disappear();
         gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
     }
 

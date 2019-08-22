@@ -8,13 +8,16 @@ public class Familiar : MonoBehaviour {
     private SpriteRenderer _sprite;
     private Renderer _renderer;
 
+    private Color default_Color;
+
 
 	// Use this for initialization
 	void Start () {
         //コンポーネント
         _sprite = GetComponent<SpriteRenderer>();
         _renderer = GetComponent<Renderer>();
-        
+
+        default_Color = _sprite.color;
     }
 
     // Update is called once per frame
@@ -32,7 +35,7 @@ public class Familiar : MonoBehaviour {
             gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         }
         if (Input.GetButtonUp("Fly")) {
-            _sprite.color = new Color(1, 1, 1, 1);
+            _sprite.color = default_Color;
             gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
             UsualSoundManager.Familiar_Appear_Sound();
         }       

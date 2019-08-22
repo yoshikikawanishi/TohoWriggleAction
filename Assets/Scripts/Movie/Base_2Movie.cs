@@ -16,6 +16,8 @@ public class Base_2Movie : MonoBehaviour {
     private GameObject catch_Canvas;
     //スクリプト
     private PauseManager _pause;
+    //生成した敵の親オブジェクト
+    [SerializeField] private GameObject enemy_Parent;
 
     //慧音落下速度
     private float keine_Drop_Speed = 8f;
@@ -56,9 +58,7 @@ public class Base_2Movie : MonoBehaviour {
         //初期設定
         main_Camera.GetComponent<CameraController>().enabled = false;
         GameObject scene_Background = main_Camera.transform.GetChild(0).gameObject;
-        GameObject event_Background = main_Camera.transform.GetChild(1).gameObject;
         scene_Background.transform.SetParent(null);
-        event_Background.transform.SetParent(null);
         player_Controller.Set_Playable(false);
         _pause.Set_Pausable(false);
 
@@ -92,9 +92,6 @@ public class Base_2Movie : MonoBehaviour {
             yield return null;
         }
 
-        //背景差し替え
-        event_Background.SetActive(true);
-        
         //カメラ下げる
         float drop_Speed = keine_Drop_Speed;
         keine.transform.SetParent(main_Camera.transform);
@@ -118,6 +115,9 @@ public class Base_2Movie : MonoBehaviour {
         //UI表示
         StartCoroutine("Catch_UI");
 
+        //敵生成
+        StartCoroutine("Enemy_Gen");
+
         //慧音落とす、受け止める
         player_Controller.Set_Playable(true);
         keine.transform.position = keine.transform.position += new Vector3(Random.Range(-100f, 100f), 0);
@@ -132,7 +132,11 @@ public class Base_2Movie : MonoBehaviour {
             }
             yield return null;
         }
-        
+
+        //敵消す
+        Destroy(enemy_Parent);
+        Delete_Bullet();
+
         //明転
         SpriteRenderer white_Sprite = GameObject.Find("WhiteSprite").GetComponent<SpriteRenderer>();
         while(white_Sprite.color.a <= 1) {
@@ -146,8 +150,6 @@ public class Base_2Movie : MonoBehaviour {
         _pause.Set_Pausable(true);
         main_Camera.GetComponent<CameraController>().enabled = true;
         Time.timeScale = 1.0f;
-        event_Background.SetActive(false);
-        scene_Background.SetActive(true);
         scene_Background.transform.SetParent(main_Camera.transform);
         After_Movie();
         is_End_Movie = true;
@@ -172,6 +174,32 @@ public class Base_2Movie : MonoBehaviour {
             yield return new WaitForSeconds(0.5f);
             catch_Canvas.SetActive(false);
             yield return new WaitForSeconds(0.3f);
+        }
+    }
+
+    //敵生成
+    private IEnumerator Enemy_Gen() {
+        GameObject red_Fairy = Resources.Load("Enemy/EventRedFairy") as GameObject;
+        GameObject blown_Fairy = Resources.Load("Enemy/BlownEnemy") as GameObject;
+        yield return new WaitForSeconds(0.5f);
+        for(int i = 0; i < 3; i++) {
+            GameObject red = Instantiate(red_Fairy);
+            red.transform.position = new Vector3(-235f, -80f);
+            red.transform.localScale = new Vector3(-1, 1, 1);
+            red.transform.SetParent(enemy_Parent.transform);
+            GameObject blown = Instantiate(blown_Fairy);
+            blown.transform.position = new Vector3(230f, -40f + i * 32f);
+            blown.transform.SetParent(enemy_Parent.transform);
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
+
+
+    //弾を消す
+    private void Delete_Bullet() {
+        GameObject[] bullet = GameObject.FindGameObjectsWithTag("EnemyBulletTag");
+        foreach(GameObject obj in bullet) {
+            Destroy(obj);
         }
     }
 

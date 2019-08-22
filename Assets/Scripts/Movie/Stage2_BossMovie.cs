@@ -38,7 +38,7 @@ public class Stage2_BossMovie : MonoBehaviour {
 
         yield return new WaitForSeconds(1.0f);
         if (is_First_Visit) {
-            _message.Start_Display("ReimuText", 7, 7);      //霊夢、紫会話
+            _message.Start_Display("ReimuText", 7, 9);      //霊夢、紫会話
             yield return new WaitUntil(_message.End_Message);
         }
         movie_Progress = 2;
@@ -46,7 +46,7 @@ public class Stage2_BossMovie : MonoBehaviour {
         yield return new WaitForSeconds(2.0f);
 
         if (is_First_Visit) {
-            _message.Start_Display("ReimuText", 7, 7);      //リグル、霊夢、紫会話
+            _message.Start_Display("ReimuText", 10, 18);      //リグル、霊夢、紫会話
             yield return new WaitUntil(_message.End_Message);
         }
         movie_Progress = 3;
