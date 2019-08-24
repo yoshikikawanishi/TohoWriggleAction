@@ -11,6 +11,7 @@ public class UsualSoundManager : MonoBehaviour {
     static public AudioSource charge_Sound;
     static public AudioSource pause_In_Sound;
     static public AudioSource pause_Out_Sound;
+    static public AudioSource laser_Sound;
 
 
     //シングルトン用
@@ -33,6 +34,7 @@ public class UsualSoundManager : MonoBehaviour {
         charge_Sound = audios[3];
         pause_In_Sound = audios[4];
         pause_Out_Sound = audios[5];
+        laser_Sound = audios[6];
     }
 
 
@@ -66,4 +68,8 @@ public class UsualSoundManager : MonoBehaviour {
         pause_In_Sound.Play();
     }
     
+    //レーザー音
+    static public void Laser_Sound() {
+        laser_Sound.Play();
+    }
 }

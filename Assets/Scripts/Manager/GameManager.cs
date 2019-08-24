@@ -11,10 +11,23 @@ public class GameManager : MonoBehaviour {
 
     //シーンに初めて訪れたかどうか
     private bool first_Visit_Frag = true;
+    
+    //解像度
+    public int ScreenWidth = 960;
+    public int ScreenHeight = 540;
 
     //シングルトン用
     public static GameManager instance;
+
+
     void Awake() {
+        // PC向けビルドだったらサイズ変更
+        if (Application.platform == RuntimePlatform.WindowsPlayer ||
+        Application.platform == RuntimePlatform.OSXPlayer ||
+        Application.platform == RuntimePlatform.LinuxPlayer) {
+            Screen.SetResolution(ScreenWidth, ScreenHeight, false);
+        }
+
         //シングルトン
         if (instance != null) {
             Destroy(this.gameObject);
@@ -38,10 +51,7 @@ public class GameManager : MonoBehaviour {
     void Start () {
         //スクリプトの取得
         _playerManager = GetComponent<PlayerManager>();
-        //キー
-        KeyConfig keyConfig = new KeyConfig();
-        keyConfig.Create_InputManager();
-
+       
         /*　データ消去のテスト */
         //DeleteData();
 

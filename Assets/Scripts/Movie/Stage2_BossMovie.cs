@@ -52,7 +52,7 @@ public class Stage2_BossMovie : MonoBehaviour {
         movie_Progress = 3;
 
         //戦闘開始
-        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Change_BGM_Index(3);
+        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Change_BGM_Index(5);
         _pause.Set_Pausable(true);
     }
 

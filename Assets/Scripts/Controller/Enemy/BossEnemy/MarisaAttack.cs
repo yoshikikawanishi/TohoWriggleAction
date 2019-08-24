@@ -25,6 +25,7 @@ public class MarisaAttack : MonoBehaviour {
     public class Phase3_Status {
         public bool start_Routine = true;
         public Vector2 start_Pos;
+        public SpiralBulletFunction[] spiral = new SpiralBulletFunction[2];
     }
 
     //フェーズ4用
@@ -43,9 +44,11 @@ public class MarisaAttack : MonoBehaviour {
     //コンポーネント
     private MoveBetweenTwoPoints _move;
     private Rigidbody2D _rigid;
+    private MarisaController _controller;
 
     //弾
     private ObjectPool[] star_Bullet_Pool = new ObjectPool[5];  //赤、青、緑、黄、紫
+    private ObjectPool[] big_Star_Bullet_Pool = new ObjectPool[2];  //赤、青
 
 
     //Awake
@@ -53,6 +56,7 @@ public class MarisaAttack : MonoBehaviour {
         //取得
         _move = GetComponent<MoveBetweenTwoPoints>();
         _rigid = GetComponent<Rigidbody2D>();
+        _controller = GetComponent<MarisaController>();
     }
 
 
@@ -69,6 +73,11 @@ public class MarisaAttack : MonoBehaviour {
         star_Bullet_Pool[3].CreatePool(Resources.Load("Bullet/PooledBullet/YellowStarBullet") as GameObject, 20);
         star_Bullet_Pool[4] = gameObject.AddComponent<ObjectPool>();
         star_Bullet_Pool[4].CreatePool(Resources.Load("Bullet/PooledBullet/PurpleStarBullet") as GameObject, 20);
+        //大型星弾のオブジェクトプール
+        big_Star_Bullet_Pool[0] = gameObject.AddComponent<ObjectPool>();
+        big_Star_Bullet_Pool[0].CreatePool(Resources.Load("Bullet/PooledBullet/BigStarBullet1") as GameObject, 20);
+        big_Star_Bullet_Pool[1] = gameObject.AddComponent<ObjectPool>();
+        big_Star_Bullet_Pool[1].CreatePool(Resources.Load("Bullet/PooledBullet/BigStarBullet2") as GameObject, 20);
     }
 
 
@@ -84,6 +93,7 @@ public class MarisaAttack : MonoBehaviour {
         phase1.progress = 1;
         _move.Start_Move(phase1.start_Pos, 0, 0.02f);
         yield return new WaitUntil(_move.End_Move);
+        _controller.Appear_Back_Design(transform.position);
         yield return new WaitForSeconds(1.5f);
         while (true) {
             //上を横断しながら弾をばらまく
@@ -92,8 +102,10 @@ public class MarisaAttack : MonoBehaviour {
             while (phase1.progress == 2) { yield return null; }
             //真ん中上部に移動、画面を狭める
             Narrow_Screen();
-            _move.Start_Move(new Vector3(-70, 64f), 0, 0.012f);
+            _controller.Change_Parameter("DashBool1", 1);
+            _move.Start_Move(new Vector3(-70, 64f), 0, 0.01f);
             yield return new WaitUntil(_move.End_Move);
+            _controller.Change_Parameter("IdleBool", -1);
             yield return new WaitForSeconds(1.0f);
             //下部からレーザー、奇数段、全方位弾
             StartCoroutine(Phase1_Main_Bullet(0));
@@ -105,8 +117,10 @@ public class MarisaAttack : MonoBehaviour {
             yield return new WaitForSeconds(1.0f);
             //初期位置に戻る
             phase1.progress = 1;
+            _controller.Change_Parameter("DashBool1", -1);
             _move.Start_Move(phase1.start_Pos, 0, 0.02f);
             yield return new WaitUntil(_move.End_Move);
+            _controller.Change_Parameter("IdleBool", 1);
             yield return new WaitForSeconds(3.0f);
         }
     }
@@ -115,10 +129,12 @@ public class MarisaAttack : MonoBehaviour {
     //上を横断しながら弾をばらまく
     private IEnumerator Cross_Scattered() {
         //移動
+        _controller.Change_Parameter("DashBool1", -1);
         _move.Start_Move(new Vector3(260f, 64f), -32f, 0.02f);
         yield return new WaitUntil(_move.End_Move);
         yield return new WaitForSeconds(0.5f);
         //横断、星弾落とす
+        _controller.Change_Parameter("DashBool2", 1);
         _rigid.velocity = new Vector2(-300f, 0);
         while (transform.position.x > -260f) {
             Drop_Star_Bullet();
@@ -127,6 +143,7 @@ public class MarisaAttack : MonoBehaviour {
         _rigid.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.5f);
         //横断、星弾落とす
+        _controller.Change_Parameter("DashBool2", -1);
         _rigid.velocity = new Vector2(300f, 0);
         while (transform.position.x < 260f) {
             Drop_Star_Bullet();
@@ -142,6 +159,7 @@ public class MarisaAttack : MonoBehaviour {
         bullet.transform.position = transform.position;
         bullet.GetComponent<Rigidbody2D>().gravityScale = 8f;
         bullet.GetComponent<EnemyBullet>().Delete_Pool_Bullet(5.0f);
+        UsualSoundManager.Shot_Sound();
     }
 
     //画面を狭める
@@ -165,6 +183,7 @@ public class MarisaAttack : MonoBehaviour {
         }
         yield return new WaitForSeconds(1.0f);
         //全方位弾、奇数段
+        UsualSoundManager.Shot_Sound();
         _bullet_Pool.Set_Bullet_Pool(star_Bullet_Pool[3]);
         _bullet_Pool.Odd_Num_Bullet(20, 18f, 80f, 5.0f);
         yield return new WaitForSeconds(0.4f);
@@ -179,26 +198,33 @@ public class MarisaAttack : MonoBehaviour {
     public void Phase2() {
         if (phase2.start_Routine) {
             phase2.start_Routine = false;
+            //フェーズ1の終了
             StopAllCoroutines();
             _move.StopAllCoroutines();
             _rigid.velocity = new Vector2(0, 0);
             Spread_Screen();
+            _controller.Disappear_Back_Design();
+            //フェーズ2の開始
             StartCoroutine("Phase2_Routine");
         }
     }
     private IEnumerator Phase2_Routine() {
         //無敵化、移動
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        yield return new WaitForSeconds(1.0f);
+        _controller.Change_Parameter("DashBool1", 1);
         _move.Start_Move(phase2.start_Pos, 0, 0.02f);
         yield return new WaitUntil(_move.End_Move);
         gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
+        _controller.Appear_Back_Design(transform.position);
         //使い魔生成
+        _controller.Change_Parameter("IdleBool", 1);
         phase2.familiars.SetActive(true);
         phase2.familiars.transform.position = transform.position;
         MarisaFamiliar familiars_Controller = phase2.familiars.GetComponent<MarisaFamiliar>();
         yield return null;
         familiars_Controller.StartCoroutine("Appear");
-        //弾発射
+        //使い魔弾発射
         yield return new WaitForSeconds(1.5f);
         familiars_Controller.Set_Bullet_Pools(star_Bullet_Pool);
         familiars_Controller.Start_Spiral_Bullets();
@@ -210,15 +236,25 @@ public class MarisaAttack : MonoBehaviour {
     public void Phase3() {
         if (phase3.start_Routine) {
             phase3.start_Routine = false;
+            //フェーズ2の終了
             StopAllCoroutines();
-            _move.StopAllCoroutines();
             phase2.familiars.GetComponent<MarisaFamiliar>().Stop_Spiral_Bullets();
             phase2.familiars.SetActive(false);
+            _controller.Disappear_Back_Design();
+            //フェーズ3開始
             StartCoroutine("Phase3_Routine");
         }
     }
     private IEnumerator Phase3_Routine() {
-        yield return null;
+        StartCoroutine("Phase2_Routine");
+        yield return new WaitForSeconds(3.0f);
+        //大型星弾発射
+        for(int i = 0; i < 2; i++) {
+            phase3.spiral[i] = gameObject.AddComponent<SpiralBulletFunction>();
+            phase3.spiral[i].Set_Bullet_Pool(big_Star_Bullet_Pool[i]);
+        }
+        phase3.spiral[0].Start_Spiral_Bullet(80f, 190, 10f, 0.5f, 8.0f);
+        phase3.spiral[1].Start_Spiral_Bullet(80f, -190, -10f, 0.5f, 8.0f);
     }
 
 
@@ -226,21 +262,30 @@ public class MarisaAttack : MonoBehaviour {
     public void Phase4() {
         if (phase4.start_Routine) {
             phase4.start_Routine = false;
+            //フェーズ3の終了
             StopAllCoroutines();
-            _move.StopAllCoroutines();
-            _rigid.velocity = new Vector2(0, 0);
+            phase2.familiars.GetComponent<MarisaFamiliar>().Stop_Spiral_Bullets();
+            phase2.familiars.SetActive(false);
+            phase3.spiral[0].Stop_Spiral_Bullet();
+            phase3.spiral[1].Stop_Spiral_Bullet();
+            _controller.Disappear_Back_Design();
+            //フェーズ4開始
             StartCoroutine("Phase4_Routine");
         }
     }
     private IEnumerator Phase4_Routine() {
-        //初期設定
         //無敵化、移動
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        yield return new WaitForSeconds(1.0f);
+        _controller.Change_Parameter("DashBool1", -1);
         _move.Start_Move(phase4.start_Pos, 0, 0.02f);
         yield return new WaitUntil(_move.End_Move);
+        _controller.Change_Parameter("AttackBool", 1);
+        _controller.Appear_Back_Design(transform.position);
         yield return new WaitForSeconds(0.5f);
         //星弾で囲む
         phase4.enclosure_Stars.SetActive(true);
+        UsualSoundManager.Laser_Sound();
         yield return new WaitForSeconds(3.0f);
         //マスタースパーク
         StartCoroutine("Mini_Master_Spark");
@@ -248,6 +293,7 @@ public class MarisaAttack : MonoBehaviour {
         //フェーズ2終了
         phase4.enclosure_Stars.GetComponent<EnclosureStarsParent>().Disappear();
         gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
+        GetComponent<BossEnemyController>().life[3] = 1;
     }
 
     //マスタースパークの生成

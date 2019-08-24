@@ -24,9 +24,9 @@ public class GoAroundFamiliar : Enemy {
         base.Start();
         parent = transform.parent.gameObject;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         //親の周りをまわる
         time += Time.deltaTime;
         angle = (default_Angle + time * speed) * Mathf.PI / 180f;

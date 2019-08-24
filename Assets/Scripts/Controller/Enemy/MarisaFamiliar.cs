@@ -18,7 +18,7 @@ public class MarisaFamiliar : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         //取得
 	    for(int i = 0; i < 5; i++) {
             familiars[i] = transform.GetChild(i).gameObject;
@@ -39,6 +39,7 @@ public class MarisaFamiliar : MonoBehaviour {
     //出現
     public IEnumerator Appear() {
         int i = 0;
+
         for (i = 0; i < 10; i++) {
             familiars_Sprite[i].color = familiars_Sprite[i].color - new Color(0, 0, 0, 1);
             familiars_Collider[i].enabled = false;
@@ -73,10 +74,9 @@ public class MarisaFamiliar : MonoBehaviour {
         for(int i = 0; i < 5; i++) {
             familiar_Spiral_Bullet[i].Start_Spiral_Bullet(80f, start_Angle + i * 72f, 8f, 0.25f, 10.0f);
         }
-        //外側
-        start_Angle = angle.Cal_Angle_Two_Points(transform.position, outside_Familiars[0].transform.position) + 70;
+        //外側;
         for(int i = 0; i < 5; i++) {
-            outside_Spiral_Bullet[i].Start_Spiral_Bullet(-30f, start_Angle, 0f, 0.1f, 5.0f);
+            outside_Spiral_Bullet[i].Start_Spiral_Bullet(-30f, 60f, 0f, 0.1f, 5.0f);
         }
     }
 

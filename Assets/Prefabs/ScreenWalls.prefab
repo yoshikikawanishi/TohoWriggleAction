@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4644749703897234}
   m_Layer: 0
   m_Name: ScreenWalls
-  m_TagString: GroundTag
+  m_TagString: ScreenWallTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 61820907046988998}
   m_Layer: 13
   m_Name: LeftWall
-  m_TagString: GroundTag
+  m_TagString: ScreenWallTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 61142361750659822}
   m_Layer: 13
   m_Name: RightWall
-  m_TagString: GroundTag
+  m_TagString: ScreenWallTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

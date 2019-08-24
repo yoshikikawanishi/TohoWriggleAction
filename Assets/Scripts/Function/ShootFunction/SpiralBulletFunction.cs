@@ -50,6 +50,8 @@ public class SpiralBulletFunction : MonoBehaviour {
             bullet.transform.position += new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * -16f;
             bullet.transform.LookAt2D(gameObject.transform, Vector2.right);
             bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * speed;
+            //効果音
+            UsualSoundManager.Small_Shot_Sound();
             //弾の消滅
             Delete_Bullet(bullet, lifeTime);
             yield return new WaitForSeconds(span);

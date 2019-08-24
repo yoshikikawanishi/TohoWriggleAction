@@ -8,6 +8,8 @@ public class Laser : MonoBehaviour {
 	void Start () {
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1000f) ;
         Destroy(gameObject, 4f);
+        UsualSoundManager.Laser_Sound();
     }
 
+    
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage4_BossMovie : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class Stage4_BossMovie : MonoBehaviour {
     private GameManager game_Manager;
     private PauseManager pause_Manager;
     private MessageDisplay _message;
+    private BGMManager bgm_Manager;
 
     //ムービーの進行度
     private int progress_Num = 1;
@@ -21,6 +23,7 @@ public class Stage4_BossMovie : MonoBehaviour {
         //取得
         game_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
         pause_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
+        bgm_Manager = GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>();
         _message = GetComponent<MessageDisplay>();
     }
 
@@ -53,8 +56,9 @@ public class Stage4_BossMovie : MonoBehaviour {
         }
         progress_Num = 3;
 
-        //終了設定
+        //終了設定、戦闘開始
         pause_Manager.Set_Pausable(true);
+        bgm_Manager.Change_BGM_Index(7);
     }
 
 
@@ -91,12 +95,29 @@ public class Stage4_BossMovie : MonoBehaviour {
         while (progress_Num <= 1) { yield return null; }
 
         //登場
+        marisa_Controller.Change_Parameter("DashBool1", 1);
         marisa_Move.Start_Move(new Vector3(160f, 16f), -64f, 0.01f);
         yield return new WaitUntil(marisa_Move.End_Move);
+        marisa_Controller.Change_Parameter("IdleBool", 1);
+
+        //戦闘前会話
+        while (progress_Num <= 2) { yield return null; }
 
         //終了設定、戦闘開始
         marisa_Controller.start_Battle = true;
     }
 
+
+    //クリア時
+    public void Start_Clear_Movie() {
+        StartCoroutine("Clear_Movie");
+    }
+    private IEnumerator Clear_Movie() {
+        yield return new WaitForSeconds(2.5f);
+        _message.Start_Display("MarisaText", 3, 3);
+        yield return new WaitUntil(_message.End_Message);
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Stage5_1Scene");
+    }
     
 }
