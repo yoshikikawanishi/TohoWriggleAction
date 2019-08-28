@@ -25,8 +25,8 @@ public class SceneProgress : MonoBehaviour {
         sw_Clear.Write("#HasVisitedScene");
         sw_Clear.Flush();
         sw_Clear.Close();
-        StreamWriter sw = new StreamWriter(filePath, true);
 
+        StreamWriter sw = new StreamWriter(filePath, true);
         for(int i = 1; i < text.rowLength; i++) {
             sw.Write("\n");
             sw.Write(text.textWords[i, 0]);

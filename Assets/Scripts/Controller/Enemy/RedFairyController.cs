@@ -30,6 +30,7 @@ public class RedFairyController : MonoBehaviour {
         if (transform.position.y < -240f) {
             Destroy(gameObject);
         }
+        
     }
 
 

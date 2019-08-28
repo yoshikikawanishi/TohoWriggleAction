@@ -100,6 +100,11 @@ public class ButtonFunction : MonoBehaviour {
         SceneManager.LoadScene("ConfigScene");
     }
 
+    //遊び方ボタン押下時
+    public void Go_Guide_Scene() {
+        SceneManager.LoadScene("PlayGuideScene");
+    }
+
 
     /*---------------------キーコンフィグ---------------------*/
     

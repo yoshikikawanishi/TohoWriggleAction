@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour {
         //シーン読み込みのデリケート
         SceneManager.sceneLoaded += OnSceneLoaded;
 
+        //ドレミーハットのデータ消去
+        DoremyHat.Delete_Data();
+        Debug.Log("DoremyHat_Data_Delete");
     }
 
 
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour {
     void Start () {
         //スクリプトの取得
         _playerManager = GetComponent<PlayerManager>();
-       
+
         /*　データ消去のテスト */
         //DeleteData();
 
@@ -61,6 +64,10 @@ public class GameManager : MonoBehaviour {
         keyConfig.Change_Button("Jump/Submit", "z", false);
         keyConfig.Create_InputManager();
         */
+
+        //ビルド前に初期化、消去すること
+        Debug.Log("Check Before Build About[SaveDate, SceneProgress, DoremyHat, KeyConfig]");
+        
     }
 
 

@@ -8,7 +8,7 @@ public class MoveLand : MonoBehaviour {
     private MoveBetweenTwoPoints _move;
 
     //時間
-    [SerializeField] private float span = 5.0f;
+    [SerializeField] private float span = 4.0f;
     private float time = 0;
 
     //移動
@@ -24,6 +24,8 @@ public class MoveLand : MonoBehaviour {
 	void Start () {
         _move = gameObject.AddComponent<MoveBetweenTwoPoints>();
         default_Pos = transform.position;
+        //初期値代入
+        time = span / 2;
     }
 	
 	// Update is called once per frame

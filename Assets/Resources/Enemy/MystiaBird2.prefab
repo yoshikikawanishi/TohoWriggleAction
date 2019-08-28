@@ -251,7 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 6
   score_Value: 0
-  power_Value: 15
+  power_Value: 10
   probability_Recover_Item: 0
   item_Out_Speed: 500
   is_Hit_Spikes: 0

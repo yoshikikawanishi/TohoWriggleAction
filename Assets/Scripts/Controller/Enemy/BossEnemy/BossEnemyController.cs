@@ -13,12 +13,10 @@ public class BossEnemyController : MonoBehaviour {
     [SerializeField] AudioClip damage_Sound;
     //スクリプト
     private ObjectPool _pool;
-    //体力バー
-    private Slider life_Bar;
 
     //体力
     public List<int> life = new List<int>();
-    private List<int> LIFE;
+    public List<int> LIFE;
     //フェーズの数
     private int phase_Num = 1;
     //現在のフェーズ
@@ -54,15 +52,12 @@ public class BossEnemyController : MonoBehaviour {
         _pool = gameObject.AddComponent<ObjectPool>();
         damage_Effect = Resources.Load("Effect/BossDamagedEffect") as GameObject;
         _pool.CreatePool(damage_Effect, 10);
-        //体力バー
-        life_Bar = GameObject.Find("BossLifeBar").GetComponent<Slider>();
 
         //初期値代入
         phase_Num = life.Count();
         life.Add(0);
         LIFE = new List<int>(life);
-        
-	}
+    }
 
 
     //被弾の検知
@@ -82,7 +77,6 @@ public class BossEnemyController : MonoBehaviour {
     //被弾時の処理
     private void Damaged(int damage) {
         life[now_Phase-1] -= damage;
-        Show_Life_Bar();
         //エフェクト
         damage_Audio_Source.Play();
         hit_Effect_Particle.Play();
@@ -92,7 +86,7 @@ public class BossEnemyController : MonoBehaviour {
             Phase_Change(now_Phase + 1);
         }
         //体力0でクリア
-        if(now_Phase > phase_Num) {
+        if(now_Phase > phase_Num) {          
             Clear();           
         }
         //被弾音の切り替え
@@ -126,7 +120,7 @@ public class BossEnemyController : MonoBehaviour {
     //フェーズ切り替え時の処理
     private void Phase_Change(int next_Phase) {
         //アイテム出す
-        Put_Out_Item(score_Value / 2, power_Value / 2);
+        Put_Out_Item(0, power_Value);
         //弾消し用のボム生成
         var bomb = Instantiate(phase_Change_Bomb) as GameObject;
         bomb.transform.position = transform.position;
@@ -134,21 +128,10 @@ public class BossEnemyController : MonoBehaviour {
     }
 
 
-    //体力バーの表示
-    private void Show_Life_Bar() {
-        if (life_Bar.maxValue != LIFE[now_Phase - 1]) {
-            life_Bar.maxValue = LIFE[now_Phase - 1];
-        }
-        if(life_Bar.value != life[now_Phase - 1]) {
-            life_Bar.value = life[now_Phase - 1];
-        }
-    }
-
-
     //クリア時の処理
     private void Clear() {
-        now_Phase = 3;
         clear_Trigger = true;
+        now_Phase = 3;
         //無敵化
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         //エフェクト
@@ -160,7 +143,7 @@ public class BossEnemyController : MonoBehaviour {
         CameraShake _shake = gameObject.AddComponent<CameraShake>();
         _shake.Shake(0.25f, 4f, true);
         //アイテムを出す
-        Put_Out_Item(score_Value, power_Value);
+        Put_Out_Item(score_Value, power_Value / 2);
     }
 
 
@@ -171,14 +154,14 @@ public class BossEnemyController : MonoBehaviour {
         for (int i = 0; i < score_Num; i++) {
             GameObject score = Instantiate(Resources.Load("Score")) as GameObject;
             score.transform.position = transform.position;
-            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 50, 500f + Random.Range(-100f, 100f));
+            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 30, 500f + Random.Range(-100f, 100f));
         }
         //P
         int power_Num = power_Value;
         for (int i = 0; i < power_Num; i++) {
             GameObject power = Instantiate(Resources.Load("Power")) as GameObject;
             power.transform.position = transform.position;
-            power.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-power_Num, power_Num) * 50, 500f + Random.Range(-100f, 100f));
+            power.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-power_Num, power_Num) * 30, 500f + Random.Range(-100f, 100f));
         }
     }
 

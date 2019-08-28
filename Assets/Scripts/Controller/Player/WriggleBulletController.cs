@@ -64,8 +64,8 @@ public class WriggleBulletController : MonoBehaviour {
     private IEnumerator ButterFly_Bullet() {
         yield return null;
         float center_Height = transform.position.y;
-        for(float t = 0; t < 0.6f; t += Time.deltaTime) {
-            transform.position = new Vector3(transform.position.x, center_Height + Mathf.Sin(t * 15) * 32f);
+        for(float t = 0; t < 0.42f; t += Time.deltaTime) {
+            transform.position = new Vector3(transform.position.x, center_Height + Mathf.Sin(t * 15) * 64f);
             yield return null;
         }
         gameObject.SetActive(false);

@@ -30,11 +30,13 @@ public class CrashBlockController : MonoBehaviour {
     //エフェクト
     private void Effect() {
         GameObject effect = transform.GetChild(0).gameObject;
-        effect.transform.SetParent(null);
-        AudioClip clip = effect.GetComponent<AudioSource>().clip;
-        effect.GetComponent<AudioSource>().PlayOneShot(clip);
-        effect.GetComponent<ParticleSystem>().Play();
-        Destroy(effect, 1.0f);
+        if (effect.GetComponent<AudioSource>() != null) {
+            effect.transform.SetParent(null);
+            AudioClip clip = effect.GetComponent<AudioSource>().clip;
+            effect.GetComponent<AudioSource>().PlayOneShot(clip);
+            effect.GetComponent<ParticleSystem>().Play();
+            Destroy(effect, 1.0f);
+        }
     }
 
 

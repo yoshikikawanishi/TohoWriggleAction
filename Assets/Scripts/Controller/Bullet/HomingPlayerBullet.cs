@@ -36,7 +36,7 @@ public class HomingPlayerBullet : MonoBehaviour {
                 float dirVelocity = Mathf.Atan2(GetComponent<Rigidbody2D>().velocity.y, GetComponent<Rigidbody2D>().velocity.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(dirVelocity, new Vector3(0, 0, 1));
             }
-            yield return null;
+            yield return new WaitForSeconds(0.001f);
         }
     }
 }

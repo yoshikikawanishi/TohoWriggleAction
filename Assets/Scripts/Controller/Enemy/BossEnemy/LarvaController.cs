@@ -134,9 +134,9 @@ public class LarvaController : MonoBehaviour {
 
     //フェーズ2のルーチン
     private IEnumerator Phase2_Routine() {
+        Become_Invincible();
         yield return new WaitForSeconds(1.0f);
         //移動
-        Become_Invincible();
         _move.Start_Move(new Vector3(160f, -32f), 32f, 0.1f);
         Change_Parameter("DashBool");
         yield return new WaitUntil(_move.End_Move);

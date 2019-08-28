@@ -23,7 +23,32 @@ public class TitleScene : MonoBehaviour {
         //ボタンの初期位置
         Button continue_Button = GameObject.Find("ContinueButton").GetComponent<Button>();
         continue_Button.Select();
+
+        //ドレミーハットの表示
+        Display_Doremy_Hat();
 	}
+
+
+    //ドレミーハットの表示
+    private void Display_Doremy_Hat() {
+        //取得
+        GameObject[] doremy_Hat_Images = new GameObject[3];
+        GameObject parent = GameObject.Find("DoremyHats");
+        for(int i = 0; i < 3; i++) {
+            doremy_Hat_Images[i] = parent.transform.GetChild(i).gameObject;
+            doremy_Hat_Images[i].SetActive(false);
+        }
+        //ファイル読み込み
+        string filePath = Application.dataPath + @"\DoremyHat.txt";
+        TextReader text = new TextReader();
+        text.Read_Text_File(filePath);
+        //反映
+        for(int i = 1; i < text.rowLength; i++) {
+            if(text.textWords[i, 1] == "true") {
+                doremy_Hat_Images[i-1].SetActive(true);
+            }
+        }
+    }
 
 
     //確認画面の表示

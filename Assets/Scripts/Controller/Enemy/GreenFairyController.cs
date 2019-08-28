@@ -6,9 +6,11 @@ public class GreenFairyController : MonoBehaviour {
 
     //コンポーネント
     private Rigidbody2D _rigid;
-    private Renderer _renderer;
     private BulletFunctions _bulletFunc;
-    
+
+    //自機
+    private GameObject player;
+
     //時間
     private float time = 1.8f;
 
@@ -17,8 +19,9 @@ public class GreenFairyController : MonoBehaviour {
 	void Start () {
         //コンポーネントの取得
         _rigid = GetComponent<Rigidbody2D>();
-        _renderer = GetComponent<Renderer>();
         _bulletFunc = gameObject.AddComponent<BulletFunctions>();
+        //自機
+        player = GameObject.FindWithTag("PlayerTag");
         
         //弾のセット
         GameObject bullet = Resources.Load("Bullet/GreenBullet") as GameObject;
@@ -27,7 +30,7 @@ public class GreenFairyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (_renderer.isVisible) {
+        if (Mathf.Abs(player.transform.position.x - transform.position.x) < 540f) {
             //移動
             _rigid.velocity = new Vector2(-10f, _rigid.velocity.y);
             //ショット

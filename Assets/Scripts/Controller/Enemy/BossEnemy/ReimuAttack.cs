@@ -80,6 +80,7 @@ public class ReimuAttack : MonoBehaviour {
 
     //フェーズ2のルーチン
     private IEnumerator Phase2_Routine() {
+        //初期設定
         ReimuController _controller = GetComponent<ReimuController>();
         MoveBetweenTwoPoints _move = GetComponent<MoveBetweenTwoPoints>();
         BulletPoolFunctions _bullet_Pool = gameObject.AddComponent<BulletPoolFunctions>();
@@ -92,9 +93,11 @@ public class ReimuAttack : MonoBehaviour {
         ObjectPool red_Bullet_Pool = gameObject.AddComponent<ObjectPool>();
         Create_Bullet_Pools(white_Talisman_Pool, red_Talisman_Pool, red_Bullet_Pool);
         //移動
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         yield return new WaitForSeconds(1.0f);
         _move.Start_Move(new Vector3(140f, -12f), 32f, 0.02f);
         yield return new WaitUntil(_move.End_Move);
+        gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
         //バックデザイン
         transform.GetChild(1).localScale = new Vector3(0, 0, 1);
         transform.GetChild(1).gameObject.SetActive(true);

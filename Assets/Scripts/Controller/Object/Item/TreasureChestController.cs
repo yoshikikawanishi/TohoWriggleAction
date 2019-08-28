@@ -7,16 +7,22 @@ public class TreasureChestController : MonoBehaviour {
     //コンポーネント
     private Animator _anim;
     private SpriteRenderer _sprite;
-    private BoxCollider2D _collider;
-    private Rigidbody2D _rigid;
     //オーディオ
     private AudioSource appear_Sound;
     private AudioSource open_Sound;
     //スクリプト
     private PlayerManager _playerManager;
 
+    //状態
+    private enum STATE {
+        wait,
+        appear,
+        open,
+    }
+    private STATE state = STATE.wait;
+
     //耐久
-    private int life = 7;
+    private int life = 6;
 
 
 	// Use this for initialization
@@ -24,8 +30,6 @@ public class TreasureChestController : MonoBehaviour {
         //コンポーネントの取得
         _anim = GetComponent<Animator>();
         _sprite = GetComponent<SpriteRenderer>();
-        _collider = GetComponent<BoxCollider2D>();
-        _rigid = GetComponent<Rigidbody2D>();
         //スクリプトの取得
         _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
         //オーディオの取得
@@ -38,17 +42,31 @@ public class TreasureChestController : MonoBehaviour {
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag") {
-            life--;
-            StartCoroutine("Blink");
-            //一回弾に当たると、宝箱を出現させる
-            if(life == 6) {
-                Appear_Chest();
+        if(state != STATE.open) {
+           if(collision.tag == "PlayerBulletTag") {
+                Damaged(1);
+           } 
+           else if(collision.tag == "PlayerAttackTag") {
+                Damaged(5);
             }
-            //宝箱の耐久が0になったら開ける
-            if(life == 0) {
-                StartCoroutine("Open_Chest");
-            }
+        }
+        
+    }
+
+
+    //被弾
+    private void Damaged(int damage) {
+        life -= damage;
+        StartCoroutine("Blink");
+        //一回弾に当たると、宝箱を出現させる
+        if (state == STATE.wait) {
+            Appear_Chest();
+            state = STATE.appear;
+        }
+        //宝箱の耐久が0になったら開ける
+        if (life <= 0 && state == STATE.appear) {
+            StartCoroutine("Open_Chest");
+            state = STATE.open;
         }
     }
 
@@ -58,10 +76,6 @@ public class TreasureChestController : MonoBehaviour {
         _anim.SetTrigger("AppearTrigger");
         appear_Sound.Play();
         _sprite.color = new Color(1, 1, 1, 1);
-        gameObject.tag = "ThroughGroundTag";
-        _rigid.gravityScale = 20f;
-        _rigid.velocity = new Vector2(0, 50f);
-        _collider.isTrigger = false;
     }
 
 
@@ -69,7 +83,6 @@ public class TreasureChestController : MonoBehaviour {
     private IEnumerator Open_Chest() {
         _anim.SetBool("OpenBool", true);
         open_Sound.Play();
-        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         yield return new WaitForSeconds(0.5f);
         //出すアイテムの決定
         string item_Name = "Flies";

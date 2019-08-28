@@ -2898,6 +2898,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114942553881394570, guid: 067d7fac3817d2e43a6da1b9231998da,
+        type: 2}
+      propertyPath: Boss_Enemy
+      value: 
+      objectReference: {fileID: 2099540098}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d7fac3817d2e43a6da1b9231998da, type: 2}
   m_IsPrefabAsset: 0
@@ -4407,3 +4412,8 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9731fcceffdca3d46856d7487ba20558, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &2099540098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1775345532307498, guid: 9731fcceffdca3d46856d7487ba20558,
+    type: 2}
+  m_PrefabInternal: {fileID: 2099540097}

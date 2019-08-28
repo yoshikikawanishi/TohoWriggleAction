@@ -7,7 +7,9 @@ public class YellowRabit : MonoBehaviour {
     //コンポーネント
     private Animator _anim;
     private BulletFunctions _bullet;
-    private Renderer _renderer;
+
+    //自機
+    private GameObject player;
 
     //弾
     [SerializeField] private GameObject bullet;
@@ -23,12 +25,12 @@ public class YellowRabit : MonoBehaviour {
     private void Awake() {
         _anim = GetComponent<Animator>();
         _bullet = transform.GetChild(0).GetComponent<BulletFunctions>();
-        _renderer = GetComponent<Renderer>();
     }
 
     
     // Use this for initialization
     void Start () {
+        player = GameObject.FindWithTag("PlayerTag");
         _bullet.Set_Bullet(bullet);
     }
 	
@@ -41,7 +43,7 @@ public class YellowRabit : MonoBehaviour {
         else {
             time = 0;
             _anim.SetTrigger("AttackTrigger");
-            if (_renderer.isVisible) {
+            if (Mathf.Abs(transform.position.x - player.transform.position.x) < 500f) {
                 _bullet.Some_Way_Bullet(5, 60f * transform.localScale.x, 0, 30, 6.0f);
                 UsualSoundManager.Shot_Sound();
             }

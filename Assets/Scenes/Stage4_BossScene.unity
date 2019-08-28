@@ -2984,6 +2984,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 459131891}
   m_CullTransparentMesh: 0
+--- !u!1 &502624383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1616644459669782, guid: 268b628f692563b44957591aa5e408fd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1772814198}
 --- !u!1 &506273332
 GameObject:
   m_ObjectHideFlags: 0
@@ -6102,10 +6107,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1886875275799854, guid: 067d7fac3817d2e43a6da1b9231998da, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 114942553881394570, guid: 067d7fac3817d2e43a6da1b9231998da,
+        type: 2}
+      propertyPath: Boss_Enemy
+      value: 
+      objectReference: {fileID: 502624383}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d7fac3817d2e43a6da1b9231998da, type: 2}
   m_IsPrefabAsset: 0
@@ -8552,11 +8558,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114580419405891122, guid: 268b628f692563b44957591aa5e408fd,
-        type: 2}
-      propertyPath: back_Design
-      value: 
-      objectReference: {fileID: 375864609}
     - target: {fileID: 114816113713425964, guid: 268b628f692563b44957591aa5e408fd,
         type: 2}
       propertyPath: phase2.familiars
@@ -8567,6 +8568,11 @@ Prefab:
       propertyPath: phase4.enclosure_Stars
       value: 
       objectReference: {fileID: 2134106114}
+    - target: {fileID: 114580419405891122, guid: 268b628f692563b44957591aa5e408fd,
+        type: 2}
+      propertyPath: back_Design
+      value: 
+      objectReference: {fileID: 375864609}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 268b628f692563b44957591aa5e408fd, type: 2}
   m_IsPrefabAsset: 0
@@ -10375,6 +10381,7 @@ GameObject:
   - component: {fileID: 2110714500}
   - component: {fileID: 2110714499}
   - component: {fileID: 2110714498}
+  - component: {fileID: 2110714502}
   m_Layer: 5
   m_Name: FrameBossCanvas
   m_TagString: Untagged
@@ -10462,6 +10469,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2110714502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2110714497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b8a204b2423f34c891dbed858edc98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Boss_Enemy: {fileID: 502624383}
 --- !u!1 &2123210545
 GameObject:
   m_ObjectHideFlags: 0

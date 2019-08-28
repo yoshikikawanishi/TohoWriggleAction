@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spread_Speed: 0.1
   max_Size: 4.5
-  life_Time: 2
+  life_Time: 3
   angler_Velocity: 15
 --- !u!212 &212243121567667642
 SpriteRenderer:

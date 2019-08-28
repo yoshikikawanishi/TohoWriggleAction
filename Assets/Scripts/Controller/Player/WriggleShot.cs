@@ -174,20 +174,20 @@ public class WriggleShot : MonoBehaviour {
     //オプションが蝶のとき
     private void ButterFly_Shot() {
         if (Input.GetButton("Shot/Cancel")) {
-            if (time < 0.1f) {
+            if (time < 0.12f) {
                 time += Time.deltaTime;
             }
             else {
                 time = 0;
                 int bullet_Num = 2;
-                float bullet_Speed = 300f;
+                float bullet_Speed = 400f;
                 //1段階目以降
                 if (power_Grade >= 1) {
                     bullet_Num = 3;
                 }
                 //2段階目以降
                 if (power_Grade >= 2) {
-                    bullet_Speed = 350f;
+                    bullet_Speed = 450f;
                 }
                 //3段階目以降
                 if (power_Grade >= 3) {
@@ -196,12 +196,12 @@ public class WriggleShot : MonoBehaviour {
                 //4段階目
                 if (power_Grade >= 4) {
                     bullet_Num = 5;
-                    bullet_Speed = 400f;
+                    bullet_Speed = 500f;
                 }
                 //弾の生成,発射
                 for (int i = 0; i < bullet_Num; i++) {
                     var bullet = butterFly_Bullet_Pool.GetObject();
-                    float width = 12f + bullet_Num * 2;
+                    float width = 8f + bullet_Num * 2;
                     bullet.transform.position = transform.position + new Vector3(0, -width / 2 + width * 2 / bullet_Num * i);
                     bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
                 }
