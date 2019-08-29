@@ -9,6 +9,8 @@ Base_1Scene
 Stage3_1Scene
 Stage3_2Scene
 Stage3_BonusScene
+UnderGroundScene
+TitleScene
 Stage3_BossScene
 Base_2Scene
 Stage4_1Scene
@@ -16,4 +18,6 @@ Stage4_2Scene
 Stage4_BonusScene
 Stage4_BossScene
 Stage5_1Scene
-TitleScene
+Stage5_BossScene
+ConfigScene
+PlayGuideScene

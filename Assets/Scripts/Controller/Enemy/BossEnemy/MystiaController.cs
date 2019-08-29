@@ -152,6 +152,7 @@ public class MystiaController : MonoBehaviour {
 
     //フェーズ2コルーチン
     private IEnumerator Phase2_Routine() {
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         //初期設定
         BulletFunctions _bullet = gameObject.AddComponent<BulletFunctions>();
         SpiralBulletFunction _spiral_Bullet = gameObject.AddComponent<SpiralBulletFunction>();
@@ -160,6 +161,7 @@ public class MystiaController : MonoBehaviour {
         //初期位置に移動
         _move.Start_Move(new Vector3(150f, 0), 32f, 0.01f);
         yield return new WaitUntil(_move.End_Move);
+        gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
         Change_Parameter("SingBool");
         back_Design.SetActive(true);
         back_Design.transform.localScale = new Vector3(0, 0, 1);
@@ -226,8 +228,10 @@ public class MystiaController : MonoBehaviour {
 
     //フェーズ3コルーチン
     private IEnumerator Phase3_Routine() {
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         Change_Parameter("IdleBool");
         yield return new WaitForSeconds(1.5f);
+        gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
         //初期設定
         BulletFunctions _bullet = gameObject.GetComponent<BulletFunctions>();
         SpiralBulletFunction _spiral_Bullet = gameObject.GetComponent<SpiralBulletFunction>();

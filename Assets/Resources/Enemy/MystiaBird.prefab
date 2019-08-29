@@ -38,13 +38,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4618496258043962}
   - component: {fileID: 212678505585142972}
-  - component: {fileID: 61878290713183294}
   - component: {fileID: 114820800024182484}
   - component: {fileID: 114405659718173608}
   - component: {fileID: 114396099027239096}
   - component: {fileID: 114622581669705422}
   - component: {fileID: 82646954313807964}
   - component: {fileID: 95791454232191752}
+  - component: {fileID: 58024141184268828}
   m_Layer: 9
   m_Name: MystiaBird
   m_TagString: EnemyTag
@@ -59,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1920750775175130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -270.37167, y: -241.8612, z: 0}
+  m_LocalPosition: {x: -85.793686, y: -76.6049, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4933594696484936}
@@ -79,8 +79,8 @@ Transform:
   m_Father: {fileID: 4618496258043962}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61878290713183294
-BoxCollider2D:
+--- !u!58 &58024141184268828
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -92,18 +92,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 14, y: 30}
-    newSize: {x: 14, y: 30}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
-  m_EdgeRadius: 0
+  m_Radius: 10
 --- !u!82 &82646954313807964
 AudioSource:
   m_ObjectHideFlags: 1
@@ -239,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7453bac3b18d3a946870861ffa85b889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 6
+  life: 12
   score_Value: 0
   power_Value: 18
   probability_Recover_Item: 0

@@ -9,7 +9,17 @@ public class SentenceDisplay : MonoBehaviour {
     private int id;
     private Text text;
 
+    public AudioClip audio_Clip;
+    public float sound_Volume = 0.07f;
+    private AudioSource _audio;
+
     private bool is_End_Display = false;
+
+
+    //Awake
+    private void Awake() {
+        audio_Clip = Resources.Load("Message") as AudioClip;    
+    }
 
     //表示開始
     public void Start_Display(string fileName, int id, Text display_Text) {
@@ -18,6 +28,10 @@ public class SentenceDisplay : MonoBehaviour {
         this.id = id;
         text = display_Text;
         text.text = "";
+        if(_audio == null) {
+            _audio = gameObject.AddComponent<AudioSource>();
+            _audio.volume = sound_Volume;
+        }
         StartCoroutine("Display_Sentence");
     }
 
@@ -26,6 +40,7 @@ public class SentenceDisplay : MonoBehaviour {
         string sentence = text_Words.textWords[id, 1];
         for (int i = 0; i < sentence.Length; i++) {
             text.text += sentence[i];
+            _audio.PlayOneShot(audio_Clip);
             yield return new WaitForSeconds(0.03f);
         }
         is_End_Display = true;

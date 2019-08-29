@@ -21,13 +21,13 @@ GameObject:
   - component: {fileID: 4022185101143780}
   - component: {fileID: 212508726455493140}
   - component: {fileID: 95604796982806342}
-  - component: {fileID: 61449023256081342}
   - component: {fileID: 114522232667539674}
   - component: {fileID: 114015434769634626}
   - component: {fileID: 114351998578522700}
   - component: {fileID: 114367046940916056}
   - component: {fileID: 82534269492325922}
   - component: {fileID: 50211971055838074}
+  - component: {fileID: 58994299872030552}
   m_Layer: 9
   m_Name: MystiaBird2
   m_TagString: EnemyTag
@@ -100,8 +100,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61449023256081342
-BoxCollider2D:
+--- !u!58 &58994299872030552
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -113,18 +113,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 14, y: 30}
-    newSize: {x: 14, y: 30}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
-  m_EdgeRadius: 0
+  m_Radius: 10
 --- !u!82 &82534269492325922
 AudioSource:
   m_ObjectHideFlags: 1
@@ -249,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7453bac3b18d3a946870861ffa85b889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 6
+  life: 10
   score_Value: 0
   power_Value: 10
   probability_Recover_Item: 0
