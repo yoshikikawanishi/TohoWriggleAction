@@ -218,10 +218,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 8
   score_Value: 300
-  power_Value: 4
+  power_Value: 8
   probability_Recover_Item: 0
   item_Out_Speed: 500
-  is_Hit_Spikes: 0
+  is_Hit_Spikes: 1
 --- !u!114 &114147684500364200
 MonoBehaviour:
   m_ObjectHideFlags: 1

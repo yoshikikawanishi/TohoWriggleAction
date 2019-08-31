@@ -11,6 +11,7 @@ public class Sparrow : MonoBehaviour {
     private Animator _anim;
     private Renderer _renderer;
     private Rigidbody2D _rigid;
+    private BoxCollider2D _collider;
 
     //行動開始
     private bool start_Action = false;
@@ -25,8 +26,9 @@ public class Sparrow : MonoBehaviour {
         _anim = GetComponent<Animator>();
         _renderer = GetComponent<Renderer>();
         _rigid = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<BoxCollider2D>();
         //当たり判定を消す
-        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        _collider.enabled = false;
         _renderer.enabled = false;
     }
 	
@@ -46,7 +48,7 @@ public class Sparrow : MonoBehaviour {
         transform.position = new Vector3(player.transform.position.x - 150f, transform.position.y);
         _renderer.enabled = true;
         //下降
-        _rigid.velocity = new Vector2(150f, 0);
+        _rigid.velocity = new Vector2(200f, 0);
         for(float t = 0; t < 1.0f; t += Time.deltaTime) {
             yield return null;
             transform.position += new Vector3(0, -3f + t*3) * Time.timeScale;
@@ -59,7 +61,7 @@ public class Sparrow : MonoBehaviour {
         //突進
         GetComponent<SpriteRenderer>().sortingOrder = -1;
         _anim.SetBool("AttackBool", true);
-        gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
+        _collider.enabled = true;
         transform.position = player.transform.position + new Vector3(360f, 0);
         _rigid.velocity = new Vector2(-200f, 0);
         yield return new WaitForSeconds(2.5f);

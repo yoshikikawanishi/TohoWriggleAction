@@ -22,7 +22,7 @@ public class Base_1Scene : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//右端に行ったらシーン遷移
-        if(player.transform.position.x > 740f) {
+        if(player.transform.position.x > 800f) {
             SceneManager.LoadScene("Stage3_1Scene");
         }
 	}

@@ -1,0 +1,4 @@
+﻿#ID	#NAME	#ICON	#MESSAGE
+1	ラルバ	Larva	あいさつ
+2	ラルバ	Larva	悲鳴、逃げるべ
+3	影狼	Kagerou	ぐるるるる

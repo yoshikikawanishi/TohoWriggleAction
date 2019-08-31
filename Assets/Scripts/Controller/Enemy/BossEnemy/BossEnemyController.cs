@@ -47,7 +47,7 @@ public class BossEnemyController : MonoBehaviour {
         damage_Audio_Source.clip = damage_Sound;
         damage_Audio_Source.volume = 0.001f;
         //パーティクル
-        hit_Effect_Particle = GameObject.Find("BossHitEffect").GetComponent<ParticleSystem>();
+        hit_Effect_Particle = transform.Find("BossHitEffect").GetComponent<ParticleSystem>();
         //ダメージエフェクトのオブジェクトプール
         _pool = gameObject.AddComponent<ObjectPool>();
         damage_Effect = Resources.Load("Effect/BossDamagedEffect") as GameObject;

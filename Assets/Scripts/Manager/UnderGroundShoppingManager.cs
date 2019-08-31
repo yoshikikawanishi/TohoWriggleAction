@@ -207,7 +207,7 @@ public class UnderGroundShoppingManager : MonoBehaviour {
 
     public void Yes_Button() {
         player_Manager.Set_Option_Type(selecte_Option);
-        player_Manager.Set_Power(power - 10);
+        player_Manager.Set_Power(power - 5);
         Bought_Goods();
     }
 

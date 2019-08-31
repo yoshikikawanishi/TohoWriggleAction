@@ -24,14 +24,16 @@ public class BirdFamiliar : MonoBehaviour {
     //FixedUpDate
     private void FixedUpdate() {
         //行動
-        if (main_Camera.transform.position.x > transform.position.x - 250f && !start_Action) {
-            start_Action = true;
-            transform.SetParent(main_Camera.transform);
-            child_particle.Play();
-            StartCoroutine("Shot");
-            Destroy(gameObject, 7.0f);
+        if (!start_Action) {
+            if (main_Camera.transform.position.x > transform.position.x - 250f && main_Camera.transform.position.x < transform.position.x + 100f) {
+                start_Action = true;
+                transform.SetParent(main_Camera.transform);
+                child_particle.Play();
+                StartCoroutine("Shot");
+                Destroy(gameObject, 7.0f);
+            }
         }
-        if (start_Action) {
+        else {
             transform.localPosition += transform.right * 1.5f * Time.timeScale;
         }
     }

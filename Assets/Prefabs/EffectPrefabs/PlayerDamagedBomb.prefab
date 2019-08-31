@@ -183,7 +183,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spread_Speed: 0.1
   max_Size: 4.5
-  life_Time: 3
+  life_Time: 2.5
   angler_Velocity: 15
 --- !u!212 &212243121567667642
 SpriteRenderer:

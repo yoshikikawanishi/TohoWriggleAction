@@ -33,9 +33,11 @@ public class Stage3_2Scene : MonoBehaviour {
             }
         }
         //適生成
-        if (main_Camera.transform.position.x > 5800f && !start_Enemy_Gen) {
-            start_Enemy_Gen = true;
-            StartCoroutine("Enemy_Gen");
+        if (!start_Enemy_Gen) {
+            if (main_Camera.transform.position.x > 5800f && main_Camera.transform.position.x < 6000f) {
+                start_Enemy_Gen = true;
+                StartCoroutine("Enemy_Gen");
+            }
         }
         //シーン遷移
         if (player.transform.position.x > 10500f) {

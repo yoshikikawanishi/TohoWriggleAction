@@ -10,7 +10,7 @@ public class SentenceDisplay : MonoBehaviour {
     private Text text;
 
     public AudioClip audio_Clip;
-    public float sound_Volume = 0.07f;
+    private float sound_Volume = 0.07f;
     private AudioSource _audio;
 
     private bool is_End_Display = false;
@@ -39,12 +39,28 @@ public class SentenceDisplay : MonoBehaviour {
         TextReader text_Words = new TextReader(fileName);
         string sentence = text_Words.textWords[id, 1];
         for (int i = 0; i < sentence.Length; i++) {
-            text.text += sentence[i];
+            if (sentence[i] == '/') {
+                text.text += "\n";
+            }
+            else {
+                text.text += sentence[i];
+            }
             _audio.PlayOneShot(audio_Clip);
             yield return new WaitForSeconds(0.03f);
         }
+        yield return new WaitUntil(Wait_Input);
         is_End_Display = true;
     }
+
+
+    //入力待ち
+    private bool Wait_Input() {
+        if (Input.GetButtonDown("Jump/Submit")) {
+            return true;
+        }
+        return false;
+    }
+
 
     //表示終了の検知用
     public bool End_Display() {

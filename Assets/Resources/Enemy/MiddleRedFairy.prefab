@@ -538,7 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7453bac3b18d3a946870861ffa85b889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 5
+  life: 10
   score_Value: 200
   power_Value: 2
   probability_Recover_Item: 20
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 15
   score_Value: 500
-  power_Value: 7
+  power_Value: 16
   probability_Recover_Item: 1
   item_Out_Speed: 500
   is_Hit_Spikes: 0

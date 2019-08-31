@@ -95,6 +95,11 @@ public class ButtonFunction : MonoBehaviour {
         }
     }
 
+    //エクストラボタン押下時
+    public void Go_Extra_Scene() {
+        SceneManager.LoadScene("ExtraScene");
+    }
+
     //キーコンフィグボタン押下時
     public void Go_Key_Config() {
         SceneManager.LoadScene("ConfigScene");

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PendulumGround : MonoBehaviour {
+public class DropGround : MonoBehaviour {
 
     //自機
     private GameObject player;
@@ -11,9 +11,8 @@ public class PendulumGround : MonoBehaviour {
 
     //動き始め
     private bool start_Action = false;
-
-    //移動距離
-    [SerializeField] private float move_Distance = 192f;
+    //落下終了
+    private bool end_Drop = false;
 
 
 	// Use this for initialization
@@ -26,14 +25,19 @@ public class PendulumGround : MonoBehaviour {
 
     //OnTriggerStay
     private void OnTriggerStay2D(Collider2D collision) {
+        //落下開始
         if (collision.tag == "PlayerFootTag") {
             if (!start_Action && player_Rigid.velocity.y < 7f && !player_Controller.Get_Is_Fly()) {
                 start_Action = true;
-                Pendulum_Move();
+                StartCoroutine("Drop");
             }
             if (player.transform.parent != gameObject.transform) {
                 player.transform.SetParent(gameObject.transform);
             }
+        }
+        //落下終了
+        else if (collision.tag == "GroundTag" || collision.tag == "DamageGroundTag") {
+            end_Drop = true;
         }
     }
 
@@ -46,11 +50,20 @@ public class PendulumGround : MonoBehaviour {
     }
 
 
-    //動く
-    private void Pendulum_Move() {
-        MoveBetweenTwoPoints _move = gameObject.AddComponent<MoveBetweenTwoPoints>();
-        Vector3 next_Pos = transform.position + new Vector3(move_Distance, 0);
-        _move.Start_Move(next_Pos, -64f, 0.016f);
+    //落下
+    private IEnumerator Drop() {
+        float g = 9.8f;
+        float t = 0.0f;
+        float y = transform.position.y;
+        while (!end_Drop) {
+            //自由落下
+            y = transform.position.y - (0.5f * g * t * t) * Time.timeScale;
+            transform.position = new Vector3(transform.position.x, y);
+            t += 0.015f;
+            yield return new WaitForSeconds(0.015f);
+        }
+        transform.GetChild(0).gameObject.SetActive(true);
+        Destroy(GetComponent<Rigidbody2D>());
     }
 
 }

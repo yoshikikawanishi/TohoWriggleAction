@@ -29,6 +29,8 @@ public class Enemy : MonoBehaviour {
 
     //消滅の処理に入ったかどうか
     protected bool is_Vanished = false;
+    //無敵化
+    private bool is_Invincible = false;
 
 
 	// Use this for initialization
@@ -78,6 +80,11 @@ public class Enemy : MonoBehaviour {
 
     //被弾時の処理
     private void Damaged(int damage_Power) {
+        //無敵時被弾しない
+        if (is_Invincible) {
+            return;
+        }
+
         life -= damage_Power;
         //消滅
         if (life <= 0 && !is_Vanished) {
@@ -133,6 +140,12 @@ public class Enemy : MonoBehaviour {
             GameObject life_Up_Item = Instantiate(Resources.Load("LifeUpItem")) as GameObject;
             life_Up_Item.transform.position = transform.position;
         }
+    }
+
+
+    //無敵化
+    public void Set_Is_Invincible(bool is_Invincible) {
+        this.is_Invincible = is_Invincible;
     }
 
 

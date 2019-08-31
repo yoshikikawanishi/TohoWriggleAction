@@ -59,7 +59,7 @@ public class ReimuAttack : MonoBehaviour {
             _controller.Change_Parameter("AttackBool");
             GameObject yin_Bullet = Resources.Load("Bullet/BigYinBallBullet") as GameObject;
             _bullet.Set_Bullet(yin_Bullet);
-            _bullet.Odd_Num_Bullet(1, 0, 200f, 0);
+            _bullet.Odd_Num_Bullet(1, 0, 150f, 0);
             UsualSoundManager.Shot_Sound();
             UsualSoundManager.Small_Shot_Sound();
             GameObject spread_Effect = Instantiate(Resources.Load("Effect/PowerSpreadEffect") as GameObject);
@@ -121,7 +121,7 @@ public class ReimuAttack : MonoBehaviour {
             //弾をばらまきながら移動
             _controller.Change_Parameter("DashBool");
             _scatter_Bullet.Set_Bullet_Pool(red_Bullet_Pool);
-            _scatter_Bullet.Start_Scatter(90f, 50f, 2.0f, 9.0f);
+            _scatter_Bullet.Start_Scatter(75f, 50f, 2.0f, 9.0f);
             UsualSoundManager.Small_Shot_Sound();
             Vector3 next_Pos;
             if (transform.position.y < 0) {

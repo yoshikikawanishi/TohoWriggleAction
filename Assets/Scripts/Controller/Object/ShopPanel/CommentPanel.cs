@@ -71,7 +71,7 @@ public class CommentPanel : MonoBehaviour {
     }
 
     private void Beetle_Comment() {
-        text.text = "オプション：\nいさましい！";
+        text.text = "オプション：\nかっこいい！";
     }
 
     private void Back_Comment() {

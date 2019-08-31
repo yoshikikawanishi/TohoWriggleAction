@@ -26,6 +26,9 @@ public class TitleScene : MonoBehaviour {
 
         //ドレミーハットの表示
         Display_Doremy_Hat();
+
+        //エクストラステージの開放
+        Open_Extra_Stage();
 	}
 
 
@@ -47,6 +50,29 @@ public class TitleScene : MonoBehaviour {
             if(text.textWords[i, 1] == "true") {
                 doremy_Hat_Images[i-1].SetActive(true);
             }
+        }
+    }
+
+
+    //エクストラステージの開放
+    private void Open_Extra_Stage() {
+        //ボタンの取得
+        GameObject extra_Button = GameObject.Find("ExtraButton");
+        //ファイル読み込み
+        string filePath = Application.dataPath + @"\DoremyHat.txt";
+        TextReader text = new TextReader();
+        text.Read_Text_File(filePath);
+        //帽子がすべて集まっているかどうか
+        bool is_Open = true;
+        for(int i = 1; i < text.rowLength; i++) {
+            if(text.textWords[i, 1] == "false") {
+                is_Open = false;
+            }
+        }
+        //集まっていないとき押せなくする
+        if (!is_Open) {
+            extra_Button.GetComponent<Button>().interactable = false;
+            extra_Button.GetComponentInChildren<Text>().color = new Color(1f, 0.8f, 0.8f);
         }
     }
 

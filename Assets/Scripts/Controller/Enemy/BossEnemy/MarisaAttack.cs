@@ -155,10 +155,10 @@ public class MarisaAttack : MonoBehaviour {
 
     //星弾落とす
     private void Drop_Star_Bullet() {
-        GameObject bullet = star_Bullet_Pool[3].GetObject();
+        GameObject bullet = Instantiate(Resources.Load("Bullet/YellowStarBullet") as GameObject);
         bullet.transform.position = transform.position;
         bullet.GetComponent<Rigidbody2D>().gravityScale = 8f;
-        bullet.GetComponent<EnemyBullet>().Delete_Pool_Bullet(5.0f);
+        Destroy(bullet, 5.0f);
         UsualSoundManager.Shot_Sound();
     }
 
