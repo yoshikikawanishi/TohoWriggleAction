@@ -28,7 +28,7 @@ public class WriggleBulletController : MonoBehaviour {
         }
         //カブトムシ弾、敵地面に当たったら破片を出す
         else if(option_Type == "Beetle") {
-            if(collision.tag == "GroundTag" || collision.tag == "EnemyTag") {
+            if(collision.tag == "GroundTag" || collision.tag == "EnemyTag" || collision.tag == "SandbagTag") {
                 if(this.transform.childCount == 0) {
                     return;
                 }
@@ -40,7 +40,7 @@ public class WriggleBulletController : MonoBehaviour {
             }
         }
         //ハエ、蝶弾敵地面に当たったら消す
-        else if (collision.tag == "EnemyTag" || collision.tag == "GroundTag") {
+        else if (collision.tag == "EnemyTag" || collision.tag == "GroundTag" || collision.tag == "SandbagTag") {
             gameObject.SetActive(false);
         }
     }

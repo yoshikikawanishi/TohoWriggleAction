@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour {
         }
         //キック、ボムに当たった時
         if(collision.tag == "PlayerAttackTag") {
-            Damaged(15);
+            Damaged(20);
         }
         if(collision.tag == "BombTag") {
             Damaged(10);

@@ -23,21 +23,13 @@ public class WriggleKickCollision : MonoBehaviour {
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "EnemyTag") {
+        if (collision.tag == "EnemyTag" || collision.tag == "SandbagTag") {
             player.layer = LayerMask.NameToLayer("InvincibleLayer");
             player_Controller.is_Hit_Kick = true;
             Invoke("Change_Layer", 0.5f);
         }
     }
 
-    //OnCollisionEnter
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "EnemyTag") {
-            player.layer = LayerMask.NameToLayer("InvincibleLayer");
-            player_Controller.is_Hit_Kick = true;
-            Invoke("Change_Layer", 0.5f);
-        }
-    }
 
     //当たり判定を戻す
     private void Change_Layer() {

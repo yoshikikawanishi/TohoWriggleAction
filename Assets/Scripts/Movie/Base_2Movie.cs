@@ -137,6 +137,9 @@ public class Base_2Movie : MonoBehaviour {
         Destroy(enemy_Parent);
         Delete_Bullet();
 
+        //自機停止
+        player_Controller.Set_Playable(false);
+
         //明転
         SpriteRenderer white_Sprite = GameObject.Find("WhiteSprite").GetComponent<SpriteRenderer>();
         while(white_Sprite.color.a <= 1) {
@@ -148,6 +151,7 @@ public class Base_2Movie : MonoBehaviour {
         //終了設定
         GameObject.Find("WhiteSprite").SetActive(false);
         _pause.Set_Pausable(true);
+        player_Controller.Set_Playable(true);
         main_Camera.GetComponent<CameraController>().enabled = true;
         Time.timeScale = 1.0f;
         scene_Background.transform.SetParent(main_Camera.transform);
@@ -158,8 +162,7 @@ public class Base_2Movie : MonoBehaviour {
 
     //リグル移動
     private IEnumerator Wriggle_Timeline() {
-        GameObject player = GameObject.FindWithTag("PlayerTag");
-        player.GetComponent<WriggleController>().Change_Parameter("DashBool");
+        player_Controller.Change_Parameter("DashBool");
         for (float t = 0; t < 1.5f; t += 0.016f) {
             player.transform.position += new Vector3(1f, 0);
             yield return new WaitForSeconds(0.016f);

@@ -15,7 +15,7 @@ public class PlayerCollision : MonoBehaviour {
     [SerializeField] private GameObject miss_Effect;
 
     //被弾時の無敵時間
-    private float INVINCIBLE_TIME = 1.5f;
+    private float INVINCIBLE_TIME = 2.0f;
 
     //被弾の判定
     protected bool damaged_Trigger = false;

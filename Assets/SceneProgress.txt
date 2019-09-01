@@ -1,9 +1,2 @@
 #HasVisitedScene
 Stage1_1Scene
-Stage1_BossScene
-Stage2_1Scene
-Stage2_2Scene
-TitleScene
-Stage5_1Scene
-Stage5_BossScene
-Stage3_1Scene

@@ -9612,6 +9612,11 @@ Prefab:
       propertyPath: m_Name
       value: YellowRabit (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114851149182935370, guid: a5163537d6dcc724899d3be2c37a4f4f,
+        type: 2}
+      propertyPath: probability_Recover_Item
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5163537d6dcc724899d3be2c37a4f4f, type: 2}
   m_IsPrefabAsset: 0
@@ -10026,6 +10031,11 @@ Prefab:
     - target: {fileID: 4065106047841724, guid: 86b0c04ce17d24140b79e06f76a89f45, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114961606982517568, guid: 86b0c04ce17d24140b79e06f76a89f45,
+        type: 2}
+      propertyPath: probability_Recover_Item
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86b0c04ce17d24140b79e06f76a89f45, type: 2}
@@ -14614,7 +14624,7 @@ Tilemap:
   - m_RefCount: 304
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
-  m_Color: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+  m_Color: {r: 0.49056602, g: 0.4743681, b: 0.4743681, a: 1}
   m_Origin: {x: -1, y: -5, z: 0}
   m_Size: {x: 118, y: 9, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
