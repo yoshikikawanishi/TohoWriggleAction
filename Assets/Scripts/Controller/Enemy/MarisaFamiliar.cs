@@ -70,9 +70,9 @@ public class MarisaFamiliar : MonoBehaviour {
     public void Start_Spiral_Bullets() {
         //内側
         AngleTwoPoints angle = new AngleTwoPoints();
-        float start_Angle = angle.Cal_Angle_Two_Points(transform.position, familiars[0].transform.position);
+        float start_Angle = angle.Cal_Angle_Two_Points2(transform.position, familiars[0].transform.position);
         for(int i = 0; i < 5; i++) {
-            familiar_Spiral_Bullet[i].Start_Spiral_Bullet(80f, start_Angle + i * 72f, 8f, 0.25f, 10.0f);
+            familiar_Spiral_Bullet[i].Start_Spiral_Bullet(80f, start_Angle + i * 72f, 4f, 0.25f, 10.0f);
         }
         //外側;
         for(int i = 0; i < 5; i++) {

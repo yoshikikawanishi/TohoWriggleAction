@@ -58,6 +58,7 @@ public class Stage5_BossMovie : MonoBehaviour {
         //ラルバ登場、自機登場
         Appear_Larva();
         yield return new WaitForSeconds(1.5f);
+        player.GetComponent<WriggleController>().Change_Parameter("IdleBool");
 
         //ラルバ警告会話
         _message.Start_Display("KagerouText", 1, 1);
@@ -79,7 +80,10 @@ public class Stage5_BossMovie : MonoBehaviour {
         _message.Start_Display("KagerouText", 3, 3);
         yield return new WaitUntil(_message.End_Message);
 
-        //戦闘開始
+        //咆哮
+        kagerou.GetComponent<KagerouController>().Roar();
+        yield return new WaitForSeconds(0.5f);
+
         Start_Battle();
     }
 
@@ -93,6 +97,7 @@ public class Stage5_BossMovie : MonoBehaviour {
         larva.GetComponent<LarvaController>().Change_Parameter("DashBool");
         larva_Move.Start_Move(new Vector3(160f, LARVA_HEIGHT), 0, 0.02f);
         player_Move.Start_Move(new Vector3(-150f, -114f), 0, 0.015f);
+        player.GetComponent<WriggleController>().Change_Parameter("DashBool");
     }
 
 
