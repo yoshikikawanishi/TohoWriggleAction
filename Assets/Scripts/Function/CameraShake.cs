@@ -9,6 +9,7 @@ public class CameraShake : MonoBehaviour {
         StartCoroutine(DoShake(duration, magnitude, is_Fixed_Camera));
     }
 
+    //カメラ揺らす
     private IEnumerator DoShake(float duration, float magnitude, bool is_Fixed) {
         GameObject main_Camera = GameObject.FindWithTag("MainCamera");
         var pos = main_Camera.transform.localPosition;
@@ -46,7 +47,22 @@ public class CameraShake : MonoBehaviour {
             main_Camera.transform.position = new Vector3(main_Camera.transform.position.x, 0, default_Pos.z);
         }
     }
+
+
+    //揺らしている間、カメラコントローラーを切る
+    public void Remove_Camera_Controller(float duration) {
+        StartCoroutine(DoRemove_Camera_Controller(duration));
+    }
+
+    private IEnumerator DoRemove_Camera_Controller(float duration) {
+        GameObject main_Camera = GameObject.FindWithTag("MainCamera");
+        main_Camera.GetComponent<CameraController>().enabled = false;
+        yield return new WaitForSeconds(duration);
+        main_Camera.GetComponent<CameraController>().enabled = true;
+    }
+
 }
+
 
 
 /*使用例

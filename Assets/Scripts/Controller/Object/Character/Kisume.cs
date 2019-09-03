@@ -16,6 +16,14 @@ public class Kisume : TalkCharacter {
 
     //会話の始めと終わりにアニメーション変更
     protected override IEnumerator Talk() {
+        //ヤマメの店に行ったことがあるかどうか
+        GameManager gm = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
+        if (gm.Is_Visited("UnderGroundScene")) {
+            Set_Status("KisumeText", 1, 6, new Vector2(32f, 48f));
+        }
+        else {
+            Set_Status("KisumeText", 8, 12, new Vector2(32f, 48f));
+        }
         is_Talking = true;
         end_Talk = false;
         _anim.SetBool("AppearBool", true);

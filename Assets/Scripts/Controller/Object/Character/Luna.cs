@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Luna : TalkCharacter {
+public class Luna : MonoBehaviour {
 
     //コンポーネント
     private Animator _anim;
@@ -14,8 +14,7 @@ public class Luna : TalkCharacter {
 
 
 	// Use this for initialization
-	new void Start () {
-        base.Start();
+	void Start () {    
         _anim = GetComponent<Animator>();
         _renderer = GetComponent<Renderer>();
     }
@@ -34,18 +33,27 @@ public class Luna : TalkCharacter {
         }
     }
 
-    //会話の始めにアニメーション変更
-    protected override IEnumerator Talk() {
-        is_Talking = true;
-        end_Talk = false;
-        _anim.SetBool("FallBool", true);
-        GetComponent<SpriteRenderer>().sortingOrder = -1;
-        is_Falled = true;
-        yield return new WaitForSeconds(0.3f);
-        StartCoroutine(base.Talk());
-        yield return new WaitUntil(End_Talk);
-        //セリフ変える
-        base.start_ID = 2;
-        base.end_ID = 2;
+
+    //OnTriggerEnter
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if(!is_Falled && (collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag")) {
+            is_Falled = true;
+            Damaged();
+        }
     }
+
+
+    //被弾
+    private void Damaged() {
+        //点の発射
+        for (int i = 0; i < 50; i++) {
+            var score = Instantiate(Resources.Load("Score")) as GameObject;
+            score.transform.position = transform.position;
+            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-150f, 150f), Random.Range(400f, 600f));
+        }
+        //アニメーション変更
+        _renderer.sortingOrder = -1;
+        _anim.SetBool("FallBool", true);
+    }
+
 }

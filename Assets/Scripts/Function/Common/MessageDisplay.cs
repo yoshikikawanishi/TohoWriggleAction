@@ -20,8 +20,6 @@ public class MessageDisplay : MonoBehaviour {
     private Text messageText;
     //キャラ名表示のテキストコンポーネント
     private Text nameText;
-    //キャラのアイコン表示用
-    private Image charactorIcon;
 
     //表示するID番号
     private int start_ID = 1;
@@ -103,8 +101,6 @@ public class MessageDisplay : MonoBehaviour {
         //キャラ名表示のテキストを取得
         nameText = messagePanel.transform.GetChild(1).GetComponent<Text>();
         nameText.text = "";
-        //アイコン表示用のパネルを取得
-        charactorIcon = messagePanel.transform.GetChild(2).GetComponent<Image>();
     }
 
 
@@ -116,7 +112,6 @@ public class MessageDisplay : MonoBehaviour {
         for (int i = start_ID; i <= end_ID; i++) {
             //名前とアイコン
             nameText.text = textWords[i, 1];
-            charactorIcon.sprite = Resources.Load<Sprite>("CharacterIcons/" + textWords[i, 2]);
             //セリフ
             int lineLength = textWords[i, 3].Length;
             for(int j = 0; j < lineLength; j++) {

@@ -32,7 +32,6 @@ public class Stage5_BossMovie : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
 	}
 	
 
@@ -47,6 +46,8 @@ public class Stage5_BossMovie : MonoBehaviour {
     private void Start_Battle() {
         pause_Manager.Set_Pausable(true);
         player.GetComponent<WriggleController>().Set_Playable(true);
+        kagerou.GetComponent<KagerouController>().Start_Battle();
+        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Change_BGM_Index(8);
     }
 
 	
@@ -79,10 +80,6 @@ public class Stage5_BossMovie : MonoBehaviour {
         //影狼会話
         _message.Start_Display("KagerouText", 3, 3);
         yield return new WaitUntil(_message.End_Message);
-
-        //咆哮
-        kagerou.GetComponent<KagerouController>().Roar();
-        yield return new WaitForSeconds(0.5f);
 
         Start_Battle();
     }
@@ -121,7 +118,7 @@ public class Stage5_BossMovie : MonoBehaviour {
     
 
     //2回目以降ボス前ムービー
-    private IEnumerator Before_Move_Second_Time() {
+    private IEnumerator Before_Movie_Second() {
         //初期設定
         Start_Setting();
 
@@ -133,7 +130,11 @@ public class Stage5_BossMovie : MonoBehaviour {
         MoveBetweenTwoPoints kagerou_Move = kagerou.GetComponent<MoveBetweenTwoPoints>();
         kagerou_Move.Start_Move(new Vector3(100f, -114f), 0, 0.04f);
         yield return new WaitUntil(kagerou_Move.End_Move);
-
+        
+        //影狼会話
+        _message.Start_Display("KagerouText", 3, 3);
+        yield return new WaitUntil(_message.End_Message);
+        
         //戦闘開始
         Start_Battle();
     }

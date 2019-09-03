@@ -16845,7 +16845,6 @@ GameObject:
   - component: {fileID: 1741846378}
   - component: {fileID: 1741846377}
   - component: {fileID: 1741846376}
-  - component: {fileID: 1741846380}
   m_Layer: 0
   m_Name: Rumia
   m_TagString: Untagged
@@ -16988,21 +16987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76b8da7005d77b498ac6c3e49c6dcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1741846380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1741846372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aea6bc1fdb1164e4f8d6a9a0647c746f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baloon_Pos: {x: 16, y: 16, z: 0}
-  fileName: RumiaText
-  start_ID: 1
-  end_ID: 1
 --- !u!1001 &1748669309
 Prefab:
   m_ObjectHideFlags: 0

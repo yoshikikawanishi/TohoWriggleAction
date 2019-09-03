@@ -9,7 +9,7 @@ public class RumiaController : MonoBehaviour {
     private Animator _anim;
 
     //ライフ
-    private int life = 6;
+    private int life = 2;
 
     //やられモーション開始
     private bool start_Motion = false;

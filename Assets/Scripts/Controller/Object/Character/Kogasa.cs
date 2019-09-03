@@ -22,6 +22,9 @@ public class Kogasa : TalkCharacter {
         end_Talk = false;
         _anim.SetBool("TurnBool", true);
         yield return new WaitForSeconds(0.3f);
+        //画面揺らす
+        GetComponent<CameraShake>().Shake(0.25f, 4.0f, false);
+        GetComponent<CameraShake>().Remove_Camera_Controller(0.25f);
         StartCoroutine(base.Talk());
         yield return new WaitUntil(End_Talk);
         _anim.SetBool("TurnBool", false);

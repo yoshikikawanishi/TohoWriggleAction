@@ -21,6 +21,7 @@ public class WolfRush : MonoBehaviour {
     //突進開始
     public void Start_Rush(Vector2 aim_Pos) {
         end_Rush = false;
+        StopCoroutine("Rush");
         this.aim_Pos = aim_Pos;
         StartCoroutine("Rush");
     }
@@ -34,7 +35,7 @@ public class WolfRush : MonoBehaviour {
         Effect();
         //移動
         MoveBetweenTwoPoints _move = GetComponent<MoveBetweenTwoPoints>();
-        _move.Start_Move(aim_Pos, 0, 0.025f);
+        _move.Start_Move(aim_Pos, 0, 0.050f);
         yield return new WaitUntil(_move.End_Move);
 
         //元に戻す
@@ -46,7 +47,6 @@ public class WolfRush : MonoBehaviour {
     private void Effect() {
         AngleTwoPoints _angle = new AngleTwoPoints();
         float angle = _angle.Cal_Angle_Two_Points(transform.position, aim_Pos);
-        Debug.Log(angle);
         GameObject rush_Effect = transform.Find("RushEffect").gameObject;
         rush_Effect.transform.rotation = Quaternion.AngleAxis(angle, new Vector3(0, 0, 1));
         rush_Effect.GetComponent<ParticleSystem>().Play();

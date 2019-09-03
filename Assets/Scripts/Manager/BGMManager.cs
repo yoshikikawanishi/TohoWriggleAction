@@ -15,6 +15,7 @@ public class BGMManager : MonoBehaviour {
     [SerializeField] private AudioSource stage2_Boss_BGM;
     [SerializeField] private AudioSource stage3_Boss_BGM;
     [SerializeField] private AudioSource stage4_Boss_BGM;
+    [SerializeField] private AudioSource stage5_Boss_BGM;
 
     
     //現在流れているBGM 
