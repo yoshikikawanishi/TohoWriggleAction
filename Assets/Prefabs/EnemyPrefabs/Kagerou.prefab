@@ -63,6 +63,7 @@ GameObject:
   - component: {fileID: 114867313884966156}
   - component: {fileID: 114479457475495666}
   - component: {fileID: 114277211595169654}
+  - component: {fileID: 95449886583956006}
   m_Layer: 9
   m_Name: Kagerou
   m_TagString: EnemyTag
@@ -272,6 +273,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &95449886583956006
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1561863294887164}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d724619c9816ecf4cb3fde4117d4506e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114262573876471058
 MonoBehaviour:
   m_ObjectHideFlags: 1

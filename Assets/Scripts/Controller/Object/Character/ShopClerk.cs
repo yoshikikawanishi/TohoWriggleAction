@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ShopClerk : TalkCharacter {
 
@@ -48,6 +49,7 @@ public class ShopClerk : TalkCharacter {
         //ショップ画面表示
         Set_Up_Item_Price();
         shop_Canvas.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
         GameObject.Find("Item1Button").GetComponent<Button>().Select();
     }
 
@@ -69,6 +71,11 @@ public class ShopClerk : TalkCharacter {
 
     /*---------------ショップのボタン関数--------------*/
     public void Quit_Button() {
+        StartCoroutine("Quit_Trade");
+    }
+
+    private IEnumerator Quit_Trade() {
+        yield return new WaitForSeconds(0.1f);
         //自機の移動とポーズの解除
         GameObject player = GameObject.FindWithTag("PlayerTag");
         PlayerController player_Controller = player.GetComponent<PlayerController>();

@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(MoveBetweenTwoPoints))]
 public class WolfRush : MonoBehaviour {
 
+    //コンポーネント
+    private KagerouController _controller;
+
     //目標地点
     private Vector2 aim_Pos;
 
@@ -12,12 +15,12 @@ public class WolfRush : MonoBehaviour {
     private bool end_Rush = false;
 
 
-	// Use this for initialization
-	void Start () {
-
+    private void Awake() {
+        //取得
+        _controller = GetComponent<KagerouController>();
     }
-	
-	
+
+
     //突進開始
     public void Start_Rush(Vector2 aim_Pos) {
         end_Rush = false;
@@ -30,26 +33,33 @@ public class WolfRush : MonoBehaviour {
     //突進
     private IEnumerator Rush() {
         //見た目変更
-
+        _controller.Change_Parametar("RushBool", 1);
         //エフェクト
         Effect();
+        //回転
+        Rotate();
         //移動
         MoveBetweenTwoPoints _move = GetComponent<MoveBetweenTwoPoints>();
         _move.Start_Move(aim_Pos, 0, 0.050f);
         yield return new WaitUntil(_move.End_Move);
-
         //元に戻す
+        _controller.Change_Parametar("IdleBool", 1);
         end_Rush = true;
     }
 
 
     //エフェクト
     private void Effect() {
+        GameObject rush_Effect = transform.Find("RushEffect").gameObject;
+        rush_Effect.GetComponent<ParticleSystem>().Play();
+    }
+
+
+    //進行方向を向く
+    private void Rotate() {
         AngleTwoPoints _angle = new AngleTwoPoints();
         float angle = _angle.Cal_Angle_Two_Points(transform.position, aim_Pos);
-        GameObject rush_Effect = transform.Find("RushEffect").gameObject;
-        rush_Effect.transform.rotation = Quaternion.AngleAxis(angle, new Vector3(0, 0, 1));
-        rush_Effect.GetComponent<ParticleSystem>().Play();
+        transform.rotation = Quaternion.AngleAxis(angle, new Vector3(0, 0, 1));
     }
 
 

@@ -99,13 +99,14 @@ public class KagerouAttack : MonoBehaviour {
 
                 _rush.Start_Rush(new Vector2(200f, -16f));
                 yield return new WaitUntil(_rush.End_Rush);
+                transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 0, 1));
             }
 
             //ばらまき弾
             {
                 _controller.Roar();
                 _scatter.Set_Bullet_Pool(pool_Manager.Get_Pool(red_Bullet));
-                _scatter.Start_Scatter(50f, 50f, 5.0f, 8.0f);
+                _scatter.Start_Scatter(50f, 50f, 5.0f, 10.0f);
                 yield return new WaitForSeconds(5.0f);
                 _scatter.Stop_Scatter();
             }

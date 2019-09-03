@@ -57,6 +57,10 @@ public class KagerouController : MonoBehaviour {
 
     //アニメーション変更
     public void Change_Parametar(string change_Bool, int scale_X) {
+        _anim.SetBool("IdleBool", false);
+        _anim.SetBool("RushBool", false);
 
+        _anim.SetBool(change_Bool, true);
+        transform.localScale = new Vector3(scale_X * transform.localScale.x, transform.localScale.y, 1);
     }
 }
