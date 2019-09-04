@@ -19,7 +19,11 @@ public class KagerouController : MonoBehaviour {
         _attack = GetComponent<KagerouAttack>();
         boss_Controller = GetComponent<BossEnemyController>();
         _anim = GetComponent<Animator>();
-	}
+
+        //テスト
+        Debug.Log("Boss Battle Test");
+        boss_Controller.Set_Now_Phase(1);
+    }
 
 
     // Update is called once per frame
@@ -54,11 +58,20 @@ public class KagerouController : MonoBehaviour {
         roar_Effect.GetComponent<AudioSource>().Play();
     }
 
+    //変身エフェクト
+    public void Transform_Effect() {
+        GameObject transform_Effect = transform.Find("TransformEffect").gameObject;
+        transform_Effect.GetComponent<ParticleSystem>().Play();
+    }
+
 
     //アニメーション変更
     public void Change_Parametar(string change_Bool, int scale_X) {
         _anim.SetBool("IdleBool", false);
         _anim.SetBool("RushBool", false);
+        _anim.SetBool("DashBool", false);
+        _anim.SetBool("RoarBool", false);
+        _anim.SetBool("Idle2Bool", false);
 
         _anim.SetBool(change_Bool, true);
         transform.localScale = new Vector3(scale_X * transform.localScale.x, transform.localScale.y, 1);

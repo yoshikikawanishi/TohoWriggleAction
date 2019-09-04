@@ -15,6 +15,8 @@ public class KagerouAttack : MonoBehaviour {
     [System.Serializable]
     public class Phase2_Status {
         public bool start_Routine = true;
+        public GameObject mini_Kagerou;
+        public GameObject grounds;
     }
 
     //フェーズ3用
@@ -74,12 +76,16 @@ public class KagerouAttack : MonoBehaviour {
 
     private IEnumerator Phase1_Routine() {
         //初期位置に移動
+        _controller.Change_Parametar("IdleBool", 1);
         _move.Start_Move(new Vector3(200f, -16f), 0, 0.02f);
-        _controller.Roar();
         yield return new WaitUntil(_move.End_Move);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.0f);
 
         while (boss_Controller.Get_Now_Phase() == 1) {
+
+            _controller.Transform_Effect();
+            yield return new WaitForSeconds(0.5f);            
+
             //突進
             {
                 //右から左
@@ -106,11 +112,11 @@ public class KagerouAttack : MonoBehaviour {
             {
                 _controller.Roar();
                 _scatter.Set_Bullet_Pool(pool_Manager.Get_Pool(red_Bullet));
-                _scatter.Start_Scatter(50f, 50f, 5.0f, 10.0f);
+                _scatter.Start_Scatter(80f, 50f, 5.0f, 10.0f);
                 yield return new WaitForSeconds(5.0f);
                 _scatter.Stop_Scatter();
             }
-            yield return new WaitForSeconds(6.5f);
+            yield return new WaitForSeconds(4.5f);
         }
     }
 
@@ -149,7 +155,41 @@ public class KagerouAttack : MonoBehaviour {
     }
 
     private IEnumerator Phase2_Routine() {
-        yield return null;
+        //無敵化、移動
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        _move.Start_Move(new Vector3(0f, 10f), 0, 0.02f);
+        yield return new WaitUntil(_move.End_Move);
+        //透明化、魔法陣消す
+        transform.GetChild(5).gameObject.SetActive(false);
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.15f);
+        //耐久開始
+        StartCoroutine("Start_Phase2_Timer");
+        //敵生成
+        phase2.grounds.SetActive(true);
+        Phase2_Enemy_Gen();
+    }
+
+
+    //耐久開始
+    private IEnumerator Start_Phase2_Timer() {
+        while(boss_Controller.life[1] >= 1) {
+            yield return new WaitForSeconds(1.0f);
+            boss_Controller.life[1]--;
+            if(boss_Controller.life[1] <= 10) {
+                //カウントダウン効果音
+                Debug.Log("Phase2 Timer Count Down Sound");
+            }
+        }
+    }
+
+    //敵生成
+    private void Phase2_Enemy_Gen() {
+        for(int i = 0; i < 6; i++) {
+            Vector2 default_Pos = new Vector2(-150f + i * 60f, -116f);
+            var enemy_Parent = GameObject.Find("MiniKagerous");
+            var enemy = Instantiate(phase2.mini_Kagerou, default_Pos, new Quaternion(0, 0, 0, 0));
+            enemy.transform.SetParent(enemy_Parent.transform);
+        }
     }
 
 

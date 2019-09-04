@@ -7,6 +7,7 @@ public class Stage5_BossMovie : MonoBehaviour {
     //オブジェクト
     private GameObject player;
     private GameObject kagerou;
+    private KagerouController kagerou_Controller;
     private GameObject larva;
 
     //コンポーネント
@@ -24,6 +25,7 @@ public class Stage5_BossMovie : MonoBehaviour {
         //取得
         player = GameObject.FindWithTag("PlayerTag");
         kagerou = GameObject.Find("Kagerou");
+        kagerou_Controller = kagerou.GetComponent<KagerouController>();
         larva = GameObject.Find("Larva");
         _message = GetComponent<MessageDisplay>();
         pause_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
@@ -81,6 +83,11 @@ public class Stage5_BossMovie : MonoBehaviour {
         _message.Start_Display("KagerouText", 3, 3);
         yield return new WaitUntil(_message.End_Message);
 
+        //咆哮
+        kagerou.GetComponent<KagerouController>().Change_Parametar("RoarBool", 1);
+        kagerou.GetComponent<KagerouController>().Roar();
+        yield return new WaitForSeconds(1.5f);
+
         Start_Battle();
     }
 
@@ -100,7 +107,7 @@ public class Stage5_BossMovie : MonoBehaviour {
 
     //影狼咆哮
     private void Roar() {
-
+        kagerou.GetComponent<KagerouController>().Roar();
     }
 
 
@@ -109,11 +116,17 @@ public class Stage5_BossMovie : MonoBehaviour {
         //取得
         MoveBetweenTwoPoints larva_Move = larva.GetComponent<MoveBetweenTwoPoints>();
         MoveBetweenTwoPoints kagerou_Move = kagerou.GetComponent<MoveBetweenTwoPoints>();
-        //移動
+        //ラルバ移動
         larva_Move.Start_Move(new Vector3(-260f, LARVA_HEIGHT), 0, 0.02f);
+        //エフェクト
+        var effect = Instantiate(Resources.Load("Effect/LarvaScalesEffect")) as GameObject;
+        effect.transform.position = larva.transform.position;
+        Destroy(effect, 1.5f);
         yield return new WaitUntil(larva_Move.End_Move);
         Destroy(larva);
+        //影狼移動
         kagerou_Move.Start_Move(new Vector3(100, -114f), 0, 0.04f);
+        kagerou_Controller.Change_Parametar("Idle2Bool", 1);
     }
     
 
@@ -128,13 +141,19 @@ public class Stage5_BossMovie : MonoBehaviour {
         player.transform.position = new Vector3(-150f, -114f);
         //影狼登場
         MoveBetweenTwoPoints kagerou_Move = kagerou.GetComponent<MoveBetweenTwoPoints>();
+        kagerou_Controller.Change_Parametar("Idle2Bool", 1);
         kagerou_Move.Start_Move(new Vector3(100f, -114f), 0, 0.04f);
         yield return new WaitUntil(kagerou_Move.End_Move);
         
         //影狼会話
         _message.Start_Display("KagerouText", 3, 3);
         yield return new WaitUntil(_message.End_Message);
-        
+
+        //咆哮
+        kagerou_Controller.Change_Parametar("RoarBool", 1);
+        kagerou_Controller.Roar();
+        yield return new WaitForSeconds(1.5f);
+
         //戦闘開始
         Start_Battle();
     }

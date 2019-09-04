@@ -24,13 +24,13 @@ public class KagrerouBurstBullet : MonoBehaviour {
 
     //ショット
     private IEnumerator Shot() {
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(6.0f);
         GetComponent<ParticleSystem>().Play();
         yield return new WaitForSeconds(1.0f);
         ObjectPool pool = pool_Manager.Get_Pool(bullet_Name);
         _bullet.Set_Bullet_Pool(pool);
         float center_Angle = Random.Range(-20f, 20f);
-        _bullet.Diffusion_Bullet(18, 80f, center_Angle, 8.0f);
+        _bullet.Diffusion_Bullet(15, 80f, center_Angle, 8.0f);
         UsualSoundManager.Shot_Sound();
         Destroy(gameObject);
     }

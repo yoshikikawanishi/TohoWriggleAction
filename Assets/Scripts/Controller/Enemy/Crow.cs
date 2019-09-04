@@ -6,17 +6,21 @@ public class Crow : MonoBehaviour {
 
     //コンポーネント
     private Enemy _enemy;
+    private AudioSource repel_Sound;
 
     //弾
     [SerializeField] private GameObject bullet;
 
     //行動開始
     private bool start_Action = false;
-
+    //無敵かどうか
+    private bool is_Invincible = true;
 
     //Start
     private void Start() {
+        //取得
         _enemy = GetComponent<Enemy>();
+        repel_Sound = GetComponents<AudioSource>()[1];
         //無敵化
         _enemy.Set_Is_Invincible(true);
     }
@@ -39,6 +43,16 @@ public class Crow : MonoBehaviour {
     }
 
 
+    //OnTriggerEnter
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (is_Invincible) {
+            if (collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag") {
+                repel_Sound.Play();
+            }
+        }
+    }
+
+
     //行動
     private IEnumerator Shot() {
         //初期設定
@@ -51,6 +65,7 @@ public class Crow : MonoBehaviour {
         while (true) {
             _anim.SetBool("ShotBool", true);
             _enemy.Set_Is_Invincible(false);
+            is_Invincible = false;
 
             yield return new WaitForSeconds(1.0f);
 
@@ -61,6 +76,7 @@ public class Crow : MonoBehaviour {
             yield return new WaitForSeconds(0.5f);
 
             _enemy.Set_Is_Invincible(true);
+            is_Invincible = true;
             _anim.SetBool("ShotBool", false);
 
             yield return new WaitForSeconds(1.8f);

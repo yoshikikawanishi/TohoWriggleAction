@@ -126,14 +126,14 @@ public class Enemy : MonoBehaviour {
         for (int i = 0; i < score_Num; i++) {
             GameObject score = Instantiate(Resources.Load("Score")) as GameObject;
             score.transform.position = transform.position;
-            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 50, item_Out_Speed + Random.Range(-100f, 100f));
+            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 15, item_Out_Speed + Random.Range(-100f, 100f));
         }
         //P
         int power_Num = power_Value;
         for (int i = 0; i < power_Num; i++) {
             GameObject power = Instantiate(Resources.Load("Power")) as GameObject;
             power.transform.position = transform.position;
-            power.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-power_Num, power_Num) * 50, item_Out_Speed + Random.Range(-100f, 100f));
+            power.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-power_Num, power_Num) * 15, item_Out_Speed + Random.Range(-100f, 100f));
         }
         //回復アイテム
         if(Random.Range(0, 100) < probability_Recover_Item) {
