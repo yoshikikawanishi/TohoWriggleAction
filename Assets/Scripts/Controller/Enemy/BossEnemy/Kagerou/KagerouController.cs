@@ -8,6 +8,7 @@ public class KagerouController : MonoBehaviour {
     private KagerouAttack _attack;
     private BossEnemyController boss_Controller;
     private Animator _anim;
+    private CameraShake _shake;
 
     //戦闘開始
     private bool start_Battle = false;
@@ -19,10 +20,11 @@ public class KagerouController : MonoBehaviour {
         _attack = GetComponent<KagerouAttack>();
         boss_Controller = GetComponent<BossEnemyController>();
         _anim = GetComponent<Animator>();
+        _shake = gameObject.AddComponent<CameraShake>();
 
         //テスト
         Debug.Log("Boss Battle Test");
-        boss_Controller.Set_Now_Phase(1);
+        boss_Controller.Set_Now_Phase(2);
     }
 
 
@@ -62,6 +64,11 @@ public class KagerouController : MonoBehaviour {
     public void Transform_Effect() {
         GameObject transform_Effect = transform.Find("TransformEffect").gameObject;
         transform_Effect.GetComponent<ParticleSystem>().Play();
+    }
+
+    //画面揺らす
+    public void Shake_Camera(float duration, float magunitude) {
+        _shake.Shake(duration, magunitude, false);
     }
 
 

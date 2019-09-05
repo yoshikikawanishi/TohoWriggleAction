@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -122,10 +122,10 @@ TextureImporter:
       name: KagerouWolf_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 3
-        width: 73
-        height: 40
+        x: 7
+        y: 2
+        width: 40
+        height: 73
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,7 +133,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1991207aaafbc2148a570313c3734460
+      spriteID: cefec39703cc23a49bcb4d54d0a1d5bc
       vertices: []
       indices: 
       edges: []
@@ -142,10 +142,10 @@ TextureImporter:
       name: KagerouWolf_1
       rect:
         serializedVersion: 2
-        x: 2
-        y: 3
-        width: 73
-        height: 40
+        x: 7
+        y: 2
+        width: 40
+        height: 73
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,7 +153,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2582227f91ab0d24baf5c5cb4792da94
+      spriteID: 71548d4579137f44497f966741f50edb
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4c037758a71a1134f953cf96df934dc5
+    spriteID: 486855fb7f6bcc84eaf02b60327cb20a
     vertices: []
     indices: 
     edges: []

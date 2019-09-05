@@ -15,7 +15,7 @@ public class KagerouAttack : MonoBehaviour {
     [System.Serializable]
     public class Phase2_Status {
         public bool start_Routine = true;
-        public GameObject mini_Kagerou;
+        public GameObject mini_Wolfs;
         public GameObject grounds;
     }
 
@@ -40,6 +40,7 @@ public class KagerouAttack : MonoBehaviour {
     private ObjectPoolManager pool_Manager;
     private GameObject blue_Bullet;
     private GameObject red_Bullet;
+    private GameObject purple_Bullet;
 
     //コンポーネント
     private KagerouController _controller;
@@ -55,8 +56,10 @@ public class KagerouAttack : MonoBehaviour {
         pool_Manager = GameObject.FindWithTag("ScriptsTag").GetComponent<ObjectPoolManager>();
         blue_Bullet = Resources.Load("Bullet/PooledBullet/BlueBulletPool") as GameObject;
         red_Bullet = Resources.Load("Bullet/PooledBullet/RedBulletPool") as GameObject;
+        purple_Bullet = Resources.Load("Bullet/PooledBullet/PurpleBulletPool") as GameObject;
         pool_Manager.Create_New_Pool(blue_Bullet, 20);
         pool_Manager.Create_New_Pool(red_Bullet, 20);
+        pool_Manager.Create_New_Pool(purple_Bullet, 20);
         //取得
         _controller = GetComponent<KagerouController>();
         boss_Controller = GetComponent<BossEnemyController>();
@@ -98,6 +101,7 @@ public class KagerouAttack : MonoBehaviour {
                 while (!phase1.end_Rush) { yield return null; }
 
                 //左から右
+                transform.localScale = new Vector3(-1, 1, 1);
                 transform.position = new Vector3(transform.position.x, -transform.position.y);
 
                 StartCoroutine(Rush_Deposite(1));
@@ -106,12 +110,13 @@ public class KagerouAttack : MonoBehaviour {
                 _rush.Start_Rush(new Vector2(200f, -16f));
                 yield return new WaitUntil(_rush.End_Rush);
                 transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 0, 1));
+                transform.localScale = new Vector3(1, 1, 1);
             }
 
             //ばらまき弾
             {
                 _controller.Roar();
-                _scatter.Set_Bullet_Pool(pool_Manager.Get_Pool(red_Bullet));
+                _scatter.Set_Bullet_Pool(pool_Manager.Get_Pool(purple_Bullet));
                 _scatter.Start_Scatter(80f, 50f, 5.0f, 10.0f);
                 yield return new WaitForSeconds(5.0f);
                 _scatter.Stop_Scatter();
@@ -157,8 +162,10 @@ public class KagerouAttack : MonoBehaviour {
     private IEnumerator Phase2_Routine() {
         //無敵化、移動
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        _controller.Change_Parametar("DashBool", 1);
         _move.Start_Move(new Vector3(0f, 10f), 0, 0.02f);
         yield return new WaitUntil(_move.End_Move);
+        _controller.Change_Parametar("IdleBool", 1);
         //透明化、魔法陣消す
         transform.GetChild(5).gameObject.SetActive(false);
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.15f);
@@ -184,18 +191,14 @@ public class KagerouAttack : MonoBehaviour {
 
     //敵生成
     private void Phase2_Enemy_Gen() {
-        for(int i = 0; i < 6; i++) {
-            Vector2 default_Pos = new Vector2(-150f + i * 60f, -116f);
-            var enemy_Parent = GameObject.Find("MiniKagerous");
-            var enemy = Instantiate(phase2.mini_Kagerou, default_Pos, new Quaternion(0, 0, 0, 0));
-            enemy.transform.SetParent(enemy_Parent.transform);
-        }
+        phase2.mini_Wolfs.GetComponent<MiniWolfsParent>().Appear();
     }
 
 
     //フェーズ3
     public void Phase3() {
-
+        //フェーズ2終了
+        Destroy(GameObject.Find("MiniKagerous"));
     }
 
     //フェーズ4

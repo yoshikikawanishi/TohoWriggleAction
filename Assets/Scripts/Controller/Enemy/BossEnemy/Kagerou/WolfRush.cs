@@ -57,9 +57,7 @@ public class WolfRush : MonoBehaviour {
 
     //進行方向を向く
     private void Rotate() {
-        AngleTwoPoints _angle = new AngleTwoPoints();
-        float angle = _angle.Cal_Angle_Two_Points(transform.position, aim_Pos);
-        transform.rotation = Quaternion.AngleAxis(angle, new Vector3(0, 0, 1));
+        transform.LookAt2D(aim_Pos, Vector2.up);
     }
 
 

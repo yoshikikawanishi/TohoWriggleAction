@@ -19,7 +19,9 @@ public static class TransformExtensions {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         self.rotation = Quaternion.AngleAxis(angle - forwardDiff, Vector3.forward);
     }
+    
 
+   
     /// <summary>
     /// 正面の方向の差分を算出する
     /// </summary>

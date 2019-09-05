@@ -269,7 +269,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 16
+  m_Radius: 20
 --- !u!82 &82650293423405458
 AudioSource:
   m_ObjectHideFlags: 1
@@ -460,6 +460,7 @@ MonoBehaviour:
     start_Routine: 1
     mini_Kagerou: {fileID: 1109564663135148, guid: cd82a5e36e7d29c499cc8724abd69b7b,
       type: 2}
+    grounds: {fileID: 0}
   phase3:
     start_Routine: 1
   phase4:
