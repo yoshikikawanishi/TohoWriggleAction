@@ -24,7 +24,7 @@ public class KagerouController : MonoBehaviour {
 
         //テスト
         Debug.Log("Boss Battle Test");
-        boss_Controller.Set_Now_Phase(2);
+        boss_Controller.Set_Now_Phase(1);
     }
 
 
@@ -68,7 +68,7 @@ public class KagerouController : MonoBehaviour {
 
     //画面揺らす
     public void Shake_Camera(float duration, float magunitude) {
-        _shake.Shake(duration, magunitude, false);
+        _shake.Shake(duration, magunitude, true);
     }
 
 

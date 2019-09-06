@@ -9,6 +9,7 @@ public class MiniWolf : MonoBehaviour {
 
     private BossEnemyController boss_Controller;
     private Rigidbody2D _rigid;
+    private Renderer _renderer;
 
     public ParticleSystem transform_Effect;
 
@@ -26,17 +27,19 @@ public class MiniWolf : MonoBehaviour {
         //初期位置
         default_X = transform.position.x;
         transform.position += new Vector3(Random.Range(-32f, 32f), 0);
-    }
-
-
-    // Use this for initialization
-    void Start () {
         //取得
         boss_Controller = GameObject.Find("Kagerou").GetComponent<BossEnemyController>();
         player = GameObject.FindWithTag("PlayerTag");
         kagerou = GameObject.Find("Kagerou");
         transform_Effect = transform.Find("TransformEffect").GetComponent<ParticleSystem>();
         _rigid = GetComponent<Rigidbody2D>();
+        _renderer = GetComponent<Renderer>();
+    }
+
+
+    // Use this for initialization
+    void Start () {
+       
     }
 
 
@@ -78,17 +81,12 @@ public class MiniWolf : MonoBehaviour {
 
 
     //狼に変身
-    public IEnumerator Transform_Wolf() {
+    public void Transform_Wolf() {
         GetComponent<Enemy>().Set_Is_Invincible(true);
         StopCoroutine("Shot");
-        //エフェクト
-        kagerou.GetComponent<KagerouController>().Roar();
-        transform_Effect.Play();
-        yield return new WaitForSeconds(1.0f);
         //変身
         GetComponent<Animator>().SetBool("TransformBool", true);
         GetComponent<CircleCollider2D>().radius = 20f;
-        Look_Player();
     }
 
 
@@ -110,33 +108,49 @@ public class MiniWolf : MonoBehaviour {
 
     //突進
     public IEnumerator Rush() {
-        Look_Player();
-        yield return new WaitForSeconds(1.5f);
-        //初速
-        transform.Rotate(new Vector3(0, 0, Random.Range(-45f, 45f)));
-        _rigid.velocity = Vector2.up * 200f;
-        yield return new WaitForSeconds(0.5f);
-        //自機をホーミング
-        for (float t = 0; t < 1.0f; t++) {
-            transform.LookAt2D(player.transform, Vector2.up);
-            _rigid.velocity = (Vector2)transform.up * 6f;
-            float dirVelocity = Mathf.Atan2(GetComponent<Rigidbody2D>().velocity.y, GetComponent<Rigidbody2D>().velocity.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(dirVelocity - 90f, new Vector3(0, 0, 1));
-            yield return new WaitForSeconds(0.016f);
+        while (true) {
+            Look_Player();
+            yield return new WaitForSeconds(1.1f);
+            _rigid.velocity = transform.up * 300f;
+            Rush_Effect();
+            while (_renderer.isVisible) {
+                yield return new WaitForSeconds(0.016f);
+            }
+            _rigid.velocity = new Vector2(0, 0);
+            //画面外の適当な場所にワープ
+            Move_Along_Outframe();
         }
+    }
+
+
+    //画面外の適当な場所にワープ
+    private void Move_Along_Outframe() {
+        int direction = Random.Range(0, 4);
+        Vector2 pos = new Vector2();
+        switch (direction) {
+            case 0: pos = new Vector2(-250f, Random.Range(-160f, 150f)); break;
+            case 1: pos = new Vector2(250f, Random.Range(-160f, 150f)); break;
+            case 2: pos = new Vector2(Random.Range(-250f, 300f), 150f); break;
+            case 3: pos = new Vector2(Random.Range(-250f, 300f), -160f); break;
+        }
+        transform.position = pos;
     }
 
     
-
-
-    //壁との衝突検知
-    public bool Is_Hit_Wall() {
-        if(Mathf.Abs(transform.position.x) > 220f || Mathf.Abs(transform.position.y) > 120f) {
-            _rigid.velocity = new Vector2(0, 0);
-            StopCoroutine(Rush());
-            return true;
+    //突進エフェクト
+    private void Rush_Effect() {
+        var effect = transform.GetChild(1);
+        if(transform.localScale.x == 1) {
+            effect.localRotation = Quaternion.AngleAxis(90, new Vector3(0, 0, 1));
         }
-        return false;
+        else {
+            effect.localRotation = Quaternion.AngleAxis(-90, new Vector3(0, 0, 1));
+        }
+        transform.GetChild(1).GetComponent<ParticleSystem>().Play();
     }
+    
+
+
+    
     
 }

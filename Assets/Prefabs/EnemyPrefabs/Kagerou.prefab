@@ -458,8 +458,7 @@ MonoBehaviour:
     end_Rush: 0
   phase2:
     start_Routine: 1
-    mini_Kagerou: {fileID: 1109564663135148, guid: cd82a5e36e7d29c499cc8724abd69b7b,
-      type: 2}
+    mini_Wolfs: {fileID: 0}
     grounds: {fileID: 0}
   phase3:
     start_Routine: 1
@@ -500,7 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage_Sound: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
-  life: 500000003c0000005000000050000000
+  life: 50000000320000005000000050000000
   LIFE: 
   power_Value: 0
   score_Value: 0

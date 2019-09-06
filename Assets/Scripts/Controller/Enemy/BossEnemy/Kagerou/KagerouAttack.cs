@@ -179,7 +179,7 @@ public class KagerouAttack : MonoBehaviour {
 
     //耐久開始
     private IEnumerator Start_Phase2_Timer() {
-        while(boss_Controller.life[1] >= 1) {
+        while(boss_Controller.life[1] >= 0) {
             yield return new WaitForSeconds(1.0f);
             boss_Controller.life[1]--;
             if(boss_Controller.life[1] <= 10) {

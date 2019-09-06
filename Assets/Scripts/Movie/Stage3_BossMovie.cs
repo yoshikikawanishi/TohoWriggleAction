@@ -97,7 +97,7 @@ public class Stage3_BossMovie : MonoBehaviour {
     //クリア後ムービー
     public IEnumerator Clear_Movie() {
         yield return new WaitForSeconds(5.0f);
-        _message.Start_Display("MystiaText", 5, 11);
+        _message.Start_Display("MystiaText", 1, 1);
         yield return new WaitUntil(_message.End_Message);
         yield return new WaitForSeconds(1.5f);
         GetComponent<BorderFadeOut>().Start_Fade_Out(0.015f);

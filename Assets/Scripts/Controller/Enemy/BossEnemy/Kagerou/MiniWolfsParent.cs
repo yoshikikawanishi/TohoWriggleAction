@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MiniWolfsParent : MonoBehaviour {
 
+    [SerializeField] private GameObject wolf_Prefab;
     private List<GameObject> mini_Wolfs = new List<GameObject>();
     private List<MiniWolf> wolfs_Controller = new List<MiniWolf>();
 
@@ -32,16 +33,12 @@ public class MiniWolfsParent : MonoBehaviour {
         if (transform.childCount < 6 && !is_Transformed) {
             is_Transformed = true;
             Create_List();
-            for (int i = 0; i < transform.childCount; i++) {
-                wolfs_Controller[i].StartCoroutine("Transform_Wolf");
-            }
+            StartCoroutine("Do_Wolf_Attack");
         }
-        //ライフが半分以下になったら変身
-        if (boss_Controller.life[1] < boss_Controller.LIFE[1] / 2 && !is_Transformed) {
+        //ライフが20以下になったら変身
+        if (boss_Controller.life[1] < 20 && !is_Transformed) {
             is_Transformed = true;
-            for (int i = 0; i < transform.childCount; i++) {
-                wolfs_Controller[i].StartCoroutine("Transform_Wolf");
-            }
+            StartCoroutine("Do_Wolf_Attack");
         }
         //ちび影狼動き
         if (!is_Transformed) {
@@ -80,36 +77,45 @@ public class MiniWolfsParent : MonoBehaviour {
 
 
     public IEnumerator Do_Wolf_Attack() {
+
+        Create_List();
+        //数を増やす
+        while (mini_Wolfs.Count <= 4) {
+            var wolf = Instantiate(wolf_Prefab, transform, false);
+            wolf.transform.position = new Vector3(0, -116f);
+            wolf.SetActive(true);
+            mini_Wolfs.Add(wolf);
+            wolfs_Controller.Add(wolf.GetComponent<MiniWolf>());
+        }
+
+        //無敵化
+        for (int i = 0; i < mini_Wolfs.Count; i++) {
+            mini_Wolfs[i].GetComponent<Enemy>().Set_Is_Invincible(true);
+        }
         
-        while (true) {
-            //狼に変身
-            yield return new WaitForSeconds(1.5f);
-            kagerou_Controller.Roar();
-            for (int i = 0; i < mini_Wolfs.Count; i++) {
-                //エフェクト
-                wolfs_Controller[i].transform_Effect.Play();
-                yield return new WaitForSeconds(0.5f);
 
-                //突進
-                wolfs_Controller[i].StartCoroutine("Rush");
-                while (!wolfs_Controller[i].Is_Hit_Wall()) {
-                    yield return new WaitForSeconds(0.016f);
-                }
-                kagerou_Controller.Shake_Camera(0.25f, 4.0f);
-            }
-            //全員壁に衝突するまで待つ
-            yield return new WaitUntil(Is_Stop_All_Wolfs);
+        //エフェクト
+        kagerou_Controller.Roar();
+        for (int i = 0; i < mini_Wolfs.Count; i++) {
+            wolfs_Controller[i].transform_Effect.Play();
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        //変身、方向転換
+        for (int i = 0; i < mini_Wolfs.Count; i++) {
+            wolfs_Controller[i].Transform_Wolf();
+            wolfs_Controller[i].Look_Player();
+        }
+
+        yield return new WaitForSeconds(1.0f);
+
+        //突進開始
+        for (int i = 0; i < mini_Wolfs.Count; i++) {
+            wolfs_Controller[i].StartCoroutine("Rush");
         }
     }
 
 
-    //全員壁に衝突したとき真
-    private bool Is_Stop_All_Wolfs() {
-        for(int i = 0; i < mini_Wolfs.Count; i++) {
-            if (!wolfs_Controller[i].Is_Hit_Wall()) {
-                return false;
-            }
-        }
-        return true;
-    }
+
 }

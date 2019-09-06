@@ -51,6 +51,12 @@ public class WolfRush : MonoBehaviour {
     //エフェクト
     private void Effect() {
         GameObject rush_Effect = transform.Find("RushEffect").gameObject;
+        if(transform.localScale.x == 1) {
+            rush_Effect.transform.localRotation = Quaternion.AngleAxis(90f, new Vector3(0, 0, 1));
+        }
+        else {
+            rush_Effect.transform.localRotation = Quaternion.AngleAxis(-90f, new Vector3(0, 0, 1));
+        }
         rush_Effect.GetComponent<ParticleSystem>().Play();
     }
 
