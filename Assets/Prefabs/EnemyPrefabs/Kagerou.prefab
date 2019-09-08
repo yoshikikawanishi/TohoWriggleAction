@@ -196,13 +196,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1626966421071830}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.000030517578, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4829944355877658}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!4 &4829944355877658
 Transform:
   m_ObjectHideFlags: 1
@@ -501,8 +501,8 @@ MonoBehaviour:
   damage_Sound: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
   life: 50000000320000005000000050000000
   LIFE: 
-  power_Value: 0
-  score_Value: 0
+  power_Value: 50
+  score_Value: 5000
   phase_Change_Bomb: {fileID: 1439832585991350, guid: 6d2505b4b9f621b46b2f8e32574cd505,
     type: 2}
   clear_Effect: {fileID: 1678717706024572, guid: 9dced7ab9a8e61149bbced61d60b8cb1,
@@ -19146,7 +19146,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 32, y: 32}
+  m_Size: {x: 30, y: 34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

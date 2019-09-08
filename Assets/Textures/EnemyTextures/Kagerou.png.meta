@@ -133,18 +133,18 @@ TextureImporter:
       name: Kagerou_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 64
-        width: 22
-        height: 30
+        x: 2
+        y: 79
+        width: 30
+        height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 047f3b3d5adc9e7488db01e125c95076
+      spriteID: 4f543626733dc5946b9dab269685123f
       vertices: []
       indices: 
       edges: []
@@ -153,18 +153,18 @@ TextureImporter:
       name: Kagerou_1
       rect:
         serializedVersion: 2
-        x: 38
-        y: 64
-        width: 22
-        height: 30
+        x: 37
+        y: 79
+        width: 30
+        height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bd5f4f4fcfc5c446ae3efb148d61789
+      spriteID: deb9b6163a86cd5408ca0e5d05d00ee4
       vertices: []
       indices: 
       edges: []
@@ -173,18 +173,18 @@ TextureImporter:
       name: Kagerou_2
       rect:
         serializedVersion: 2
-        x: 68
-        y: 64
-        width: 22
-        height: 30
+        x: 75
+        y: 79
+        width: 30
+        height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a3feb82064d39345a8f932c0aa59888
+      spriteID: b888cc0f62088cd4fb770389bd384b55
       vertices: []
       indices: 
       edges: []
@@ -193,18 +193,18 @@ TextureImporter:
       name: Kagerou_3
       rect:
         serializedVersion: 2
-        x: 98
-        y: 64
-        width: 22
-        height: 30
+        x: 112
+        y: 79
+        width: 30
+        height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce04ec1c5c39917438266101c3a0ffb4
+      spriteID: f071c5b381325044dbe0de52b8b61c84
       vertices: []
       indices: 
       edges: []
@@ -213,18 +213,18 @@ TextureImporter:
       name: Kagerou_4
       rect:
         serializedVersion: 2
-        x: 7
-        y: 35
-        width: 22
-        height: 29
+        x: 2
+        y: 48
+        width: 30
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3dc19929b8e1ab41bb85ffd75db5fcc
+      spriteID: ed56bea8b7294e04399dbcedf6719a13
       vertices: []
       indices: 
       edges: []
@@ -234,17 +234,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 37
-        y: 35
-        width: 22
-        height: 29
+        y: 48
+        width: 30
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e61eaa82be63e64e955cea88fd0feb8
+      spriteID: 504c9bb9caed91f468a69eb027bcc158
       vertices: []
       indices: 
       edges: []
@@ -253,18 +253,18 @@ TextureImporter:
       name: Kagerou_6
       rect:
         serializedVersion: 2
-        x: 66
-        y: 35
-        width: 22
-        height: 29
+        x: 75
+        y: 48
+        width: 29
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b30fe97b5cb3f24bb1c0cc55a48245f
+      spriteID: fc6202c61c155744799dd361e7dfa4a2
       vertices: []
       indices: 
       edges: []
@@ -273,18 +273,18 @@ TextureImporter:
       name: Kagerou_7
       rect:
         serializedVersion: 2
-        x: 96
-        y: 35
-        width: 22
-        height: 29
+        x: 112
+        y: 48
+        width: 29
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 671f22185d3f0444491ef2a73224088c
+      spriteID: ed4220ac88b89a447b2c1ff1a15f7e75
       vertices: []
       indices: 
       edges: []
@@ -293,18 +293,18 @@ TextureImporter:
       name: Kagerou_8
       rect:
         serializedVersion: 2
-        x: 126
-        y: 35
-        width: 22
-        height: 29
+        x: 147
+        y: 47
+        width: 29
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 414224b055b10a64aaf210d2acbafe0b
+      spriteID: c1db583662d83c44a9e973e8136273f7
       vertices: []
       indices: 
       edges: []
@@ -313,18 +313,18 @@ TextureImporter:
       name: Kagerou_9
       rect:
         serializedVersion: 2
-        x: 9
-        y: 4
-        width: 23
-        height: 30
+        x: 8
+        y: 10
+        width: 25
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f351da6b74d87db458432122cdaeae74
+      spriteID: 01767ce708787a64496c6b675ba2d2f0
       vertices: []
       indices: 
       edges: []
@@ -333,18 +333,18 @@ TextureImporter:
       name: Kagerou_10
       rect:
         serializedVersion: 2
-        x: 39
-        y: 4
-        width: 23
-        height: 30
+        x: 43
+        y: 10
+        width: 25
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f98f67c7599bbe748a80d68290a90428
+      spriteID: 05b1e62398dab524d8e3ae20eab4352d
       vertices: []
       indices: 
       edges: []
@@ -353,18 +353,18 @@ TextureImporter:
       name: Kagerou_11
       rect:
         serializedVersion: 2
-        x: 69
-        y: 4
-        width: 23
-        height: 30
+        x: 81
+        y: 10
+        width: 25
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5085c8eaafb6664e8d2545324904091
+      spriteID: d28c9562dda32fc40abdece99a96ea6f
       vertices: []
       indices: 
       edges: []
@@ -373,18 +373,18 @@ TextureImporter:
       name: Kagerou_12
       rect:
         serializedVersion: 2
-        x: 99
-        y: 4
-        width: 23
-        height: 30
+        x: 118
+        y: 10
+        width: 25
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3afe152ef54f00444acc299847e2385a
+      spriteID: 4383e2d4d6b382243941c02003d7f4a4
       vertices: []
       indices: 
       edges: []
@@ -392,7 +392,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 558ff3d8064eb0b4c877720063f1ba2d
+    spriteID: c9c740aa8bcd306479fd86e1a0d62348
     vertices: []
     indices: 
     edges: []

@@ -29,6 +29,7 @@ public class KagerouAttack : MonoBehaviour {
     [System.Serializable]
     public class Phase4_Status {
         public bool start_Routine = true;
+        public GameObject shot_Objects;
     }
 
     public Phase1_Status phase1;
@@ -38,9 +39,16 @@ public class KagerouAttack : MonoBehaviour {
 
     //オブジェクトプール
     private ObjectPoolManager pool_Manager;
-    private GameObject blue_Bullet;
-    private GameObject red_Bullet;
-    private GameObject purple_Bullet;
+    private GameObject[] color_Bullet = new GameObject[5];
+    private enum BulletColor {
+        red = 0,
+        blue = 1,
+        purple = 2,
+        yellow = 3,
+        green = 4,
+    }
+
+    private GameObject red_Middle_Bullet;
 
     //コンポーネント
     private KagerouController _controller;
@@ -48,24 +56,33 @@ public class KagerouAttack : MonoBehaviour {
     private MoveBetweenTwoPoints _move;
     private WolfRush _rush;
     private ScatterPoolBullet _scatter;
+    private BulletPoolFunctions[] _bullet = new BulletPoolFunctions[2];
     
 
 	// Use this for initialization
 	void Start () {
         //オブジェクトプール
         pool_Manager = GameObject.FindWithTag("ScriptsTag").GetComponent<ObjectPoolManager>();
-        blue_Bullet = Resources.Load("Bullet/PooledBullet/BlueBulletPool") as GameObject;
-        red_Bullet = Resources.Load("Bullet/PooledBullet/RedBulletPool") as GameObject;
-        purple_Bullet = Resources.Load("Bullet/PooledBullet/PurpleBulletPool") as GameObject;
-        pool_Manager.Create_New_Pool(blue_Bullet, 20);
-        pool_Manager.Create_New_Pool(red_Bullet, 20);
-        pool_Manager.Create_New_Pool(purple_Bullet, 20);
+        color_Bullet[0] = Resources.Load("Bullet/PooledBullet/RedBulletPool") as GameObject;
+        color_Bullet[1] = Resources.Load("Bullet/PooledBullet/BlueBulletPool") as GameObject;
+        color_Bullet[2] = Resources.Load("Bullet/PooledBullet/PurpleBulletPool") as GameObject;
+        color_Bullet[3] = Resources.Load("Bullet/PooledBullet/YellowBulletPool") as GameObject;
+        color_Bullet[4] = Resources.Load("Bullet/PooledBullet/GreenBulletPool") as GameObject;
+        red_Middle_Bullet = Resources.Load("Bullet/PooledBullet/RedMiddleBullet") as GameObject;
+
+        for (int i = 0; i < 5; i++) {
+            pool_Manager.Create_New_Pool(color_Bullet[i], 40);
+        }
+        pool_Manager.Create_New_Pool(red_Middle_Bullet, 20);
+
         //取得
         _controller = GetComponent<KagerouController>();
         boss_Controller = GetComponent<BossEnemyController>();
         _move = GetComponent<MoveBetweenTwoPoints>();
         _rush = GetComponent<WolfRush>();
         _scatter = GetComponent<ScatterPoolBullet>();
+        _bullet[0] = gameObject.AddComponent<BulletPoolFunctions>();
+        _bullet[1] = gameObject.AddComponent<BulletPoolFunctions>();
     }
 	
 	
@@ -116,7 +133,7 @@ public class KagerouAttack : MonoBehaviour {
             //ばらまき弾
             {
                 _controller.Roar();
-                _scatter.Set_Bullet_Pool(pool_Manager.Get_Pool(purple_Bullet));
+                _scatter.Set_Bullet_Pool(pool_Manager.Get_Pool(color_Bullet[(int)BulletColor.purple]));
                 _scatter.Start_Scatter(80f, 50f, 5.0f, 10.0f);
                 yield return new WaitForSeconds(5.0f);
                 _scatter.Stop_Scatter();
@@ -154,6 +171,7 @@ public class KagerouAttack : MonoBehaviour {
             StopCoroutine(Phase1_Routine());
             _rush.StopAllCoroutines();
             _scatter.Stop_Scatter();
+            transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 0, 1));
             //フェーズ2
             StartCoroutine("Phase2_Routine");
         }
@@ -187,6 +205,7 @@ public class KagerouAttack : MonoBehaviour {
                 Debug.Log("Phase2 Timer Count Down Sound");
             }
         }
+        boss_Controller.Phase_Change(3);
     }
 
     //敵生成
@@ -197,13 +216,172 @@ public class KagerouAttack : MonoBehaviour {
 
     //フェーズ3
     public void Phase3() {
-        //フェーズ2終了
-        Destroy(GameObject.Find("MiniKagerous"));
+        if (phase3.start_Routine) {
+            phase3.start_Routine = false; 
+            //フェーズ2終了
+            Destroy(phase2.mini_Wolfs);
+            Destroy(phase2.grounds);
+            StopCoroutine("Phase2_Routine");
+            transform.GetChild(5).gameObject.SetActive(true);
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            //フェーズ3開始
+            StartCoroutine("Phase3_Routine");
+        }
+    }
+
+    private IEnumerator Phase3_Routine() {
+        //初期設定
+        _bullet[0].Set_Bullet_Pool(pool_Manager.Get_Pool(color_Bullet[(int)BulletColor.red]));
+        _bullet[1].Set_Bullet_Pool(pool_Manager.Get_Pool(red_Middle_Bullet));
+        //移動
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        yield return new WaitForSeconds(1.0f);
+        _move.Start_Move(new Vector3(160f, -48f), 0, 0.02f);
+        _controller.Change_Parametar("DashBool", -1);
+        yield return new WaitUntil(_move.End_Move);
+        _controller.Change_Parametar("IdleBool", 1);
+        gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
+
+        while (boss_Controller.Get_Now_Phase() == 3) {
+            //ためエフェクト
+            _controller.Play_Charge_Effect(2.667f);
+            yield return new WaitForSeconds(2.667f);
+
+            //全方位弾
+            StartCoroutine("Phase3_Shot1");
+            yield return new WaitForSeconds(2.667f);
+
+            //偶数弾、奇数段
+            StartCoroutine("Phase3_Shot2");
+            StartCoroutine("Phase3_Shot3");
+
+            yield return new WaitForSeconds(8.0f);
+        }
+    }
+
+    //全方位弾
+    private IEnumerator Phase3_Shot1() {
+        _controller.Play_Spread_Effect();
+        for (int i = 0; i < 10; i++) {
+            _bullet[0].Diffusion_Bullet(18, 140f + i * 5, i * 2, 6.0f);
+        }
+        UsualSoundManager.Shot_Sound();
+        yield return new WaitForSeconds(1.334f);
+        _controller.Play_Spread_Effect();
+        for (int i = 0;i < 10; i++) {
+            _bullet[0].Diffusion_Bullet(18, 140f + i * 5, -i * 2, 6.0f);
+        }
+        UsualSoundManager.Shot_Sound();
+    }
+
+    //偶数弾
+    private IEnumerator Phase3_Shot2() {
+        for(float t = 0; t < 5.333f; t += 0.3333f) {
+            UsualSoundManager.Small_Shot_Sound();
+            _bullet[0].Even_Num_Bullet(18, 20f, 150f, 8.0f);
+            yield return new WaitForSeconds(0.3333f);
+        }
+    }
+
+    //奇数段
+    private IEnumerator Phase3_Shot3() {
+        for (float t = 0; t < 5.333f; t += 1.334f) {
+            yield return new WaitForSeconds(1.334f);
+            _bullet[1].Odd_Num_Bullet(30, 12f, 100f, 6.0f);
+            UsualSoundManager.Shot_Sound();
+        }
     }
 
     //フェーズ4
     public void Phase4() {
+        if (phase4.start_Routine) {
+            phase4.start_Routine = false;
+            //フェーズ3終了
+            StopCoroutine("Phase3_Routine");
+            //フェーズ4開始
+            StartCoroutine("Phase4_Routine");
+        }
+    }
+
+    private IEnumerator Phase4_Routine() {
+        //初期設定
+        _bullet[0].Set_Bullet_Pool(pool_Manager.Get_Pool(color_Bullet[0]));
+        GameObject[] shot_Obj = new GameObject[4];
+        for(int i = 0; i < 4; i++) {
+            shot_Obj[i] = phase4.shot_Objects.transform.GetChild(i).gameObject;
+        }
+        //移動
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        yield return new WaitForSeconds(1.0f);
+        _move.Start_Move(new Vector3(0, -48f), 0, 0.02f);
+        _controller.Change_Parametar("DashBool", 1);
+        yield return new WaitUntil(_move.End_Move);
+        _controller.Change_Parametar("IdleBool", 1);
+        gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
+
+        //ショット
+        //本体
+        StartCoroutine("Phase4_Red_Bullet", _bullet[0]);
+        while (boss_Controller.life[3] >= boss_Controller.LIFE[3] * 0.8f) {
+            yield return null;
+        }
+
+        //青
+        StartCoroutine(Phase4_Color_Bullet(shot_Obj[0], BulletColor.blue));
+        while (boss_Controller.life[3] >= boss_Controller.LIFE[3] * 0.6f) {
+            yield return null;
+        }
+
+        //紫
+        StartCoroutine(Phase4_Color_Bullet(shot_Obj[1], BulletColor.purple));
+        while (boss_Controller.life[3] >= boss_Controller.LIFE[3] * 0.4f) {
+            yield return null;
+        }
+
+        //黄色
+        StartCoroutine(Phase4_Color_Bullet(shot_Obj[2], BulletColor.yellow));
+        while (boss_Controller.life[3] >= boss_Controller.LIFE[3] * 0.2f) {
+            yield return null;
+        }
+
+        //緑
+        StartCoroutine(Phase4_Color_Bullet(shot_Obj[3], BulletColor.green));
 
     }
+
+    //ショット
+    private IEnumerator Phase4_Red_Bullet() {
+        int i = 0;
+        while (boss_Controller.Get_Now_Phase() == 4) {
+            float center_Angle = Random.Range(0, 20f);
+            _bullet[0].Diffusion_Bullet(24, 60f, center_Angle, 10.0f);
+            UsualSoundManager.Shot_Sound();
+            yield return new WaitForSeconds(0.667f);
+            i++;
+            if (i % 4 == 0) {
+                yield return new WaitForSeconds(2.667f);
+            }            
+        }
+    }
+
+    //ショット
+    private IEnumerator Phase4_Color_Bullet(GameObject shot_Obj, BulletColor color) {
+        BulletPoolFunctions b = shot_Obj.GetComponent<BulletPoolFunctions>();
+        b.Set_Bullet_Pool(pool_Manager.Get_Pool(color_Bullet[(int)color]));
+        ParticleSystem effect = shot_Obj.GetComponent<ParticleSystem>();
+        while (boss_Controller.Get_Now_Phase() == 4) {
+            effect.Play();
+            yield return new WaitForSeconds(2.666f);
+            float center_Angle = Random.Range(0, 20f);
+            b.Diffusion_Bullet(12, 120f, center_Angle, 6.0f);
+            UsualSoundManager.Shot_Sound();
+        }
+    }
+
+    //フェーズ4終了
+    public void Stop_Phase4() {
+        StopAllCoroutines();
+    }
+    
 
 }

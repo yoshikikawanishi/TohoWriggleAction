@@ -118,7 +118,7 @@ public class BossEnemyController : MonoBehaviour {
 
 
     //フェーズ切り替え時の処理
-    private void Phase_Change(int next_Phase) {
+    public void Phase_Change(int next_Phase) {
         //アイテム出す
         Put_Out_Item(0, power_Value);
         //弾消し用のボム生成
@@ -154,14 +154,15 @@ public class BossEnemyController : MonoBehaviour {
         for (int i = 0; i < score_Num; i++) {
             GameObject score = Instantiate(Resources.Load("Score")) as GameObject;
             score.transform.position = transform.position;
-            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 30, 500f + Random.Range(-100f, 100f));
+            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 20, 500f + Random.Range(-100f, 100f));
         }
         //P
         int power_Num = power_Value;
+        GameObject p = Resources.Load("Power") as GameObject;
         for (int i = 0; i < power_Num; i++) {
-            GameObject power = Instantiate(Resources.Load("Power")) as GameObject;
+            GameObject power = Instantiate(p);
             power.transform.position = transform.position;
-            power.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-power_Num, power_Num) * 30, 500f + Random.Range(-100f, 100f));
+            power.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-power_Num, power_Num) * 20, 500f + Random.Range(-100f, 100f));
         }
     }
 

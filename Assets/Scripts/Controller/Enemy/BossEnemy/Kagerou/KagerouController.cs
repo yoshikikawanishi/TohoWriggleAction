@@ -38,6 +38,12 @@ public class KagerouController : MonoBehaviour {
                 case 4: _attack.Phase4(); break;
             }
         }
+
+        //クリア時
+        if (boss_Controller.Clear_Trigger()) {
+            Debug.Log("Clear");
+            _attack.Stop_Phase4();
+        }
     }
 
 
@@ -71,6 +77,19 @@ public class KagerouController : MonoBehaviour {
         _shake.Shake(duration, magunitude, true);
     }
 
+    //パワーチャージエフェクト
+    public void Play_Charge_Effect(float span) {
+        var charge_Effect = Instantiate(Resources.Load("Effect/PowerChargeEffectsRed") as GameObject);
+        charge_Effect.transform.position = transform.position;
+        Destroy(charge_Effect, span);
+    }
+
+    //パワー放出エフェクト
+    public void Play_Spread_Effect() {
+        var spread_Effect = Instantiate(Resources.Load("Effect/PowerSpreadEffectRed") as GameObject);
+        spread_Effect.transform.position = transform.position;
+        Destroy(spread_Effect, 3.0f);
+    }
 
     //アニメーション変更
     public void Change_Parametar(string change_Bool, int scale_X) {
@@ -81,6 +100,6 @@ public class KagerouController : MonoBehaviour {
         _anim.SetBool("Idle2Bool", false);
 
         _anim.SetBool(change_Bool, true);
-        transform.localScale = new Vector3(scale_X * transform.localScale.x, transform.localScale.y, 1);
+        transform.localScale = new Vector3(scale_X, transform.localScale.y, 1);
     }
 }

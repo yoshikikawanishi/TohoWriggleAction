@@ -8,6 +8,9 @@ public class BombBlockController : MonoBehaviour {
     private List<GameObject> caused_Blocks = new List<GameObject>();
     [SerializeField] List<Vector2> directions = new List<Vector2>();
 
+    private bool is_Crashed = false;
+
+
     //Start
     private void Start() {
         //誘爆ブロックの生成
@@ -24,7 +27,10 @@ public class BombBlockController : MonoBehaviour {
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "PlayerAttackTag" || collision.tag == "PlayerBulletTag") {
-            Crash();
+            if (!is_Crashed) {
+                is_Crashed = true;
+                Crash();
+            }
         }
     }
 
@@ -32,7 +38,10 @@ public class BombBlockController : MonoBehaviour {
     //OnCollisionEnter
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "DamageGroundTag") {
-            Crash();   
+            if (!is_Crashed) {
+                is_Crashed = true;
+                Crash();
+            }
         }
     }
 
@@ -66,6 +75,7 @@ public class BombBlockController : MonoBehaviour {
     private void Effect(GameObject block) {
         GameObject effect = block.transform.GetChild(0).gameObject;
         effect.transform.SetParent(null);
+        Debug.Log(effect);
         AudioClip clip = effect.GetComponent<AudioSource>().clip;
         effect.GetComponent<AudioSource>().PlayOneShot(clip);
         effect.GetComponent<ParticleSystem>().Play();

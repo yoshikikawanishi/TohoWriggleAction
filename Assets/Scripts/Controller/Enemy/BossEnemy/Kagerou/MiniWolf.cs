@@ -125,13 +125,12 @@ public class MiniWolf : MonoBehaviour {
 
     //画面外の適当な場所にワープ
     private void Move_Along_Outframe() {
-        int direction = Random.Range(0, 4);
+        int direction = Random.Range(0, 3);
         Vector2 pos = new Vector2();
         switch (direction) {
             case 0: pos = new Vector2(-250f, Random.Range(-160f, 150f)); break;
             case 1: pos = new Vector2(250f, Random.Range(-160f, 150f)); break;
             case 2: pos = new Vector2(Random.Range(-250f, 300f), 150f); break;
-            case 3: pos = new Vector2(Random.Range(-250f, 300f), -160f); break;
         }
         transform.position = pos;
     }

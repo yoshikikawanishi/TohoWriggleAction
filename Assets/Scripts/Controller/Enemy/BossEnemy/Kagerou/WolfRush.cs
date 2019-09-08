@@ -33,7 +33,12 @@ public class WolfRush : MonoBehaviour {
     //突進
     private IEnumerator Rush() {
         //見た目変更
-        _controller.Change_Parametar("RushBool", 1);
+        if (aim_Pos.x > transform.position.x) {
+            _controller.Change_Parametar("RushBool", -1);
+        }
+        else {
+            _controller.Change_Parametar("RushBool", 1);
+        }
         //エフェクト
         Effect();
         //回転
