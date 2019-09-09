@@ -49,7 +49,7 @@ public class Stage3_2Scene : MonoBehaviour {
     //敵生成
     private IEnumerator Enemy_Gen() {
         //ファイル読み込み
-        TextReader text = new TextReader("Stage3_2_Enemy_Gen");
+        TextFileReader text = new TextFileReader("Stage3_2_Enemy_Gen");
         //敵生成
         for (int i = 1; i < text.rowLength; i++) {
             yield return new WaitForSeconds(float.Parse(text.textWords[i, 1]));

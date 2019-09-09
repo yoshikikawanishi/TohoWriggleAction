@@ -30,11 +30,11 @@ public class Familiar : MonoBehaviour {
     //LShiftで透明化
     private void Become_Invisible() {
         //LShiftで透明化
-        if (Input.GetButton("Fly") && _sprite.color.a != 0) {
+        if (InputManager.Instance.GetKey(MBLDefine.Key.Fly) && _sprite.color.a != 0) {
             _sprite.color = new Color(1, 1, 1, 0);
             gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         }
-        if (Input.GetButtonUp("Fly")) {
+        if (InputManager.Instance.GetKeyUp(MBLDefine.Key.Fly)) {
             _sprite.color = default_Color;
             gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
             UsualSoundManager.Familiar_Appear_Sound();

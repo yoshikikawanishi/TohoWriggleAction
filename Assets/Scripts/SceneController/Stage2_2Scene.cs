@@ -56,7 +56,7 @@ public class Stage2_2Scene : MonoBehaviour {
     //敵生成
     public IEnumerator Generate_Enemy() {
         //ファイル読み込み
-        TextReader text = new TextReader("Stage2_2_Enemy_Gen");
+        TextFileReader text = new TextFileReader("Stage2_2_Enemy_Gen");
         GameObject main_Camera = GameObject.FindWithTag("MainCamera");
         //敵生成
         for (int i = 1; i < text.rowLength; i++) {

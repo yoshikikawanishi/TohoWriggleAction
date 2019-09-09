@@ -44,6 +44,15 @@ public class GameManager : MonoBehaviour {
         //シーン読み込みのデリケート
         SceneManager.sceneLoaded += OnSceneLoaded;
 
+        //初めてゲームを起動したとき
+        //テスト
+        Debug.Log("First_Visit_Test");
+        PlayerPrefs.DeleteKey("Is_First_Open_Game");
+
+        if (!PlayerPrefs.HasKey("Is_First_Open_Game")) {
+            Do_First_Time_Setting();
+        }
+
         //ドレミーハットのデータ消去
         DoremyHat.Delete_Data();
         Debug.Log("DoremyHat_Data_Delete");
@@ -78,6 +87,14 @@ public class GameManager : MonoBehaviour {
     }
 
 
+    //初めてゲームを起動したとき
+    public void Do_First_Time_Setting() {
+        Debug.Log("First_Open_Game");
+        PlayerPrefs.SetInt("Is_First_Open_Game", 0);
+
+    }
+
+
     //セーブ
     public void SaveData() {
         string scene = SceneManager.GetActiveScene().name;
@@ -102,7 +119,7 @@ public class GameManager : MonoBehaviour {
         if (!PlayerPrefs.HasKey("Scene")) {
             PlayerPrefs.SetString("Scene", "Stage1_1Scene");
             PlayerPrefs.SetFloat("PosX", -160f);
-            PlayerPrefs.SetFloat("PosY", -78f);
+            PlayerPrefs.SetFloat("PosY", -82f);
             PlayerPrefs.SetInt("Score", 0);
             PlayerPrefs.SetInt("Power", 0);
             PlayerPrefs.SetInt("Life", 3);
@@ -131,6 +148,7 @@ public class GameManager : MonoBehaviour {
     public void DeleteData() {
         PlayerPrefs.DeleteAll();
         _sceneProgress.Delete_Progress();
+        PlayerPrefs.SetInt("Is_First_Open_Game", 0);
     }
 
 

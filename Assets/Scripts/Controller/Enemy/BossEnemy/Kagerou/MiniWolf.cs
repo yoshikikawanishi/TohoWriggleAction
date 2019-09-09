@@ -5,9 +5,7 @@ using UnityEngine;
 public class MiniWolf : MonoBehaviour {
 
     private GameObject player;
-    private GameObject kagerou;
 
-    private BossEnemyController boss_Controller;
     private Rigidbody2D _rigid;
     private Renderer _renderer;
 
@@ -16,10 +14,6 @@ public class MiniWolf : MonoBehaviour {
     private float default_X;
     private float move_Speed = 2f;
     private float move_Length = 80f;
-
-    private int mini_Kagerous_Num = 6;
-    
-    private bool is_Hit_Wall = false;
     
 
     //Awake
@@ -28,9 +22,7 @@ public class MiniWolf : MonoBehaviour {
         default_X = transform.position.x;
         transform.position += new Vector3(Random.Range(-32f, 32f), 0);
         //取得
-        boss_Controller = GameObject.Find("Kagerou").GetComponent<BossEnemyController>();
         player = GameObject.FindWithTag("PlayerTag");
-        kagerou = GameObject.Find("Kagerou");
         transform_Effect = transform.Find("TransformEffect").GetComponent<ParticleSystem>();
         _rigid = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<Renderer>();

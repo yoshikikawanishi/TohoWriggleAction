@@ -130,7 +130,7 @@ public class WriggleShot : MonoBehaviour {
 
     //オプションがハエのとき
     private void Flies_Shot() {
-        if (Input.GetButton("Shot/Cancel")) {
+        if (InputManager.Instance.GetKey(MBLDefine.Key.Shot)) {
             if (time < 0.15f) {
                 time += Time.deltaTime;
             }
@@ -165,7 +165,7 @@ public class WriggleShot : MonoBehaviour {
                 shot_Sound.Play();
             }
         }
-        else if (Input.GetButtonUp("Shot/Cancel")) {
+        else if (InputManager.Instance.GetKeyUp(MBLDefine.Key.Shot)) {
             time = 0.15f;
         }
     }
@@ -173,7 +173,7 @@ public class WriggleShot : MonoBehaviour {
 
     //オプションが蝶のとき
     private void ButterFly_Shot() {
-        if (Input.GetButton("Shot/Cancel")) {
+        if (InputManager.Instance.GetKey(MBLDefine.Key.Shot)) {
             if (time < 0.12f) {
                 time += Time.deltaTime;
             }
@@ -208,7 +208,7 @@ public class WriggleShot : MonoBehaviour {
                 shot_Sound.Play();
             }
         }
-        else if (Input.GetButtonUp("Shot/Cancel")) {
+        else if (InputManager.Instance.GetKeyUp(MBLDefine.Key.Shot)) {
             time = 0.1f;
         }
     }
@@ -220,7 +220,7 @@ public class WriggleShot : MonoBehaviour {
         if(time < beetle_Shot_Span) {
             time += Time.deltaTime;
         }
-        else if (Input.GetButtonDown("Shot/Cancel")) {
+        else if (InputManager.Instance.GetKeyDown(MBLDefine.Key.Shot)) {
             time = 0;
             beetle_Shot_Span = 0.5f;
             int bullet_Num = 1;
@@ -257,7 +257,7 @@ public class WriggleShot : MonoBehaviour {
 
     //オプションが蜂のとき
     private void Bee_Shot() {
-        if (Input.GetButton("Shot/Cancel")) {
+        if (InputManager.Instance.GetKey(MBLDefine.Key.Shot)) {
             if (time < 0.3f) {
                 time += Time.deltaTime;
             }
@@ -299,7 +299,7 @@ public class WriggleShot : MonoBehaviour {
                 shot_Sound.Play();
             }          
         }
-        else if (Input.GetButtonUp("Shot/Cancel")) {
+        else if (InputManager.Instance.GetKeyUp(MBLDefine.Key.Shot)) {
             time = 0.3f;
         }
     }

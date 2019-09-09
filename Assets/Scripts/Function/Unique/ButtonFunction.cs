@@ -110,29 +110,4 @@ public class ButtonFunction : MonoBehaviour {
         SceneManager.LoadScene("PlayGuideScene");
     }
 
-
-    /*---------------------キーコンフィグ---------------------*/
-    
-
-
-    //ジャンプ、決定ボタンの変更
-    public void Jump_Submit_Button() {
-        
-    }
-
-    //ショット、戻るボタンの変更
-    public void Shot_Cancel_Button() {
-        
-    }
-
-    //飛行ボタンの変更
-    public void Fly_Button() {
-        
-    }
-
-    //ポーズボタンの変更
-    public void Pause_Button() {
-        
-    }
-
 }

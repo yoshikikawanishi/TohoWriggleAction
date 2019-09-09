@@ -1,8 +1,4 @@
 #HasVisitedScene
 Stage1_1Scene
 TitleScene
-PlayGuideScene
-Stage5_BossScene
-Stage5_1Scene
-Stage4_BossScene
-Stage4_1Scene
+ConfigScene

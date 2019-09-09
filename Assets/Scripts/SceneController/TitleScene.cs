@@ -12,8 +12,13 @@ public class TitleScene : MonoBehaviour {
     private GameObject confirm_Canvas;
 
 
-	// Use this for initialization
-	void Start () {
+    //Awake
+    private void Awake() {
+        
+    }
+
+    // Use this for initialization
+    void Start () {
         //取得
         canvas = GameObject.Find("Canvas");
         canvas_Group = canvas.GetComponent<CanvasGroup>();
@@ -43,7 +48,7 @@ public class TitleScene : MonoBehaviour {
         }
         //ファイル読み込み
         string filePath = Application.dataPath + @"\DoremyHat.txt";
-        TextReader text = new TextReader();
+        TextFileReader text = new TextFileReader();
         text.Read_Text_File(filePath);
         //反映
         for(int i = 1; i < text.rowLength; i++) {
@@ -60,7 +65,7 @@ public class TitleScene : MonoBehaviour {
         GameObject extra_Button = GameObject.Find("ExtraButton");
         //ファイル読み込み
         string filePath = Application.dataPath + @"\DoremyHat.txt";
-        TextReader text = new TextReader();
+        TextFileReader text = new TextFileReader();
         text.Read_Text_File(filePath);
         //帽子がすべて集まっているかどうか
         bool is_Open = true;

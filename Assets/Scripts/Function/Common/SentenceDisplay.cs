@@ -36,7 +36,7 @@ public class SentenceDisplay : MonoBehaviour {
     }
 
     private IEnumerator Display_Sentence() {
-        TextReader text_Words = new TextReader(fileName);
+        TextFileReader text_Words = new TextFileReader(fileName);
         string sentence = text_Words.textWords[id, 1];
         for (int i = 0; i < sentence.Length; i++) {
             if (sentence[i] == '/') {
@@ -55,7 +55,7 @@ public class SentenceDisplay : MonoBehaviour {
 
     //入力待ち
     private bool Wait_Input() {
-        if (Input.GetButtonDown("Jump/Submit")) {
+        if (InputManager.Instance.GetKeyDown(MBLDefine.Key.Jump)) {
             return true;
         }
         return false;

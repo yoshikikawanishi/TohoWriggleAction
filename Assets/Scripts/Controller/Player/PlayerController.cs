@@ -103,12 +103,12 @@ public abstract class PlayerController : MonoBehaviour {
 
     //ジャンプ
     protected void Jump() {
-        if (Input.GetButton("Jump/Submit") && is_Ground) {
+        if (InputManager.Instance.GetKey(MBLDefine.Key.Jump) && is_Ground) {
             _rigid.velocity = new Vector2(_rigid.velocity.x, 320f);
             jump_Sound.Play();
             is_Ground = false;
         }
-        if (Input.GetButtonUp("Jump/Submit") && _rigid.velocity.y > 0) {
+        if (InputManager.Instance.GetKeyUp(MBLDefine.Key.Jump) && _rigid.velocity.y > 0) {
             _rigid.velocity *= new Vector2(1, 0.5f);
         }
         //空中で動きにくくする

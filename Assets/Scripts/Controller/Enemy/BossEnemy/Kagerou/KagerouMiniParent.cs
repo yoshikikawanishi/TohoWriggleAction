@@ -8,13 +8,11 @@ public class MiniWolfParent : MonoBehaviour {
     private List<MiniWolf> wolfs_Controller = new List<MiniWolf>();
 
     private GameObject kagerou;
-    private KagerouController kagerou_Controller;
 
 
 	// Use this for initialization
 	void Start () {
         kagerou = GameObject.Find("Kagerou");
-        kagerou_Controller = kagerou.GetComponent<KagerouController>();
 	}
 	
 	// Update is called once per frame

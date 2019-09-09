@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyGenerator : MonoBehaviour {
 
     //フィールド
-    private TextReader _text = new TextReader();
+    private TextFileReader _text = new TextFileReader();
     private int start_ID = 1;
     private int end_ID = 1;
     private GameObject parent;

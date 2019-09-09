@@ -300,7 +300,7 @@ public class MarisaAttack : MonoBehaviour {
     private IEnumerator Mini_Master_Spark() {
         GameObject master_Spark = Resources.Load("Bullet/MiniMasterSpark") as GameObject;
         //テキストから
-        TextReader text = new TextReader();
+        TextFileReader text = new TextFileReader();
         text.Read_Text("MiniMasterSparkText");        
         for (int i = 1; i < text.rowLength; i++) {
             yield return new WaitForSeconds(float.Parse(text.textWords[i, 4]));

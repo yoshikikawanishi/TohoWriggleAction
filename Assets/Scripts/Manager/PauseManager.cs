@@ -35,14 +35,14 @@ public class PauseManager : MonoBehaviour {
     void Update () {
         if (_gameManager.Is_Game_Scene()) {
             //一時停止
-            if (Input.GetButtonDown("Pause") && can_Pause && state == STATE.normal) {
+            if (InputManager.Instance.GetKeyDown(MBLDefine.Key.Pause) && can_Pause && state == STATE.normal) {
                 Pause_Game();
             }
             //一時停止解除
-            else if (Input.GetButtonDown("Pause") && state == STATE.pause) {
+            else if (InputManager.Instance.GetKeyDown(MBLDefine.Key.Pause) && state == STATE.pause) {
                 Release_Pause_Game();
             }
-            else if (Input.GetButtonDown("Shot/Cancel") && state == STATE.pause) {
+            else if (InputManager.Instance.GetKeyDown(MBLDefine.Key.Shot) && state == STATE.pause) {
                 Release_Pause_Game();
             }
         }

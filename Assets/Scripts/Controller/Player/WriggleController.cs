@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MBLDefine;
 
 //PlayerControllerに飛行とキックを加えたクラス、
 public class WriggleController : PlayerController {
@@ -62,7 +63,7 @@ public class WriggleController : PlayerController {
         base.Transition();
         //飛行時上下移動追加
         if (is_Fly) {
-            if (Input.GetAxisRaw("Vertical") > 0 || Input.GetButton("Jump/Submit")) {
+            if (Input.GetAxisRaw("Vertical") > 0 || InputManager.Instance.GetKey(MBLDefine.Key.Jump)) {
                 if (_rigid.velocity.y < max_Speed) {
                     _rigid.velocity += new Vector2(0, acc);
                 }
@@ -82,11 +83,11 @@ public class WriggleController : PlayerController {
 
     //飛行状態の切り替え
     private void Change_Fly_Status() {
-        if (Input.GetButton("Fly") && !is_Fly && can_Fly) {
+        if (InputManager.Instance.GetKey(MBLDefine.Key.Fly) && !is_Fly && can_Fly) {
             is_Fly = true;
             Fly();
         }
-        else if ((!Input.GetButton("Fly") && is_Fly)) {
+        else if ((!InputManager.Instance.GetKey(MBLDefine.Key.Fly) && is_Fly)) {
             is_Fly = false;
             Quit_Fly();
         }
@@ -156,7 +157,7 @@ public class WriggleController : PlayerController {
 
     //キック
     private void Kick() {
-        if (Input.GetButton("Shot/Cancel") && Input.GetAxisRaw("Vertical") < 0) {
+        if (InputManager.Instance.GetKey(MBLDefine.Key.Shot) && Input.GetAxisRaw("Vertical") < 0) {
             StartCoroutine("Kick_Routine");
         }
     }

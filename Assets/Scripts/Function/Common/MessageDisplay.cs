@@ -35,10 +35,10 @@ public class MessageDisplay : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         //表示スピード
-        if (Input.GetButtonDown("Submit")) {
+        if (InputManager.Instance.GetKeyDown(MBLDefine.Key.Jump)) {
             textSpeed = 0.005f;
         }
-        if (Input.GetButtonUp("Submit")) {
+        if (InputManager.Instance.GetKeyUp(MBLDefine.Key.Jump)) {
             textSpeed = 0.07f;
         }
     }
@@ -137,7 +137,7 @@ public class MessageDisplay : MonoBehaviour {
 
     //Zが入力されるのを待つ
     private bool Wait_Input_Z() {
-        if (Input.GetButtonDown("Submit")) {
+        if (InputManager.Instance.GetKeyDown(MBLDefine.Key.Jump)) {
             return true;
         }
         return false;

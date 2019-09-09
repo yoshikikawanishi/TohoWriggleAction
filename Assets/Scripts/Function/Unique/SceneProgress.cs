@@ -10,7 +10,7 @@ public class SceneProgress : MonoBehaviour {
        
         //ファイル読み込み
         string filePath = Application.dataPath + @"\SceneProgress.txt";
-        TextReader text = new TextReader();
+        TextFileReader text = new TextFileReader();
         text.Read_Text_File(filePath);
 
         //loaded_Sceneがファイルにあるか確認
@@ -43,7 +43,7 @@ public class SceneProgress : MonoBehaviour {
     public bool Is_Exist_Scene(string scene_Name) {
         //ファイル読み込み
         string filePath = Application.dataPath + @"\SceneProgress.txt";
-        TextReader text = new TextReader();
+        TextFileReader text = new TextFileReader();
         text.Read_Text_File(filePath);
         for(int i = 1; i < text.rowLength; i++) {
             if(text.textWords[i, 0] == scene_Name) {

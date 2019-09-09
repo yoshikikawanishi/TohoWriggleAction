@@ -21,19 +21,20 @@ public class ConfigScene : MonoBehaviour {
         pause_Button = GameObject.Find("Pause").GetComponent<Button>();
         //ボタンのテキスト書き換え
         Button_Text_Change();
+
         jump_Button.Select();  
 	}
 
 
     //ボタンのテキスト書き換え
     public void Button_Text_Change() {
-        string filePath = Application.dataPath + @"\KeyConfig.csv";
-        TextReader text = new TextReader();
-        text.Read_Text_File(filePath);
-        jump_Button.GetComponentInChildren<Text>().text = text.textWords[1, 1] + " / " + text.textWords[1, 2];
-        shot_Button.GetComponentInChildren<Text>().text = text.textWords[2, 1] + " / " + text.textWords[2, 2];
-        fly_Button.GetComponentInChildren<Text>().text = text.textWords[3, 1] + " / " + text.textWords[3, 2];
-        pause_Button.GetComponentInChildren<Text>().text = text.textWords[4, 1] + " / " + text.textWords[4, 2];
+
+        KeyConfig k = InputManager.Instance.keyConfig;
+
+        jump_Button.GetComponentInChildren<Text>().text = k.GetKeyCode("Jump")[0].ToString() + "\t|\t" + k.GetKeyCode("Jump")[1].ToString();
+        shot_Button.GetComponentInChildren<Text>().text = k.GetKeyCode("Shot")[0].ToString() + "\t|\t" + k.GetKeyCode("Shot")[1].ToString();
+        fly_Button.GetComponentInChildren<Text>().text = k.GetKeyCode("Fly")[0].ToString() + "\t|\t" + k.GetKeyCode("Fly")[1].ToString();
+        pause_Button.GetComponentInChildren<Text>().text = k.GetKeyCode("Pause")[0].ToString() + "\t|\t" + k.GetKeyCode("Pause")[1].ToString();
 
     }
 }

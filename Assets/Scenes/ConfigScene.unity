@@ -390,18 +390,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 418493725}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1034893552}
-        m_MethodName: Fly_Button
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &418493725
@@ -461,6 +450,23 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 8300000, guid: 0f386020206c21e46b56ab2ae5ab2c06,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 8
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1034893556}
+          m_MethodName: Fly_Button
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -537,7 +543,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: left shift / button 5
+  m_Text: "left shift\t|\tbutton 5"
 --- !u!222 &691394193
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -627,7 +633,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: z / button 0
+  m_Text: "Z\t|\tbutton 0"
 --- !u!222 &712325144
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -788,18 +794,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 770906758}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1034893552}
-        m_MethodName: Shot_Cancel_Button
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &770906758
@@ -859,6 +854,23 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 8300000, guid: 0f386020206c21e46b56ab2ae5ab2c06,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 8
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1034893556}
+          m_MethodName: Shot_Button
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -943,18 +955,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 846067075}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1034893552}
-        m_MethodName: Pause_Button
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &846067075
@@ -1014,6 +1015,23 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 8300000, guid: 0f386020206c21e46b56ab2ae5ab2c06,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 8
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1034893556}
+          m_MethodName: Pause_Button
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1099,8 +1117,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1034893552}
-        m_MethodName: Title_Button
+      - m_Target: {fileID: 1034893556}
+        m_MethodName: Go_Title_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1187,6 +1205,7 @@ GameObject:
   - component: {fileID: 1034893553}
   - component: {fileID: 1034893552}
   - component: {fileID: 1034893554}
+  - component: {fileID: 1034893556}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -1229,6 +1248,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486f0920fd505cd4a8a6eea6d58231a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1034893556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1034893551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb7f6f2efb8efc47b6b29a70e319a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jump_Button: {fileID: 1060700452}
+  shot_Button: {fileID: 770906755}
+  fly_Button: {fileID: 418493722}
+  pause_Button: {fileID: 846067072}
 --- !u!1 &1060700452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,18 +1339,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1060700455}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1034893552}
-        m_MethodName: Jump_Submit_Button
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1060700455
@@ -1376,6 +1399,23 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 8300000, guid: 0f386020206c21e46b56ab2ae5ab2c06,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 8
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1034893556}
+          m_MethodName: Jump_Button
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1641,7 +1681,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: escape / button 7
+  m_Text: "escape\t|\tbutton 7"
 --- !u!222 &1547077650
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1806,7 +1846,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: x / button1
+  m_Text: "X\t|\tbutton1"
 --- !u!222 &1886331134
 CanvasRenderer:
   m_ObjectHideFlags: 0

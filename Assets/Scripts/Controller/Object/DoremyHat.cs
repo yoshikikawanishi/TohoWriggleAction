@@ -31,7 +31,7 @@ public class DoremyHat : MonoBehaviour {
     private void Save_Getting() {
         //ファイル読み込み
         string filePath = Application.dataPath + @"\DoremyHat.txt";
-        TextReader text = new TextReader();
+        TextFileReader text = new TextFileReader();
         text.Read_Text_File(filePath);
 
         //ファイルの書き換え
@@ -59,7 +59,7 @@ public class DoremyHat : MonoBehaviour {
     static public void Delete_Data() {
         //ファイル読み込み
         string filePath = Application.dataPath + @"\DoremyHat.txt";
-        TextReader text = new TextReader();
+        TextFileReader text = new TextFileReader();
         text.Read_Text_File(filePath);
 
         //ファイルの書き換え

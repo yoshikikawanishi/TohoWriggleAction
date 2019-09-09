@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class TextReader  {
+public class TextFileReader  {
 
     //テキストの加工前の一行を入れる変数
     private string[] textMessage;
@@ -16,11 +16,11 @@ public class TextReader  {
 
     
     //コンストラクタ
-    public TextReader() {
+    public TextFileReader() {
 
     }
 
-    public TextReader(string file_Name) {
+    public TextFileReader(string file_Name) {
         this.Read_Text(file_Name);
     }
 
