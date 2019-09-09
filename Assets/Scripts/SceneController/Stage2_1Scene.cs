@@ -22,6 +22,11 @@ public class Stage2_1Scene : MonoBehaviour {
         //自機
         player = GameObject.FindWithTag("PlayerTag");
         player_Controller = player.GetComponent<WriggleController>();
+
+        GameManager gm = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
+        if (gm.Is_First_Visit()) {
+            GetComponent<FadeInOut>().Start_Fade_In();
+        }
     }
 
     // Update is called once per frame

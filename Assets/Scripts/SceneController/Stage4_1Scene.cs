@@ -32,7 +32,12 @@ public class Stage4_1Scene : MonoBehaviour {
         _enemy_Gen = GetComponent<EnemyGenerator>();
         main_Camera = GameObject.FindWithTag("MainCamera");
         player = GameObject.FindWithTag("PlayerTag");
-	}
+
+        GameManager gm = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
+        if (gm.Is_First_Visit()) {
+            GetComponent<FadeInOut>().Start_Fade_In();
+        }
+    }
 	
 
 	// Update is called once per frame

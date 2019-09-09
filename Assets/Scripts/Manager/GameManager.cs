@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour {
         }
 
         //ドレミーハットのデータ消去
-        DoremyHat.Delete_Data();
+        //DoremyHat.Delete_Data();
         Debug.Log("DoremyHat_Data_Delete");
     }
 

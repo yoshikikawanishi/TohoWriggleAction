@@ -45,8 +45,10 @@ public class ConfigButton : MonoBehaviour {
 
     //タイトルに戻る
     public void Go_Title_Button() {
-        InputManager.Instance.keyConfig.SaveConfigFile();
-        SceneManager.LoadScene("TitleScene");
+        if (InputManager.Instance.GetKeyDown(MBLDefine.Key.Jump)) {
+            InputManager.Instance.keyConfig.SaveConfigFile();
+            SceneManager.LoadScene("TitleScene");
+        }
     }
 
 

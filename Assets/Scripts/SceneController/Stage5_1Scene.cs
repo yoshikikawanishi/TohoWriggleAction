@@ -16,7 +16,12 @@ public class Stage5_1Scene : MonoBehaviour {
 	void Start () {
         //取得
         player = GameObject.FindWithTag("PlayerTag");
-	}
+
+        GameManager gm = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
+        if (gm.Is_First_Visit()) {
+            GetComponent<FadeInOut>().Start_Fade_In();
+        }
+    }
 	
 
 	// Update is called once per frame

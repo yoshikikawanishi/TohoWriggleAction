@@ -34,7 +34,7 @@ public class Base_2Scene : MonoBehaviour {
         if (_movie.is_End_Movie) {
             //シーン遷移
             if (player.transform.position.x > right_Side) {
-                SceneManager.LoadScene("Stage4_1Scene");
+                StartCoroutine("Change_Scene");
             }
 
             //休憩エリア
@@ -46,6 +46,12 @@ public class Base_2Scene : MonoBehaviour {
                 main_Camera_Controller.enabled = true;
             }
         }
+    }
+
+    private IEnumerator Change_Scene() {
+        GetComponent<FadeInOut>().Start_Fade_Out();
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage4_1Scene");
     }
 
 }

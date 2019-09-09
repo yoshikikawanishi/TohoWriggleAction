@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using MBLDefine;
 
 public class UnderGroundShoppingManager : MonoBehaviour {
 
@@ -169,68 +170,88 @@ public class UnderGroundShoppingManager : MonoBehaviour {
     /*-------ボタン--------*/
     //メニュー
     public void Buy_Button() {
-        Open_Goods_Table();
+        if (InputManager.Instance.GetKeyDown(Key.Jump))
+            Open_Goods_Table();
     }
 
     public void Sold_Button() {
-        Sold();
+        if (InputManager.Instance.GetKeyDown(Key.Jump))
+            Sold();
     }
 
     public void Talk_Button() {
-        Open_Talk_Table();
+        if (InputManager.Instance.GetKeyDown(Key.Jump))
+            Open_Talk_Table();
     }
 
     public void Exit_Shop_Button() {
-        Exit_Shop();
+        if (InputManager.Instance.GetKeyDown(Key.Jump))
+            Exit_Shop();
     }
 
     //商品
     public void Flies_Button() {
-        selecte_Option = "Flies";
-        Confirm_Goods();
+        if (InputManager.Instance.GetKeyDown(Key.Jump)) {
+            selecte_Option = "Flies";
+            Confirm_Goods();
+        }
     }
 
     public void Butterfly_Button() {
-        selecte_Option = "ButterFly";
-        Confirm_Goods();
+        if (InputManager.Instance.GetKeyDown(Key.Jump)) {
+            selecte_Option = "ButterFly";
+            Confirm_Goods();
+        }
     }
 
     public void Bee_Button() {
-        selecte_Option = "Bee";
-        Confirm_Goods();
+        if (InputManager.Instance.GetKeyDown(Key.Jump)) {
+            selecte_Option = "Bee";
+            Confirm_Goods();
+        }
     }
 
     public void Beetle_Button() {
-        selecte_Option = "Beetle";
-        Confirm_Goods();
+        if (InputManager.Instance.GetKeyDown(Key.Jump)) {
+            selecte_Option = "Beetle";
+            Confirm_Goods();
+        }
     }
 
     public void Yes_Button() {
-        player_Manager.Set_Option_Type(selecte_Option);
-        player_Manager.Set_Power(power - 5);
-        Bought_Goods();
+        if (InputManager.Instance.GetKeyDown(Key.Jump)) {
+            player_Manager.Set_Option_Type(selecte_Option);
+            player_Manager.Set_Power(power - 5);
+            Bought_Goods();
+        }
     }
 
     public void No_Button() {
-        confirm_Canvas.SetActive(false);
-        canvas_Group.interactable = true;
-        Open_Goods_Table();
+        if (InputManager.Instance.GetKeyDown(Key.Jump)) {
+            confirm_Canvas.SetActive(false);
+            canvas_Group.interactable = true;
+            Open_Goods_Table();
+        }
     }
 
     public void Back_Menu_Button() {
-        Open_Menu();
+        if (InputManager.Instance.GetKeyDown(Key.Jump))
+            Open_Menu();
     }
 
     //話題
     public void First_Topic_Button() {
-        Talk(1);
+        if (InputManager.Instance.GetKeyDown(Key.Jump))
+            Talk(1);
     }
 
     public void Second_Topic_Button() {
-        Talk(2);
+        if (InputManager.Instance.GetKeyDown(Key.Jump))
+            Talk(2);
     }
 
     public void Third_Topic_Button() {
-        Talk(3);
+        if (InputManager.Instance.GetKeyDown(Key.Jump))
+            Talk(3);
     }
 }

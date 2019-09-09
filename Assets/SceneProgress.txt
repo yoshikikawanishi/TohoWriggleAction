@@ -1,4 +1,5 @@
 #HasVisitedScene
 Stage1_1Scene
 TitleScene
+PlayGuideScene
 ConfigScene
