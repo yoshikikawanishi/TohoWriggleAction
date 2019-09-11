@@ -10,6 +10,9 @@ public class KagerouController : MonoBehaviour {
     private Animator _anim;
     private CameraShake _shake;
 
+    //スクリプト
+    private Stage5_BossMovie stage_Movie;
+
     //戦闘開始
     private bool start_Battle = false;
 
@@ -21,10 +24,11 @@ public class KagerouController : MonoBehaviour {
         boss_Controller = GetComponent<BossEnemyController>();
         _anim = GetComponent<Animator>();
         _shake = gameObject.AddComponent<CameraShake>();
+        stage_Movie = GameObject.FindWithTag("ScriptsTag").GetComponent<Stage5_BossMovie>();
 
         //テスト
         Debug.Log("Boss Battle Test");
-        boss_Controller.Set_Now_Phase(1);
+        boss_Controller.Set_Now_Phase(4);
     }
 
 
@@ -41,7 +45,7 @@ public class KagerouController : MonoBehaviour {
 
         //クリア時
         if (boss_Controller.Clear_Trigger()) {
-            Debug.Log("Clear");
+            stage_Movie.Start_Clear_Movie();
             _attack.Stop_Phase4();
         }
     }

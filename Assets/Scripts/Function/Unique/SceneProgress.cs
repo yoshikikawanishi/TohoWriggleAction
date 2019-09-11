@@ -9,7 +9,7 @@ public class SceneProgress : MonoBehaviour {
     public bool Update_Is_Visited(string loaded_Scene) {
        
         //ファイル読み込み
-        string filePath = Application.dataPath + @"\SceneProgress.txt";
+        string filePath = Application.dataPath + @"\StreamingAssets\SceneProgress.txt";
         TextFileReader text = new TextFileReader();
         text.Read_Text_File(filePath);
 
@@ -42,7 +42,7 @@ public class SceneProgress : MonoBehaviour {
     //シーンの検索
     public bool Is_Exist_Scene(string scene_Name) {
         //ファイル読み込み
-        string filePath = Application.dataPath + @"\SceneProgress.txt";
+        string filePath = Application.dataPath + @"\StreamingAssets\SceneProgress.txt";
         TextFileReader text = new TextFileReader();
         text.Read_Text_File(filePath);
         for(int i = 1; i < text.rowLength; i++) {
@@ -57,7 +57,7 @@ public class SceneProgress : MonoBehaviour {
     //データの消去
     public void Delete_Progress() {
         //ファイル読み込み
-        string filePath = Application.dataPath + @"\SceneProgress.txt";
+        string filePath = Application.dataPath + @"\StreamingAssets\SceneProgress.txt";
        
         //1行目以外消す
         StreamWriter sw_Clear = new StreamWriter(filePath, false);

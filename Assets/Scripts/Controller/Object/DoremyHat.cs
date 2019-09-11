@@ -30,7 +30,7 @@ public class DoremyHat : MonoBehaviour {
     //記録
     private void Save_Getting() {
         //ファイル読み込み
-        string filePath = Application.dataPath + @"\DoremyHat.txt";
+        string filePath = Application.dataPath + @"\StreamingAssets\DoremyHat.txt";
         TextFileReader text = new TextFileReader();
         text.Read_Text_File(filePath);
 
@@ -58,7 +58,7 @@ public class DoremyHat : MonoBehaviour {
     //データの消去
     static public void Delete_Data() {
         //ファイル読み込み
-        string filePath = Application.dataPath + @"\DoremyHat.txt";
+        string filePath = Application.dataPath + @"\StreamingAssets\DoremyHat.txt";
         TextFileReader text = new TextFileReader();
         text.Read_Text_File(filePath);
 

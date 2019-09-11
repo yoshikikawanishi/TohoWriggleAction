@@ -75,7 +75,6 @@ public class BombBlockController : MonoBehaviour {
     private void Effect(GameObject block) {
         GameObject effect = block.transform.GetChild(0).gameObject;
         effect.transform.SetParent(null);
-        Debug.Log(effect);
         AudioClip clip = effect.GetComponent<AudioSource>().clip;
         effect.GetComponent<AudioSource>().PlayOneShot(clip);
         effect.GetComponent<ParticleSystem>().Play();

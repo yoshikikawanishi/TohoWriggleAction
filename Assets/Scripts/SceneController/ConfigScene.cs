@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class ConfigScene : MonoBehaviour {
 
     //ボタン
+    Slider BGM_Setting_Button;
+    
     Button jump_Button;
     Button shot_Button;
     Button fly_Button;
@@ -15,6 +17,8 @@ public class ConfigScene : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //ボタンの取得
+        BGM_Setting_Button = GameObject.Find("BGMSetting").GetComponent<Slider>();
+        
         jump_Button = GameObject.Find("Jump/Submit").GetComponent<Button>();
         shot_Button = GameObject.Find("Shot/Cancel").GetComponent<Button>();
         fly_Button = GameObject.Find("Fly").GetComponent<Button>();
@@ -22,9 +26,10 @@ public class ConfigScene : MonoBehaviour {
         //ボタンのテキスト書き換え
         Button_Text_Change();
 
-        jump_Button.Select();  
+        BGM_Setting_Button.Select();
 	}
 
+    
 
     //ボタンのテキスト書き換え
     public void Button_Text_Change() {
@@ -37,4 +42,7 @@ public class ConfigScene : MonoBehaviour {
         pause_Button.GetComponentInChildren<Text>().text = k.GetKeyCode("Pause")[0].ToString() + "\t|\t" + k.GetKeyCode("Pause")[1].ToString();
 
     }
+
+
+    
 }

@@ -1,0 +1,3 @@
+#Type	#Value
+BGM	0
+SE	0

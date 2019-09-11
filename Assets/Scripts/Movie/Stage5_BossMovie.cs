@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage5_BossMovie : MonoBehaviour {
 
@@ -159,5 +160,18 @@ public class Stage5_BossMovie : MonoBehaviour {
     }
 
 
+    //クリア後ムービー
+    public void Start_Clear_Movie() {
+        StartCoroutine("Clear_Movie");
+    }
+
+    private IEnumerator Clear_Movie() {
+        yield return new WaitForSeconds(2.0f);
+        //明転
+        GetComponent<FadeInOut>().Start_Fade_Out();
+        yield return new WaitForSeconds(3.0f);
+        //シーン遷移
+        SceneManager.LoadScene("EndingScene");
+    }
 
 }

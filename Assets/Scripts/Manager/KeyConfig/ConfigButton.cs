@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class ConfigButton : MonoBehaviour {
 
@@ -11,6 +12,11 @@ public class ConfigButton : MonoBehaviour {
     [SerializeField] private GameObject shot_Button;
     [SerializeField] private GameObject fly_Button;
     [SerializeField] private GameObject pause_Button;
+    [SerializeField] private GameObject BGM_Set_Slider;
+    [SerializeField] private GameObject SE_Set_Slider;
+
+    [SerializeField] private AudioMixer audio_Mixer;
+
 
     private bool wait_Input = false;
 
@@ -47,6 +53,7 @@ public class ConfigButton : MonoBehaviour {
     public void Go_Title_Button() {
         if (InputManager.Instance.GetKeyDown(MBLDefine.Key.Jump)) {
             InputManager.Instance.keyConfig.SaveConfigFile();
+            GetComponent<AudioVolumeManager>().Save_Audio_Setting();
             SceneManager.LoadScene("TitleScene");
         }
     }
@@ -101,9 +108,6 @@ public class ConfigButton : MonoBehaviour {
         button.GetComponent<Image>().color = new Color(1, 1, 1);
         yield return null;
     }
-
-    
-
 
     
 }

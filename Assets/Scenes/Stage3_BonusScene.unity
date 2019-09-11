@@ -1055,7 +1055,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4393806207781460, guid: 3a2748773661bd74187d5635566ad43a, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a2748773661bd74187d5635566ad43a, type: 2}
@@ -1255,7 +1255,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4218521925435612, guid: 7930d63155331b24180dd660d4351a5e, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7930d63155331b24180dd660d4351a5e, type: 2}
@@ -1307,7 +1307,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2138502700}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4001282013708814, guid: b4c5c5cb7cb89044981b4724a2bd1f3f, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1339,7 +1339,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4001282013708814, guid: b4c5c5cb7cb89044981b4724a2bd1f3f, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114154765419329492, guid: b4c5c5cb7cb89044981b4724a2bd1f3f,
         type: 2}
@@ -1349,11 +1349,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4c5c5cb7cb89044981b4724a2bd1f3f, type: 2}
   m_IsPrefabAsset: 0
---- !u!4 &1291865029 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4001282013708814, guid: b4c5c5cb7cb89044981b4724a2bd1f3f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1291865028}
 --- !u!4 &1510000979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4218521925435612, guid: 7930d63155331b24180dd660d4351a5e,
@@ -1567,7 +1562,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1291865029}
   - {fileID: 542750517}
   - {fileID: 1510000979}
   m_Father: {fileID: 0}

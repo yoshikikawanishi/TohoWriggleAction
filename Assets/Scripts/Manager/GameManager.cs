@@ -159,6 +159,7 @@ public class GameManager : MonoBehaviour {
         not_Game_Scene_List.Add("GameOverScene");
         not_Game_Scene_List.Add("ConfigScene");
         not_Game_Scene_List.Add("UnderGroundScene");
+        not_Game_Scene_List.Add("EndingScene");
 
         string now_Scene = SceneManager.GetActiveScene().name;
         foreach (string scene in not_Game_Scene_List) {

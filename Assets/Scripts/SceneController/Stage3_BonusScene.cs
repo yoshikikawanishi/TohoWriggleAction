@@ -14,6 +14,14 @@ public class Stage3_BonusScene : MonoBehaviour {
         if (!game_Manager.Is_First_Visit()) {
             Destroy(GameObject.Find("Items"));
         }
+        //帽子取得済みなら消す
+        //ファイル読み込み
+        string filePath = Application.dataPath + @"\StreamingAssets\DoremyHat.txt";
+        TextFileReader text = new TextFileReader();
+        text.Read_Text_File(filePath);
+        if (text.textWords[2, 1] == "true") {
+            Destroy(GameObject.Find("DoremyHat"));
+        }
     }  
 
 }

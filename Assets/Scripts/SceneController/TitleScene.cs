@@ -29,56 +29,43 @@ public class TitleScene : MonoBehaviour {
         Button continue_Button = GameObject.Find("ContinueButton").GetComponent<Button>();
         continue_Button.Select();
 
-        //ドレミーハットの表示
-        Display_Doremy_Hat();
+        //エクストラステージの開放、ドレミー帽子の表示
+        Judge_Extra_Stage();
 
-        //エクストラステージの開放
-        Open_Extra_Stage();
 	}
 
 
-    //ドレミーハットの表示
-    private void Display_Doremy_Hat() {
+    //エクストラステージの開放、ドレミー帽子の表示
+    private void Judge_Extra_Stage() {
         //取得
+        GameObject extra_Button = GameObject.Find("ExtraButton");
         GameObject[] doremy_Hat_Images = new GameObject[3];
         GameObject parent = GameObject.Find("DoremyHats");
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             doremy_Hat_Images[i] = parent.transform.GetChild(i).gameObject;
             doremy_Hat_Images[i].SetActive(false);
         }
         //ファイル読み込み
-        string filePath = Application.dataPath + @"\DoremyHat.txt";
+        string filePath = Application.dataPath + @"\StreamingAssets\DoremyHat.txt";
         TextFileReader text = new TextFileReader();
         text.Read_Text_File(filePath);
-        //反映
-        for(int i = 1; i < text.rowLength; i++) {
-            if(text.textWords[i, 1] == "true") {
-                doremy_Hat_Images[i-1].SetActive(true);
-            }
-        }
-    }
-
-
-    //エクストラステージの開放
-    private void Open_Extra_Stage() {
-        //ボタンの取得
-        GameObject extra_Button = GameObject.Find("ExtraButton");
-        //ファイル読み込み
-        string filePath = Application.dataPath + @"\DoremyHat.txt";
-        TextFileReader text = new TextFileReader();
-        text.Read_Text_File(filePath);
-        //帽子がすべて集まっているかどうか
+        
+        //帽子の収集率を反映
         bool is_Open = true;
         for(int i = 1; i < text.rowLength; i++) {
             if(text.textWords[i, 1] == "false") {
                 is_Open = false;
             }
+            if (text.textWords[i, 1] == "true") {
+                doremy_Hat_Images[i - 1].SetActive(true);
+            }
         }
-        //集まっていないとき押せなくする
+        //集まっていないときボタンを押せなくする
         if (!is_Open) {
             extra_Button.GetComponent<Button>().interactable = false;
             extra_Button.GetComponentInChildren<Text>().color = new Color(1f, 0.8f, 0.8f);
         }
+        
     }
 
 
