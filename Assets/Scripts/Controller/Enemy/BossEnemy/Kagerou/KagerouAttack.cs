@@ -99,7 +99,8 @@ public class KagerouAttack : MonoBehaviour {
         _controller.Change_Parametar("IdleBool", 1);
         _move.Start_Move(new Vector3(200f, -16f), 0, 0.02f);
         yield return new WaitUntil(_move.End_Move);
-        yield return new WaitForSeconds(1.0f);
+        _controller.Appear_Back_Design(transform.position, new Color(0.2f, 0.2f, 0.8f, 0.07f));
+        yield return new WaitForSeconds(0.5f);
 
         while (boss_Controller.Get_Now_Phase() == 1) {
 
@@ -172,6 +173,7 @@ public class KagerouAttack : MonoBehaviour {
             _rush.StopAllCoroutines();
             _scatter.Stop_Scatter();
             transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 0, 1));
+            _controller.Delete_Back_Design();
             //フェーズ2
             StartCoroutine("Phase2_Routine");
         }
@@ -184,6 +186,7 @@ public class KagerouAttack : MonoBehaviour {
         _move.Start_Move(new Vector3(0f, 10f), 0, 0.02f);
         yield return new WaitUntil(_move.End_Move);
         _controller.Change_Parametar("IdleBool", 1);
+        _controller.Appear_Back_Design(transform.position, new Color(0.4f, 0.2f, 0.6f, 0.07f));
         //透明化、魔法陣消す
         transform.GetChild(5).gameObject.SetActive(false);
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.15f);
@@ -224,6 +227,7 @@ public class KagerouAttack : MonoBehaviour {
             StopCoroutine("Phase2_Routine");
             transform.GetChild(5).gameObject.SetActive(true);
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            _controller.Delete_Back_Design();
             //フェーズ3開始
             StartCoroutine("Phase3_Routine");
         }
@@ -241,6 +245,7 @@ public class KagerouAttack : MonoBehaviour {
         yield return new WaitUntil(_move.End_Move);
         _controller.Change_Parametar("IdleBool", 1);
         gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
+        _controller.Appear_Back_Design(transform.position, new Color(0.6f, 0.2f, 0.4f, 0.07f));
 
         while (boss_Controller.Get_Now_Phase() == 3) {
             //ためエフェクト
@@ -298,6 +303,7 @@ public class KagerouAttack : MonoBehaviour {
             phase4.start_Routine = false;
             //フェーズ3終了
             StopCoroutine("Phase3_Routine");
+            _controller.Delete_Back_Design();
             //フェーズ4開始
             StartCoroutine("Phase4_Routine");
         }
@@ -318,6 +324,7 @@ public class KagerouAttack : MonoBehaviour {
         yield return new WaitUntil(_move.End_Move);
         _controller.Change_Parametar("IdleBool", 1);
         gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
+        _controller.Appear_Back_Design(transform.position, new Color(0.8f, 0.2f, 0.2f, 0.07f));
 
         //ショット
         //本体
@@ -381,6 +388,7 @@ public class KagerouAttack : MonoBehaviour {
     //フェーズ4終了
     public void Stop_Phase4() {
         StopAllCoroutines();
+        _controller.Delete_Back_Design();
     }
     
 

@@ -14,11 +14,6 @@ public class MiniWolfParent : MonoBehaviour {
 	void Start () {
         kagerou = GameObject.Find("Kagerou");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 
     public IEnumerator Do_Wolf_Attack() {

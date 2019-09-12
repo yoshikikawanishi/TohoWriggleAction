@@ -2122,6 +2122,11 @@ Prefab:
       propertyPath: directions.Array.data[40].x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212965619269252936, guid: 26a8b1e7cc6ebd74bb52a30c41eabc15,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26a8b1e7cc6ebd74bb52a30c41eabc15, type: 2}
   m_IsPrefabAsset: 0

@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using MBLDefine;
+using UnityEngine.EventSystems;
 
 public class ButtonFunction : MonoBehaviour {
 
@@ -51,6 +51,8 @@ public class ButtonFunction : MonoBehaviour {
     private IEnumerator Start_Game() {
         FadeInOut f = GameObject.FindWithTag("ScriptsTag").GetComponent<FadeInOut>();
         f.Start_Fade_Out();
+        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Start_Fade_Out(0.01f, 1.0f);
+        EventSystem.current.SetSelectedGameObject(null);
         yield return new WaitForSeconds(1.0f);
         _gameManager.StartCoroutine("LoadData");
     }

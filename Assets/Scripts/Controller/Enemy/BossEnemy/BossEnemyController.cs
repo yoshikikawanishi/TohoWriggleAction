@@ -28,6 +28,7 @@ public class BossEnemyController : MonoBehaviour {
 
     //クリア検知用
     private bool clear_Trigger = false;
+    private bool is_Cleared = false;
 
     //フェーズ切り替え時のボム
     [SerializeField] private GameObject phase_Change_Bomb;
@@ -88,7 +89,8 @@ public class BossEnemyController : MonoBehaviour {
             Phase_Change(now_Phase + 1);
         }
         //体力0でクリア
-        if(now_Phase > phase_Num) {          
+        if(now_Phase > phase_Num && !is_Cleared) {
+            is_Cleared = true;
             Clear();           
         }
         //被弾音の切り替え

@@ -4234,6 +4234,11 @@ Prefab:
       propertyPath: m_Name
       value: CrashBlock (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 212698140763031502, guid: 468a0c12be8abe349bc9ef293dd9da33,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 468a0c12be8abe349bc9ef293dd9da33, type: 2}
   m_IsPrefabAsset: 0
@@ -7009,6 +7014,11 @@ Prefab:
       propertyPath: m_Name
       value: CrashBlock (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 212698140763031502, guid: 468a0c12be8abe349bc9ef293dd9da33,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 468a0c12be8abe349bc9ef293dd9da33, type: 2}
   m_IsPrefabAsset: 0
@@ -8323,6 +8333,11 @@ Prefab:
     - target: {fileID: 4697815609734644, guid: 468a0c12be8abe349bc9ef293dd9da33, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 212698140763031502, guid: 468a0c12be8abe349bc9ef293dd9da33,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 468a0c12be8abe349bc9ef293dd9da33, type: 2}

@@ -178,26 +178,24 @@ public class WriggleController : PlayerController {
             _rigid.velocity = new Vector2(240f * transform.localScale.x, -270f);
         }
         //キックが敵にヒットした時跳ね返る(WriggleKickCollisionで衝突判定)
-        for (float time = 0; time < 0.3f; time += Time.deltaTime) {
-            if (Is_Hit_Kick()) {
+        for (float time = 0; time < 0.3f; time += 0.015f) {
+            if (is_Hit_Kick) {
+                is_Hit_Kick = false;
                 _rigid.velocity = new Vector2(40f * -transform.localScale.x, 180f);
                 yield return new WaitForSeconds(0.2f);
                 break;
             }
-            yield return null;
+            yield return new WaitForSeconds(0.015f);
         }
         //ステータスを戻す
         _rigid.drag = default_Drag;
         player_Kick.SetActive(false);
         is_Playable = true;
     }
-    //キックが当たったかどうか
-    private bool Is_Hit_Kick() {
-        if (is_Hit_Kick) {
-            is_Hit_Kick = false;
-            return true;
-        }
-        return false;
+
+
+    public void Set_Is_Hit_Kick(bool is_Hit_Kick) {
+        this.is_Hit_Kick = is_Hit_Kick;
     }
 
 

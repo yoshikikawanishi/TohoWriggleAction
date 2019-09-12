@@ -71,6 +71,23 @@ public class BGMManager : MonoBehaviour {
     }
 
 
+    //曲のフェードアウト
+    public void Start_Fade_Out(float speed, float time_Span) {
+        StartCoroutine(Fade_Out(speed, time_Span));
+    }
+
+    private IEnumerator Fade_Out(float speed, float time_Span) {
+        AudioSource audio = now_BGM;
+        float default_Volume = audio.volume;
+        while(now_BGM.volume > 0) {
+            audio.volume -= speed;
+            yield return null;
+        }
+        yield return new WaitForSeconds(time_Span);
+        audio.volume = default_Volume;
+    }
+
+
     //シーン読み込み時に呼ばれる
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         switch (scene.name) {

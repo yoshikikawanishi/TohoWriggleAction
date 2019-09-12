@@ -16,17 +16,16 @@ public class WriggleKickCollision : MonoBehaviour {
 	}
 	
 
-    //FixedUpdate
-    private void FixedUpdate() {
-        player_Controller.is_Hit_Kick = false;
-    }
-
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "EnemyTag" || collision.tag == "SandbagTag") {
+            //当たり判定
             player.layer = LayerMask.NameToLayer("InvincibleLayer");
-            player_Controller.is_Hit_Kick = true;
-            Invoke("Change_Layer", 0.5f);
+            Invoke("Change_Layer", Time.deltaTime * 3f);
+            //通知
+            player_Controller.Set_Is_Hit_Kick(true);
+            //エフェクト
+            Play_Effect();
         }
     }
 
@@ -34,5 +33,12 @@ public class WriggleKickCollision : MonoBehaviour {
     //当たり判定を戻す
     private void Change_Layer() {
         player.layer = LayerMask.NameToLayer("PlayerLayer");
+    }
+
+
+    //エフェクト
+    private void Play_Effect() {
+        GetComponent<ParticleSystem>().Play();
+
     }
 }

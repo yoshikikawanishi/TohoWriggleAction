@@ -8,6 +8,7 @@ public class MiniWolf : MonoBehaviour {
 
     private Rigidbody2D _rigid;
     private Renderer _renderer;
+    private AudioSource roar_Sound;
 
     public ParticleSystem transform_Effect;
 
@@ -26,6 +27,7 @@ public class MiniWolf : MonoBehaviour {
         transform_Effect = transform.Find("TransformEffect").GetComponent<ParticleSystem>();
         _rigid = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<Renderer>();
+        roar_Sound = GetComponents<AudioSource>()[1];
     }
 
 
@@ -67,6 +69,7 @@ public class MiniWolf : MonoBehaviour {
         yield return new WaitForSeconds(t);
         while (true) {
             _bullet.Odd_Num_Bullet(1, 0, 100f, 5.0f);
+            UsualSoundManager.Shot_Sound();
             yield return new WaitForSeconds(2.0f);
         }
     }
@@ -138,6 +141,7 @@ public class MiniWolf : MonoBehaviour {
             effect.localRotation = Quaternion.AngleAxis(-90, new Vector3(0, 0, 1));
         }
         transform.GetChild(1).GetComponent<ParticleSystem>().Play();
+        roar_Sound.Play();
     }
     
 

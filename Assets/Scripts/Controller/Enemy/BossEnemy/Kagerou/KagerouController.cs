@@ -16,6 +16,9 @@ public class KagerouController : MonoBehaviour {
     //戦闘開始
     private bool start_Battle = false;
 
+    //バックデザイン
+    [SerializeField] private GameObject back_Design;
+
 
 	// Use this for initialization
 	void Start () {
@@ -89,6 +92,22 @@ public class KagerouController : MonoBehaviour {
         var spread_Effect = Instantiate(Resources.Load("Effect/PowerSpreadEffectRed") as GameObject);
         spread_Effect.transform.position = transform.position;
         Destroy(spread_Effect, 3.0f);
+    }
+
+    //バックデザイン出す
+    public void Appear_Back_Design(Vector3 pos, Color color) {
+        back_Design.transform.localScale = new Vector3(0, 0, 1);
+        back_Design.transform.position = pos;
+        for(int i = 0; i < back_Design.transform.childCount; i++) {
+            back_Design.transform.GetChild(i).GetComponent<SpriteRenderer>().color = color;
+        }
+        back_Design.SetActive(true);
+    }
+
+    //バックデザイン消す
+    public void Delete_Back_Design() {
+        back_Design.SetActive(false);
+        back_Design.transform.localScale = new Vector3(0, 0, 1);
     }
 
     //アニメーション変更
