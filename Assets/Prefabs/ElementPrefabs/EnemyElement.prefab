@@ -77,7 +77,8 @@ AudioSource:
   m_GameObject: {fileID: 1748682987022382}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243290957650688938, guid: ec0738a2f580f704391b999be37bf285,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.01
@@ -176,11 +177,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 1
-  vanish_Effect: {fileID: 1901817575273748, guid: 20dfbcca07249104a9b30d99e5064b93,
-    type: 2}
   score_Value: 200
   power_Value: 2
+  probability_Recover_Item: 20
   item_Out_Speed: 500
+  is_Hit_Spikes: 0
 --- !u!114 &114758836722885528
 MonoBehaviour:
   m_ObjectHideFlags: 1

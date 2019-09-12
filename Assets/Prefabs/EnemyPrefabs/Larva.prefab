@@ -303,7 +303,8 @@ AudioSource:
   m_GameObject: {fileID: 1402452769032956}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243290957650688938, guid: ec0738a2f580f704391b999be37bf285,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 0e563f776142e8a4dbd1cfce6f23331e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1
@@ -511,7 +512,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage_Sound: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
+  audio_Group: {fileID: 243290957650688938, guid: ec0738a2f580f704391b999be37bf285,
+    type: 2}
   life: 3c00000046000000
+  LIFE: 
   power_Value: 12
   score_Value: 3000
   phase_Change_Bomb: {fileID: 1439832585991350, guid: 6d2505b4b9f621b46b2f8e32574cd505,

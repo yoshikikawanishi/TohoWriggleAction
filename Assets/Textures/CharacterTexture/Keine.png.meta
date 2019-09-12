@@ -8,6 +8,8 @@ TextureImporter:
     21300006: Keine_3
     21300008: Keine_4
     21300010: Keine_5
+    21300012: Keine_6
+    21300014: Keine_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -137,7 +139,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e917e51b72640c4aa7e2febd87df8ab
+      spriteID: 6d43c2fed8025be43bbd5cb8c1067fc5
       vertices: []
       indices: 
       edges: []
@@ -157,7 +159,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5396467e3711e446a4d5631c3a52a0f
+      spriteID: c384f44398d08ce44b586a0cccd4a69b
       vertices: []
       indices: 
       edges: []
@@ -177,7 +179,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73fad2a0323b7034c9eaf84b5ceb1fe8
+      spriteID: ef632ae7b38ebbd40888398e92dc99ef
       vertices: []
       indices: 
       edges: []
@@ -197,7 +199,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abb76c62a4e47634492522442cba3ace
+      spriteID: 83f7c329202dd9d47994bc37315b24d4
       vertices: []
       indices: 
       edges: []
@@ -206,28 +208,8 @@ TextureImporter:
       name: Keine_4
       rect:
         serializedVersion: 2
-        x: 8
-        y: 3
-        width: 23
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2b331c086360640459ee13da94cc9579
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Keine_5
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 4
+        x: 10
+        y: 5
         width: 21
         height: 37
       alignment: 0
@@ -237,7 +219,67 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c49d6606aecf954a99ebc5a848288e7
+      spriteID: 8828e8999f150774899a9a35623b40ba
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Keine_5
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 5
+        width: 21
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7322a30333110324ca37706ed2a1eb02
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Keine_6
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 5
+        width: 21
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6422cf25ed56dcc47b83dd5d06208b8d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Keine_7
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 5
+        width: 21
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4756cc731d88514d92922de738e7f42
       vertices: []
       indices: 
       edges: []
@@ -245,7 +287,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: c1feeeab6f39a164dbd45140ac34d313
+    spriteID: 9a3db7188df8e8b4eb93178cb6ebada8
     vertices: []
     indices: 
     edges: []

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour {
 
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour {
     //解像度
     public int ScreenWidth = 960;
     public int ScreenHeight = 540;
+
+    //オーディオ
+    public AudioMixer audio_Mixer;
 
     //シングルトン用
     public static GameManager instance;
@@ -56,6 +60,7 @@ public class GameManager : MonoBehaviour {
         //ドレミーハットのデータ消去
         //DoremyHat.Delete_Data();
         Debug.Log("DoremyHat_Data_Delete");
+
     }
 
 
@@ -63,6 +68,9 @@ public class GameManager : MonoBehaviour {
     void Start () {
         //スクリプトの取得
         _playerManager = GetComponent<PlayerManager>();
+
+        //オーディオの初期化
+        Set_Up_Audio_Mixer();
 
         /*　データ消去のテスト */
         //DeleteData();
@@ -191,5 +199,17 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(next_Scene);
         yield return null;
         GameObject.FindWithTag("PlayerTag").transform.position = player_Pos;
+    }
+
+
+    //オーディオの初期化
+    public void Set_Up_Audio_Mixer() {
+        //ファイル読み込み
+        string filePath = Application.dataPath + @"\StreamingAssets\AudioSetting.txt";
+        TextFileReader text = new TextFileReader();
+        text.Read_Text_File(filePath);
+
+        audio_Mixer.SetFloat("BGMvol", float.Parse(text.textWords[1, 1]));
+        audio_Mixer.SetFloat("SEvol", float.Parse(text.textWords[2, 1]));
     }
 }

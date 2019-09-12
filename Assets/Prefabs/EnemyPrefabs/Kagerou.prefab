@@ -278,7 +278,8 @@ AudioSource:
   m_GameObject: {fileID: 1194067781830242}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243290957650688938, guid: ec0738a2f580f704391b999be37bf285,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: c7e5dc2cf433a7844b87f519dc96fc4b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.4
@@ -464,6 +465,7 @@ MonoBehaviour:
     start_Routine: 1
   phase4:
     start_Routine: 1
+    shot_Objects: {fileID: 0}
 --- !u!114 &114401525462527990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -499,11 +501,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage_Sound: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
+  audio_Group: {fileID: 243290957650688938, guid: ec0738a2f580f704391b999be37bf285,
+    type: 2}
   life: 50000000320000005000000050000000
   LIFE: 
   power_Value: 50
   score_Value: 5000
-  phase_Change_Bomb: {fileID: 1439832585991350, guid: 6d2505b4b9f621b46b2f8e32574cd505,
+  phase_Change_Bomb: {fileID: 1828506245285122, guid: f371300bf61da4047befe277ac289882,
     type: 2}
   clear_Effect: {fileID: 1678717706024572, guid: 9dced7ab9a8e61149bbced61d60b8cb1,
     type: 2}

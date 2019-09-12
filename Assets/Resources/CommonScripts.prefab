@@ -109,3 +109,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScreenWidth: 960
   ScreenHeight: 540
+  audio_Mixer: {fileID: 24100000, guid: ec0738a2f580f704391b999be37bf285, type: 2}

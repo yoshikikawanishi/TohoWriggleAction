@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEngine.UI;
+using UnityEngine.Audio;
 
 //ボスの体力、被弾時の処理、クリア時の処理をするクラス
 public class BossEnemyController : MonoBehaviour {
@@ -11,6 +11,7 @@ public class BossEnemyController : MonoBehaviour {
     private SpriteRenderer _sprite;
     private AudioSource damage_Audio_Source;
     [SerializeField] AudioClip damage_Sound;
+    [SerializeField] AudioMixerGroup audio_Group;
     //スクリプト
     private ObjectPool _pool;
 
@@ -46,6 +47,7 @@ public class BossEnemyController : MonoBehaviour {
         damage_Audio_Source = gameObject.AddComponent<AudioSource>();
         damage_Audio_Source.clip = damage_Sound;
         damage_Audio_Source.volume = 0.001f;
+        damage_Audio_Source.outputAudioMixerGroup = audio_Group;
         //パーティクル
         hit_Effect_Particle = transform.Find("BossHitEffect").GetComponent<ParticleSystem>();
         //ダメージエフェクトのオブジェクトプール

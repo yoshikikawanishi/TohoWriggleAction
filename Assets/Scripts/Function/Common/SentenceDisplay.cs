@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class SentenceDisplay : MonoBehaviour {
     
@@ -10,6 +11,7 @@ public class SentenceDisplay : MonoBehaviour {
     private Text text;
 
     public AudioClip audio_Clip;
+    public AudioMixerGroup audio_Group;
     private float sound_Volume = 0.07f;
     private AudioSource _audio;
 
@@ -31,6 +33,7 @@ public class SentenceDisplay : MonoBehaviour {
         if(_audio == null) {
             _audio = gameObject.AddComponent<AudioSource>();
             _audio.volume = sound_Volume;
+            _audio.outputAudioMixerGroup = audio_Group;
         }
         StartCoroutine("Display_Sentence");
     }

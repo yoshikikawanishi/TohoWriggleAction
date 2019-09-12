@@ -3,7 +3,6 @@ guid: 3e873db4b8a56e34dbad244b3bd9ac11
 TextureImporter:
   fileIDToRecycleName:
     21300000: Player_Beetle_Bullet_0
-    21300002: Player_Beetle_Bullet_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -133,27 +132,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a0a16040a99b4242be38f0c109355a0
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Beetle_Bullet_1
-      rect:
-        serializedVersion: 2
-        x: 27
-        y: 0
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e80016527f4d06c46b9378a433fac08e
+      spriteID: f69fb7a8c5a2dfe4093154d043853d8f
       vertices: []
       indices: 
       edges: []
@@ -161,7 +140,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 552b05155aabdf845a34dffdd0e3d4e1
+    spriteID: f9b56efa310ed3b4cbfeb546227f5de5
     vertices: []
     indices: 
     edges: []
