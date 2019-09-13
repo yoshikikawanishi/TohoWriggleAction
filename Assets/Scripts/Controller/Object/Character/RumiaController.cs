@@ -38,7 +38,7 @@ public class RumiaController : MonoBehaviour {
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
         //被弾の判定
-        if (collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag") {
+        if (collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag" || collision.tag == "BeetleBulletTag") {
             life--;
             //体力がなくなった時落下開始
             if(life <= 0 && !start_Motion) {

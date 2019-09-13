@@ -46,7 +46,7 @@ public class SpikeBlock : MonoBehaviour {
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "PlayerAttackTag" || collision.tag == "PlayerBulletTag" && !is_Hit) {
+        if ((collision.tag == "PlayerAttackTag" || collision.tag == "PlayerBulletTag" || collision.tag == "BeetleBulletTag") && !is_Hit) {
             Crash();
             is_Hit = true;
         }

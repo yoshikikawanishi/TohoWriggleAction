@@ -6,7 +6,7 @@ public class CrashBlockController : MonoBehaviour {
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag") {
+        if(collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag" || collision.tag == "BeetleBulletTag") {
             if(transform.childCount != 0) {
                 //エフェクト出す
                 Effect();

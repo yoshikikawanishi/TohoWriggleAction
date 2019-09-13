@@ -231,17 +231,17 @@ public class WriggleShot : MonoBehaviour {
             }
             //2段階目以降
             if (power_Grade >= 2) {
-                beetle_Shot_Span = 0.4f;
+                bullet_Num = 2;
+                beetle_Shot_Span = 0.35f;
             }
             //3段階目以降
             if (power_Grade >= 3) {
-                bullet_Num = 2;
-                beetle_Shot_Span = 0.35f;
+                beetle_Shot_Span = 0.25f;
             }
             //4段階目
             if (power_Grade >= 4) {
                 bullet_Num = 3;
-                beetle_Shot_Span = 0.3f;
+                beetle_Shot_Span = 0.25f;
             }
             //弾の発射
             for (int i = 0; i < bullet_Num; i++) {

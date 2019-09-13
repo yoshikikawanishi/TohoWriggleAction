@@ -25,6 +25,7 @@ TagManager:
   - BGMTag
   - ScreenWallTag
   - SandbagTag
+  - BeetleBulletTag
   layers:
   - Default
   - TransparentFX

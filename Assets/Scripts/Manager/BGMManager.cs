@@ -42,8 +42,10 @@ public class BGMManager : MonoBehaviour {
 
     //BGM止める
     public void Stop_BGM() {
-        now_BGM.Stop();
-        now_BGM = null;
+        if (now_BGM != null) {
+            now_BGM.Stop();
+            now_BGM = null;
+        }
     }
 
     //BGM変える

@@ -49,13 +49,15 @@ public class Enemy : MonoBehaviour {
 
     //TriggerEnter2D
     public void OnTriggerEnter2D(Collider2D collision) {
-        //自機の弾または自機に当たった時
+        //被弾
         if(collision.tag == "PlayerBulletTag" || collision.tag == "PlayerBodyTag") {
             Damaged(1);
         }
-        //キック、ボムに当たった時
         if(collision.tag == "PlayerAttackTag") {
             Damaged(20);
+        }
+        if(collision.tag == "BeetleBulletTag") {
+            Damaged(10);
         }
         if(collision.tag == "BombTag") {
             Damaged(10);

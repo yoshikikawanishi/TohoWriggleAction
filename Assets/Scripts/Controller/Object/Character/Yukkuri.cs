@@ -21,7 +21,7 @@ public class Yukkuri : MonoBehaviour {
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.tag == "PlayerAttackTag" || collision.tag == "PlayerBulletTag") {
+        if(collision.tag == "PlayerAttackTag" || collision.tag == "PlayerBulletTag" || collision.tag == "BeetleBulletTag") {
             StartCoroutine("Damaged");
         }
     }

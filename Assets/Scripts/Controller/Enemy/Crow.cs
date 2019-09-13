@@ -46,7 +46,7 @@ public class Crow : MonoBehaviour {
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
         if (is_Invincible) {
-            if (collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag") {
+            if (collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag" || collision.tag == "BeetleBulletTag") {
                 repel_Sound.Play();
             }
         }

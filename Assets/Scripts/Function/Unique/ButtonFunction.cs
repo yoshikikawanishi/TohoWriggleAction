@@ -47,7 +47,7 @@ public class ButtonFunction : MonoBehaviour {
         }
     }
 
-    //初めから開始
+    //ゲーム開始
     private IEnumerator Start_Game() {
         FadeInOut f = GameObject.FindWithTag("ScriptsTag").GetComponent<FadeInOut>();
         f.Start_Fade_Out();
@@ -60,9 +60,10 @@ public class ButtonFunction : MonoBehaviour {
 
     //続きからボタン押下時
     public void Load_Data_Button() {
-        if (InputManager.Instance.GetKeyDown(Key.Jump)) 
-            _gameManager.StartCoroutine("LoadData");
+        if (InputManager.Instance.GetKeyDown(Key.Jump))
+            StartCoroutine("Start_Game");
     }
+
 
     //コンティニューボタン押下時
     public void Continue_Button() {

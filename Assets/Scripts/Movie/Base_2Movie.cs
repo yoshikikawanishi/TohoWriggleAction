@@ -49,9 +49,9 @@ public class Base_2Movie : MonoBehaviour {
         //2回目以降
         if (!GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>().Is_First_Visit()) {
             GetComponent<BorderFadeIn>().Start_Fade_In(1f);
-            Debug.Log("not first visit");
             StopAllCoroutines();
             is_End_Movie = true;
+            _pause.Set_Pausable(true);
             yield return null;
         }
 

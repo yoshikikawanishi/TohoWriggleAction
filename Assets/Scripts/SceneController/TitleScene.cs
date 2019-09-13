@@ -26,8 +26,17 @@ public class TitleScene : MonoBehaviour {
         confirm_Canvas.SetActive(false);
 
         //ボタンの初期位置
-        Button continue_Button = GameObject.Find("ContinueButton").GetComponent<Button>();
-        continue_Button.Select();
+        GameObject continue_Button = GameObject.Find("ContinueButton");
+        GameObject play_Guide_Button = GameObject.Find("PlayGuideButton");
+        if (PlayerPrefs.HasKey("Scene")) {
+            continue_Button.GetComponent<Button>().Select();
+        }
+        else {
+            continue_Button.GetComponent<Button>().interactable = false;
+            continue_Button.GetComponentInChildren<Text>().color = new Color(1f, 0.8f, 0.8f);
+            play_Guide_Button.GetComponent<Button>().Select();
+        }
+        
 
         //エクストラステージの開放、ドレミー帽子の表示
         Judge_Extra_Stage();

@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour {
         }
 
         //ドレミーハットのデータ消去
-        //DoremyHat.Delete_Data();
+        DoremyHat.Delete_Data();
         Debug.Log("DoremyHat_Data_Delete");
 
     }
@@ -73,14 +73,7 @@ public class GameManager : MonoBehaviour {
         Set_Up_Audio_Mixer();
 
         /*　データ消去のテスト */
-        //DeleteData();
-
-        /* コンフィグテスト */
-        /*
-        KeyConfig keyConfig = new KeyConfig();
-        keyConfig.Change_Button("Jump/Submit", "z", false);
-        keyConfig.Create_InputManager();
-        */
+        DeleteData();
 
         //ビルド前に初期化、消去すること
         Debug.Log("Check Before Build About[SaveDate, SceneProgress, DoremyHat, KeyConfig]");
@@ -98,8 +91,9 @@ public class GameManager : MonoBehaviour {
     //初めてゲームを起動したとき
     public void Do_First_Time_Setting() {
         Debug.Log("First_Open_Game");
-        PlayerPrefs.SetInt("Is_First_Open_Game", 0);
 
+        //起動済みを保存する
+        PlayerPrefs.SetInt("Is_First_Open_Game", 0);
     }
 
 

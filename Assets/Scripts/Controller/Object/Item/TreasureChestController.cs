@@ -46,9 +46,9 @@ public class TreasureChestController : MonoBehaviour {
            if(collision.tag == "PlayerBulletTag") {
                 Damaged(1);
            } 
-           else if(collision.tag == "PlayerAttackTag") {
+           else if(collision.tag == "PlayerAttackTag" || collision.tag == "BeetleBulletTag") {
                 Damaged(5);
-            }
+           }
         }
         
     }

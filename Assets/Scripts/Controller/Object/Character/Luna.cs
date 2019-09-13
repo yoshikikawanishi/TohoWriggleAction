@@ -36,7 +36,7 @@ public class Luna : MonoBehaviour {
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(!is_Falled && (collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag")) {
+        if(!is_Falled && (collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag" || collision.tag == "BeetleBulletTag")) {
             is_Falled = true;
             Damaged();
         }

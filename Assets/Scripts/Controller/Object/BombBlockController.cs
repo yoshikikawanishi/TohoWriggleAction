@@ -26,7 +26,7 @@ public class BombBlockController : MonoBehaviour {
 
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "PlayerAttackTag" || collision.tag == "PlayerBulletTag") {
+        if (collision.tag == "PlayerAttackTag" || collision.tag == "PlayerBulletTag" || collision.tag == "BeetleBulletTag") {
             if (!is_Crashed) {
                 is_Crashed = true;
                 Crash();

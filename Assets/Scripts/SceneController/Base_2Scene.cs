@@ -26,6 +26,9 @@ public class Base_2Scene : MonoBehaviour {
         main_Camera_Controller = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
         //受け止めろ！イベント
         _movie.StartCoroutine("Catch_Event");
+        //セーブ
+        GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>().SaveData();
+        GameObject.Find("Canvas").GetComponent<UIController>().Save_UI();
         
     }
 

@@ -70,9 +70,12 @@ public class BossEnemyController : MonoBehaviour {
             Damaged(1);
             StartCoroutine("Damaged_Effect", collision.transform.position);
         }
+        else if(collision.tag == "BeetleBulletTag") {
+            Damaged(5);
+        }
         //キックに当たった時
         else if (collision.tag == "PlayerAttackTag") {
-            Damaged(8);
+            Damaged(10);
         }
     }
 
