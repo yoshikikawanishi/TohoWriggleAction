@@ -58,7 +58,7 @@ public class BossEnemyController : MonoBehaviour {
 
         //初期値代入
         phase_Num = life.Count();
-        life.Add(0);
+        life.Add(63);
         LIFE = new List<int>(life);
     }
 

@@ -15,8 +15,8 @@ public class Rabit : MonoBehaviour {
     private float jump_Speed = 180f;
     [SerializeField] private float horizon_Speed = 0;
 
-    private float span = 4.0f;
-    private float time = 0;
+    private float span = 3.0f;
+    private float time = 1.5f;
 
     private int count = 0;
 
@@ -33,8 +33,6 @@ public class Rabit : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = GameObject.FindWithTag("PlayerTag");
-        //初期値代入
-        time = span / 2;
     }
 	
 	// Update is called once per frame

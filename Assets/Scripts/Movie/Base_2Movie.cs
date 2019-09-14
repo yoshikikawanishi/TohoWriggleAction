@@ -55,6 +55,10 @@ public class Base_2Movie : MonoBehaviour {
             yield return null;
         }
 
+        //セーブ
+        GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>().SaveData();
+        GameObject.Find("Canvas").GetComponent<UIController>().Save_UI();
+
         //初期設定
         main_Camera.GetComponent<CameraController>().enabled = false;
         GameObject scene_Background = main_Camera.transform.GetChild(0).gameObject;

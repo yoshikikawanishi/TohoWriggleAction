@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoropDestroy : MonoBehaviour {
+public class DropDestroy : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {

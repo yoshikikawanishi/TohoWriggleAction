@@ -15,8 +15,8 @@ public class YellowRabit : MonoBehaviour {
     [SerializeField] private GameObject bullet;
 
     //時間
-    private float span = 5.0f;
-    private float time = 0;
+    private float span = 3.0f;
+    private float time = 1.5f;
 
     private int count = 0;
 

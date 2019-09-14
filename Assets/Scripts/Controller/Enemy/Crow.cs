@@ -70,7 +70,7 @@ public class Crow : MonoBehaviour {
             yield return new WaitForSeconds(1.0f);
 
             for (int i = 0; i < 3; i++) {
-                _bullet.Shoot_Bullet(new Vector2(-100f * transform.localScale.x, 0), 10.0f);
+                _bullet.Shoot_Bullet(new Vector2(-100f * transform.localScale.x, 0), 0);
                 yield return new WaitForSeconds(0.5f);
             }
             yield return new WaitForSeconds(0.5f);

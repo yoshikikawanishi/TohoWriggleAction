@@ -64,6 +64,8 @@ public class DropGround : MonoBehaviour {
         }
         transform.GetChild(0).gameObject.SetActive(true);
         Destroy(GetComponent<Rigidbody2D>());
+        Destroy(transform.GetChild(0).gameObject, 0.5f);
+
     }
 
 }

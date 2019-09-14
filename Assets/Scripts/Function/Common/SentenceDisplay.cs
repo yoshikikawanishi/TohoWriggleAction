@@ -12,7 +12,7 @@ public class SentenceDisplay : MonoBehaviour {
 
     public AudioClip audio_Clip;
     public AudioMixerGroup audio_Group;
-    private float sound_Volume = 0.07f;
+    private float sound_Volume = 0.1f;
     private AudioSource _audio;
 
     private bool is_End_Display = false;

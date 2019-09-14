@@ -31,11 +31,13 @@ public class BulletFunctions : MonoBehaviour {
         var shoot_Bullet = Instantiate(bullet) as GameObject;
         shoot_Bullet.transform.position = transform.position;
         shoot_Bullet.GetComponent<Rigidbody2D>().velocity = velocity;
-        Destroy(shoot_Bullet, lifeTime);
+        if (lifeTime > 0) {
+            Destroy(shoot_Bullet, lifeTime);
+        }
     }
 
     //弾の生成、方向転換して発射
-    public  void Turn_Shoot_Bullet(float speed, float angle, float lifeTime) {
+    public void Turn_Shoot_Bullet(float speed, float angle, float lifeTime) {
         if (!Is_Set_Bullet()) {
             return;
         }
@@ -43,7 +45,9 @@ public class BulletFunctions : MonoBehaviour {
         turn_Bullet.transform.position = transform.position + new Vector3(Mathf.Cos(angle * Mathf.PI / 180f), Mathf.Sin(angle * Mathf.PI / 180), 0);
         turn_Bullet.transform.LookAt2D(transform, Vector2.right);
         turn_Bullet.GetComponent<Rigidbody2D>().velocity = turn_Bullet.transform.right * -speed;
-        Destroy(turn_Bullet, lifeTime);
+        if (lifeTime > 0) {
+            Destroy(turn_Bullet, lifeTime);
+        }
     }
 
     //自機狙い奇数弾

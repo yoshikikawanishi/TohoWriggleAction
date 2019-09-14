@@ -114,8 +114,18 @@ public class ButtonFunction : MonoBehaviour {
 
     //エクストラボタン押下時
     public void Go_Extra_Scene() {
-        if (InputManager.Instance.GetKeyDown(Key.Jump))
-            SceneManager.LoadScene("ExtraScene");
+        if (InputManager.Instance.GetKeyDown(Key.Jump)) 
+            StartCoroutine("Start_Extra_Stage");
+        
+    }
+
+    private IEnumerator Start_Extra_Stage() {
+        FadeInOut f = GameObject.FindWithTag("ScriptsTag").GetComponent<FadeInOut>();
+        f.Start_Fade_Out();
+        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Start_Fade_Out(0.01f, 1.0f);
+        EventSystem.current.SetSelectedGameObject(null);
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("ExtraFrontScene");
     }
 
     //キーコンフィグボタン押下時

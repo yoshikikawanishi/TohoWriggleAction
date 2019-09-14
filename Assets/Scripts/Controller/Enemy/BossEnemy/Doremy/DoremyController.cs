@@ -29,8 +29,7 @@ public class DoremyController : MonoBehaviour {
     void Start () {
         //テスト用
         Debug.Log("Boss Battle Test");
-        boss_Controller.Set_Now_Phase(2);
-        start_Battle = true;
+        boss_Controller.Set_Now_Phase(1);
 	}
 	
 
