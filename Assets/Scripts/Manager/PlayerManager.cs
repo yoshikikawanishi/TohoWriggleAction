@@ -22,18 +22,14 @@ public class PlayerManager : MonoBehaviour {
 
     //自機の復活の処理
     public IEnumerator Revive() {
-        //パワーとオプションの保存
-        PlayerPrefs.SetInt("Power", power);
-        PlayerPrefs.SetString("Option", option_Type);
         yield return new WaitForSeconds(1.0f);
-        //セーブのロード
-        GetComponent<GameManager>().StartCoroutine("LoadData");
+        SceneManager.LoadScene(PlayerPrefs.GetString("Scene"));
         yield return null;
         life = 3;
-        stock--;
-        //点滅
         GameObject player = GameObject.FindWithTag("PlayerTag");
-        if (player != null) {
+        if(player != null) {
+            player.transform.position = new Vector2(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"));
+            //点滅
             player.GetComponentInChildren<PlayerCollision>().StartCoroutine("Blink");
         }
     }
@@ -49,6 +45,8 @@ public class PlayerManager : MonoBehaviour {
         PlayerPrefs.SetInt("Life", life);
         PlayerPrefs.SetInt("Stock", stock);
         PlayerPrefs.SetInt("Continue", continue_Count);
+        PlayerPrefs.SetInt("Power", power);
+        PlayerPrefs.SetString("Option", option_Type);
     }
 
 

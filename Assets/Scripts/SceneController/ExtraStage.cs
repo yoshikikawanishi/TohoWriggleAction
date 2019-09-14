@@ -18,6 +18,7 @@ public class ExtraStage : MonoBehaviour {
         //初期設定
         player_Manager.life = 9;
         player_Manager.power = 128;
+        player_Manager.score = 3;
         //ムービー開始
         _movie.Start_Before_Movie();
 	}

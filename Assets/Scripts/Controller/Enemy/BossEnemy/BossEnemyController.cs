@@ -161,7 +161,7 @@ public class BossEnemyController : MonoBehaviour {
         for (int i = 0; i < score_Num; i++) {
             GameObject score = Instantiate(Resources.Load("Score")) as GameObject;
             score.transform.position = transform.position;
-            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 20, 500f + Random.Range(-100f, 100f));
+            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 5, 500f + Random.Range(-100f, 100f));
         }
         //P
         int power_Num = power_Value;
@@ -169,7 +169,7 @@ public class BossEnemyController : MonoBehaviour {
         for (int i = 0; i < power_Num; i++) {
             GameObject power = Instantiate(p);
             power.transform.position = transform.position;
-            power.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-power_Num, power_Num) * 20, 500f + Random.Range(-100f, 100f));
+            power.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-power_Num, power_Num) * 5, 500f + Random.Range(-100f, 100f));
         }
     }
 

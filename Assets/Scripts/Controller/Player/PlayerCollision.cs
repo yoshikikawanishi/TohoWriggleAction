@@ -77,7 +77,7 @@ public class PlayerCollision : MonoBehaviour {
 
 
     //ライフが0になった時の処理
-    protected void Miss() {
+    public virtual void Miss() {
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
         //エフェクト
         GameObject effect = Instantiate(miss_Effect) as GameObject;

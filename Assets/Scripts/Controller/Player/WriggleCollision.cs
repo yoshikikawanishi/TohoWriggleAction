@@ -89,7 +89,7 @@ public class WriggleCollision : PlayerCollision {
 
 
     //死亡時の処理
-    public new void Miss() {
+    public override void Miss() {
         base.Miss();
         //死亡と復活
         _playerManager.stock--;

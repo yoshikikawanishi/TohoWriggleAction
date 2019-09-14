@@ -13,6 +13,7 @@ public class DoremyAttack : MonoBehaviour {
     [System.Serializable]
     public class Phase2_Status {
         public bool start_Routine = true;
+        public GameObject shoot_Obj;
     }
     //フェーズ3
     [System.Serializable]
@@ -61,10 +62,11 @@ public class DoremyAttack : MonoBehaviour {
         //オブジェクトプール
         pool_Manager = GameObject.FindWithTag("ScriptsTag").GetComponent<ObjectPoolManager>();
         pool_Manager.Create_New_Pool(Resources.Load("Bullet/PooledBullet/SmallBullet") as GameObject, 20);
+        pool_Manager.Create_New_Pool(Resources.Load("Bullet/PooledBullet/RedMiddleBullet") as GameObject, 20);
 	}
 	
 	
-    //フェーズ1
+    /*----------------------------フェーズ1------------------------------*/
     public void Phase1() {
 
     }
@@ -73,20 +75,56 @@ public class DoremyAttack : MonoBehaviour {
         yield return null;
     }
 
+    private void Stop_Phase1() {
 
-    //フェーズ2
+    }
+
+    /*----------------------------フェーズ2------------------------------*/
     public void Phase2() {
-
+        if (phase2.start_Routine) {
+            phase2.start_Routine = false;
+            //フェーズ1終了
+            Stop_Phase1();
+            //フェーズ2開始
+            StartCoroutine("Phase2_Routine");
+        }
     }
 
     private IEnumerator Phase2_Routine() {
-        yield return null;
+        //移動
+        _controller.Change_Layer("InvincibleLayer");
+        yield return new WaitForSeconds(1.0f);
+        _controller.Start_Warp(new Vector2(160f, -48f));
+        yield return new WaitForSeconds(1.5f);
+        _controller.Change_Layer("EnemyLayer");
+
+        //ショット
+        DoremySpiralShoot _spiral = phase2.shoot_Obj.GetComponent<DoremySpiralShoot>();
+        while (boss_Controller.Get_Now_Phase() == 2) {
+            _spiral.Start_Spiral_Shoot();
+            yield return new WaitForSeconds(6.0f);
+            _spiral.Stop_Spiral_Shoot();
+            //移動
+            _controller.Move_Randome();
+            yield return new WaitForSeconds(5.0f);
+        }
+    }
+
+    private void Stop_Phase2() {
+        phase2.shoot_Obj.GetComponent<DoremySpiralShoot>().Stop_Spiral_Shoot();
+        StopCoroutine("Phase2_Routine");
     }
 
 
-    //フェーズ3
+    /*----------------------------フェーズ3------------------------------*/
     public void Phase3() {
-
+        if (phase3.start_Routine) {
+            phase3.start_Routine = false;
+            //フェーズ2終了
+            Stop_Phase2();
+            //フェーズ3開始
+            StartCoroutine("Phase3_Routine");
+        }
     }
 
     private IEnumerator Phase3_Routine() {
@@ -94,7 +132,7 @@ public class DoremyAttack : MonoBehaviour {
     }
 
 
-    //フェーズ4
+    /*----------------------------フェーズ4------------------------------*/
     public void Phase4() {
 
     }
@@ -104,7 +142,7 @@ public class DoremyAttack : MonoBehaviour {
     }
 
 
-    //フェーズ5
+    /*----------------------------フェーズ5------------------------------*/
     public void Phase5() {
 
     }
@@ -114,7 +152,7 @@ public class DoremyAttack : MonoBehaviour {
     }
 
 
-    //フェーズ6
+    /*----------------------------フェーズ6------------------------------*/
     public void Phase6() {
 
     }
