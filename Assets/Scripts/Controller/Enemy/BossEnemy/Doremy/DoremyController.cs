@@ -10,6 +10,9 @@ public class DoremyController : MonoBehaviour {
     private MoveBetweenTwoPoints _move;
     //コンポーネント
     private Animator _anim;
+    //オブジェクト
+    [SerializeField] private GameObject warp_In_Effect;
+    [SerializeField] private GameObject warp_Out_Effect;
 
     //戦闘開始
     public bool start_Battle = false;
@@ -22,6 +25,7 @@ public class DoremyController : MonoBehaviour {
         _attack = GetComponent<DoremyAttack>();
         _move = GetComponent<MoveBetweenTwoPoints>();
         _anim = GetComponent<Animator>();
+
     }
 
 
@@ -29,7 +33,7 @@ public class DoremyController : MonoBehaviour {
     void Start () {
         //テスト用
         Debug.Log("Boss Battle Test");
-        boss_Controller.Set_Now_Phase(1);
+        boss_Controller.Set_Now_Phase(4);
 	}
 	
 
@@ -50,8 +54,12 @@ public class DoremyController : MonoBehaviour {
 
 
     //アニメーション変更
-    public void Change_Parameter(string next_Bool) {
+    public void Change_Parameter(string next_Bool, int direction) {
+        _anim.SetBool("DashBool", false);
+        _anim.SetBool("IdleBool", false);
 
+        _anim.SetBool(next_Bool, true);
+        transform.localScale = new Vector3(direction, 1, 1);
     }
 
 
@@ -74,14 +82,25 @@ public class DoremyController : MonoBehaviour {
     }
 
     //瞬間移動
-    public void Start_Warp(Vector2 next_Pos) {
-        StartCoroutine("Warp", next_Pos);
+    public void Start_Warp(Vector2 next_Pos, int body_Direction) {
+        StartCoroutine(Warp(next_Pos, body_Direction));
     }
 
-    public IEnumerator Warp(Vector2 next_Pos) {
+    public IEnumerator Warp(Vector2 next_Pos, int body_Direction) {
+        //無敵化
+        Change_Layer("InvincibleLayer");
         //エフェクト
-        Debug.Log("Warp_Effect");
+        warp_In_Effect.GetComponent<ParticleSystem>().Play();
+        warp_In_Effect.GetComponent<AudioSource>().Play();
+        //移動
+        Change_Parameter("IdleBool", body_Direction);
+        _anim.SetTrigger("WarpTrigger");
         yield return new WaitForSeconds(0.5f);
         transform.position = next_Pos;
+        //エフェクト
+        warp_Out_Effect.GetComponent<ParticleSystem>().Play();
+        warp_Out_Effect.GetComponent<AudioSource>().Play();
+        //戻す
+        Change_Layer("EnemyLayer");
     }
 }

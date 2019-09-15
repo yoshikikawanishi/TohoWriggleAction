@@ -35,6 +35,7 @@ public class ScatterPoolBullet : MonoBehaviour {
             bullet.transform.LookAt2D(transform, Vector2.left);
             bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * speed;
             Delete_Bullet(bullet, lifeTime);
+            UsualSoundManager.Small_Shot_Sound();
             yield return new WaitForSeconds(1 / rate);
         }
     }

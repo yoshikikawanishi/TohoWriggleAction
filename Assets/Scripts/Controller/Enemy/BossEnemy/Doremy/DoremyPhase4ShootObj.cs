@@ -32,6 +32,7 @@ public class DoremyPhase4ShootObj : MonoBehaviour {
         _bullet.Set_Bullet_Pool(pool_Manager.Get_Pool("DoremyBullet"));
         _bullet.Some_Way_Bullet(5, 80f, center_Angle, 20f, 6.0f);
         _bullet.Some_Way_Bullet(5, 120f, center_Angle, 20f, 6.0f);
+        UsualSoundManager.Shot_Sound();
     }
 
 
@@ -56,6 +57,7 @@ public class DoremyPhase4ShootObj : MonoBehaviour {
         _scatter.Set_Bullet_Pool(pool_Manager.Get_Pool("DoremyBullet"));
         shadow_Scatter.Start_Scatter(22f, 80f, 6.0f, 5.0f);
         _scatter.Start_Scatter(22f, 80f, 6.0f, 5.0f);
+        UsualSoundManager.Shot_Sound();
     }
 
     public void Stop_Scatter_Shoot() {

@@ -83,7 +83,7 @@ public class DoremyAttack : MonoBehaviour {
         //移動
         _controller.Change_Layer("InvincibleLayer");
         yield return new WaitForSeconds(1.0f);
-        _controller.Start_Warp(new Vector2(160f, -48f));
+        _controller.Start_Warp(new Vector2(160f, -48f), 1);
         yield return new WaitForSeconds(1.5f);
         _controller.Change_Layer("EnemyLayer");
 
@@ -180,7 +180,7 @@ public class DoremyAttack : MonoBehaviour {
             
             //中央で渦巻き弾
             {
-                _controller.Start_Warp(new Vector2(0, 0));
+                _controller.Start_Warp(new Vector2(0, 0), 1);
                 yield return new WaitForSeconds(1.0f);
                 phase4_Shoot.Start_Spiral_Shoot();
                 yield return new WaitForSeconds(8.0f);
@@ -195,7 +195,7 @@ public class DoremyAttack : MonoBehaviour {
                 phase4.shadow_Doremy.transform.position = transform.position;
                 phase4.shadow_Doremy.SetActive(true);
                 phase4.shadow_Doremy.GetComponent<MoveBetweenTwoPoints>().Start_Move(new Vector3(-120f, 0), 0, 0.02f);
-                yield return new WaitForSeconds(2.0f);
+                yield return new WaitForSeconds(1.5f);
                 phase4_Shoot.Start_Scatter_Shoot();
                 yield return new WaitForSeconds(6.0f);
                 phase4_Shoot.Stop_Scatter_Shoot();
@@ -207,7 +207,7 @@ public class DoremyAttack : MonoBehaviour {
     }
 
     private IEnumerator Phase4_Shoot1(Vector2 pos, float center_Angle) {
-        _controller.Start_Warp(pos);
+        _controller.Start_Warp(pos, (int)(pos.x / Mathf.Abs(pos.x)));
         yield return new WaitForSeconds(1.0f);
         phase4.shoot_Obj.GetComponent<DoremyPhase4ShootObj>().Shoot_Five_Way_Bullet(center_Angle);
     }
