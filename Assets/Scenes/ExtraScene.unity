@@ -4845,7 +4845,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: d438a65f4b11717469f7b1151625c9e9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.05
   m_Pitch: 1.3
   Loop: 0
   Mute: 0
@@ -5502,6 +5502,16 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224876149478286326, guid: 9ac775ade6937904687615aeb278cb63,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 110.70999
+      objectReference: {fileID: 0}
+    - target: {fileID: 224876149478286326, guid: 9ac775ade6937904687615aeb278cb63,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.44995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ac775ade6937904687615aeb278cb63, type: 2}
@@ -11004,6 +11014,50 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1018726247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1018726248}
+  - component: {fileID: 1018726249}
+  m_Layer: 9
+  m_Name: Phase2ShootObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1018726248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1018726247}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1885038849}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1018726249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1018726247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1eb5bec5dec2c44b1645ba2af2a2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ring_Bullet_Prefab: {fileID: 1069943661237188, guid: 351841797d48a314b98d2b104fa03f16,
+    type: 2}
+  nightmare_Bullet_Prefab: {fileID: 1187395081961384, guid: d025ab24b3b63ad40825e8cedcbc0b93,
+    type: 2}
 --- !u!1 &1182425057
 GameObject:
   m_ObjectHideFlags: 0
@@ -11080,7 +11134,7 @@ Transform:
   m_Children:
   - {fileID: 1373393399}
   m_Father: {fileID: 1885038849}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1186337402
 MonoBehaviour:
@@ -15850,7 +15904,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: d438a65f4b11717469f7b1151625c9e9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -16325,6 +16379,7 @@ Transform:
   - {fileID: 154959078}
   - {fileID: 854830414}
   - {fileID: 472027565}
+  - {fileID: 1018726248}
   - {fileID: 1186337401}
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -16345,6 +16400,7 @@ MonoBehaviour:
     shoot_Obj: {fileID: 472027559}
   phase2:
     start_Routine: 1
+    shoot_Obj: {fileID: 1018726247}
   phase3:
     start_Routine: 1
   phase4:

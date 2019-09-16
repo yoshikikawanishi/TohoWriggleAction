@@ -1,0 +1,2 @@
+#NAME	#VALUE
+HighScore	176200

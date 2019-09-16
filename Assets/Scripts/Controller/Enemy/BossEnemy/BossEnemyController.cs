@@ -81,7 +81,7 @@ public class BossEnemyController : MonoBehaviour {
 
 
     //被弾時の処理
-    private void Damaged(int damage) {
+    public void Damaged(int damage) {
         life[now_Phase-1] -= damage;
         //エフェクト
         damage_Audio_Source.Play();

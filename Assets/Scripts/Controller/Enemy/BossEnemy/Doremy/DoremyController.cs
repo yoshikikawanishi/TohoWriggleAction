@@ -33,7 +33,7 @@ public class DoremyController : MonoBehaviour {
     void Start () {
         //テスト用
         Debug.Log("Boss Battle Test");
-        boss_Controller.Set_Now_Phase(4);
+        boss_Controller.Set_Now_Phase(2);
 	}
 	
 
@@ -76,17 +76,11 @@ public class DoremyController : MonoBehaviour {
     }
 
 
-    //レイヤー変更
-    public void Change_Layer(string layer_Name) {
-        gameObject.layer = LayerMask.NameToLayer(layer_Name);
-    }
-
     //瞬間移動
     public void Start_Warp(Vector2 next_Pos, int body_Direction) {
         StartCoroutine(Warp(next_Pos, body_Direction));
     }
-
-    public IEnumerator Warp(Vector2 next_Pos, int body_Direction) {
+    private IEnumerator Warp(Vector2 next_Pos, int body_Direction) {
         //無敵化
         Change_Layer("InvincibleLayer");
         //エフェクト
@@ -102,5 +96,42 @@ public class DoremyController : MonoBehaviour {
         warp_Out_Effect.GetComponent<AudioSource>().Play();
         //戻す
         Change_Layer("EnemyLayer");
+    }
+
+
+    //フェーズ変更時の移動
+    public void Warp_In_Phase_Change(Vector2 next_Pos, int direction) {
+        StartCoroutine(Warp_Invincible(next_Pos, direction));
+    }
+    public IEnumerator Warp_Invincible(Vector2 next_Pos, int direction) {
+        Change_Layer("InvincibleLayer");
+        yield return new WaitForSeconds(1.0f);
+        Start_Warp(new Vector2(160f, -48f), direction);
+        yield return new WaitForSeconds(1.5f);
+        Change_Layer("EnemyLayer");
+    }
+
+
+    //レイヤー変更
+    public void Change_Layer(string layer_Name) {
+        gameObject.layer = LayerMask.NameToLayer(layer_Name);
+    }
+
+
+    //ためエフェクト
+    public void Play_Charge_Effect(float lifeTime) {
+        GameObject effect = Instantiate(Resources.Load("Effect/PowerChargeEffectsRed") as GameObject);
+        effect.transform.position = transform.position;
+        effect.transform.SetParent(transform);
+        if (lifeTime > 0) {
+            Destroy(effect, lifeTime);
+        }
+    }
+
+    //放出エフェクト
+    public void Play_Spread_Effect() {
+        GameObject effect = Instantiate(Resources.Load("Effect/PowerSpreadEffectRed") as GameObject);
+        effect.transform.position = transform.position;
+        Destroy(effect, 2.0f);
     }
 }

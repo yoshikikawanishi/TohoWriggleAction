@@ -14,11 +14,13 @@ public class DoremyAttack : MonoBehaviour {
     [System.Serializable]
     public class Phase2_Status {
         public bool start_Routine = true;
+        public GameObject shoot_Obj;
     }
     //フェーズ3
     [System.Serializable]
     public class Phase3_Status {
         public bool start_Routine = true;
+
     }
     //フェーズ4
     [System.Serializable]
@@ -50,6 +52,9 @@ public class DoremyAttack : MonoBehaviour {
     private BossEnemyController boss_Controller;
     private ObjectPoolManager pool_Manager;
 
+    //自機
+    private GameObject player;
+
 
     //Awake
     private void Awake() {
@@ -61,6 +66,8 @@ public class DoremyAttack : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        //取得
+        player = GameObject.FindWithTag("PlayerTag");
         //オブジェクトプール
         pool_Manager = GameObject.FindWithTag("ScriptsTag").GetComponent<ObjectPoolManager>();
         pool_Manager.Create_New_Pool(Resources.Load("Bullet/PooledBullet/SmallBullet") as GameObject, 20);
@@ -69,8 +76,8 @@ public class DoremyAttack : MonoBehaviour {
 	}
 
 
-    /*----------------------------フェーズ1------------------------------*/
-
+    /*----------------------------フェーズ1------------------------------------*/
+    #region phase1
     public void Phase1() {
         if (phase1.start_Routine) {
             phase1.start_Routine = false;
@@ -81,11 +88,8 @@ public class DoremyAttack : MonoBehaviour {
 
     private IEnumerator Phase1_Routine() {
         //移動
-        _controller.Change_Layer("InvincibleLayer");
-        yield return new WaitForSeconds(1.0f);
-        _controller.Start_Warp(new Vector2(160f, -48f), 1);
-        yield return new WaitForSeconds(1.5f);
-        _controller.Change_Layer("EnemyLayer");
+        _controller.Warp_In_Phase_Change(new Vector2(160f, -32f), 1);
+        yield return new WaitForSeconds(2.5f);
 
         //ショット
         DoremySpiralShoot _spiral = phase1.shoot_Obj.GetComponent<DoremySpiralShoot>();
@@ -103,9 +107,9 @@ public class DoremyAttack : MonoBehaviour {
         phase1.shoot_Obj.GetComponent<DoremySpiralShoot>().Stop_Spiral_Shoot();
         StopCoroutine("Phase2_Routine");
     }
-
-    /*----------------------------フェーズ2------------------------------*/
-
+    #endregion
+    /*----------------------------フェーズ2------------------------------------*/
+    #region phase2
     public void Phase2() {
         if (phase2.start_Routine) {
             phase2.start_Routine = false;
@@ -115,15 +119,38 @@ public class DoremyAttack : MonoBehaviour {
     }
 
     private IEnumerator Phase2_Routine() {
-        yield return null;
+        DoremyPhase2ShootObj phase2_Shoot = phase2.shoot_Obj.GetComponent<DoremyPhase2ShootObj>();
+        //移動
+        _controller.Warp_In_Phase_Change(new Vector2(160f, -32f), 1);
+        yield return new WaitForSeconds(2.5f);
+
+        //ショット
+        for (int i = 0; i < 4; i++) {
+            phase2_Shoot.Shoot_Ring_Bullet();
+            yield return new WaitForSeconds(0.5f);
+            _controller.Start_Warp(new Vector2(190f, player.transform.position.y + 32f), 1);
+            yield return new WaitForSeconds(1.0f);
+        }
+
+        //溜め
+        _controller.Move(new Vector2(160f, 0), 0.02f);
+        _controller.Play_Charge_Effect(2.5f);
+        yield return new WaitForSeconds(2.5f);
+
+        //ナイトメア弾
+        _controller.Play_Spread_Effect();
+        GameObject nightmare_Bullet = phase2_Shoot.Shoot_Nightmare_Bullet();
+        while(nightmare_Bullet != null) { yield return null; }
+
+        GetComponent<BossEnemyController>().Damaged(40);
     }
 
     private void Stop_Phase2() {
 
     }
-
-
-    /*----------------------------フェーズ3------------------------------*/
+    #endregion
+    /*----------------------------フェーズ3------------------------------------*/
+    #region phase3
     public void Phase3() {
         if (phase3.start_Routine) {
             phase3.start_Routine = false;
@@ -141,9 +168,9 @@ public class DoremyAttack : MonoBehaviour {
     private void Stop_Phase3() {
 
     }
-
-
-    /*----------------------------フェーズ4------------------------------*/
+    #endregion
+    /*----------------------------フェーズ4------------------------------------*/
+    #region phase4
     public void Phase4() {
         if (phase4.start_Routine) {
             phase4.start_Routine = false;
@@ -219,9 +246,9 @@ public class DoremyAttack : MonoBehaviour {
         phase4.shoot_Obj.GetComponent<DoremyPhase4ShootObj>().Stop_Spiral_Shoot();
         phase4.shadow_Doremy.SetActive(false);
     }
-
-
-    /*----------------------------フェーズ5------------------------------*/
+    #endregion
+    /*----------------------------フェーズ5------------------------------------*/
+    #region phase5
     public void Phase5() {
 
     }
@@ -229,9 +256,9 @@ public class DoremyAttack : MonoBehaviour {
     private IEnumerator Phase5_Routine() {
         yield return null;
     }
-
-
-    /*----------------------------フェーズ6------------------------------*/
+    #endregion
+    /*----------------------------フェーズ6------------------------------------*/
+    #region phase6
     public void Phase6() {
 
     }
@@ -239,5 +266,6 @@ public class DoremyAttack : MonoBehaviour {
     private IEnumerator Phase6_Routine() {
         yield return null;
     }
+    #endregion
 
 }

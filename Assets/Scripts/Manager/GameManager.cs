@@ -57,9 +57,15 @@ public class GameManager : MonoBehaviour {
             Do_First_Time_Setting();
         }
 
-        //ドレミーハットのデータ消去
-        //DoremyHat.Delete_Data();
-        Debug.Log("DoremyHat_Data_Delete");
+
+        /*　データ消去のテスト */
+        Debug.Log("Delete_Data");
+        DeleteData();
+        DoremyHat.Delete_Data();
+        /*
+        ClearDataManager clear_Data = new ClearDataManager();
+        clear_Data.Delete_Data();
+        */
 
     }
 
@@ -72,11 +78,9 @@ public class GameManager : MonoBehaviour {
         //オーディオの初期化
         Set_Up_Audio_Mixer();
 
-        /*　データ消去のテスト */
-        //DeleteData();
 
         //ビルド前に初期化、消去すること
-        Debug.Log("Check Before Build About[SaveDate, SceneProgress, DoremyHat, KeyConfig]");
+        Debug.Log("Check Before Build About[SaveDate, SceneProgress, DoremyHat, KeyConfig, ClearData, AudioVolume]");
         
     }
 

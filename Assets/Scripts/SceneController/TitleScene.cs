@@ -36,12 +36,23 @@ public class TitleScene : MonoBehaviour {
             continue_Button.GetComponentInChildren<Text>().color = new Color(1f, 0.8f, 0.8f);
             play_Guide_Button.GetComponent<Button>().Select();
         }
-        
+
+        //ハイスコアの表示
+        Display_High_Score();
 
         //エクストラステージの開放、ドレミー帽子の表示
         Judge_Extra_Stage();
 
 	}
+
+
+    //ハイスコアの表示
+    private void Display_High_Score() {
+        GameObject high_Score_Text = GameObject.Find("HighScoreText");
+        ClearDataManager clear_Data_Manager = new ClearDataManager();
+        int high_Score = clear_Data_Manager.Get_High_Score();
+        high_Score_Text.GetComponent<Text>().text = "High Score : " + high_Score.ToString("D10");
+    }
 
 
     //エクストラステージの開放、ドレミー帽子の表示
