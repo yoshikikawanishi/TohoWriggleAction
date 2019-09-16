@@ -10,10 +10,15 @@ public class DoremyPhase2ShootObj : MonoBehaviour {
 
     private GameObject nightmare_Bullet;
 
+    private BulletPoolFunctions _bullet;
+    private ObjectPoolManager pool_Manager;
+
     
 	// Use this for initialization
 	void Start () {
-		
+        //取得
+        _bullet = GetComponent<BulletPoolFunctions>();
+        pool_Manager = GameObject.FindWithTag("ScriptsTag").GetComponent<ObjectPoolManager>();
 	}
 
 
@@ -32,24 +37,27 @@ public class DoremyPhase2ShootObj : MonoBehaviour {
             ring_Bullets[i].transform.position = transform.position;
             //展開
             MoveBetweenTwoPoints bullet_Move = ring_Bullets[i].AddComponent<MoveBetweenTwoPoints>();
-            Vector2 next_Pos = new Vector2(transform.position.x + 16f, transform.position.y + (-64f + i * 48f));
+            Vector2 next_Pos = new Vector2(transform.position.x + 32f, transform.position.y + (-64f + i * 48f));
             bullet_Move.Start_Move(next_Pos, 0, 0.05f);
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.0f);
         
         //リジッドボディの取得
         Rigidbody2D[] bullet_Rigid = new Rigidbody2D[num];
         for(int i = 0; i < num; i++) {
             bullet_Rigid[i] = ring_Bullets[i].GetComponent<Rigidbody2D>();
         }
-
         //発射
         for(float v = 0; v < 400f; v += 8.0f) {
             for(int i = 0; i < num; i++) {
                 bullet_Rigid[i].velocity = new Vector2(-v, 0);
             }
             yield return null;
+        }
+        //消滅
+        for(int i = 0; i < num; i++) {
+            Destroy(ring_Bullets[i], 2.0f);
         }
     }
 
@@ -62,12 +70,33 @@ public class DoremyPhase2ShootObj : MonoBehaviour {
     }
 
 
+    //全方位弾
+    public void Start_Diffusion_Shoot() {
+        StartCoroutine("Shoot_Diffusion_Bullet");
+    }
+
+    private IEnumerator Shoot_Diffusion_Bullet() {
+        _bullet.Set_Bullet_Pool(pool_Manager.Get_Pool("SmallBullet"));
+        float center_Angle = 0;
+        while (true) {
+            yield return new WaitForSeconds(3.0f);
+            _bullet.Diffusion_Bullet(18, 100f, center_Angle, 6.0f);
+            center_Angle += 10f;
+        }
+    }
+
+    public void Stop_Diffusion_Shoot() {
+        StopCoroutine("Shoot_Diffusion_Bullet");
+    }
+
+
     //中止
     public void Stop_Shoot() {
         StopCoroutine("Ring_Bullet_Routine");
         if(nightmare_Bullet != null) {
             Destroy(nightmare_Bullet);
         }
+        Stop_Diffusion_Shoot();
     }
 	
 	

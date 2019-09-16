@@ -15,6 +15,7 @@ public class DoremyAttack : MonoBehaviour {
     public class Phase2_Status {
         public bool start_Routine = true;
         public GameObject shoot_Obj;
+        public GameObject vacuum_Effect;
     }
     //フェーズ3
     [System.Serializable]
@@ -120,33 +121,61 @@ public class DoremyAttack : MonoBehaviour {
 
     private IEnumerator Phase2_Routine() {
         DoremyPhase2ShootObj phase2_Shoot = phase2.shoot_Obj.GetComponent<DoremyPhase2ShootObj>();
-        //移動
-        _controller.Warp_In_Phase_Change(new Vector2(160f, -32f), 1);
-        yield return new WaitForSeconds(2.5f);
 
-        //ショット
-        for (int i = 0; i < 4; i++) {
-            phase2_Shoot.Shoot_Ring_Bullet();
-            yield return new WaitForSeconds(0.5f);
-            _controller.Start_Warp(new Vector2(190f, player.transform.position.y + 32f), 1);
-            yield return new WaitForSeconds(1.0f);
+        while (boss_Controller.Get_Now_Phase() == 2) {
+            //移動
+            _controller.Warp_In_Phase_Change(new Vector2(160f, -32f), 1);
+            yield return new WaitForSeconds(2.5f);
+
+            //4Wayショット
+            for (int i = 0; i < 4; i++) {
+                phase2_Shoot.Shoot_Ring_Bullet();
+                yield return new WaitForSeconds(0.5f);
+                Vector2 noise = new Vector2(Random.Range(0, 30f), Random.Range(0, 48f));
+                _controller.Start_Warp(new Vector2(190f, player.transform.position.y) + noise, 1);
+                yield return new WaitForSeconds(1.0f);
+            }
+
+            //溜め
+            _controller.Move(new Vector2(160f, 0), 0.02f);
+            _controller.Play_Charge_Effect(2.5f);
+            yield return new WaitForSeconds(2.5f);
+
+            //無敵化
+            _controller.Change_Layer("InvincibleLayer");
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 0.5f, 0.3f);
+
+            //ナイトメア弾発射
+            _controller.Play_Spread_Effect();
+            GameObject nightmare_Bullet = phase2_Shoot.Shoot_Nightmare_Bullet();
+
+            //引き寄せ開始
+            phase2.shoot_Obj.GetComponent<Vacuum>().Start_Vacuum(player, 400f);
+            phase2.vacuum_Effect = Instantiate(Resources.Load("Effect/PowerChargeEffects") as GameObject);
+            phase2.vacuum_Effect.transform.position = transform.position;
+
+            //全方位弾
+            phase2_Shoot.Start_Diffusion_Shoot();
+
+            //終了
+            while (nightmare_Bullet != null) { yield return null; }
+            phase2.shoot_Obj.GetComponent<Vacuum>().Stop_Vacuum();
+            phase2_Shoot.Stop_Diffusion_Shoot();
+            Destroy(phase2.vacuum_Effect);
+            _controller.Change_Layer("EnemyLayer");
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+
+            GetComponent<BossEnemyController>().Damaged(40);
         }
-
-        //溜め
-        _controller.Move(new Vector2(160f, 0), 0.02f);
-        _controller.Play_Charge_Effect(2.5f);
-        yield return new WaitForSeconds(2.5f);
-
-        //ナイトメア弾
-        _controller.Play_Spread_Effect();
-        GameObject nightmare_Bullet = phase2_Shoot.Shoot_Nightmare_Bullet();
-        while(nightmare_Bullet != null) { yield return null; }
-
-        GetComponent<BossEnemyController>().Damaged(40);
     }
 
     private void Stop_Phase2() {
-
+        StopCoroutine("Phase2_Routine");
+        phase2.shoot_Obj.GetComponent<DoremyPhase2ShootObj>().Stop_Shoot();
+        phase2.shoot_Obj.GetComponent<Vacuum>().Stop_Vacuum();
+        Destroy(phase2.vacuum_Effect);
+        _controller.Change_Layer("EnemyLayer");
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
     }
     #endregion
     /*----------------------------フェーズ3------------------------------------*/

@@ -119,13 +119,14 @@ public class DoremyController : MonoBehaviour {
 
 
     //ためエフェクト
-    public void Play_Charge_Effect(float lifeTime) {
+    public GameObject Play_Charge_Effect(float lifeTime) {
         GameObject effect = Instantiate(Resources.Load("Effect/PowerChargeEffectsRed") as GameObject);
         effect.transform.position = transform.position;
         effect.transform.SetParent(transform);
         if (lifeTime > 0) {
             Destroy(effect, lifeTime);
         }
+        return effect;
     }
 
     //放出エフェクト

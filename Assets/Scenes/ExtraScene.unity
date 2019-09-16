@@ -11023,6 +11023,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1018726248}
   - component: {fileID: 1018726249}
+  - component: {fileID: 1018726250}
+  - component: {fileID: 1018726251}
   m_Layer: 9
   m_Name: Phase2ShootObj
   m_TagString: Untagged
@@ -11058,6 +11060,29 @@ MonoBehaviour:
     type: 2}
   nightmare_Bullet_Prefab: {fileID: 1187395081961384, guid: d025ab24b3b63ad40825e8cedcbc0b93,
     type: 2}
+--- !u!114 &1018726250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1018726247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bd78cfae86b6af4c934122fab907c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1018726251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1018726247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1839e10df1c6b941af3740c8efd24df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet_Pool: {fileID: 0}
 --- !u!1 &1182425057
 GameObject:
   m_ObjectHideFlags: 0
@@ -16401,6 +16426,7 @@ MonoBehaviour:
   phase2:
     start_Routine: 1
     shoot_Obj: {fileID: 1018726247}
+    vacuum_Effect: {fileID: 0}
   phase3:
     start_Routine: 1
   phase4:
