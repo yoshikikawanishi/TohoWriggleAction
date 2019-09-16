@@ -31,12 +31,6 @@ public class MiniWolf : MonoBehaviour {
     }
 
 
-    // Use this for initialization
-    void Start () {
-       
-    }
-
-
     //OnEnable
     private void OnEnable() {
         //ショット
@@ -68,7 +62,7 @@ public class MiniWolf : MonoBehaviour {
         float t = Random.Range(1.0f, 3.0f);
         yield return new WaitForSeconds(t);
         while (true) {
-            _bullet.Odd_Num_Bullet(1, 0, 100f, 5.0f);
+            _bullet.Odd_Num_Bullet(1, 0, 60f, 8.0f);
             UsualSoundManager.Shot_Sound();
             yield return new WaitForSeconds(2.0f);
         }
@@ -123,8 +117,8 @@ public class MiniWolf : MonoBehaviour {
         int direction = Random.Range(0, 3);
         Vector2 pos = new Vector2();
         switch (direction) {
-            case 0: pos = new Vector2(-250f, Random.Range(-160f, 150f)); break;
-            case 1: pos = new Vector2(250f, Random.Range(-160f, 150f)); break;
+            case 0: pos = new Vector2(-250f, Random.Range(-120f, 150f)); break;
+            case 1: pos = new Vector2(250f, Random.Range(-120f, 150f)); break;
             case 2: pos = new Vector2(Random.Range(-250f, 300f), 150f); break;
         }
         transform.position = pos;

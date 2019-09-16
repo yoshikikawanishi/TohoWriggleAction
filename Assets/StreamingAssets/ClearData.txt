@@ -1,2 +1,2 @@
 #NAME	#VALUE
-HighScore	176200
+HighScore	2005100

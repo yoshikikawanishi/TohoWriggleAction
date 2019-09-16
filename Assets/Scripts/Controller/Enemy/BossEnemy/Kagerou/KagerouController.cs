@@ -28,6 +28,7 @@ public class KagerouController : MonoBehaviour {
         _anim = GetComponent<Animator>();
         _shake = gameObject.AddComponent<CameraShake>();
         stage_Movie = GameObject.FindWithTag("ScriptsTag").GetComponent<Stage5_BossMovie>();
+
     }
 
 

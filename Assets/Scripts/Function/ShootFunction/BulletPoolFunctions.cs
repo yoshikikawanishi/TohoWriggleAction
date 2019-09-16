@@ -35,7 +35,9 @@ public class BulletPoolFunctions : MonoBehaviour {
         var shoot_Bullet = bullet_Pool.GetObject();
         shoot_Bullet.transform.position = transform.position;
         shoot_Bullet.GetComponent<Rigidbody2D>().velocity = velocity;
-        Delete_Bullet(shoot_Bullet, lifeTime);
+        if (lifeTime > 0) {
+            Delete_Bullet(shoot_Bullet, lifeTime);
+        }
     }
 
     //弾の生成、方向転換して発射
@@ -47,7 +49,9 @@ public class BulletPoolFunctions : MonoBehaviour {
         turn_Bullet.transform.position = transform.position + new Vector3(Mathf.Cos(angle * Mathf.PI / 180f), Mathf.Sin(angle * Mathf.PI / 180), 0);
         turn_Bullet.transform.LookAt2D(transform, Vector2.right);
         turn_Bullet.GetComponent<Rigidbody2D>().velocity = turn_Bullet.transform.right * -speed;
-        Delete_Bullet(turn_Bullet, lifeTime);
+        if (lifeTime > 0) {
+            Delete_Bullet(turn_Bullet, lifeTime);
+        }
     }
 
     //自機狙い奇数弾

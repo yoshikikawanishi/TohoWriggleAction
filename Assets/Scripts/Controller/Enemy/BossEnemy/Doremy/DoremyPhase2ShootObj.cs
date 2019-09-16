@@ -9,6 +9,7 @@ public class DoremyPhase2ShootObj : MonoBehaviour {
     [SerializeField] private GameObject nightmare_Bullet_Prefab;
 
     private GameObject nightmare_Bullet;
+    private GameObject[] ring_Bullets = new GameObject[4];
 
     private BulletPoolFunctions _bullet;
     private ObjectPoolManager pool_Manager;
@@ -29,7 +30,6 @@ public class DoremyPhase2ShootObj : MonoBehaviour {
 
     private IEnumerator Ring_Bullet_Routine() {
         int num = 4;
-        GameObject[] ring_Bullets = new GameObject[num];
 
         for (int i = 0; i < num; i++) {
             //生成
@@ -97,6 +97,11 @@ public class DoremyPhase2ShootObj : MonoBehaviour {
             Destroy(nightmare_Bullet);
         }
         Stop_Diffusion_Shoot();
+        for(int i = 0; i < 4; i++) {
+            if(ring_Bullets[i] != null) {
+                Destroy(ring_Bullets[i]);
+            }
+        }
     }
 	
 	

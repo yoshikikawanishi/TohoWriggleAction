@@ -150,7 +150,7 @@ public class BossEnemyController : MonoBehaviour {
         CameraShake _shake = gameObject.AddComponent<CameraShake>();
         _shake.Shake(0.25f, 4f, true);
         //アイテムを出す
-        Put_Out_Item(score_Value, power_Value / 2);
+        Put_Out_Item(score_Value, power_Value / 4);
     }
 
 
@@ -161,7 +161,7 @@ public class BossEnemyController : MonoBehaviour {
         for (int i = 0; i < score_Num; i++) {
             GameObject score = Instantiate(Resources.Load("Score")) as GameObject;
             score.transform.position = transform.position;
-            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 5, 500f + Random.Range(-100f, 100f));
+            score.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-score_Num, score_Num) * 20, 500f + Random.Range(-100f, 100f));
         }
         //P
         int power_Num = power_Value;

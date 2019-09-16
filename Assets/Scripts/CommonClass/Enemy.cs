@@ -141,6 +141,7 @@ public class Enemy : MonoBehaviour {
         if(Random.Range(0, 100) < probability_Recover_Item) {
             GameObject life_Up_Item = Instantiate(Resources.Load("LifeUpItem")) as GameObject;
             life_Up_Item.transform.position = transform.position;
+            life_Up_Item.GetComponent<LifeUpItemController>().Delete(7.0f);
         }
     }
 

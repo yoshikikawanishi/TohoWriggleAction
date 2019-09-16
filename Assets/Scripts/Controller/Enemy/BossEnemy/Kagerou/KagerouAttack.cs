@@ -9,6 +9,7 @@ public class KagerouAttack : MonoBehaviour {
     public class Phase1_Status {
         public bool start_Routine = true;
         public bool end_Rush = false;
+        public GameObject bullet_Parent;
     }
 
     //フェーズ2用
@@ -74,6 +75,7 @@ public class KagerouAttack : MonoBehaviour {
             pool_Manager.Create_New_Pool(color_Bullet[i], 40);
         }
         pool_Manager.Create_New_Pool(red_Middle_Bullet, 20);
+        pool_Manager.Create_New_Pool(Resources.Load("Enemy/KagerouFamiliar") as GameObject, 18);
 
         //取得
         _controller = GetComponent<KagerouController>();
@@ -161,6 +163,7 @@ public class KagerouAttack : MonoBehaviour {
         string bullet_Path = "Bullet/KagerouBurstBullet";
         GameObject bullet = Instantiate(Resources.Load(bullet_Path) as GameObject);        
         bullet.transform.position = transform.position;
+        bullet.transform.SetParent(phase1.bullet_Parent.transform);
     }
     
 
@@ -174,6 +177,7 @@ public class KagerouAttack : MonoBehaviour {
             _scatter.Stop_Scatter();
             transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 0, 1));
             _controller.Delete_Back_Design();
+            Destroy(phase1.bullet_Parent);
             //フェーズ2
             StartCoroutine("Phase2_Routine");
         }
@@ -200,12 +204,13 @@ public class KagerouAttack : MonoBehaviour {
 
     //耐久開始
     private IEnumerator Start_Phase2_Timer() {
+        AudioSource timer_Sound = GetComponents<AudioSource>()[0];
         while(boss_Controller.life[1] >= 0) {
             yield return new WaitForSeconds(1.0f);
             boss_Controller.life[1]--;
-            if(boss_Controller.life[1] <= 10) {
+            if(boss_Controller.life[1] <= 5) {
                 //カウントダウン効果音
-                Debug.Log("Phase2 Timer Count Down Sound");
+                timer_Sound.Play();
             }
         }
         boss_Controller.Phase_Change(3);
@@ -258,7 +263,8 @@ public class KagerouAttack : MonoBehaviour {
 
             //偶数弾、奇数段
             StartCoroutine("Phase3_Shot2");
-            StartCoroutine("Phase3_Shot3");
+            StartCoroutine("Phase3_Shot3"); ;
+            _move.Start_Random_Move(48f, 0.01f);
 
             yield return new WaitForSeconds(8.0f);
         }
@@ -303,6 +309,9 @@ public class KagerouAttack : MonoBehaviour {
             phase4.start_Routine = false;
             //フェーズ3終了
             StopCoroutine("Phase3_Routine");
+            StopCoroutine("Phase3_Shot1");
+            StopCoroutine("Phase3_Shot2");
+            StopCoroutine("Phase3_Shot3");
             _controller.Delete_Back_Design();
             //フェーズ4開始
             StartCoroutine("Phase4_Routine");
@@ -312,6 +321,7 @@ public class KagerouAttack : MonoBehaviour {
     private IEnumerator Phase4_Routine() {
         //初期設定
         _bullet[0].Set_Bullet_Pool(pool_Manager.Get_Pool(color_Bullet[0]));
+        _bullet[1].Set_Bullet_Pool(pool_Manager.Get_Pool("KagerouFamiliar"));
         GameObject[] shot_Obj = new GameObject[4];
         for(int i = 0; i < 4; i++) {
             shot_Obj[i] = phase4.shot_Objects.transform.GetChild(i).gameObject;
@@ -329,6 +339,7 @@ public class KagerouAttack : MonoBehaviour {
         //ショット
         //本体
         StartCoroutine("Phase4_Red_Bullet", _bullet[0]);
+        StartCoroutine("Phase4_Wolf_Bullet");
         while (boss_Controller.life[3] >= boss_Controller.LIFE[3] * 0.8f) {
             yield return null;
         }
@@ -356,32 +367,44 @@ public class KagerouAttack : MonoBehaviour {
 
     }
 
-    //ショット
+    //赤全方位弾
     private IEnumerator Phase4_Red_Bullet() {
         int i = 0;
         while (boss_Controller.Get_Now_Phase() == 4) {
             float center_Angle = Random.Range(0, 20f);
-            _bullet[0].Diffusion_Bullet(24, 60f, center_Angle, 10.0f);
+            _bullet[0].Diffusion_Bullet(20, 60f, center_Angle, 10.0f);
             UsualSoundManager.Shot_Sound();
-            yield return new WaitForSeconds(0.667f);
+            yield return new WaitForSeconds(0.333f);
             i++;
-            if (i % 4 == 0) {
+            if (i % 8 == 0) {
                 yield return new WaitForSeconds(2.667f);
             }            
         }
     }
 
-    //ショット
+    //狼使い魔
+    private IEnumerator Phase4_Wolf_Bullet() {
+        while (boss_Controller.Get_Now_Phase() == 4) {
+            yield return new WaitForSeconds(3.333f);
+            _bullet[1].Diffusion_Bullet(12, 40f, 0, -1);
+            UsualSoundManager.Shot_Sound();
+            _controller.Play_Spread_Effect();
+            yield return new WaitForSeconds(2.0f);
+        }     
+    }
+
+    //色弾
     private IEnumerator Phase4_Color_Bullet(GameObject shot_Obj, BulletColor color) {
         BulletPoolFunctions b = shot_Obj.GetComponent<BulletPoolFunctions>();
         b.Set_Bullet_Pool(pool_Manager.Get_Pool(color_Bullet[(int)color]));
         ParticleSystem effect = shot_Obj.GetComponent<ParticleSystem>();
         while (boss_Controller.Get_Now_Phase() == 4) {
             effect.Play();
-            yield return new WaitForSeconds(2.666f);
+            yield return new WaitForSeconds(1.3333f);
             float center_Angle = Random.Range(0, 20f);
-            b.Diffusion_Bullet(12, 120f, center_Angle, 6.0f);
+            b.Diffusion_Bullet(18, 120f, center_Angle, 6.0f);
             UsualSoundManager.Shot_Sound();
+            yield return new WaitForSeconds(0.6667f);
         }
     }
 

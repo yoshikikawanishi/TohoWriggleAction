@@ -52,6 +52,7 @@ public class Base_2Movie : MonoBehaviour {
             StopAllCoroutines();
             is_End_Movie = true;
             _pause.Set_Pausable(true);
+            Time.timeScale = 1;
             yield return null;
         }
 

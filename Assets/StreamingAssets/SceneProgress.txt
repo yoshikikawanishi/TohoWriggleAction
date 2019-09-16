@@ -1,2 +1,9 @@
 #HasVisitedScene
+Stage1_1Scene
+Stage5_1Scene
+Stage5_BossScene
+EndingScene
+TitleScene
+ConfigScene
+ExtraFrontScene
 ExtraScene

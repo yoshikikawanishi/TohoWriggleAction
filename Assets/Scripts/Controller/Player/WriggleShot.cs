@@ -174,7 +174,7 @@ public class WriggleShot : MonoBehaviour {
     //オプションが蝶のとき
     private void ButterFly_Shot() {
         if (InputManager.Instance.GetKey(MBLDefine.Key.Shot)) {
-            if (time < 0.12f) {
+            if (time < 0.10f) {
                 time += Time.deltaTime;
             }
             else {
@@ -280,17 +280,17 @@ public class WriggleShot : MonoBehaviour {
                 }
                 //4段階目
                 if (power_Grade >= 4) {
-                    bullet_Num = 5;
+                    bullet_Num = 4;
                     bullet_Speed = 1000f;
                 }
                 //弾の発射
                 for (int i = 0; i < bullet_Num; i++) {
                     var bullet = bee_Bullet_Pool.GetObject();
-                    float width = 12f + bullet_Num * 2;
+                    float width = 3f + bullet_Num * 2;
                     bullet.transform.position = transform.position + new Vector3(0, width / 2 - width * 2 / bullet_Num * i);
                     bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
-                    //中心の弾は2重にする
-                    if (i == bullet_Num / 2 && bullet_Num != 2) {
+                    //奇数の時中心の弾は2重にする
+                    if (i == bullet_Num / 2 && (bullet_Num % 2) == 1) {
                         var bullet2 = bee_Bullet_Pool.GetObject();
                         bullet2.transform.position = transform.position + new Vector3(0, width / 2 - width * 2 / bullet_Num * i);
                         bullet2.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
