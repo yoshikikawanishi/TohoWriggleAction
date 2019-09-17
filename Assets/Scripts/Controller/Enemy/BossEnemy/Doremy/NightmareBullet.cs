@@ -16,7 +16,7 @@ public class NightmareBullet : MonoBehaviour {
     private GameObject player;
 
     //ステータス
-    private int life = 50;
+    private int life = 80;
     private bool is_Dive_To_Doremy = false;
     private Vector2 aim;
 

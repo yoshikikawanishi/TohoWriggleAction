@@ -7,19 +7,18 @@ public class EndingScene : MonoBehaviour {
 
 
     //スクリプト
-    private MessageDisplay _message;
-
+    private Ending_Movie _movie;
 
 	// Use this for initialization
 	void Start () {
         //取得
-        _message = GetComponent<MessageDisplay>();
+        _movie = GetComponent<Ending_Movie>();
 
         //クリアデータの保存
         Save_Clear_Data();
 
         //ムービー
-        StartCoroutine("Ending_Movie");
+        _movie.StartCoroutine("Start_Ending_Movie");
 	}
 	
 	
@@ -30,17 +29,5 @@ public class EndingScene : MonoBehaviour {
     }
 
 
-    //エンディングムービー
-    private IEnumerator Ending_Movie() {
-        GetComponent<FadeInOut>().Start_Fade_In();
-        yield return new WaitForSeconds(2.0f);
-        _message.Start_Display("EndingText", 1, 1);
-        yield return new WaitUntil(_message.End_Message);
-        
-        //スタッフロール？
-
-        GetComponent<FadeInOut>().Start_Fade_Out();
-        yield return new WaitForSeconds(2.0f);
-        SceneManager.LoadScene("TitleScene");
-    }
+    
 }

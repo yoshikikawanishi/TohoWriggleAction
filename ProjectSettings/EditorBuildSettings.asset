@@ -78,6 +78,9 @@ EditorBuildSettings:
     path: Assets/Scenes/EndingScene.unity
     guid: 66f26abd7010a8b4c879792332876aad
   - enabled: 1
+    path: Assets/Scenes/StaffRollScene.unity
+    guid: b9426afbabdac1b4193144e5cb99ef93
+  - enabled: 1
     path: Assets/Scenes/ExtraFrontScene.unity
     guid: cb3ce45339f23dc41b0d733d8b5c4c96
   - enabled: 1

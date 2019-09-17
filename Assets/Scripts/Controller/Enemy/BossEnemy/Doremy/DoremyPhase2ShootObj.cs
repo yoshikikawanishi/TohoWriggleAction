@@ -57,7 +57,7 @@ public class DoremyPhase2ShootObj : MonoBehaviour {
         }
         //消滅
         for(int i = 0; i < num; i++) {
-            Destroy(ring_Bullets[i], 2.0f);
+            Destroy(ring_Bullets[i], 5.0f);
         }
     }
 

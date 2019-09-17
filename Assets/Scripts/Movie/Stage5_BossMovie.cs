@@ -33,11 +33,6 @@ public class Stage5_BossMovie : MonoBehaviour {
     }
 
 
-    // Use this for initialization
-    void Start () {
-	}
-	
-
     //ムービー初期設定
     private void Start_Setting() {
         pause_Manager.Set_Pausable(false);
@@ -169,6 +164,7 @@ public class Stage5_BossMovie : MonoBehaviour {
         yield return new WaitForSeconds(2.0f);
         //明転
         GetComponent<FadeInOut>().Start_Fade_Out();
+        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Start_Fade_Out(0.02f, 3.0f);
         yield return new WaitForSeconds(3.0f);
         //シーン遷移
         SceneManager.LoadScene("EndingScene");

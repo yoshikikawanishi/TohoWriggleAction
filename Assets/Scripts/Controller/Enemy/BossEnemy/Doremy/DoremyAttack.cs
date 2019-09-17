@@ -91,17 +91,23 @@ public class DoremyAttack : MonoBehaviour {
     private IEnumerator Phase1_Routine() {
         //移動
         _controller.Warp_In_Phase_Change(new Vector2(160f, -32f), 1);
+        yield return new WaitForSeconds(1.5f);
+        _controller.Play_Charge_Effect(2.5f);
         yield return new WaitForSeconds(2.5f);
 
         //ショット
         DoremySpiralShoot _spiral = phase1.shoot_Obj.GetComponent<DoremySpiralShoot>();
         while (boss_Controller.Get_Now_Phase() == 1) {
             _spiral.Start_Spiral_Shoot();
+            _controller.Play_Spread_Effect();
             yield return new WaitForSeconds(6.0f);
             _spiral.Stop_Spiral_Shoot();
             //移動
             _controller.Move_Randome();
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(3.0f);
+            _controller.Play_Charge_Effect(2.5f);
+            yield return new WaitForSeconds(2.5f);
+
         }
     }
 
