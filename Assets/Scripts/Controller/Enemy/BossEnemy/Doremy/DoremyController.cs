@@ -33,7 +33,7 @@ public class DoremyController : MonoBehaviour {
     void Start () {
         //テスト用
         Debug.Log("Boss Battle Test");
-        boss_Controller.Set_Now_Phase(2);
+        boss_Controller.Set_Now_Phase(3);
 	}
 	
 
@@ -96,6 +96,18 @@ public class DoremyController : MonoBehaviour {
         warp_Out_Effect.GetComponent<AudioSource>().Play();
         //戻す
         Change_Layer("EnemyLayer");
+    }
+
+    //ランダム移動時のワープ
+    public void Do_Randome_Warp() {
+        Vector2[] pos = { new Vector2(-160f, -50f), new Vector2(-160f, 50f), new Vector2(-40f, 0) };
+        int num = Random.Range(0, 6);
+        if(num >= 3) {
+            Start_Warp(-pos[num % 3], 1);
+        }
+        else {
+            Start_Warp(pos[num], -1);
+        }
     }
 
 

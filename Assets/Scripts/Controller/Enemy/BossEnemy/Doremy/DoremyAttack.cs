@@ -21,6 +21,7 @@ public class DoremyAttack : MonoBehaviour {
     [System.Serializable]
     public class Phase3_Status {
         public bool start_Routine = true;
+        public GameObject shoot_Obj;
 
     }
     //フェーズ4
@@ -191,11 +192,45 @@ public class DoremyAttack : MonoBehaviour {
     }
 
     private IEnumerator Phase3_Routine() {
-        yield return null;
+        DoremyPhase3ShootObj phase3_Shoot = phase3.shoot_Obj.GetComponent<DoremyPhase3ShootObj>();
+        //移動
+        _controller.Warp_In_Phase_Change(new Vector2(150f, 0), 1);
+        yield return new WaitForSeconds(2.5f);
+
+        while(boss_Controller.Get_Now_Phase() == 3) {
+            //奇数段
+            for (int i = 0; i < 3; i++) {
+                //ワープ
+                _controller.Do_Randome_Warp();
+                yield return new WaitForSeconds(1.0f);
+                _controller.Do_Randome_Warp();
+                yield return new WaitForSeconds(1.0f);
+                //ショット
+                phase3_Shoot.Shoot_Bounce_Bullet();
+                yield return new WaitForSeconds(1.5f);
+            }
+            //全方位弾
+            {
+                _controller.Start_Warp(new Vector2(0, -100f), 1);
+                yield return new WaitForSeconds(1.0f);
+                _controller.Play_Charge_Effect(1.0f);
+                yield return new WaitForSeconds(1.0f);
+                phase3_Shoot.Shoot_Diffusion_Bullet();
+            }
+            yield return new WaitForSeconds(1.0f);
+            //爆撃
+            {
+                _controller.Start_Warp(new Vector2(0, 100f), 1);
+                yield return new WaitForSeconds(1.0f);
+                phase3_Shoot.Start_Drop_Bullet(18, 0.4f);
+                yield return new WaitForSeconds(7.2f);
+            }
+        }
     }
 
     private void Stop_Phase3() {
-
+        StopCoroutine("Phase3_Routine");
+        phase3.shoot_Obj.GetComponent<DoremyPhase3ShootObj>().Stop_Shoot();
     }
     #endregion
     /*----------------------------フェーズ4------------------------------------*/
