@@ -7,6 +7,7 @@ public class NightmareBullet : MonoBehaviour {
     //コンポーネント
     private Rigidbody2D _rigid;
     private SpriteRenderer _sprite;
+    private AudioSource damage_Sound;
 
     //スクリプト
     private ObjectDestroyer _destroy_Effect;
@@ -26,6 +27,7 @@ public class NightmareBullet : MonoBehaviour {
         //取得
         _rigid = GetComponent<Rigidbody2D>();
         _sprite = GetComponent<SpriteRenderer>();
+        damage_Sound = GetComponent<AudioSource>();
         _destroy_Effect = GetComponent<ObjectDestroyer>();
         doremy = GameObject.Find("Doremy");
         player = GameObject.FindWithTag("PlayerTag");   
@@ -48,6 +50,7 @@ public class NightmareBullet : MonoBehaviour {
             if (life >= 2) {
                 StartCoroutine("Blink");
                 life--;
+                damage_Sound.Play();
             }
             else if(!is_Dive_To_Doremy) {
                 Dive_To_Doremy();
@@ -76,11 +79,13 @@ public class NightmareBullet : MonoBehaviour {
         Vector2 vector = (doremy.transform.position - transform.position).normalized;
         _rigid.velocity = vector * 400f;
         gameObject.tag = "PlayerAttackTag";
+        UsualSoundManager.Shot_Sound();
     }
 
     //ドレミーと衝突してはじける
     private void Crush() {
         _destroy_Effect.Destroy_Object();
+        UsualSoundManager.Shot_Sound();
     }
 
 

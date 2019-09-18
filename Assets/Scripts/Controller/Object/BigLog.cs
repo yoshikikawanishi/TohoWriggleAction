@@ -23,9 +23,10 @@ public class BigLog : MonoBehaviour {
 
 
     //Update
-    private void Update() {
+    private void LateUpdate() {
         if(transform.position.y < land_Height) {
             _rigid.velocity = new Vector2(speed, _rigid.velocity.y);
+            transform.Rotate(new Vector3(0, 0, 1), -5);
         }
     }
 

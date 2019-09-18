@@ -40,6 +40,7 @@ public class DoremyPhase2ShootObj : MonoBehaviour {
             Vector2 next_Pos = new Vector2(transform.position.x + 32f, transform.position.y + (-64f + i * 48f));
             bullet_Move.Start_Move(next_Pos, 0, 0.05f);
         }
+        UsualSoundManager.Shot_Sound();
 
         yield return new WaitForSeconds(1.0f);
         
@@ -49,6 +50,7 @@ public class DoremyPhase2ShootObj : MonoBehaviour {
             bullet_Rigid[i] = ring_Bullets[i].GetComponent<Rigidbody2D>();
         }
         //発射
+        UsualSoundManager.Shot_Sound();
         for(float v = 0; v < 400f; v += 8.0f) {
             for(int i = 0; i < num; i++) {
                 bullet_Rigid[i].velocity = new Vector2(-v, 0);
@@ -81,6 +83,7 @@ public class DoremyPhase2ShootObj : MonoBehaviour {
         while (true) {
             yield return new WaitForSeconds(3.0f);
             _bullet.Diffusion_Bullet(18, 100f, center_Angle, 6.0f);
+            UsualSoundManager.Shot_Sound();
             center_Angle += 10f;
         }
     }

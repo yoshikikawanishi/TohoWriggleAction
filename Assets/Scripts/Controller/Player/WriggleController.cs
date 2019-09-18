@@ -63,7 +63,7 @@ public class WriggleController : PlayerController {
         base.Transition();
         //飛行時上下移動追加
         if (is_Fly) {
-            if (Input.GetAxisRaw("Vertical") > 0 || InputManager.Instance.GetKey(MBLDefine.Key.Jump)) {
+            if (Input.GetAxisRaw("Vertical") > 0) {
                 if (_rigid.velocity.y < max_Speed) {
                     _rigid.velocity += new Vector2(0, acc);
                 }

@@ -33,7 +33,7 @@ public class DoremyController : MonoBehaviour {
     void Start () {
         //テスト用
         Debug.Log("Boss Battle Test");
-        boss_Controller.Set_Now_Phase(1);
+        boss_Controller.Set_Now_Phase(6);
 	}
 	
 
@@ -57,6 +57,7 @@ public class DoremyController : MonoBehaviour {
     public void Change_Parameter(string next_Bool, int direction) {
         _anim.SetBool("DashBool", false);
         _anim.SetBool("IdleBool", false);
+        _anim.SetBool("TransformBool", false);
 
         _anim.SetBool(next_Bool, true);
         transform.localScale = new Vector3(direction, 1, 1);
@@ -117,8 +118,8 @@ public class DoremyController : MonoBehaviour {
     }
     public IEnumerator Warp_Invincible(Vector2 next_Pos, int direction) {
         Change_Layer("InvincibleLayer");
-        yield return new WaitForSeconds(1.0f);
-        Start_Warp(new Vector2(160f, -48f), direction);
+        yield return new WaitForSeconds(1.5f);
+        Start_Warp(next_Pos, direction);
         yield return new WaitForSeconds(1.5f);
         Change_Layer("EnemyLayer");
     }

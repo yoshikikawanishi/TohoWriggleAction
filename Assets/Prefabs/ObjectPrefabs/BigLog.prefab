@@ -65,7 +65,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &58607188657018358
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -74,7 +74,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 1028107417059508}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ed7c15006cfba5f4183b994ea6d4955c, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

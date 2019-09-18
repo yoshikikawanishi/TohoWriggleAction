@@ -35,11 +35,14 @@ public class DoremyAttack : MonoBehaviour {
     [System.Serializable]
     public class Phase5_Status {
         public bool start_Routine = true;
+        public GameObject doreKing;
     }
     //フェーズ6
     [System.Serializable]
     public class Phase6_Status {
         public bool start_Routine = true;
+        public GameObject shoot_Obj;
+        public GameObject ground;
     }
 
     public Phase1_Status phase1;
@@ -47,12 +50,13 @@ public class DoremyAttack : MonoBehaviour {
     public Phase3_Status phase3;
     public Phase4_Status phase4;
     public Phase5_Status phase5;
-    public Phase5_Status phase6;
+    public Phase6_Status phase6;
 
     //スクリプト
     private DoremyController _controller;
     private BossEnemyController boss_Controller;
     private ObjectPoolManager pool_Manager;
+    private MoveBetweenTwoPoints _move;
 
     //自機
     private GameObject player;
@@ -63,6 +67,7 @@ public class DoremyAttack : MonoBehaviour {
         //取得
         _controller = GetComponent<DoremyController>();
         boss_Controller = GetComponent<BossEnemyController>();
+        _move = GetComponent<MoveBetweenTwoPoints>();
     }
 
 
@@ -75,7 +80,9 @@ public class DoremyAttack : MonoBehaviour {
         pool_Manager.Create_New_Pool(Resources.Load("Bullet/PooledBullet/SmallBullet") as GameObject, 20);
         pool_Manager.Create_New_Pool(Resources.Load("Bullet/PooledBullet/RedMiddleBullet") as GameObject, 20);
         pool_Manager.Create_New_Pool(Resources.Load("Bullet/PooledBullet/DoremyBullet") as GameObject, 20);
-	}
+        pool_Manager.Create_New_Pool(Resources.Load("Bullet/PooledBullet/RingBullet") as GameObject, 20);
+        pool_Manager.Create_New_Pool(Resources.Load("Bullet/PooledBullet/EllipseBullet") as GameObject, 50);
+    }
 
 
     /*----------------------------フェーズ1------------------------------------*/
@@ -320,21 +327,107 @@ public class DoremyAttack : MonoBehaviour {
     /*----------------------------フェーズ5------------------------------------*/
     #region phase5
     public void Phase5() {
-
+        if (phase5.start_Routine) {
+            phase5.start_Routine = false;
+            Stop_Phase4();
+            StartCoroutine("Phase5_Routine");
+        }
     }
 
     private IEnumerator Phase5_Routine() {
-        yield return null;
+        DoreKing doreKing_Controller = phase5.doreKing.GetComponent<DoreKing>();
+        //移動
+        _controller.Warp_In_Phase_Change(new Vector2(260f, -140f), 1);
+        yield return new WaitForSeconds(3.5f);
+        //ドレキング登場
+        _controller.Change_Parameter("TransformBool", 1);
+        _move.Start_Move(new Vector3(96f, -30f), 0, 0.01f);
+        yield return new WaitUntil(_move.End_Move);
+        phase5.doreKing.SetActive(true);
+
+        while (boss_Controller.Get_Now_Phase() == 5) {
+            //ランダムでパターン選択
+            List<int> num_List = new List<int>() { 1, 2, 3, 4 };
+            int num = 1;
+            while (num_List.Count > 0) {
+                //パターン選択
+                num = num_List[Random.Range(0, num_List.Count)];
+                num_List.Remove(num);
+                //攻撃
+                switch (num) {
+                    case 1:
+                        doreKing_Controller.Shoot_In_Under_Obj();
+                        yield return new WaitForSeconds(2.0f);
+                        break;
+                    case 2:
+                        doreKing_Controller.Shoot_In_Upper_Obj();
+                        yield return new WaitForSeconds(1.0f);
+                        break;
+                    case 3:
+                        doreKing_Controller.Start_Spiral_Shoot();
+                        yield return new WaitForSeconds(3.0f);
+                        break;
+                    case 4:
+                        doreKing_Controller.Put_Out_Beam();
+                        yield return new WaitForSeconds(1.5f);
+                        break;
+                }
+            }
+        }
+    }
+
+    private void Stop_Phase5() {
+        _move.Start_Move(new Vector3(260f, -140f), 0, 0.01f);
+        phase5.doreKing.GetComponent<DoreKing>().Stop_Shoot();
+        StopCoroutine("Phase5_Routine");
     }
     #endregion
     /*----------------------------フェーズ6------------------------------------*/
     #region phase6
     public void Phase6() {
-
+        if (phase6.start_Routine) {
+            phase6.start_Routine = false;
+            Stop_Phase5();
+            StartCoroutine("Phase6_Routine");
+        }
     }
 
     private IEnumerator Phase6_Routine() {
-        yield return null;
+        //ドレキング終了
+        _controller.Change_Layer("InvincibleLayer");
+        yield return new WaitForSeconds(2.0f);
+        _controller.Change_Parameter("IdleBool", 1);
+        _controller.Warp_In_Phase_Change(new Vector2(0, 0), 1);
+        phase6.ground.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+
+        //ショット開始
+        while (boss_Controller.Get_Now_Phase() == 6) {
+            Start_Shoot(new Color(0.8f, 0.2f, 0.2f), 1, -15f);
+            yield return new WaitForSeconds(3.0f);
+            Start_Shoot(new Color(0.2f, 0.2f, 0.8f), -1, 50f);
+            yield return new WaitForSeconds(3.0f);
+            Start_Shoot(new Color(0.3f, 0.7f, 0.3f), 1, -15f);
+            yield return new WaitForSeconds(3.0f);
+            Start_Shoot(new Color(0.7f, 0.7f, 0.1f), -1, 50f);
+            yield return new WaitForSeconds(3.0f);
+            Start_Shoot(new Color(0.7f, 0.1f, 0.7f), 1, -15f);
+            yield return new WaitForSeconds(9.0f);
+        }
+    }
+
+    //ショット開始
+    private void Start_Shoot(Color bullet_Color, int rotate_Direction, float spiral_Span) {
+        GameObject shoot_Obj = Instantiate(phase6.shoot_Obj);
+        shoot_Obj.transform.position = transform.position + new Vector3(32f, 0);
+        shoot_Obj.GetComponent<RotateSpreadObject>().Set_Status(transform.position, 1.0f * rotate_Direction, 0.42f);
+        shoot_Obj.GetComponent<DoremyPhase6ShootObj>().Start_Spiral_Shoot(bullet_Color, spiral_Span);
+        shoot_Obj.GetComponent<DoremyPhase6ShootObj>().Invoke("Stop_Shoot", 10.0f);
+    }
+
+    private void Stop_Phase6() {
+        StopCoroutine("Phase6_Routine");
+        phase6.ground.SetActive(false);
     }
     #endregion
 

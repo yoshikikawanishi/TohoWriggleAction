@@ -317,7 +317,7 @@ MonoBehaviour:
   life: 16
   score_Value: 600
   power_Value: 14
-  probability_Recover_Item: 0
+  probability_Recover_Item: 2
   item_Out_Speed: 500
   is_Hit_Spikes: 0
 --- !u!114 &114417528001830816

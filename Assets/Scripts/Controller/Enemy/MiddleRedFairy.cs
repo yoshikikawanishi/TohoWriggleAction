@@ -36,6 +36,7 @@ public class MiddleRedFairy : Enemy {
         familiar.SetActive(true);
         _bullet_Scroll.Set_Bullet(familiar);
         _bullet_Scroll.Odd_Num_Bullet(3, 10f, 150f, 8.0f);
+        UsualSoundManager.Shot_Sound();
         Destroy(familiar);
         yield return new WaitForSeconds(12f / 7f);
         //ショット
@@ -46,6 +47,7 @@ public class MiddleRedFairy : Enemy {
             for(int j = 0; j < 7; j++) {
                 _bullet_Scroll_Pool.Odd_Num_Bullet(3, 36f, 70f+j*7f, 10.0f);
             }
+            UsualSoundManager.Shot_Sound();
             yield return new WaitForSeconds(12f / 7f);
         }
         //上にはける

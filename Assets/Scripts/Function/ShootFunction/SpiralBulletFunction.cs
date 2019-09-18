@@ -60,10 +60,10 @@ public class SpiralBulletFunction : MonoBehaviour {
         }
     }
 
+    
     //弾の消去
     private void Delete_Bullet(GameObject bullet, float lifeTime) {
         bullet.GetComponent<EnemyBullet>().StartCoroutine("Delete_Pool_Bullet", lifeTime);
     }
-
 
 }
