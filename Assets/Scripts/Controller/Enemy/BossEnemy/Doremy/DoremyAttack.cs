@@ -43,6 +43,7 @@ public class DoremyAttack : MonoBehaviour {
         public bool start_Routine = true;
         public GameObject shoot_Obj;
         public GameObject ground;
+        public List<GameObject> objects;
     }
 
     public Phase1_Status phase1;
@@ -97,9 +98,10 @@ public class DoremyAttack : MonoBehaviour {
 
     private IEnumerator Phase1_Routine() {
         //移動
-        _controller.Warp_In_Phase_Change(new Vector2(160f, -32f), 1);
-        yield return new WaitForSeconds(1.5f);
+        _controller.Start_Warp(new Vector2(160f, -16f), 1);
+        yield return new WaitForSeconds(1.8f);
         _controller.Play_Charge_Effect(2.5f);
+        _controller.Appear_Back_Design(new Vector3(160f, -32f), new Color(0.2f, 0.2f, 0.2f, 0.15f));
         yield return new WaitForSeconds(2.5f);
 
         //ショット
@@ -121,6 +123,7 @@ public class DoremyAttack : MonoBehaviour {
     private void Stop_Phase1() {
         phase1.shoot_Obj.GetComponent<DoremySpiralShoot>().Stop_Spiral_Shoot();
         StopCoroutine("Phase2_Routine");
+        _controller.Delete_Back_Design();
     }
     #endregion
     /*----------------------------フェーズ2------------------------------------*/
@@ -139,8 +142,8 @@ public class DoremyAttack : MonoBehaviour {
         while (boss_Controller.Get_Now_Phase() == 2) {
             //移動
             _controller.Warp_In_Phase_Change(new Vector2(160f, -32f), 1);
-            yield return new WaitForSeconds(2.5f);
-
+            yield return new WaitForSeconds(3.5f);
+            _controller.Appear_Back_Design(transform.position, new Color(0.3f, 0.3f, 0.3f, 0.15f));
             //4Wayショット
             for (int i = 0; i < 4; i++) {
                 phase2_Shoot.Shoot_Ring_Bullet();
@@ -190,6 +193,7 @@ public class DoremyAttack : MonoBehaviour {
         Destroy(phase2.vacuum_Effect);
         _controller.Change_Layer("EnemyLayer");
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        _controller.Delete_Back_Design();
     }
     #endregion
     /*----------------------------フェーズ3------------------------------------*/
@@ -209,8 +213,9 @@ public class DoremyAttack : MonoBehaviour {
         //移動
         _controller.Warp_In_Phase_Change(new Vector2(150f, 0), 1);
         yield return new WaitForSeconds(2.5f);
+        _controller.Appear_Back_Design(new Vector3(0, 0), new Color(0.4f, 0.4f, 0.4f, 0.15f));
 
-        while(boss_Controller.Get_Now_Phase() == 3) {
+        while (boss_Controller.Get_Now_Phase() == 3) {
             //奇数段
             for (int i = 0; i < 3; i++) {
                 //ワープ
@@ -224,13 +229,17 @@ public class DoremyAttack : MonoBehaviour {
             }
             //全方位弾
             {
-                _controller.Start_Warp(new Vector2(0, -100f), 1);
+                _controller.Start_Warp(new Vector2(0, 0), 1);
                 yield return new WaitForSeconds(1.0f);
                 _controller.Play_Charge_Effect(1.0f);
                 yield return new WaitForSeconds(1.0f);
                 phase3_Shoot.Shoot_Diffusion_Bullet();
+                _controller.Play_Spread_Effect();
+                yield return new WaitForSeconds(1.0f);
+                phase3_Shoot.Shoot_Diffusion_Bullet();
+                _controller.Play_Spread_Effect();
             }
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.2f);
             //爆撃
             {
                 _controller.Start_Warp(new Vector2(0, 100f), 1);
@@ -244,6 +253,7 @@ public class DoremyAttack : MonoBehaviour {
     private void Stop_Phase3() {
         StopCoroutine("Phase3_Routine");
         phase3.shoot_Obj.GetComponent<DoremyPhase3ShootObj>().Stop_Shoot();
+        _controller.Delete_Back_Design();
     }
     #endregion
     /*----------------------------フェーズ4------------------------------------*/
@@ -265,6 +275,7 @@ public class DoremyAttack : MonoBehaviour {
         _controller.Move(new Vector2(160f, 16f), 0.015f);
         yield return new WaitUntil(_controller.End_Move);
         _controller.Change_Layer("EnemyLayer");
+        _controller.Appear_Back_Design(new Vector3(0, 0), new Color(0.5f, 0.5f, 0.5f, 0.15f));
 
         yield return new WaitForSeconds(1.5f);
 
@@ -322,6 +333,7 @@ public class DoremyAttack : MonoBehaviour {
         phase4.shoot_Obj.GetComponent<DoremyPhase4ShootObj>().Stop_Scatter_Shoot();
         phase4.shoot_Obj.GetComponent<DoremyPhase4ShootObj>().Stop_Spiral_Shoot();
         phase4.shadow_Doremy.SetActive(false);
+        _controller.Delete_Back_Design();
     }
     #endregion
     /*----------------------------フェーズ5------------------------------------*/
@@ -342,8 +354,10 @@ public class DoremyAttack : MonoBehaviour {
         //ドレキング登場
         _controller.Change_Parameter("TransformBool", 1);
         _move.Start_Move(new Vector3(96f, -30f), 0, 0.01f);
+        gameObject.AddComponent<CameraShake>().Shake(2.5f, 1.0f, true);
         yield return new WaitUntil(_move.End_Move);
         phase5.doreKing.SetActive(true);
+        _controller.Appear_Back_Design(new Vector3(0, 0), new Color(0.5f, 0.5f, 0.5f, 0.15f));
 
         while (boss_Controller.Get_Now_Phase() == 5) {
             //ランダムでパターン選択
@@ -357,19 +371,20 @@ public class DoremyAttack : MonoBehaviour {
                 switch (num) {
                     case 1:
                         doreKing_Controller.Shoot_In_Under_Obj();
-                        yield return new WaitForSeconds(2.0f);
+                        yield return new WaitForSeconds(1.5f);
                         break;
                     case 2:
                         doreKing_Controller.Shoot_In_Upper_Obj();
-                        yield return new WaitForSeconds(1.0f);
+                        yield return new WaitForSeconds(0.8f);
                         break;
                     case 3:
                         doreKing_Controller.Start_Spiral_Shoot();
-                        yield return new WaitForSeconds(3.0f);
+                        yield return new WaitForSeconds(2.5f);
                         break;
                     case 4:
+                        yield return new WaitForSeconds(0.5f);
                         doreKing_Controller.Put_Out_Beam();
-                        yield return new WaitForSeconds(1.5f);
+                        yield return new WaitForSeconds(1.0f);
                         break;
                 }
             }
@@ -380,6 +395,7 @@ public class DoremyAttack : MonoBehaviour {
         _move.Start_Move(new Vector3(260f, -140f), 0, 0.01f);
         phase5.doreKing.GetComponent<DoreKing>().Stop_Shoot();
         StopCoroutine("Phase5_Routine");
+        _controller.Delete_Back_Design();
     }
     #endregion
     /*----------------------------フェーズ6------------------------------------*/
@@ -399,35 +415,60 @@ public class DoremyAttack : MonoBehaviour {
         _controller.Change_Parameter("IdleBool", 1);
         _controller.Warp_In_Phase_Change(new Vector2(0, 0), 1);
         phase6.ground.SetActive(true);
-        yield return new WaitForSeconds(2.5f);
+
+        yield return new WaitForSeconds(3.0f);
+        _controller.Appear_Back_Design(new Vector3(0, 0, 0), new Color(0.7f, 0.7f, 0.7f, 0.15f));
+        _controller.Play_Charge_Effect(1.5f);
+        yield return new WaitForSeconds(1.5f);
+        _controller.Play_Spread_Effect();
 
         //ショット開始
         while (boss_Controller.Get_Now_Phase() == 6) {
+            //赤
             Start_Shoot(new Color(0.8f, 0.2f, 0.2f), 1, -15f);
             yield return new WaitForSeconds(3.0f);
+            //青
             Start_Shoot(new Color(0.2f, 0.2f, 0.8f), -1, 50f);
             yield return new WaitForSeconds(3.0f);
-            Start_Shoot(new Color(0.3f, 0.7f, 0.3f), 1, -15f);
-            yield return new WaitForSeconds(3.0f);
-            Start_Shoot(new Color(0.7f, 0.7f, 0.1f), -1, 50f);
-            yield return new WaitForSeconds(3.0f);
-            Start_Shoot(new Color(0.7f, 0.1f, 0.7f), 1, -15f);
-            yield return new WaitForSeconds(9.0f);
+            //体力が減るごとに増やす
+            if (boss_Controller.life[5] < boss_Controller.LIFE[5] * 0.75f) {
+                Start_Shoot(new Color(0.3f, 0.7f, 0.3f), 1, -15f);
+                yield return new WaitForSeconds(2.0f);
+            }
+            if (boss_Controller.life[5] < boss_Controller.LIFE[5] * 0.5f) {
+                Start_Shoot(new Color(0.7f, 0.7f, 0.1f), -1, 50f);
+                yield return new WaitForSeconds(1.5f);
+            }
+            if (boss_Controller.life[5] < boss_Controller.LIFE[5] * 0.25f) {
+                Start_Shoot(new Color(0.7f, 0.1f, 0.7f), 1, -15f);
+                yield return new WaitForSeconds(1.0f);
+            }
+            yield return new WaitForSeconds(7.0f);
         }
     }
 
     //ショット開始
     private void Start_Shoot(Color bullet_Color, int rotate_Direction, float spiral_Span) {
         GameObject shoot_Obj = Instantiate(phase6.shoot_Obj);
+        phase6.objects.Add(shoot_Obj);
         shoot_Obj.transform.position = transform.position + new Vector3(32f, 0);
         shoot_Obj.GetComponent<RotateSpreadObject>().Set_Status(transform.position, 1.0f * rotate_Direction, 0.42f);
         shoot_Obj.GetComponent<DoremyPhase6ShootObj>().Start_Spiral_Shoot(bullet_Color, spiral_Span);
         shoot_Obj.GetComponent<DoremyPhase6ShootObj>().Invoke("Stop_Shoot", 10.0f);
+        _controller.Play_Spread_Effect();
+        UsualSoundManager.Shot_Sound();
     }
 
-    private void Stop_Phase6() {
+    public void Stop_Phase6() {
         StopCoroutine("Phase6_Routine");
         phase6.ground.SetActive(false);
+        player.transform.Find("PlayerBody").gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        foreach(var obj in phase6.objects) {
+            if(obj != null) {
+                Destroy(obj);
+            }
+        }
+        _controller.Delete_Back_Design();
     }
     #endregion
 

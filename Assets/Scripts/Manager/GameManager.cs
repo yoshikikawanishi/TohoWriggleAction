@@ -61,11 +61,9 @@ public class GameManager : MonoBehaviour {
         /*　データ消去のテスト */
         Debug.Log("Delete_Data");
         //DeleteData();
-        //DoremyHat.Delete_Data();
-        /*
-        ClearDataManager clear_Data = new ClearDataManager();
-        clear_Data.Delete_Data();
-        */
+        //DoremyHat.Delete_Data();        
+        //ClearDataManager.Delete_Data(); 
+        
 
     }
 

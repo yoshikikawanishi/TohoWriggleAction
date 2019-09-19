@@ -11,12 +11,10 @@ public class TitleScene : MonoBehaviour {
     private CanvasGroup canvas_Group;
     private GameObject confirm_Canvas;
 
+    //エクストラクリアマーク
+    [SerializeField] private GameObject extra_Clear_Mark;
 
-    //Awake
-    private void Awake() {
-        
-    }
-
+    
     // Use this for initialization
     void Start () {
         //取得
@@ -39,6 +37,8 @@ public class TitleScene : MonoBehaviour {
 
         //ハイスコアの表示
         Display_High_Score();
+        //エクストラクリアマークの表示
+        Display_Clear_Mark();
 
         //エクストラステージの開放、ドレミー帽子の表示
         Judge_Extra_Stage();
@@ -49,9 +49,16 @@ public class TitleScene : MonoBehaviour {
     //ハイスコアの表示
     private void Display_High_Score() {
         GameObject high_Score_Text = GameObject.Find("HighScoreText");
-        ClearDataManager clear_Data_Manager = new ClearDataManager();
-        int high_Score = clear_Data_Manager.Get_High_Score();
+        int high_Score = ClearDataManager.Get_High_Score();
         high_Score_Text.GetComponent<Text>().text = "High Score : " + high_Score.ToString("D10");
+    }
+
+
+    //エクストラクリアマークの表示
+    private void Display_Clear_Mark() {
+        if (ClearDataManager.Is_Clear_Extra()) {
+            extra_Clear_Mark.SetActive(true);
+        }
     }
 
 

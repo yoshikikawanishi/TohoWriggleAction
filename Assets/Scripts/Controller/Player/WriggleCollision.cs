@@ -105,9 +105,9 @@ public class WriggleCollision : PlayerCollision {
 
     //powerを出す
     private void Reduce_Power() {
-        int num = _playerManager.power / 4;
+        int num = _playerManager.power / 5;
         float space = 800f / num;
-        _playerManager.power /= 2;
+        _playerManager.power *= (3 / 5);
         for (int i = 0; i < num; i++) {
             GameObject p = Instantiate(Resources.Load("Power")) as GameObject;
             p.transform.position = transform.position + new Vector3(0, 64f);

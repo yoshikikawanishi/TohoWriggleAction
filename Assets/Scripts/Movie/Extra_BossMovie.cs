@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Extra_BossMovie : MonoBehaviour {
 
@@ -10,8 +11,6 @@ public class Extra_BossMovie : MonoBehaviour {
     //スクリプト
     private MessageDisplay _message;
     private PauseManager _pause;
-
-    private bool is_First_Visit = false;
 
 
 	//Awake
@@ -26,10 +25,7 @@ public class Extra_BossMovie : MonoBehaviour {
 
     //Start
     private void Start() {
-        GameManager gm = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
-        if (gm.Is_First_Visit()) {
-            is_First_Visit = true;
-        }
+        GameManager gm = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();        
     }
 
 
@@ -53,14 +49,27 @@ public class Extra_BossMovie : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
 
         //会話
-        if (is_First_Visit) {
-            _message.Start_Display("DoremyText", 1, 1);
-            yield return new WaitUntil(_message.End_Message);
-        }
+        _message.Start_Display("DoremyText", 1, 1);
+        yield return new WaitUntil(_message.End_Message);
+        
 
         //戦闘開始
         player.GetComponent<WriggleController>().Set_Playable(true);
         _pause.Set_Pausable(true);
         doremy.GetComponent<DoremyController>().start_Battle = true;
+    }
+
+    
+    //クリア後ムービー
+    public void Start_Clear_Movie() {
+        StartCoroutine("Play_Clear_Movie");
+    }
+
+    private IEnumerator Play_Clear_Movie() {
+        yield return new WaitForSeconds(1.5f);
+        ClearDataManager.Save_Clear_Extra();
+        GetComponent<FadeInOut>().Start_Fade_Out();
+        yield return new WaitForSeconds(2.0f);
+        SceneManager.LoadScene("TitleScene");
     }
 }

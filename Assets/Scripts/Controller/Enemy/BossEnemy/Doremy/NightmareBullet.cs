@@ -17,7 +17,7 @@ public class NightmareBullet : MonoBehaviour {
     private GameObject player;
 
     //ステータス
-    private int life = 80;
+    private int life = 120;
     private bool is_Dive_To_Doremy = false;
     private Vector2 aim;
 
@@ -46,20 +46,31 @@ public class NightmareBullet : MonoBehaviour {
     //OnTriggerEnter
     private void OnTriggerEnter2D(Collider2D collision) {
         //被弾
-        if (collision.tag == "PlayerBulletTag" || collision.tag == "PlayerAttackTag" || collision.tag == "BeetleBulletTag") {
-            if (life >= 2) {
-                StartCoroutine("Blink");
-                life--;
-                damage_Sound.Play();
-            }
-            else if(!is_Dive_To_Doremy) {
-                Dive_To_Doremy();
-                is_Dive_To_Doremy = true;
-            }
+        if (collision.tag == "PlayerBulletTag") {
+            Damaged(1);
+        }
+        else if(collision.tag == "PlayerAttackTag") {
+            Damaged(8);
+        }
+        else if(collision.tag == "BeetleBulletTag") {
+            Damaged(8);
         }
         //ドレミーと衝突してはじける
         if(collision.gameObject == doremy && is_Dive_To_Doremy) {
             Crush();
+        }
+    }
+
+    //被弾
+    private void Damaged(int damage) {
+        if (life >= 2) {
+            StartCoroutine("Blink");
+            life -= damage;
+            damage_Sound.Play();
+        }
+        else if (!is_Dive_To_Doremy) {
+            Dive_To_Doremy();
+            is_Dive_To_Doremy = true;
         }
     }
 
@@ -80,6 +91,8 @@ public class NightmareBullet : MonoBehaviour {
         _rigid.velocity = vector * 400f;
         gameObject.tag = "PlayerAttackTag";
         UsualSoundManager.Shot_Sound();
+        //外れた時用
+        Destroy(gameObject, 5.0f);
     }
 
     //ドレミーと衝突してはじける

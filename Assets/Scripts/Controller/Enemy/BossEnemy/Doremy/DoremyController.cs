@@ -8,11 +8,13 @@ public class DoremyController : MonoBehaviour {
     private BossEnemyController boss_Controller;
     private DoremyAttack _attack;
     private MoveBetweenTwoPoints _move;
+    private Extra_BossMovie stage_Movie;
     //コンポーネント
     private Animator _anim;
     //オブジェクト
     [SerializeField] private GameObject warp_In_Effect;
     [SerializeField] private GameObject warp_Out_Effect;
+    [SerializeField] private GameObject back_Design;
 
     //戦闘開始
     public bool start_Battle = false;
@@ -24,6 +26,7 @@ public class DoremyController : MonoBehaviour {
         boss_Controller = GetComponent<BossEnemyController>();
         _attack = GetComponent<DoremyAttack>();
         _move = GetComponent<MoveBetweenTwoPoints>();
+        stage_Movie = GameObject.FindWithTag("ScriptsTag").GetComponent<Extra_BossMovie>();
         _anim = GetComponent<Animator>();
 
     }
@@ -33,7 +36,7 @@ public class DoremyController : MonoBehaviour {
     void Start () {
         //テスト用
         Debug.Log("Boss Battle Test");
-        boss_Controller.Set_Now_Phase(6);
+        boss_Controller.Set_Now_Phase(1);
 	}
 	
 
@@ -49,6 +52,11 @@ public class DoremyController : MonoBehaviour {
                 case 5: _attack.Phase5(); break;
                 case 6: _attack.Phase6(); break;
             }
+        }
+        //クリア時
+        if (boss_Controller.Clear_Trigger()) {
+            _attack.Stop_Phase6();
+            stage_Movie.Start_Clear_Movie();
         }
 	}
 
@@ -118,7 +126,7 @@ public class DoremyController : MonoBehaviour {
     }
     public IEnumerator Warp_Invincible(Vector2 next_Pos, int direction) {
         Change_Layer("InvincibleLayer");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         Start_Warp(next_Pos, direction);
         yield return new WaitForSeconds(1.5f);
         Change_Layer("EnemyLayer");
@@ -147,5 +155,22 @@ public class DoremyController : MonoBehaviour {
         GameObject effect = Instantiate(Resources.Load("Effect/PowerSpreadEffectRed") as GameObject);
         effect.transform.position = transform.position;
         Destroy(effect, 2.0f);
+    }
+
+
+    //バックデザイン出す
+    public void Appear_Back_Design(Vector3 pos, Color color) {
+        back_Design.transform.localScale = new Vector3(0, 0, 1);
+        back_Design.transform.position = pos;
+        for (int i = 0; i < back_Design.transform.childCount; i++) {
+            back_Design.transform.GetChild(i).GetComponent<SpriteRenderer>().color = color;
+        }
+        back_Design.SetActive(true);
+    }
+
+    //バックデザイン消す
+    public void Delete_Back_Design() {
+        back_Design.SetActive(false);
+        back_Design.transform.localScale = new Vector3(0, 0, 1);
     }
 }

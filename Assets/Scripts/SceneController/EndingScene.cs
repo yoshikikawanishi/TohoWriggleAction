@@ -24,8 +24,7 @@ public class EndingScene : MonoBehaviour {
 	
     //クリアデータの保存
     private void Save_Clear_Data() {
-        ClearDataManager clear_Data_Manager = new ClearDataManager();
-        clear_Data_Manager.Save_Clear_Data();
+        ClearDataManager.Save_Clear_Data();
     }
 
 

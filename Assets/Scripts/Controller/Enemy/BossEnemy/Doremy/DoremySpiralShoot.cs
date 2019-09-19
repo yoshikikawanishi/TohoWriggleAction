@@ -28,8 +28,8 @@ public class DoremySpiralShoot : MonoBehaviour {
             _spiral[i].Set_Bullet_Pool(pool_Manager.Get_Pool("RedMiddleBullet"));
         }
         _spiral[0].Start_Spiral_Bullet(100f, 180, 14f, 0.1f, 6.0f);
-        _spiral[1].Start_Spiral_Bullet(100f, 135f, 8f, 0.1f, 6.0f);
-        _spiral[2].Start_Spiral_Bullet(100f, -135, -8f, 0.1f, 6.0f);
+        _spiral[1].Start_Spiral_Bullet(100f, 135f, 9f, 0.12f, 6.0f);
+        _spiral[2].Start_Spiral_Bullet(100f, -135, -9f, 0.12f, 6.0f);
         _spiral[3].Start_Spiral_Bullet(100f, -180f, -14f, 0.1f, 6.0f);
     }
 

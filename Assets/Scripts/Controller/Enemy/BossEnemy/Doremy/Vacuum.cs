@@ -19,7 +19,7 @@ public class Vacuum : MonoBehaviour {
 	void LateUpdate () {
 		if(is_Vacuuming && target != null) {
             direction = -(target.transform.position - transform.position).normalized;
-            target_Rigid.AddForce(direction * power);
+            target_Rigid.AddForce(direction * power * Time.timeScale);
         }
 	}
 
