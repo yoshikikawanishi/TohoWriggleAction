@@ -49,10 +49,10 @@ public class Ending_Movie : MonoBehaviour {
         yield return new WaitForSeconds(1.0f);
 
         //セリフ2
-        _message.Start_Display("EndingText", 4, 4);
+        _message.Start_Display("EndingText", 4, 6);
         yield return new WaitUntil(_message.End_Message);
         yield return new WaitForSeconds(1.0f);
-        _message.Start_Display("EndingText", 5, 7);
+        _message.Start_Display("EndingText", 7, 9);
         yield return new WaitUntil(_message.End_Message);
 
         reimu.GetComponent<MoveBetweenTwoPoints>().Start_Move(player.transform.position, -64f, 0.01f);

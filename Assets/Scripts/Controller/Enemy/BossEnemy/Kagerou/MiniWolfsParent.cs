@@ -36,7 +36,7 @@ public class MiniWolfsParent : MonoBehaviour {
             StartCoroutine("Do_Wolf_Attack");
         }
         //ライフが20以下になったら変身
-        if (boss_Controller.life[1] < 20 && !is_Transformed) {
+        if (boss_Controller.life[2] < 20 && !is_Transformed) {
             is_Transformed = true;
             StartCoroutine("Do_Wolf_Attack");
         }

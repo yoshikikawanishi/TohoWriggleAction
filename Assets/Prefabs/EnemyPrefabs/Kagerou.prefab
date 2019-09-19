@@ -254,7 +254,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &58476748363028112
 CircleCollider2D:
@@ -264,7 +264,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 1561863294887164}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 83511d558cc8d05428f80e503e8ade13, type: 2}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -554,15 +554,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phase1:
     start_Routine: 1
+    bound_Count: 0
+    drop_Bullet_Prefab: {fileID: 1563231563553782, guid: 0f89f2d494769464784eeceed61a5e55,
+      type: 2}
+  phase2:
+    start_Routine: 1
     end_Rush: 0
     bullet_Parent: {fileID: 0}
-  phase2:
+  phase3:
     start_Routine: 1
     mini_Wolfs: {fileID: 0}
     grounds: {fileID: 0}
-  phase3:
-    start_Routine: 1
   phase4:
+    start_Routine: 1
+  phase5:
     start_Routine: 1
     shot_Objects: {fileID: 0}
 --- !u!114 &114401525462527990
@@ -602,7 +607,7 @@ MonoBehaviour:
   damage_Sound: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
   audio_Group: {fileID: 243290957650688938, guid: ec0738a2f580f704391b999be37bf285,
     type: 2}
-  life: b400000032000000aa0000002c010000
+  life: b4000000b400000032000000aa0000002c010000
   LIFE: 
   power_Value: 50
   score_Value: 5000

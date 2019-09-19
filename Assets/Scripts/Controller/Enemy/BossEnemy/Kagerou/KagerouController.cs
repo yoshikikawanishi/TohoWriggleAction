@@ -29,6 +29,9 @@ public class KagerouController : MonoBehaviour {
         _shake = gameObject.AddComponent<CameraShake>();
         stage_Movie = GameObject.FindWithTag("ScriptsTag").GetComponent<Stage5_BossMovie>();
 
+        //テスト
+        Debug.Log("Boss Test");
+        boss_Controller.Set_Now_Phase(1);
     }
 
 
@@ -40,13 +43,14 @@ public class KagerouController : MonoBehaviour {
                 case 2: _attack.Phase2(); break;
                 case 3: _attack.Phase3(); break;
                 case 4: _attack.Phase4(); break;
+                case 5: _attack.Phase5(); break;
             }
         }
 
         //クリア時
         if (boss_Controller.Clear_Trigger()) {
             stage_Movie.Start_Clear_Movie();
-            _attack.Stop_Phase4();
+            _attack.Stop_Phase5();
         }
     }
 

@@ -60,7 +60,7 @@ public class Stage5_BossMovie : MonoBehaviour {
         player.GetComponent<WriggleController>().Change_Parameter("IdleBool");
 
         //ラルバ警告会話
-        _message.Start_Display("KagerouText", 1, 1);
+        _message.Start_Display("KagerouText", 1, 3);
         yield return new WaitUntil(_message.End_Message);
 
         //影狼咆哮
@@ -68,7 +68,7 @@ public class Stage5_BossMovie : MonoBehaviour {
         yield return new WaitForSeconds(1.0f);
 
         //ラルバ逃げる会話
-        _message.Start_Display("KagerouText", 2, 2);
+        _message.Start_Display("KagerouText", 4, 4);
         yield return new WaitUntil(_message.End_Message);
 
         //ラルバ逃げる、影狼登場
@@ -76,7 +76,7 @@ public class Stage5_BossMovie : MonoBehaviour {
         yield return new WaitForSeconds(2.0f);
 
         //影狼会話
-        _message.Start_Display("KagerouText", 3, 3);
+        _message.Start_Display("KagerouText", 5, 5);
         yield return new WaitUntil(_message.End_Message);
 
         //咆哮
@@ -142,7 +142,7 @@ public class Stage5_BossMovie : MonoBehaviour {
         yield return new WaitUntil(kagerou_Move.End_Move);
         
         //影狼会話
-        _message.Start_Display("KagerouText", 3, 3);
+        _message.Start_Display("KagerouText", 4, 4);
         yield return new WaitUntil(_message.End_Message);
 
         //咆哮

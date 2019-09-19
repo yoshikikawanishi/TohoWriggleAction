@@ -51,7 +51,7 @@ public class Stage4_BossMovie : MonoBehaviour {
 
         //戦闘前会話
         if (is_First_Visit) {
-            _message.Start_Display("MarisaText", 2, 2);
+            _message.Start_Display("MarisaText", 2, 4);
             yield return new WaitUntil(_message.End_Message);
         }
         progress_Num = 3;
@@ -114,8 +114,18 @@ public class Stage4_BossMovie : MonoBehaviour {
     }
     private IEnumerator Clear_Movie() {
         yield return new WaitForSeconds(2.5f);
-        _message.Start_Display("MarisaText", 3, 3);
+        //セリフ
+        _message.Start_Display("MarisaText", 5, 6);
         yield return new WaitUntil(_message.End_Message);
+        //魔理沙退場
+        GameObject marisa = GameObject.Find("Marisa");
+        MoveBetweenTwoPoints marisa_Move = marisa.GetComponent<MoveBetweenTwoPoints>();
+        marisa_Move.Start_Move(new Vector3(260f, 100f), 0, 0.02f);
+        yield return new WaitForSeconds(1.5f);
+        //セリフ
+        _message.Start_Display("MarisaText", 7, 7);
+        yield return new WaitUntil(_message.End_Message);
+        //フェードアウト
         GetComponent<FadeInOut>().Start_Fade_Out();
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("Stage5_1Scene");
