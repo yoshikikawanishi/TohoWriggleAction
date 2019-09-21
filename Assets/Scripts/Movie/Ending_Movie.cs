@@ -63,6 +63,7 @@ public class Ending_Movie : MonoBehaviour {
         GetComponent<FadeInOut>().Start_Fade_Out();
         yield return new WaitForSeconds(2.0f);
         _pause.Set_Pausable(true);
+     
         SceneManager.LoadScene("StaffRollScene");
     }
 

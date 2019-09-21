@@ -12,14 +12,12 @@ using UnityEngine;
 /// </summary>
 public class KeyConfig {
     private Dictionary<string, List<KeyCode>> config = new Dictionary<string, List<KeyCode>>();
-    private readonly string configFilePath;
-
+    
     /// <summary>
     /// キーコンフィグを管理するクラスを生成する
     /// </summary>
-    /// <param name="configFilePath">コンフィグファイルのパス</param>
-    public KeyConfig(string configFilePath) {
-        this.configFilePath = configFilePath;
+    public KeyConfig() {
+        
     }
 
     /// <summary>
@@ -110,22 +108,51 @@ public class KeyConfig {
         return sb.ToString();
     }
 
+
+    /// <summary>
+    ///　文字列からキーコードを取得する
+    ///　</summary>
+    public KeyCode GetCode(string keyCodeName) {
+        foreach(KeyCode key in Enum.GetValues(typeof(KeyCode))) {
+            if(key.ToString() == keyCodeName) {
+                return key;
+            }
+        }
+        return new KeyCode();
+    }
+
     /// <summary>
     /// ファイルからキーコンフィグファイルをロードする
     /// </summary>
     public void LoadConfigFile() {
-        //TODO:復号処理
-        using (TextReader tr = new StreamReader(configFilePath, Encoding.UTF8))
-            config = JsonMapper.ToObject<Dictionary<string, List<KeyCode>>>(tr);
+        string filePath = Application.dataPath + @"\StreamingAssets\KeyConfig.txt";
+        TextFileReader text = new TextFileReader();
+        text.Read_Text_File(filePath);
+
+        string keyname, key1, key2;
+        for (int i = 1; i < text.rowLength; i++) {
+            keyname = text.textWords[i, 0];
+            key1 = text.textWords[i, 1];
+            key2 = text.textWords[i, 2];
+            List<KeyCode> keycode = new List<KeyCode>() { GetCode(key1), GetCode(key2) };
+            SetKey(keyname, keycode);
+        }
+
     }
 
     /// <summary>
     /// 現在のキーコンフィグをファイルにセーブする
     /// </summary>
     public void SaveConfigFile() {
-        //TODO:暗号化処理
-        var jsonText = JsonMapper.ToJson(config);
-        using (TextWriter tw = new StreamWriter(configFilePath, false, Encoding.UTF8))
-            tw.Write(jsonText);
+        string filePath = Application.dataPath + @"\StreamingAssets\KeyConfig.txt";
+
+        StreamWriter sw_Clear = new StreamWriter(filePath, false);
+        sw_Clear.Write("#KEYNAME" + "\t" + "#VALUE1" + "\t" + "VALUE2");
+        foreach(var keyValuePair in config) {
+            sw_Clear.Write("\n" + keyValuePair.Key + "\t" + keyValuePair.Value[0] + "\t" + keyValuePair.Value[1]);
+        }
+        sw_Clear.Flush();
+        sw_Clear.Close();
+
     }
 }

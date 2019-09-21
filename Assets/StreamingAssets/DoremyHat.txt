@@ -1,4 +1,4 @@
 #SceneName	#HasGet
 Stage2_BonusScene	true
-Stage3_BonusScene	true
-Stage4_BonusScene	true
+Stage3_BonusScene	false
+Stage4_BonusScene	false

@@ -86,18 +86,19 @@ public class ConfigButton : MonoBehaviour {
                 }
                 //ゲームパッド
                 bool is_GamePad = false;
+                InputManager.KeyConfigSetting key_Setting = InputManager.KeyConfigSetting.Instance;
                 for (int i = 0; i < 16; i++) {
                     if (Input.GetKeyDown("joystick button " + i.ToString())) {
-                        InputManager.KeyConfigSetting.Instance.SetKey(changed_Key, new List<KeyCode> { changed_Key.DefaultKeyCode[0] , put_Button });
-                        button.GetComponentInChildren<Text>().text = changed_Key.DefaultKeyCode[0].ToString() + "\t|\tbutton " + i.ToString();
+                        key_Setting.SetKey(changed_Key, new List<KeyCode> { key_Setting.GetKeyCode(changed_Key)[0] , put_Button });
+                        button.GetComponentInChildren<Text>().text = key_Setting.GetKeyCode(changed_Key)[0].ToString() + "\t|\tbutton " + i.ToString();
                         is_GamePad = true;
                         break;
                     }
                 }
                 //キーボード
                 if (!is_GamePad) {
-                    InputManager.KeyConfigSetting.Instance.SetKey(changed_Key, new List<KeyCode> { put_Button, changed_Key.DefaultKeyCode[1] });
-                    button.GetComponentInChildren<Text>().text = put_Button.ToString() + "\t|\t" + changed_Key.DefaultKeyCode[1].ToString();
+                    key_Setting.SetKey(changed_Key, new List<KeyCode> { put_Button, key_Setting.GetKeyCode(changed_Key)[1] });
+                    button.GetComponentInChildren<Text>().text = put_Button.ToString() + "\t|\t" + key_Setting.GetKeyCode(changed_Key)[1].ToString();
                 }
                 break;
             }

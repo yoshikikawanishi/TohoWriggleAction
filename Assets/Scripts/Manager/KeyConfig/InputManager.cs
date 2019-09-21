@@ -112,17 +112,14 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
     /// <summary>
     /// 使用するキーコンフィグ
     /// </summary>
-    public readonly KeyConfig keyConfig = new KeyConfig(ExternalFilePath.KEYCONFIG_PATH);
+    public readonly KeyConfig keyConfig = new KeyConfig();
 
     public new void Awake() {
         Debug.Log("Load key-config file.");
 
-        if (!PlayerPrefs.HasKey("Is_First_Open_Game")) {
-            //最初はデフォルトの設定をコンフィグに格納
-            KeyConfigSetting.Instance.SetDefaultKeyConfig();
-            InputManager.Instance.keyConfig.SaveConfigFile();
-        }
-
+        //最初はデフォルトの設定をコンフィグに格納
+        KeyConfigSetting.Instance.SetDefaultKeyConfig();
+         
         //コンフィグファイルがあれば読み出す
         try {
             InputManager.Instance.keyConfig.LoadConfigFile();
@@ -130,6 +127,7 @@ internal class InputManager : SingletonMonoBehaviour<InputManager> {
         catch (IOException e) {
             Debug.Log(e.Message);
         }
+        
 
     }
 

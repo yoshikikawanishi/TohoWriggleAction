@@ -7,6 +7,8 @@ public class PlayerCore : MonoBehaviour {
     //スクリプト
     private WriggleCollision _collision;
 
+    private float time = 0;
+
 
 	// Use this for initialization
 	void Start () {
@@ -14,10 +16,22 @@ public class PlayerCore : MonoBehaviour {
 	}
 
 
-    //OnTriggerEnter
-    private void OnTriggerEnter2D(Collider2D collision) {
+    //OnTriggerStay
+    private void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.tag == "GroundTag" || collision.gameObject.tag == "ScreenWallTag") {
-            _collision.Miss();
+            if (time <= 0.1f) {
+                time += Time.deltaTime;
+            }
+            else {
+                _collision.Miss();
+            }
+        }
+    }
+
+    //OnTriggerExit
+    private void OnTriggerExit2D(Collider2D collision) {
+        if(collision.gameObject.tag == "GroundTag" || collision.gameObject.tag == "ScreenWallTag") {
+            time = 0;
         }
     }
 }

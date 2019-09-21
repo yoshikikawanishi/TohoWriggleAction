@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
         //初めてゲームを起動したとき
         //テスト
         Debug.Log("First_Visit_Test");
-        //PlayerPrefs.DeleteKey("Is_First_Open_Game");
+        PlayerPrefs.DeleteKey("Is_First_Open_Game");
 
         if (!PlayerPrefs.HasKey("Is_First_Open_Game")) {
             Do_First_Time_Setting();
@@ -60,10 +60,9 @@ public class GameManager : MonoBehaviour {
 
         /*　データ消去のテスト */
         Debug.Log("Delete_Data");
-        //DeleteData();
-        //DoremyHat.Delete_Data();        
-        //ClearDataManager.Delete_Data(); 
-        
+        DeleteData();
+        DoremyHat.Delete_Data();        
+        ClearDataManager.Delete_Data(); 
 
     }
 
@@ -93,7 +92,8 @@ public class GameManager : MonoBehaviour {
     //初めてゲームを起動したとき
     public void Do_First_Time_Setting() {
         Debug.Log("First_Open_Game");
-
+        //データの消去
+        DeleteData();
         //起動済みを保存する
         PlayerPrefs.SetInt("Is_First_Open_Game", 0);
     }

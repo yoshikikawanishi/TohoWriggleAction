@@ -25,7 +25,7 @@ public class Extra_BossMovie : MonoBehaviour {
 
     //Start
     private void Start() {
-        GameManager gm = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();        
+
     }
 
 

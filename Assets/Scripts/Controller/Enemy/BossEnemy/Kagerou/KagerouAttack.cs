@@ -120,7 +120,6 @@ public class KagerouAttack : MonoBehaviour {
     }
 
     private IEnumerator Phase1_Routine() {
-        GameObject player = GameObject.FindWithTag("PlayerTag");
         _controller.Appear_Back_Design(new Vector3(0, 0), new Color(0.1f, 0.1f, 0.9f, 0.07f));
         while (boss_Controller.Get_Now_Phase() == 1) {
             //エフェクト

@@ -11,12 +11,6 @@ using UnityEngine;
 /// このゲームで定義する定数などを扱う
 /// </summary>
 namespace MBLDefine {
-    /// <summary>
-    /// 外部ファイルへの参照に必要なパス群
-    /// </summary>
-    internal struct ExternalFilePath {
-        internal const string KEYCONFIG_PATH = "keyconf.dat";
-    }
 
     /// <summary>
     /// 入力値の基底クラス

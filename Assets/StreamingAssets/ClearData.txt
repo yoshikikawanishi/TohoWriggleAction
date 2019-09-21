@@ -1,3 +1,3 @@
 #NAME	#VALUE
-HighScore	258600
-ClearExtra	true
+HighScore	0000000000
+ClearExtra	false
