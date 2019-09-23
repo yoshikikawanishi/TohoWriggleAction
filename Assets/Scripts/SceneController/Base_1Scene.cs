@@ -32,6 +32,7 @@ public class Base_1Scene : MonoBehaviour {
     private IEnumerator Change_Scene() {
         fade_Out_Cover.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         GetComponent<FadeInOut>().Start_Fade_Out();
+        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Start_Fade_Out(0.01f, 1.1f);
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage3_1Scene");
     }

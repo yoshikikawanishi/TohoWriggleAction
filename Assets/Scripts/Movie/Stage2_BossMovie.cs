@@ -130,6 +130,7 @@ public class Stage2_BossMovie : MonoBehaviour {
             white_Out_Sprite.color += new Color(0, 0, 0, 0.005f);
             yield return null;
         }
+        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Start_Fade_Out(0.01f, 2.1f);
         yield return new WaitForSeconds(2.0f);
         //シーン遷移
         SceneManager.LoadScene("Base_1Scene");

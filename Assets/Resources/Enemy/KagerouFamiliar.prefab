@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e2f136328835f47b16fe9274356132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 1
+  life: 9
   score_Value: 0
   power_Value: 10
   probability_Recover_Item: 70

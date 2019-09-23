@@ -1,7 +1,8 @@
 #HasVisitedScene
 Stage1_1Scene
-TitleScene
-ConfigScene
 Stage1_BossScene
 Stage2_1Scene
 Stage2_BonusScene
+TitleScene
+ExtraFrontScene
+ExtraScene

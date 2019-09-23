@@ -11,6 +11,7 @@ public class Extra_BossMovie : MonoBehaviour {
     //スクリプト
     private MessageDisplay _message;
     private PauseManager _pause;
+    private BGMManager bgm_Manager;
 
 
 	//Awake
@@ -19,14 +20,9 @@ public class Extra_BossMovie : MonoBehaviour {
         player = GameObject.FindWithTag("PlayerTag");
         doremy = GameObject.Find("Doremy");
         _message = GetComponent<MessageDisplay>();
-        _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();        
+        _pause = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PauseManager>();
+        bgm_Manager = GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>();
 	}
-
-
-    //Start
-    private void Start() {
-
-    }
 
 
     //ボス前ムービー
@@ -56,6 +52,7 @@ public class Extra_BossMovie : MonoBehaviour {
         //戦闘開始
         player.GetComponent<WriggleController>().Set_Playable(true);
         _pause.Set_Pausable(true);
+        bgm_Manager.Change_BGM_Index(9);
         doremy.GetComponent<DoremyController>().start_Battle = true;
     }
 
@@ -69,6 +66,7 @@ public class Extra_BossMovie : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
         ClearDataManager.Save_Clear_Extra();
         GetComponent<FadeInOut>().Start_Fade_Out();
+        bgm_Manager.Start_Fade_Out(0.01f, 2.1f);
         yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene("TitleScene");
     }

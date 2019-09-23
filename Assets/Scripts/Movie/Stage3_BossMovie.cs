@@ -101,6 +101,7 @@ public class Stage3_BossMovie : MonoBehaviour {
         yield return new WaitUntil(_message.End_Message);
         yield return new WaitForSeconds(1.5f);
         GetComponent<BorderFadeOut>().Start_Fade_Out(0.015f);
+        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Start_Fade_Out(0.01f, 1.6f);
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("Base_2Scene");
     }

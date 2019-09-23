@@ -6,6 +6,8 @@ public class MoveLand : MonoBehaviour {
 
     //コンポーネント
     private MoveBetweenTwoPoints _move;
+    //スクリプト
+    private WriggleController player_Controller;
 
     //時間
     private float span = 3.0f;
@@ -23,6 +25,7 @@ public class MoveLand : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _move = gameObject.AddComponent<MoveBetweenTwoPoints>();
+        player_Controller = GameObject.FindWithTag("PlayerTag").GetComponent<WriggleController>();
         default_Pos = transform.position;
     }
 	
@@ -42,8 +45,13 @@ public class MoveLand : MonoBehaviour {
 
     //OnTriggerEnter
     private void OnTriggerStay2D(Collider2D collision) {
-        if (collision.tag == "PlayerFootTag" && collision.transform.parent != gameObject.transform) {
-            collision.transform.parent.SetParent(gameObject.transform);
+        if (collision.tag == "PlayerFootTag") {
+            if (collision.transform.parent != transform) {
+                collision.transform.parent.SetParent(gameObject.transform);
+            }
+            if (player_Controller.Get_Is_Fly()) {
+                collision.transform.parent.SetParent(null);
+            }
         }
     }
 

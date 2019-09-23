@@ -195,9 +195,10 @@ public class KagerouAttack : MonoBehaviour {
     }
 
     private void Stop_Phase1() {
+        transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 0, 1));
         GetComponent<CircleCollider2D>().isTrigger = true;
         StopAllCoroutines();
-        Stop_Rush();
+        StartCoroutine("Stop_Rush");
         _rigid.velocity = new Vector2(0, 0);
     }
         
@@ -214,11 +215,14 @@ public class KagerouAttack : MonoBehaviour {
     }
 
     private IEnumerator Phase2_Routine() {
+        gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
+        yield return new WaitForSeconds(0.5f);
         //初期位置に移動
         _controller.Change_Parametar("IdleBool", 1);
         _move.Start_Move(new Vector3(200f, -16f), 0, 0.02f);
         yield return new WaitUntil(_move.End_Move);
         _controller.Appear_Back_Design(transform.position, new Color(0.2f, 0.2f, 0.8f, 0.07f));
+        gameObject.layer = LayerMask.NameToLayer("EnemyLayer");
         yield return new WaitForSeconds(0.5f);
 
         while (boss_Controller.Get_Now_Phase() == 2) {
