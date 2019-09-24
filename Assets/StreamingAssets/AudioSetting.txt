@@ -1,3 +1,3 @@
 #Type	#Value
-BGM	-26
-SE	-26
+BGM	-25
+SE	-25

@@ -19,18 +19,20 @@ public class PlayGuideScene : MonoBehaviour {
         KeyConfig k = InputManager.Instance.keyConfig;
 
         Text text = GameObject.Find("ControlleGuideText2").GetComponent<Text>();
-        text.text = k.GetKeyCode("Jump")[0].ToString() +
-        "\n\n\n" +  k.GetKeyCode("Shot")[0].ToString() +
-        "\n\n\n" +  k.GetKeyCode("Fly")[0].ToString() +
-        "\n\n\n" +  "↓ " + k.GetKeyCode("Shot")[0].ToString() +
-        "\n\n\n" +  k.GetKeyCode("Pause")[0].ToString();
+
+        text.text   =  k.GetKeyCode("Jump")[0].ToString()   +
+        "\n\n\n"    +  k.GetKeyCode("Shot")[0].ToString() +
+        "\n\n\n"    +  "↓ " + k.GetKeyCode("Shot")[0].ToString() +
+        "\n\n\n"    +  k.GetKeyCode("Fly")[0].ToString()    +
+        "\n\n\n"    +  k.GetKeyCode("Pause")[0].ToString();
 
         text = GameObject.Find("ControlleGuideText3").GetComponent<Text>();
-        text.text = k.GetKeyCode("Jump")[1].ToString() +
-        "\n\n\n" + k.GetKeyCode("Shot")[1].ToString() +
-        "\n\n\n" + k.GetKeyCode("Fly")[1].ToString() +
-        "\n\n\n" + "↓ " + k.GetKeyCode("Shot")[1].ToString() +
-        "\n\n\n" + k.GetKeyCode("Pause")[1].ToString();
+
+        text.text   = k.GetKeyCode("Jump")[1].ToString() +
+        "\n\n\n"    + k.GetKeyCode("Shot")[1].ToString() +
+        "\n\n\n"    + "↓ " + k.GetKeyCode("Shot")[1].ToString() +
+        "\n\n\n"    + k.GetKeyCode("Fly")[1].ToString() +
+        "\n\n\n"    + k.GetKeyCode("Pause")[1].ToString();
     }
 
 

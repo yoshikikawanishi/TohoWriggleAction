@@ -142,7 +142,7 @@ public class Stage5_BossMovie : MonoBehaviour {
         yield return new WaitUntil(kagerou_Move.End_Move);
         
         //影狼会話
-        _message.Start_Display("KagerouText", 4, 4);
+        _message.Start_Display("KagerouText", 5, 5);
         yield return new WaitUntil(_message.End_Message);
 
         //咆哮
@@ -161,7 +161,7 @@ public class Stage5_BossMovie : MonoBehaviour {
     }
 
     private IEnumerator Clear_Movie() {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(4.0f);
         //明転
         GetComponent<FadeInOut>().Start_Fade_Out();
         GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Start_Fade_Out(0.02f, 3.0f);

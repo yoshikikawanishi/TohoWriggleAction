@@ -306,6 +306,7 @@ public class DoremyAttack : MonoBehaviour {
             
             //分裂してばらまき弾
             {
+                UsualSoundManager.Laser_Sound();
                 _controller.Move(new Vector2(120f, 0), 0.02f);
                 phase4.shadow_Doremy.transform.position = transform.position;
                 phase4.shadow_Doremy.SetActive(true);

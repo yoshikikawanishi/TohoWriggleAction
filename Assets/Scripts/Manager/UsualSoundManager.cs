@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class UsualSoundManager : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class UsualSoundManager : MonoBehaviour {
     static public AudioSource pause_In_Sound;
     static public AudioSource pause_Out_Sound;
     static public AudioSource laser_Sound;
+    static public AudioSource message_Sound;
 
 
     //シングルトン用
@@ -35,6 +37,7 @@ public class UsualSoundManager : MonoBehaviour {
         pause_In_Sound = audios[4];
         pause_Out_Sound = audios[5];
         laser_Sound = audios[6];
+        message_Sound = audios[7];
     }
 
 
@@ -71,5 +74,10 @@ public class UsualSoundManager : MonoBehaviour {
     //レーザー音
     static public void Laser_Sound() {
         laser_Sound.Play();
+    }
+
+    //メッセージ音
+    static public void Message_Sound() {
+        message_Sound.Play();
     }
 }

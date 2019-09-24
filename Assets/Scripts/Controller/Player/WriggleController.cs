@@ -163,6 +163,7 @@ public class WriggleController : PlayerController {
     }
     //キックのモーション
     private IEnumerator Kick_Routine() {
+        is_Hit_Kick = false;
         //ステータスの変化
         is_Playable = false;
         player_Kick.SetActive(true);

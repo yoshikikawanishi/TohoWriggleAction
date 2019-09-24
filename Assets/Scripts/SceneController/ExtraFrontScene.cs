@@ -22,6 +22,7 @@ public class ExtraFrontScene : MonoBehaviour {
 
         //初期設定
         player_Manager.life = 9;
+        player_Manager.stock = 1;
         player_Manager.power = 128;
         player_Manager.score = 3;
     }

@@ -82,7 +82,7 @@ public class BGMManager : MonoBehaviour {
     private IEnumerator Fade_Out(float speed, float time_Span) {
         AudioSource audio = now_BGM;
         float default_Volume = audio.volume;
-        while(now_BGM.volume > 0) {
+        while(audio.volume > 0) {
             audio.volume -= speed;
             yield return null;
         }

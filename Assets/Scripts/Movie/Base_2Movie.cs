@@ -219,14 +219,14 @@ public class Base_2Movie : MonoBehaviour {
         keine_Controller.enabled = false;
         KeineTalk keine_Talk = keine.AddComponent<KeineTalk>();
         if (keine_Controller.Get_Is_Catched()) {
-            keine_Talk.Set_Status("KeineText", 1, 2, new Vector2(24f, 32f));
+            keine_Talk.Set_Status("KeineText", 1, 6, new Vector2(24f, 32f));
         }
         else {
-            keine_Talk.Set_Status("KeineText", 3, 4, new Vector2(24f, 32f));
+            keine_Talk.Set_Status("KeineText", 7, 12, new Vector2(24f, 32f));
         }
         keine.transform.position = new Vector3(220f, -80f);
         //自機
-        player.transform.position = new Vector3(-226f, -80f);
+        player.transform.position = new Vector3(180f, -80f);
     }
 
 

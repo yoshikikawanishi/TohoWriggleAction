@@ -5,6 +5,8 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - audio_Clip: {fileID: 8300000, guid: 8785d055008957d41a53278137760961, type: 3}
+  - audio_Group: {fileID: 243290957650688938, guid: ec0738a2f580f704391b999be37bf285,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

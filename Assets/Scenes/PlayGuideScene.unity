@@ -1307,8 +1307,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.15
-  m_Text: "\u30B8\u30E3\u30F3\u30D7 :\n\n\n\u30B7\u30E7\u30C3\u30C8 :\n\t\n\n\u98DB\u884C
-    :\n\t\n\n\u30AD\u30C3\u30AF :\n\t\n\n\u4E2D\u65AD :\n\t"
+  m_Text: "\u30B8\u30E3\u30F3\u30D7 :\n\n\n\u30B7\u30E7\u30C3\u30C8 :\n\t\n\n\u30AD\u30C3\u30AF
+    :\n\t\n\n\u98DB\u884C :\n\t\n\n\u4E2D\u65AD :\n\t"
 --- !u!222 &1303048492
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2287,7 +2287,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Z\n\n\nX\n\n\nleftshift\n\n\n\u2193 X\n\n\nEscape"
+  m_Text: "Z\n\n\nX\n\n\n\u2193 X\n\n\nleftShif\n\n\nEscape"
 --- !u!222 &1617771511
 CanvasRenderer:
   m_ObjectHideFlags: 0

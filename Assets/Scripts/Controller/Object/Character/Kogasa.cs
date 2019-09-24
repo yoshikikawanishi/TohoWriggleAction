@@ -26,7 +26,7 @@ public class Kogasa : TalkCharacter {
         yield return new WaitForSeconds(0.3f);
         //画面揺らす
         if (is_First_Time) {
-            GetComponent<CameraShake>().Shake(0.5f, 4.0f, false);
+            GetComponent<CameraShake>().Shake(0.8f, 4.0f, false);
             GetComponent<CameraShake>().Remove_Camera_Controller(0.25f);
         }
         StartCoroutine(base.Talk());

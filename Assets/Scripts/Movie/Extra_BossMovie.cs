@@ -12,7 +12,7 @@ public class Extra_BossMovie : MonoBehaviour {
     private MessageDisplay _message;
     private PauseManager _pause;
     private BGMManager bgm_Manager;
-
+    
 
 	//Awake
 	void Awake () {
@@ -45,7 +45,12 @@ public class Extra_BossMovie : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
 
         //会話
-        _message.Start_Display("DoremyText", 1, 1);
+        if (!ClearDataManager.Is_Clear_Extra()) {
+            _message.Start_Display("DoremyText", 1, 7);
+        }
+        else {
+            _message.Start_Display("DoremyText", 8, 9);
+        }
         yield return new WaitUntil(_message.End_Message);
         
 
@@ -63,7 +68,7 @@ public class Extra_BossMovie : MonoBehaviour {
     }
 
     private IEnumerator Play_Clear_Movie() {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3.5f);
         ClearDataManager.Save_Clear_Extra();
         GetComponent<FadeInOut>().Start_Fade_Out();
         bgm_Manager.Start_Fade_Out(0.01f, 2.1f);

@@ -160,6 +160,7 @@ public class DoremyController : MonoBehaviour {
 
     //バックデザイン出す
     public void Appear_Back_Design(Vector3 pos, Color color) {
+        UsualSoundManager.Charge_Sound();
         back_Design.transform.localScale = new Vector3(0, 0, 1);
         back_Design.transform.position = pos;
         for (int i = 0; i < back_Design.transform.childCount; i++) {

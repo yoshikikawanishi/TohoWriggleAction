@@ -90,7 +90,7 @@ public class NightmareBullet : MonoBehaviour {
         Vector2 vector = (doremy.transform.position - transform.position).normalized;
         _rigid.velocity = vector * 400f;
         gameObject.tag = "PlayerAttackTag";
-        UsualSoundManager.Shot_Sound();
+        UsualSoundManager.Familiar_Appear_Sound();
         //外れた時用
         Destroy(gameObject, 5.0f);
     }
