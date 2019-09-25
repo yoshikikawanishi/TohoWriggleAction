@@ -49,6 +49,7 @@ public class Base_2Scene : MonoBehaviour {
 
     private IEnumerator Change_Scene() {
         GetComponent<FadeInOut>().Start_Fade_Out();
+        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Start_Fade_Out(0.01f, 1.1f);
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage4_1Scene");
     }

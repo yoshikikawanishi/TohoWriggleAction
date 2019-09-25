@@ -17,6 +17,8 @@ public class BGMManager : MonoBehaviour {
     [SerializeField] private AudioSource stage4_Boss_BGM;
     [SerializeField] private AudioSource stage5_Boss_BGM;
     [SerializeField] private AudioSource extra_Boss_BGM;
+    [SerializeField] private AudioSource base_BGM;
+    [SerializeField] private AudioSource staff_Roll_BGM;
 
     
     //現在流れているBGM 
@@ -94,21 +96,21 @@ public class BGMManager : MonoBehaviour {
     //シーン読み込み時に呼ばれる
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         switch (scene.name) {
-            case "TitleScene": Change_BGM(title_BGM); break;
-            case "GameOverScene": Stop_BGM(); break;
-            case "Stage1_1Scene": Change_BGM(stage_BGM1); break;
-            case "Stage2_1Scene": Change_BGM(stage_BGM1); break;
-            case "Stage2_2Scene": Change_BGM(stage_BGM1); break;
-            case "Base_1Scene": Change_BGM(stage_BGM1); break;
-            case "Stage3_1Scene": Change_BGM(stage_BGM2); break;
-            case "Stage3_2Scene": Change_BGM(stage_BGM2); break;
-            case "Base_2Scene": Stop_BGM(); break;
-            case "Stage4_1Scene": Change_BGM(stage_BGM3); break;
-            case "Stage4_2Scene": Change_BGM(stage_BGM3); break;
-            case "Stage5_1Scene": Change_BGM(stage_BGM3); break;
-            case "ExtraFrontScene": Stop_BGM(); break;
-            case "EndingScene": Stop_BGM(); break;
-            case "StaffRollScene": Change_BGM(stage_BGM1); break;
+            case "TitleScene"       : Change_BGM(title_BGM);    break;
+            case "GameOverScene"    : Stop_BGM();               break;
+            case "Stage1_1Scene"    : Change_BGM(stage_BGM1);   break;
+            case "Stage2_1Scene"    : Change_BGM(stage_BGM1);   break;
+            case "Stage2_2Scene"    : Change_BGM(stage_BGM1);   break;
+            case "Base_1Scene"      : Change_BGM(base_BGM);     break;
+            case "Stage3_1Scene"    : Change_BGM(stage_BGM2);   break;
+            case "Stage3_2Scene"    : Change_BGM(stage_BGM2);   break;
+            case "Base_2Scene"      : Change_BGM(base_BGM);     break;
+            case "Stage4_1Scene"    : Change_BGM(stage_BGM3);   break;
+            case "Stage4_2Scene"    : Change_BGM(stage_BGM3);   break;
+            case "Stage5_1Scene"    : Change_BGM(stage_BGM3);   break;
+            case "ExtraFrontScene"  : Stop_BGM();               break;
+            case "EndingScene"      : Stop_BGM();               break;
+            case "StaffRollScene"   : Change_BGM(staff_Roll_BGM); break;
         }
     }
 }

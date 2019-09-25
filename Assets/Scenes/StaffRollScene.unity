@@ -275,6 +275,7 @@ GameObject:
   - component: {fileID: 410131589}
   - component: {fileID: 410131588}
   - component: {fileID: 410131587}
+  - component: {fileID: 410131590}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -319,6 +320,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &410131590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 410131586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020513ef118b3a2428a538fbdb4dde3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roll_Text_Obj: {fileID: 1546294840}
 --- !u!1 &520482868
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,9 +526,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1208516649}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: e898b50818fff1f43ab4153c43dc140f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EnableMouse: 0
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -560,8 +574,9 @@ GameObject:
   - component: {fileID: 1546294841}
   - component: {fileID: 1546294843}
   - component: {fileID: 1546294842}
+  - component: {fileID: 1546294844}
   m_Layer: 5
-  m_Name: Text
+  m_Name: StaffRollText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -573,7 +588,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1546294840}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -582,8 +597,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 376.7, y: -3}
-  m_SizeDelta: {x: 665.2, y: 357.8}
+  m_AnchoredPosition: {x: 360, y: -900}
+  m_SizeDelta: {x: 666.00006, y: 1387.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1546294842
 MonoBehaviour:
@@ -605,7 +620,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 8629ab5366b071f4e908e222fcb48d1d, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -621,10 +636,11 @@ MonoBehaviour:
     \u656C\u79F0\u7565\u3001\u9806\u4E0D\u540C )\n\n\u300C\u6771\u65B9\u5F3E\u5E55\u98A8wiki\u300D\n\u52B9\u679C\u97F3\u3000\u6771\u65B9\u98A8
     ver0.20\r\n\n\u300C\u304F\u3089\u3052\u5DE5\u5320\u300D\r\n\r\n\u300C\u96F6\u5F0F\u30DE\u30C6\u30EA\u30A2\u30EB\u300D\r\n\n\u300CTAM
     Music Factory\u300D\r\n\r\n\u300COPEN GAME ART\u300D\u300C512 Sound Effects (8-bit
-    style)\u300D\rby SubspaceAudio\n\n\u300C\u6771\u65B9\u30D4\u30A2\u30CEEasy\u30E2\u30FC\u30C9\u300D\n\n\u25A0BGM\u30A2\u30EC\u30F3\u30B8\u5143\n\u6771\u65B9\u306E\u3044\u3064\u3082\u306E\u66F2\n\u300C\u8822\u3005\u79CB\u6708
+    style)\u300D\rby SubspaceAudio\n\n\u300C\u6771\u65B9\u30D4\u30A2\u30CEEasy\u30E2\u30FC\u30C9\u300D\n\n\u25A0\u3000BGM\u30A2\u30EC\u30F3\u30B8\u5143\n\u6771\u65B9\u306E\u3044\u3064\u3082\u306E\u66F2\n\u300C\u8822\u3005\u79CB\u6708
     ~Mooned Insect\u300D\n\u300C\u771F\u590F\u306E\u5996\u7CBE\u306E\u5922\u300D\n\u300C\u5C11\u5973\u7DBA\u60F3\u66F2
     ~Dream Battle\u300D\n\u300C\u5E7B\u8996\u306E\u591C ~Ghostly Eyes\u300D\n\u300C\u3082\u3046\u6B4C\u3057\u304B\u805E\u3053\u3048\u306A\u3044\u300D\n\u300C\u6C38\u591C\u306E\u5831\u3044
-    ~Impershable Night\u300D\n\u300C\u604B\u8272\u30DE\u30B9\u30BF\u30FC\u30B9\u30D1\u30FC\u30AF\u300D\n\u300C\u5B64\u72EC\u306A\u30A6\u30A7\u30A2\u30A6\u30EB\u30D5\u300D\n\u300C\u6C38\u9060\u306E\u6625\u5922\u300D\n\n\u25A0UnityAsset\nPostProcessing\n\n\u25A0\u4F5C\u3063\u305F\u4EBA\n\u30FB\u87C4\u5C45\n\n\u25A0\u30B9\u30DA\u30B7\u30E3\u30EB\u30B5\u30F3\u30AF\u30B9\n\u30FB\u53CB\u4EBA\n\n\u25A0\u539F\u4F5C\u306E\u3048\u3089\u3044\u4EBA\n\u30FBZUN\u3000\u3055\u3093\n\n\u2606\u3042\u305D\u3093\u3067\u304F\u3060\u3055\u308A\u3042\u308A\u304C\u3068\u3046\u3054\u3056\u3044\u307E\u3057\u305F\uFF01\n\u3000\u3088\u304B\u3063\u305F\u3089\u30A8\u30AF\u30B9\u30C8\u30E9\u30B9\u30C6\u30FC\u30B8\u3082\u904A\u3093\u3067\u307F\u3066\u306D\uFF01"
+    ~Impershable Night\u300D\n\u300C\u604B\u8272\u30DE\u30B9\u30BF\u30FC\u30B9\u30D1\u30FC\u30AF\u300D\n\u300C\u5B64\u72EC\u306A\u30A6\u30A7\u30A2\u30A6\u30EB\u30D5\u300D\n\u300C\u6C38\u9060\u306E\u6625\u5922\u300D\n\n\u25A0\u3000Unity
+    Asset\nPostProcessing\n\n\u25A0\u3000\u4F5C\u3063\u305F\u4EBA\n\u30FB\u87C4\u5C45\n\n\u25A0\u3000\u30B9\u30DA\u30B7\u30E3\u30EB\u30B5\u30F3\u30AF\u30B9\n\n\n\u25A0\u3000\u539F\u4F5C\u306E\u3048\u3089\u3044\u4EBA\n\u30FBZUN\u3000\u3055\u3093\n\n\u2606\u3042\u305D\u3093\u3067\u304F\u3060\u3055\u308A\u3042\u308A\u304C\u3068\u3046\u3054\u3056\u3044\u307E\u3057\u305F\uFF01\n\u3000\u3088\u304B\u3063\u305F\u3089\u30A8\u30AF\u30B9\u30C8\u30E9\u30B9\u30C6\u30FC\u30B8\u3082\u904A\u3093\u3067\u307F\u3066\u306D\uFF01"
 --- !u!222 &1546294843
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -632,3 +648,16 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1546294840}
   m_CullTransparentMesh: 0
+--- !u!114 &1546294844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1546294840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
