@@ -38,6 +38,9 @@ public class ReimuLastBombEffect : MonoBehaviour {
         //霊夢の周りを回す
         StartCoroutine(Rotate_Effect(obj_List1, obj_List2));
         //リグルに衝撃エフェクト
+        if(player == null) {
+            yield break;
+        }
         for(int i = 0; i < 7; i++) {
             GameObject effect = Instantiate(Resources.Load("Effect/CalmBurstEffect") as GameObject);
             effect.transform.position = player.transform.position;

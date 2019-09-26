@@ -9,7 +9,6 @@ public class Stage1_1Scene : MonoBehaviour {
     private GameObject player;
     //カメラ
     private GameObject main_Camera;
-    private CameraController _cameraController;
 
     //SoulEnemyを生成するトリガーのx座標
     [SerializeField] private float soul_Gen_Line = 0;
@@ -22,7 +21,6 @@ public class Stage1_1Scene : MonoBehaviour {
         player = GameObject.FindWithTag("PlayerTag");
         //カメラの取得
         main_Camera = GameObject.FindWithTag("MainCamera");
-        _cameraController = main_Camera.GetComponent<CameraController>();
         //初回時フェードイン
         FadeInOut f = GetComponent<FadeInOut>();
         GameManager gm = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
@@ -48,7 +46,7 @@ public class Stage1_1Scene : MonoBehaviour {
             StartCoroutine("Enemy_Gen_Routine");
         }
         //カメラがステージ右端についた時生成の中止
-        if(_cameraController.rightSide - main_Camera.transform.position.x < 32f) {
+        if(6000f - main_Camera.transform.position.x < 32f) {
             StopCoroutine("Enemy_Gen_Routine");
         }
     }

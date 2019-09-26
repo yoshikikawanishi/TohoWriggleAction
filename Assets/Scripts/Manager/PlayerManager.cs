@@ -22,7 +22,9 @@ public class PlayerManager : MonoBehaviour {
 
     //自機の復活の処理
     public IEnumerator Revive() {
+        GetComponent<PauseManager>().Set_Pausable(false);
         yield return new WaitForSeconds(1.0f);
+        GetComponent<PauseManager>().Set_Pausable(true);
         SceneManager.LoadScene(PlayerPrefs.GetString("Scene"));
         yield return null;
         life = 3;
@@ -37,7 +39,9 @@ public class PlayerManager : MonoBehaviour {
 
     //ゲームオーバーの処理
     public IEnumerator Game_Over() {
+        GetComponent<PauseManager>().Set_Pausable(false);
         yield return new WaitForSeconds(1.0f);
+        GetComponent<PauseManager>().Set_Pausable(true);
         SceneManager.LoadScene("GameOverScene");
         life = 3;
         stock = 3;

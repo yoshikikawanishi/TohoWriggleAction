@@ -159,7 +159,8 @@ public class WriggleShot : MonoBehaviour {
                 for (int i = 0; i < bullet_Num; i++) {
                     var bullet = flies_Bullet_Pool.GetObject();
                     float width = 12f + bullet_Num * 2;
-                    bullet.transform.position = transform.position + new Vector3(0, -width / 2 + width * 2 / bullet_Num * i);
+                    bullet.transform.position = transform.position;
+                    bullet.transform.position += new Vector3(transform.localScale.x * 4f, -width / 2 + width * 2 / bullet_Num * i);
                     bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
                 }             
                 shot_Sound.Play();
@@ -202,7 +203,8 @@ public class WriggleShot : MonoBehaviour {
                 for (int i = 0; i < bullet_Num; i++) {
                     var bullet = butterFly_Bullet_Pool.GetObject();
                     float width = 8f + bullet_Num * 2;
-                    bullet.transform.position = transform.position + new Vector3(0, -width / 2 + width * 2 / bullet_Num * i);
+                    bullet.transform.position = transform.position;
+                    bullet.transform.position += new Vector3(transform.localScale.x * 4f, -width / 2 + width * 2 / bullet_Num * i);
                     bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
                 }
                 shot_Sound.Play();
@@ -247,7 +249,7 @@ public class WriggleShot : MonoBehaviour {
             for (int i = 0; i < bullet_Num; i++) {
                 bullet_Speed += GetComponent<Rigidbody2D>().velocity / 2;
                 var bullet = Instantiate(Resources.Load("Bullet/BeetleBullet")) as GameObject;
-                bullet.transform.position = transform.position;
+                bullet.transform.position = transform.position + new Vector3(8f * transform.localScale.x, 8f);
                 bullet.GetComponent<Rigidbody2D>().velocity = bullet_Speed + new Vector2(i * 50f, 0);
             }
             shot_Sound.Play();
@@ -287,12 +289,14 @@ public class WriggleShot : MonoBehaviour {
                 for (int i = 0; i < bullet_Num; i++) {
                     var bullet = bee_Bullet_Pool.GetObject();
                     float width = 3f + bullet_Num * 2;
-                    bullet.transform.position = transform.position + new Vector3(0, width / 2 - width * 2 / bullet_Num * i);
+                    bullet.transform.position = transform.position;
+                    bullet.transform.position += new Vector3(4f * transform.localScale.x, width / 2 - width * 2 / bullet_Num * i);
                     bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
                     //奇数の時中心の弾は2重にする
                     if (i == bullet_Num / 2 && (bullet_Num % 2) == 1) {
                         var bullet2 = bee_Bullet_Pool.GetObject();
-                        bullet2.transform.position = transform.position + new Vector3(0, width / 2 - width * 2 / bullet_Num * i);
+                        bullet2.transform.position = transform.position;
+                        bullet2.transform.position += new Vector3(4f * transform.localScale.x, width / 2 - width * 2 / bullet_Num * i);
                         bullet2.GetComponent<Rigidbody2D>().velocity = new Vector2(bullet_Speed * transform.localScale.x, 0);
                     }
                 }

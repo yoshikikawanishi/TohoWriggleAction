@@ -22,6 +22,8 @@ public class SavePointController : MonoBehaviour {
         if (collision.tag == "PlayerBodyTag") {
             _gameManager.SaveData();
             ui_Controller.Save_UI();
+            GetComponent<AudioSource>().Play();
+            GetComponent<ParticleSystem>().Play();
         }
     }
 }

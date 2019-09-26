@@ -9,6 +9,7 @@ public class WriggleCollision : PlayerCollision {
 
     //スクリプト
     private PlayerManager _playerManager;
+    private WriggleController player_Controller;
 
     //カメラ
     private GameObject main_Camera;
@@ -23,6 +24,7 @@ public class WriggleCollision : PlayerCollision {
         get_Item_Sound = GetComponent<AudioSource>();
         //スクリプトの取得
         _playerManager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<PlayerManager>();
+        player_Controller = GameObject.FindWithTag("PlayerTag").GetComponent<WriggleController>();
         //カメラとダメージエフェクト
         main_Camera = GameObject.FindWithTag("MainCamera");
         bolt_Effect = Instantiate(Resources.Load("Effect/BoltEffect")) as GameObject;
@@ -76,6 +78,7 @@ public class WriggleCollision : PlayerCollision {
     protected new void Damaged(int damage) {
         _playerManager.life -= damage;
         Reduce_Power();
+        player_Controller.Stop_Kick();
         //体力が残るとき
         if (_playerManager.life > 0) {
             base.Damaged(damage);

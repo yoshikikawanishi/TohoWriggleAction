@@ -170,14 +170,15 @@ public class WriggleController : PlayerController {
         Change_Parameter("KickBool");
         kick_Sound.Play();
         //地上ならスライディング
+        Vector2 velocity = new Vector2();
         if (is_Ground) {
-            _rigid.drag = 3.0f;
-            _rigid.velocity = new Vector2(200f * transform.localScale.x, 0);
+            velocity = new Vector2(200f * transform.localScale.x, 0);
         }
         //空中ならライダーキック
         else {
-            _rigid.velocity = new Vector2(240f * transform.localScale.x, -270f);
+            velocity = new Vector2(240f * transform.localScale.x, -270f);
         }
+        _rigid.velocity = velocity;
         //キックが敵にヒットした時跳ね返る(WriggleKickCollisionで衝突判定)
         for (float time = 0; time < 0.3f; time += 0.015f) {
             if (is_Hit_Kick) {
@@ -186,10 +187,16 @@ public class WriggleController : PlayerController {
                 yield return new WaitForSeconds(0.2f);
                 break;
             }
+            _rigid.velocity = new Vector2(velocity.x, _rigid.velocity.y);
             yield return new WaitForSeconds(0.015f);
         }
         //ステータスを戻す
-        _rigid.drag = default_Drag;
+        player_Kick.SetActive(false);
+        is_Playable = true;
+    }
+
+    public void Stop_Kick() {
+        StopCoroutine("Kick_Routine");
         player_Kick.SetActive(false);
         is_Playable = true;
     }

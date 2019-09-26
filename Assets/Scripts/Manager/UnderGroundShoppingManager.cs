@@ -140,7 +140,7 @@ public class UnderGroundShoppingManager : MonoBehaviour {
         GetComponent<FadeInOut>().Start_Fade_Out();
         yield return new WaitForSeconds(1.5f);
         GameManager game_Manager = GameObject.FindWithTag("CommonScriptsTag").GetComponent<GameManager>();
-        game_Manager.StartCoroutine(game_Manager.Load_Scene("Stage3_2Scene", new Vector2(10456, -76f)));
+        game_Manager.StartCoroutine(game_Manager.Load_Scene("Stage3_2Scene", new Vector2(10400, -80f)));
     }
 
     //商品の確認
