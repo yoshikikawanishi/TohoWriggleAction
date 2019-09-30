@@ -122,7 +122,10 @@ public class Stage2_BossMovie : MonoBehaviour {
         GameObject.Find("Reimu").GetComponent<ReimuAttack>().StopAllCoroutines();
         GameObject.Find("Reimu").GetComponent<MoveBetweenTwoPoints>().StopAllCoroutines();
         //自機無敵
-        GameObject.FindWithTag("PlayerBodyTag").layer = LayerMask.NameToLayer("InvincibleLayer");
+        GameObject player = GameObject.FindWithTag("PlayerTag");
+        if (player != null) {
+            player.layer = LayerMask.NameToLayer("InvincibleLayer");
+        }
         //明転
         yield return new WaitForSeconds(3.0f);
         SpriteRenderer white_Out_Sprite = GameObject.Find("WhiteOut").GetComponent<SpriteRenderer>();

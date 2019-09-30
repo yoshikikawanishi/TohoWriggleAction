@@ -9,6 +9,6 @@ public class RotateObject : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(0, 0, angler_Velocity);
+        transform.Rotate(0, 0, angler_Velocity * Time.timeScale);
 	}
 }

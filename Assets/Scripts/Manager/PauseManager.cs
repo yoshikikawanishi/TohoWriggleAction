@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour {
 
@@ -28,6 +29,9 @@ public class PauseManager : MonoBehaviour {
     //Start
     private void Start() {
         _gameManager = GetComponent<GameManager>();
+
+        //シーン読み込みのデリケート
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
 
@@ -46,6 +50,14 @@ public class PauseManager : MonoBehaviour {
                 Release_Pause_Game();
             }
         }
+    }
+
+
+    //シーン読み込み時に呼ばれる関数
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        //ポーズのバグ防止用
+        state = STATE.normal;
+        Time.timeScale = 1;
     }
 
 

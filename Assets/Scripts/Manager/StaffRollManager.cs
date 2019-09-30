@@ -23,22 +23,10 @@ public class StaffRollManager : MonoBehaviour {
     //スタッフロール
     private IEnumerator Scroll_Staff_Roll() {
         while (roll_Text_Obj.transform.position.y < 1000f) {
-            Change_Scroll_Speed();
             roll_Text_Obj.transform.position += new Vector3(0, scroll_Speed);
             yield return null;
         }
         is_End_Staff_Roll = true;
-    }
-
-
-    //速度の変更
-    private void Change_Scroll_Speed() {
-        if (InputManager.Instance.GetKeyDown(MBLDefine.Key.Jump)) {
-            scroll_Speed = 10.0f;
-        }
-        if (InputManager.Instance.GetKeyUp(MBLDefine.Key.Jump)) {
-            scroll_Speed = 1.2f;
-        }
     }
 
 

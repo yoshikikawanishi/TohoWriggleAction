@@ -121,10 +121,6 @@ public class Stage4_BossMovie : MonoBehaviour {
         GameObject marisa = GameObject.Find("Marisa");
         MoveBetweenTwoPoints marisa_Move = marisa.GetComponent<MoveBetweenTwoPoints>();
         marisa_Move.Start_Move(new Vector3(260f, 100f), 0, 0.02f);
-        yield return new WaitForSeconds(1.5f);
-        //セリフ
-        _message.Start_Display("MarisaText", 7, 7);
-        yield return new WaitUntil(_message.End_Message);
         //フェードアウト
         GetComponent<FadeInOut>().Start_Fade_Out();
         bgm_Manager.Start_Fade_Out(0.01f, 1.6f);

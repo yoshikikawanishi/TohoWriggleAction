@@ -50,6 +50,7 @@ public class PlayerManager : MonoBehaviour {
         PlayerPrefs.SetInt("Stock", stock);
         PlayerPrefs.SetInt("Continue", continue_Count);
         PlayerPrefs.SetInt("Power", power);
+        PlayerPrefs.SetInt("Score", 0);
         PlayerPrefs.SetString("Option", option_Type);
     }
 

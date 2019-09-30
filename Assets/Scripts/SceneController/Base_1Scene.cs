@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Base_1Scene : MonoBehaviour {
-
-    //自機
+    
     private GameObject player;
+    private bool is_Changed_Scene = false;
 
     [SerializeField] private GameObject fade_Out_Cover;
 
@@ -24,7 +24,8 @@ public class Base_1Scene : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//右端に行ったらシーン遷移
-        if(player.transform.position.x > 800f) {
+        if(player.transform.position.x > 800f && !is_Changed_Scene) {
+            is_Changed_Scene = true;
             StartCoroutine(Change_Scene());
         }
 	}

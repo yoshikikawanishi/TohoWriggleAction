@@ -53,6 +53,7 @@ public class Base_2Movie : MonoBehaviour {
             is_End_Movie = true;
             _pause.Set_Pausable(true);
             Time.timeScale = 1;
+            After_Movie();
             yield return null;
         }
 
@@ -219,10 +220,10 @@ public class Base_2Movie : MonoBehaviour {
         keine_Controller.enabled = false;
         KeineTalk keine_Talk = keine.AddComponent<KeineTalk>();
         if (keine_Controller.Get_Is_Catched()) {
-            keine_Talk.Set_Status("KeineText", 1, 6, new Vector2(24f, 32f));
+            keine_Talk.Set_Status("KeineText", 1, 6, new Vector2(18f, 32f));
         }
         else {
-            keine_Talk.Set_Status("KeineText", 7, 12, new Vector2(24f, 32f));
+            keine_Talk.Set_Status("KeineText", 7, 12, new Vector2(18f, 32f));
         }
         keine.transform.position = new Vector3(220f, -80f);
         //自機
