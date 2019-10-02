@@ -19,6 +19,7 @@ public class BGMManager : MonoBehaviour {
     [SerializeField] private AudioSource extra_Boss_BGM;
     [SerializeField] private AudioSource base_BGM;
     [SerializeField] private AudioSource staff_Roll_BGM;
+    [SerializeField] private AudioSource ending_BGM;
 
     
     //現在流れているBGM 
@@ -78,7 +79,9 @@ public class BGMManager : MonoBehaviour {
 
     //曲のフェードアウト
     public void Start_Fade_Out(float speed, float time_Span) {
-        StartCoroutine(Fade_Out(speed, time_Span));
+        if (now_BGM != null) {
+            StartCoroutine(Fade_Out(speed, time_Span));
+        }
     }
 
     private IEnumerator Fade_Out(float speed, float time_Span) {
@@ -104,13 +107,13 @@ public class BGMManager : MonoBehaviour {
             case "Base_1Scene"      : Change_BGM(base_BGM);     break;
             case "Stage3_1Scene"    : Change_BGM(stage_BGM2);   break;
             case "Stage3_2Scene"    : Change_BGM(stage_BGM2);   break;
-            case "Base_2Scene"      : Change_BGM(base_BGM);     break;
+            case "Base_2Scene"      : Stop_BGM();               break;
             case "Stage4_1Scene"    : Change_BGM(stage_BGM3);   break;
             case "Stage4_2Scene"    : Change_BGM(stage_BGM3);   break;
             case "Stage5_1Scene"    : Change_BGM(stage_BGM3);   break;
             case "ExtraFrontScene"  : Stop_BGM();               break;
             case "EndingScene"      : Stop_BGM();               break;
-            case "StaffRollScene"   : Change_BGM(staff_Roll_BGM); break;
+            case "AfterEndingScene" : Change_BGM(staff_Roll_BGM); break;
         }
     }
 }

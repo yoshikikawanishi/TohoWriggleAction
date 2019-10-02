@@ -9,6 +9,7 @@ public class EndingReimuAttaack : MonoBehaviour {
 
     private ObjectPoolManager pool_Manager;
     private MoveBetweenTwoPoints _move;
+    private EndingReimuController _controller;
 
     private BulletFunctions     homing_Shoot_Function;
     private BulletFunctions     yin_Ball_Shoot_Function;
@@ -24,6 +25,7 @@ public class EndingReimuAttaack : MonoBehaviour {
         //取得
         pool_Manager = GameObject.FindWithTag("ScriptsTag").GetComponent<ObjectPoolManager>();
         _move = GetComponent<MoveBetweenTwoPoints>();
+        _controller = GetComponent<EndingReimuController>();
         player = GameObject.FindWithTag("PlayerTag");
         //オブジェクトプール
         pool_Manager.Create_New_Pool(Resources.Load("Bullet/PooledBullet/RedTalismanBullet") as GameObject, 30);
@@ -56,6 +58,9 @@ public class EndingReimuAttaack : MonoBehaviour {
             List<int> list = new List<int> { 1, 2, 3, 4 };
             while(list.Count > 0) {
                 int num = Random.Range(0, list.Count);
+                if(list.Count == 4) {
+                    num = 0;
+                }
                 switch (list[num]) {
                     case 1://ホーミング弾
                         StartCoroutine(Shoot_Homing_Bullet(count + 4));
@@ -70,7 +75,8 @@ public class EndingReimuAttaack : MonoBehaviour {
                         yield return new WaitForSeconds(1.5f * (count + 1));
                         break;
                     case 4://夢想封印      
-                        Debug.Log("Muso Huin"); //TODO:夢想封印
+                        StartCoroutine(Start_Fantasy_Seal_Attack(count + 1));
+                        yield return new WaitForSeconds(0.75f * (count + 1));
                         break;
                 }
                 list.RemoveAt(num);
@@ -99,6 +105,7 @@ public class EndingReimuAttaack : MonoBehaviour {
             homing_Shoot_Function.Set_Bullet(homing_Bullet);
             homing_Shoot_Function.Some_Way_Bullet(num, 140f, 0, 40f, 7.0f);
             _move.Start_Random_Move(32f, 0.02f);
+            UsualSoundManager.Shot_Sound();
             yield return new WaitForSeconds(0.75f);
         }
     }
@@ -106,31 +113,63 @@ public class EndingReimuAttaack : MonoBehaviour {
 
     //陰陽玉発射
     private IEnumerator Shoot_Yin_Ball_Bullet(int num) {
-        Debug.Log("ChargeEffect");  //TODO:溜めエフェクト
+        if(num > 3) { num = 3; }
+        _controller.Play_Charge_Effect(1.5f);
         yield return new WaitForSeconds(1.5f);
+        _controller.Play_Power_Spread_Effect();
         AngleTwoPoints _angle = new AngleTwoPoints();
         float angle = _angle.Cal_Angle_Two_Points(transform.position, player.transform.position);
         yin_Ball_Shoot_Function.Set_Bullet(yin_Ball_Bullet);
-        for (int i = 0; i < num; i++) {
-            angle += (360 / num) * i;
-            yin_Ball_Shoot_Function.Turn_Shoot_Bullet(150f, angle, 0);            
+        for (int i = 0; i < num; i++) {                        
+            yin_Ball_Shoot_Function.Turn_Shoot_Bullet(150f, angle, 0);
+            angle += (360 / num);
         }
+        UsualSoundManager.Shot_Sound();
     }
 
 
     //お札弾発射
     private IEnumerator Shoot_Talisman_Bullet(int shoot_Count) {
+        _controller.Play_Charge_Effect(1.5f);
+        yield return new WaitForSeconds(1.5f);
+        _controller.Play_Power_Spread_Effect();
         for(int i = 0; i < shoot_Count; i++) {
             //赤弾
             talisman_Shoot_Function.Set_Bullet_Pool(pool_Manager.Get_Pool("RedTalismanBullet"));
             for(int j = 0; j < 5; j++) {
                 talisman_Shoot_Function.Diffusion_Bullet(18, 120f - j * 4f, j * 2f, 7.0f);
             }
+            UsualSoundManager.Shot_Sound();
             //白弾
             talisman_Shoot_Function.Set_Bullet_Pool(pool_Manager.Get_Pool("WhiteTalismanBullet"));
             for(int j = 5; j < 10; j++) {
                 talisman_Shoot_Function.Diffusion_Bullet(18, 120f - j * 4f, -j * 2 , 7.0f);
             }
+            UsualSoundManager.Shot_Sound();
+            yield return new WaitForSeconds(0.75f);
+        }
+    }
+
+
+    /// <summary>
+    /// 夢想封印
+    /// </summary>
+    /// <param name="num"> 5以下の整数 </param>
+    /// <returns></returns>
+    private IEnumerator Start_Fantasy_Seal_Attack(int num) {
+        if(num > 5) { num = 5; }
+        GameObject attack_Obj = Resources.Load("Effect/FantasySealAttack") as GameObject;
+        List<Color> color_List = new List<Color> {
+            new Color(0   , 0   , 1     ),
+            new Color(0   , 1   , 1     ),
+            new Color(0   , 1   , 0     ),
+            new Color(1   , 1   , 0     ),
+            new Color(1   , 0   , 0     )
+        };
+        for (int i = 0; i < num; i++) {
+            GameObject obj = Instantiate(attack_Obj);
+            obj.transform.position = player.transform.position;
+            obj.GetComponent<FantasySealAttack>().Start_Attack(color_List[i]);
             yield return new WaitForSeconds(0.75f);
         }
     }

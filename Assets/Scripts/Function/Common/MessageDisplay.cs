@@ -57,6 +57,19 @@ public class MessageDisplay : MonoBehaviour {
         StartCoroutine("Print_Message");
     }
 
+    //表示開始
+    public void Start_Display_Auto(string fileName, int start_ID, int end_ID, float waitingTime, float speed) {
+        //テキストファイルの読み込み
+        Read_Text(fileName);
+        //セリフ枠の表示、テキスト、アイコンの取得
+        Display_Panel();
+        //番号の代入
+        this.start_ID = start_ID;
+        this.end_ID = end_ID;
+        //セリフの表示
+        StartCoroutine(Print_Message_Auto(waitingTime, speed));
+    }
+
 
 
     //テキストファイルの読み込み
@@ -141,6 +154,37 @@ public class MessageDisplay : MonoBehaviour {
             return true;
         }
         return false;
+    }
+
+
+    //メッセージ表示
+    private IEnumerator Print_Message_Auto(float waitingTime, float speed) {
+        //効果音の取得
+        AudioSource sound = messagePanel.GetComponent<AudioSource>();
+        //1行ずつ表示
+        for (int i = start_ID; i <= end_ID; i++) {
+            //名前とアイコン
+            nameText.text = textWords[i, 1];
+            //セリフ
+            int lineLength = textWords[i, 3].Length;
+            for (int j = 0; j < lineLength; j++) {
+                if (textWords[i, 3][j] == '/') {
+                    messageText.text += "\n";
+                }
+                else {
+                    messageText.text += textWords[i, 3][j];
+                    sound.Play();
+                }
+                for (float t = 0; t < speed; t += 0.016f) { yield return null; }
+            }
+            //1行分表示後決定が押されるのを待つ
+            yield return new WaitForSeconds(waitingTime);
+            //次の行へ
+            messageText.text = "";
+        }
+        //表示終了
+        messagePanel.SetActive(false);
+        endMessage = true;
     }
 
 

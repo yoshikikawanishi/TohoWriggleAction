@@ -44,4 +44,18 @@ public class EndingReimuController : MonoBehaviour {
         _anim.SetBool(change_Bool, true);
         transform.localScale = new Vector3(scale_X, 1, 1);
     }
+
+    //溜めエフェクト
+    public void Play_Charge_Effect(float time_Length) {
+        GameObject effect = Instantiate(Resources.Load("Effect/PowerChargeEffects") as GameObject);
+        effect.transform.position = transform.position;
+        Destroy(effect, time_Length);
+    }
+
+
+    //放出エフェクト
+    public void Play_Power_Spread_Effect() {
+        GameObject effect = Instantiate(Resources.Load("Effect/PowerSpreadEffect") as GameObject);
+        effect.transform.position = transform.position;
+    }
 }

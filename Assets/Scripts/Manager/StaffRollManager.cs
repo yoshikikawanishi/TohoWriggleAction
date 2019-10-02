@@ -8,7 +8,7 @@ public class StaffRollManager : MonoBehaviour {
     [SerializeField] private GameObject roll_Text_Obj;
 
     private bool is_End_Staff_Roll = false;
-    private float scroll_Speed = 1.0f;
+    private float scroll_Speed = 0.45f;
 
 
     /// <summary>

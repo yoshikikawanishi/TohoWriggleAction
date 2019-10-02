@@ -55,8 +55,13 @@ public class Ending_Movie : MonoBehaviour {
         _message.Start_Display("EndingText", 4, 6);
         yield return new WaitUntil(_message.End_Message);
         yield return new WaitForSeconds(1.0f);
-        _message.Start_Display("EndingText", 7, 9);
+        //BGM開始
+        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Change_BGM_Index(12);
+        _message.Start_Display_Auto("EndingText", 7, 7, 1.5f, 0.07f);
         yield return new WaitUntil(_message.End_Message);
+        _message.Start_Display_Auto("EndingText", 8, 8, 1.0f, 0.005f);
+        yield return new WaitUntil(_message.End_Message);
+        _message.Start_Display("EndingText", 9, 9);
 
         //霊夢戦開始、スタッフロール開始
         player_Controller.Set_Playable(true);
@@ -69,13 +74,17 @@ public class Ending_Movie : MonoBehaviour {
 
     //クリア後ムービー
     public IEnumerator Play_Clear_Movie() {
+        //自機無敵化
+        player.layer = LayerMask.NameToLayer("InvincibleLayer");
         //霊夢止める
         reimu.GetComponent<EndingReimuAttaack>().Stop_Reimu_Attack();
         //フェードアウト、終了設定
         fade_In_Obj.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         GetComponent<FadeInOut>().speed = 0.01f;
         GetComponent<FadeInOut>().Start_Fade_Out();
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(2.0f);
+        GameObject.FindWithTag("BGMTag").GetComponent<BGMManager>().Start_Fade_Out(0.005f, 2.1f);
+        yield return new WaitForSeconds(2.0f);
         _pause.Set_Pausable(true);
 
         SceneManager.LoadScene("AfterEndingScene");
