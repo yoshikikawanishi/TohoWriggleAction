@@ -86,8 +86,6 @@ public class GameManager : MonoBehaviour {
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         //進行度の更新、初めて訪れたかどうかの確認
         first_Visit_Frag = _sceneProgress.Update_Is_Visited(scene.name);
-        //ポーズのバグ防止用
-
     }
 
 

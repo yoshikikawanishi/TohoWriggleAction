@@ -58,6 +58,7 @@ public class PauseManager : MonoBehaviour {
         //ポーズのバグ防止用
         state = STATE.normal;
         Time.timeScale = 1;
+        Set_Pausable(true);
     }
 
 

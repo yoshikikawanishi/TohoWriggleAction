@@ -113,7 +113,7 @@ public class BGMManager : MonoBehaviour {
             case "Stage5_1Scene"    : Change_BGM(stage_BGM3);   break;
             case "ExtraFrontScene"  : Stop_BGM();               break;
             case "EndingScene"      : Stop_BGM();               break;
-            case "AfterEndingScene" : Change_BGM(staff_Roll_BGM); break;
+            case "AfterEndingScene" : Stop_BGM();               break;
         }
     }
 }

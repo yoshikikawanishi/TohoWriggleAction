@@ -10,6 +10,7 @@ public class EndingReimuAttaack : MonoBehaviour {
     private ObjectPoolManager pool_Manager;
     private MoveBetweenTwoPoints _move;
     private EndingReimuController _controller;
+    private BossEnemyController boss_Controller;
 
     private BulletFunctions     homing_Shoot_Function;
     private BulletFunctions     yin_Ball_Shoot_Function;
@@ -26,6 +27,7 @@ public class EndingReimuAttaack : MonoBehaviour {
         pool_Manager = GameObject.FindWithTag("ScriptsTag").GetComponent<ObjectPoolManager>();
         _move = GetComponent<MoveBetweenTwoPoints>();
         _controller = GetComponent<EndingReimuController>();
+        boss_Controller = GetComponent<BossEnemyController>();
         player = GameObject.FindWithTag("PlayerTag");
         //オブジェクトプール
         pool_Manager.Create_New_Pool(Resources.Load("Bullet/PooledBullet/RedTalismanBullet") as GameObject, 30);
@@ -51,14 +53,16 @@ public class EndingReimuAttaack : MonoBehaviour {
         yield return null;
         //耐久開始
         StartCoroutine("Down_Boss_Life");
+        _controller.Play_Charge_Effect(2.0f);
+        yield return new WaitForSeconds(2.0f);
         //攻撃
         int count = 0;
         while (true) {
             //4種の攻撃からランダムの順に
             List<int> list = new List<int> { 1, 2, 3, 4 };
-            while(list.Count > 0) {
+            while (list.Count > 0) {
                 int num = Random.Range(0, list.Count);
-                if(list.Count == 4) {
+                if (list.Count == 4) {
                     num = 0;
                 }
                 switch (list[num]) {
@@ -72,23 +76,24 @@ public class EndingReimuAttaack : MonoBehaviour {
                         break;
                     case 3://お札弾
                         StartCoroutine(Shoot_Talisman_Bullet(count + 1));
-                        yield return new WaitForSeconds(1.5f * (count + 1));
+                        yield return new WaitForSeconds(1.5f + 1.0f * (count + 1));
                         break;
                     case 4://夢想封印      
-                        StartCoroutine(Start_Fantasy_Seal_Attack(count + 1));
-                        yield return new WaitForSeconds(0.75f * (count + 1));
+                        StartCoroutine(Start_Fantasy_Seal_Attack(count + 3));
+                        yield return new WaitForSeconds(0.75f * (count + 3));
                         break;
                 }
                 list.RemoveAt(num);
             }
-            count++;
+            if (boss_Controller.life[0] < 40) {
+                count++;
+            }
         }
     }
 
 
     //耐久用体力減少
     private IEnumerator Down_Boss_Life() {
-        BossEnemyController boss_Controller = GetComponent<BossEnemyController>();
         while(boss_Controller.Get_Now_Phase() == 1) {            
             yield return new WaitForSeconds(1.0f);
             boss_Controller.Damaged(1);
