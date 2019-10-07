@@ -607,7 +607,7 @@ MonoBehaviour:
   damage_Sound: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
   audio_Group: {fileID: 243290957650688938, guid: ec0738a2f580f704391b999be37bf285,
     type: 2}
-  life: b4000000aa00000032000000aa0000002c010000
+  life: b4000000a000000032000000aa0000002c010000
   LIFE: 
   power_Value: 50
   score_Value: 5000

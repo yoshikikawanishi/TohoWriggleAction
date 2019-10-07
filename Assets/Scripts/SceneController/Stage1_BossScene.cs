@@ -101,7 +101,7 @@ public class Stage1_BossScene : MonoBehaviour {
         //一時停止不可
         _pause.Set_Pausable(false);
         //メッセージ表示
-        _message.Start_Display("LarvaText", 6, 7);
+        _message.Start_Display("LarvaText", 6, 8);
         yield return new WaitUntil(_message.End_Message);
         //フェードアウト
         GetComponent<FadeInOut>().Start_Fade_Out();

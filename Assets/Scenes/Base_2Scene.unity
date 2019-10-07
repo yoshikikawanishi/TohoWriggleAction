@@ -3261,7 +3261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb6c4614b719af459d4ff571dcef56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baloon_Pos: {x: 32, y: 48, z: 0}
+  baloon_Pos: {x: 28, y: 36, z: 0}
   fileName: KisumeText
   start_ID: 1
   end_ID: 6

@@ -17367,11 +17367,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114262573876471058, guid: 0b10a22c22a224e459779e9f99c4cac8,
-        type: 2}
-      propertyPath: back_Design
-      value: 
-      objectReference: {fileID: 1079449128}
     - target: {fileID: 114351438851537936, guid: 0b10a22c22a224e459779e9f99c4cac8,
         type: 2}
       propertyPath: phase2.bullet_Parent
@@ -17392,6 +17387,11 @@ Prefab:
       propertyPath: phase5.shot_Objects
       value: 
       objectReference: {fileID: 1651507922}
+    - target: {fileID: 114262573876471058, guid: 0b10a22c22a224e459779e9f99c4cac8,
+        type: 2}
+      propertyPath: back_Design
+      value: 
+      objectReference: {fileID: 1079449128}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b10a22c22a224e459779e9f99c4cac8, type: 2}
   m_IsPrefabAsset: 0
