@@ -195,6 +195,9 @@ public class Stage4_1Scene : MonoBehaviour {
         do {
             difference = main_Camera.transform.position.x - (player.transform.position.x + 64f);
             main_Camera.transform.position += new Vector3(-difference / Mathf.Abs(difference) * 5f, 0);
+            if(main_Camera.transform.position.x > 10500f) {
+                break;
+            }
             yield return null;
         } while (Mathf.Abs(difference) > 3f);
         main_Camera.GetComponent<CameraController>().enabled = true;

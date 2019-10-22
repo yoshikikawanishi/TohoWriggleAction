@@ -933,7 +933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage_Sound: {fileID: 8300000, guid: 9ac41fd4c7655404e93d71103b244fa4, type: 3}
   audio_Group: {fileID: 0}
-  life: a00000008c00000064000000640000002c0100001c020000
+  life: a00000008c00000078000000640000002c0100001c020000
   LIFE: 
   power_Value: 50
   score_Value: 0

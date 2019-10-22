@@ -52,6 +52,7 @@ public class EndingReimuAttaack : MonoBehaviour {
     private IEnumerator Play_Reimu_Attack_Routine() {
         yield return null;
         //耐久開始
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.7f);
         StartCoroutine("Down_Boss_Life");
         _controller.Play_Charge_Effect(2.0f);
         yield return new WaitForSeconds(2.0f);
@@ -94,13 +95,15 @@ public class EndingReimuAttaack : MonoBehaviour {
 
     //耐久用体力減少
     private IEnumerator Down_Boss_Life() {
-        while(boss_Controller.Get_Now_Phase() == 1) {            
+        AudioSource timer_Sound = transform.GetChild(1).GetComponent<AudioSource>();
+        while (boss_Controller.life[0] > 0) {            
             yield return new WaitForSeconds(1.0f);
-            boss_Controller.Damaged(1);
-            if(boss_Controller.life[0] < 10) {
-                Debug.Log("Count Down Timer");
+            boss_Controller.life[0]--;
+            if(boss_Controller.life[0] < 5) {
+                timer_Sound.Play();
             }
         }
+        boss_Controller.Damaged(1);
     }
 
 

@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour {
 
         //初めてゲームを起動したとき
         //テスト
-        Debug.Log("First_Visit_Test");
+        //Debug.Log("First_Visit_Test");
         //PlayerPrefs.DeleteKey("Is_First_Open_Game");
 
         if (!PlayerPrefs.HasKey("Is_First_Open_Game")) {
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour {
 
 
         /*　データ消去のテスト */
-        Debug.Log("Delete_Data");
+        //Debug.Log("Delete_Data");
         //DeleteData();
         //DoremyHat.Delete_Data();        
         //ClearDataManager.Delete_Data(); 

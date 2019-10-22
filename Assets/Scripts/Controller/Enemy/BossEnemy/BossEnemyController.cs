@@ -138,7 +138,6 @@ public class BossEnemyController : MonoBehaviour {
     //クリア時の処理
     private void Clear() {
         clear_Trigger = true;
-        Debug.Log("What?");
         now_Phase = life.Count();
         //無敵化
         gameObject.layer = LayerMask.NameToLayer("InvincibleLayer");
